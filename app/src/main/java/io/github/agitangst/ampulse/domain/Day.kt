@@ -112,7 +112,9 @@ fun checkPrn(plan: Plan, medicineId: Long, events: List<DoseEvent>, now: LocalDa
             (it.status == EventStatus.Taken || it.status == EventStatus.Extra)
     }.sortedBy { it.at }
     if (plan.prnMaxPerDay > 0 && recent.size >= plan.prnMaxPerDay) {
-        return PrnCheck.LimitReached(recent.size, recent[recent.size - plan.prnMaxPerDay].at.plusHours(24))
+        val byLimit = recent[recent.size - plan.prnMaxPerDay].at.plusHours(24)
+        val byInterval = recent.last().at.plusHours(plan.prnIntervalHours.toLong())
+        return PrnCheck.LimitReached(recent.size, maxOf(byLimit, byInterval))
     }
     val last = recent.lastOrNull() ?: return PrnCheck.Allowed
     val next = last.at.plusHours(plan.prnIntervalHours.toLong())
