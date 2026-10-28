@@ -7,7 +7,7 @@ context: |
 
   Project: Ampulse (ampoule + pulse), an offline phone app for tracking pills, injections and blood
   pressure - for yourself, a family member or a pet. Stage: design mockup only, no code yet; the
-  platform and stack are not chosen (the mockup follows Material 3 on a phone). The mockup lives on
+  platform is Android, Kotlin + Jetpack Compose, Material 3 (owner's decision 29.10.2026). The mockup lives on
   a claude.ai Design canvas; its exported source is in mockup/ (canvas.json + *.dc.html; screens
   1-25 are plain markup with En/Dark/DarkEn copies, newer screens are one component with theme and
   lang props plus thin wrappers).
