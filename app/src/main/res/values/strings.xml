@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Вкладки нижней навигации и заголовки их экранов -->
+    <string name="tab_today">Today</string>
+    <string name="tab_history">History</string>
+    <string name="tab_medicines">Medicines</string>
+    <string name="tab_family">Family</string>
+
+    <!-- Настройки; settings_title — ещё и подпись кнопки-шестерёнки для TalkBack -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_about">About</string>
+
+    <!-- Шаблон даты в шапке «Сегодня» (java.time): день недели и число словами -->
+    <string name="date_pattern">EEEE, MMMM d</string>
+
+    <!-- Пустые состояния: заголовок про список и что сделать -->
+    <string name="today_empty_title">No doses today</string>
+    <string name="today_empty_hint">Add a medicine — doses will appear here by time</string>
+    <string name="history_empty_title">History is empty</string>
+    <string name="history_empty_hint">Intake marks and blood pressure readings will appear here</string>
+    <string name="medicines_empty_title">No medicines yet</string>
+    <string name="medicines_empty_hint">Medicines, supply and expiry dates will appear once you add them</string>
+    <string name="family_empty_title">No family members yet</string>
+    <string name="family_empty_hint">Add someone who will get a text about a missed dose</string>
+</resources>

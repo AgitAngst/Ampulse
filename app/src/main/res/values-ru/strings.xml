@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Вкладки нижней навигации и заголовки их экранов -->
+    <string name="tab_today">Сегодня</string>
+    <string name="tab_history">История</string>
+    <string name="tab_medicines">Аптечка</string>
+    <string name="tab_family">Близкие</string>
+
+    <!-- Настройки; settings_title — ещё и подпись кнопки-шестерёнки для TalkBack -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_back">Назад</string>
+    <string name="settings_about">О программе</string>
+
+    <!-- Шаблон даты в шапке «Сегодня» (java.time): день недели и число словами -->
+    <string name="date_pattern">EEEE, d MMMM</string>
+
+    <!-- Пустые состояния: заголовок про список и что сделать -->
+    <string name="today_empty_title">На сегодня приёмов нет</string>
+    <string name="today_empty_hint">Добавьте лекарство — приёмы появятся здесь по времени</string>
+    <string name="history_empty_title">История пуста</string>
+    <string name="history_empty_hint">Здесь будут отметки о приёмах и замеры давления</string>
+    <string name="medicines_empty_title">Аптечка пуста</string>
+    <string name="medicines_empty_hint">Лекарства, запас и сроки годности появятся, когда вы их добавите</string>
+    <string name="family_empty_title">Близких пока нет</string>
+    <string name="family_empty_hint">Добавьте человека, которому придёт SMS о пропущенном приёме</string>
+</resources>
