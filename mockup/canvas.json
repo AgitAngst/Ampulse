@@ -1,0 +1,1675 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Access.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "13 · Близкие — телефон мамы",
+      "w": 390,
+      "x": 1410,
+      "y": 5000
+    },
+    "AddMed.dc.html": {
+      "h": 1312,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "4 · Новое лекарство",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "AddMedDark.dc.html": {
+      "h": 1312,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "22 · Новое лекарство — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 9100
+    },
+    "Care.dc.html": {
+      "h": 1120,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "12 · Забота — телефон Анны",
+      "w": 390,
+      "x": 940,
+      "y": 5000
+    },
+    "DoubleDose.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "15 · Защита от двойной дозы",
+      "w": 390,
+      "x": 2350,
+      "y": 5000
+    },
+    "Emergency.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "16 · Экстренная карта",
+      "w": 390,
+      "x": 2820,
+      "y": 5000
+    },
+    "History.dc.html": {
+      "h": 1190,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "6 · История",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "HistoryDark.dc.html": {
+      "h": 1190,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "24 · История — тёмная",
+      "w": 390,
+      "x": 2350,
+      "y": 9100
+    },
+    "ImportFlow.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "7 · Вставить назначение",
+      "w": 390,
+      "x": 0,
+      "y": 2260
+    },
+    "ImportPlan.dc.html": {
+      "h": 1700,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "9 · Готовый план",
+      "w": 390,
+      "x": 940,
+      "y": 2260
+    },
+    "ImportReview.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "8 · Проверка разбора",
+      "w": 390,
+      "x": 470,
+      "y": 2260
+    },
+    "Injection.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "3 · Место укола",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "InjectionDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "21 · Место укола — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 9100
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "1 · Сегодня",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "MainDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "20 · Сегодня — тёмная",
+      "w": 390,
+      "x": 470,
+      "y": 9100
+    },
+    "Palette.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "19 · Палитра тёмной темы",
+      "w": 390,
+      "x": 0,
+      "y": 9100
+    },
+    "PetInjection.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "17 · Питомец — кошка",
+      "w": 390,
+      "x": 0,
+      "y": 7280
+    },
+    "PetInjectionDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "25 · Питомец — тёмная",
+      "w": 390,
+      "x": 2820,
+      "y": 9100
+    },
+    "PetInjectionDog.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "18 · Питомец — собака",
+      "w": 390,
+      "x": 470,
+      "y": 7280
+    },
+    "Reminder.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "2 · Напоминание",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Scan.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "14 · Сканер упаковки",
+      "w": 390,
+      "x": 1880,
+      "y": 5000
+    },
+    "Schedule.dc.html": {
+      "h": 1080,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "10 · Схема приёма",
+      "w": 390,
+      "x": 0,
+      "y": 5000
+    },
+    "Stock.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "5 · Аптечка",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "StockDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "23 · Аптечка — тёмная",
+      "w": 390,
+      "x": 1880,
+      "y": 9100
+    },
+    "BPEntry.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "26 · Давление — ввод",
+      "w": 390,
+      "x": 0,
+      "y": 11100
+    },
+    "BPHistory.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "27 · Давление — история",
+      "w": 390,
+      "x": 470,
+      "y": 11100
+    },
+    "BPEntryDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "28 · Ввод — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 11100
+    },
+    "BPHistoryDark.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "29 · История — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 11100
+    },
+    "MainEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "1 · Today",
+      "w": 390,
+      "x": 0,
+      "y": 0,
+      "page": "en"
+    },
+    "ReminderEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "2 · Reminder",
+      "w": 390,
+      "x": 470,
+      "y": 0,
+      "page": "en"
+    },
+    "InjectionEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "3 · Injection site",
+      "w": 390,
+      "x": 940,
+      "y": 0,
+      "page": "en"
+    },
+    "AddMedEn.dc.html": {
+      "h": 1312,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "4 · New medicine",
+      "w": 390,
+      "x": 1410,
+      "y": 0,
+      "page": "en"
+    },
+    "StockEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "5 · Medicines",
+      "w": 390,
+      "x": 1880,
+      "y": 0,
+      "page": "en"
+    },
+    "HistoryEn.dc.html": {
+      "h": 1190,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "6 · History",
+      "w": 390,
+      "x": 2350,
+      "y": 0,
+      "page": "en"
+    },
+    "ImportFlowEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "7 · Paste prescription",
+      "w": 390,
+      "x": 0,
+      "y": 2260,
+      "page": "en"
+    },
+    "ImportReviewEn.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "8 · Review",
+      "w": 390,
+      "x": 470,
+      "y": 2260,
+      "page": "en"
+    },
+    "ImportPlanEn.dc.html": {
+      "h": 1700,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "9 · Ready plan",
+      "w": 390,
+      "x": 940,
+      "y": 2260,
+      "page": "en"
+    },
+    "ScheduleEn.dc.html": {
+      "h": 1080,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "10 · Dosing schedule",
+      "w": 390,
+      "x": 0,
+      "y": 5000,
+      "page": "en"
+    },
+    "CareEn.dc.html": {
+      "h": 1120,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "12 · Care — Anna’s phone",
+      "w": 390,
+      "x": 940,
+      "y": 5000,
+      "page": "en"
+    },
+    "AccessEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "13 · Family — Mom’s phone",
+      "w": 390,
+      "x": 1410,
+      "y": 5000,
+      "page": "en"
+    },
+    "ScanEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "14 · Package scanner",
+      "w": 390,
+      "x": 1880,
+      "y": 5000,
+      "page": "en"
+    },
+    "DoubleDoseEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "15 · Double-dose guard",
+      "w": 390,
+      "x": 2350,
+      "y": 5000,
+      "page": "en"
+    },
+    "EmergencyEn.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "16 · Emergency card",
+      "w": 390,
+      "x": 2820,
+      "y": 5000,
+      "page": "en"
+    },
+    "PetInjectionEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "17 · Pet — cat",
+      "w": 390,
+      "x": 0,
+      "y": 7280,
+      "page": "en"
+    },
+    "PetInjectionDogEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "18 · Pet — dog",
+      "w": 390,
+      "x": 470,
+      "y": 7280,
+      "page": "en"
+    },
+    "PaletteEn.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "19 · Dark theme palette",
+      "w": 390,
+      "x": 0,
+      "y": 9100,
+      "page": "en"
+    },
+    "MainDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "20 · Today — dark",
+      "w": 390,
+      "x": 470,
+      "y": 9100,
+      "page": "en"
+    },
+    "InjectionDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "21 · Injection site — dark",
+      "w": 390,
+      "x": 940,
+      "y": 9100,
+      "page": "en"
+    },
+    "AddMedDarkEn.dc.html": {
+      "h": 1312,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "22 · New medicine — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 9100,
+      "page": "en"
+    },
+    "StockDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "23 · Medicines — dark",
+      "w": 390,
+      "x": 1880,
+      "y": 9100,
+      "page": "en"
+    },
+    "HistoryDarkEn.dc.html": {
+      "h": 1190,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "24 · History — dark",
+      "w": 390,
+      "x": 2350,
+      "y": 9100,
+      "page": "en"
+    },
+    "PetInjectionDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "25 · Pet — dark",
+      "w": 390,
+      "x": 2820,
+      "y": 9100,
+      "page": "en"
+    },
+    "BPEntryEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "26 · Blood pressure — entry",
+      "w": 390,
+      "x": 0,
+      "y": 11100,
+      "page": "en"
+    },
+    "BPHistoryEn.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "27 · Blood pressure — history",
+      "w": 390,
+      "x": 470,
+      "y": 11100,
+      "page": "en"
+    },
+    "BPEntryDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "28 · Entry — dark",
+      "w": 390,
+      "x": 940,
+      "y": 11100,
+      "page": "en"
+    },
+    "BPHistoryDarkEn.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "29 · History — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 11100,
+      "page": "en"
+    },
+    "ImportFlowDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "30 · Вставить назначение — тёмная",
+      "w": 390,
+      "x": 0,
+      "y": 13100
+    },
+    "ImportFlowDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "30 · Paste prescription — dark",
+      "w": 390,
+      "x": 0,
+      "y": 13100,
+      "page": "en"
+    },
+    "ImportReviewDark.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "31 · Проверка разбора — тёмная",
+      "w": 390,
+      "x": 470,
+      "y": 13100
+    },
+    "ImportReviewDarkEn.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "31 · Review — dark",
+      "w": 390,
+      "x": 470,
+      "y": 13100,
+      "page": "en"
+    },
+    "ImportPlanDark.dc.html": {
+      "h": 1700,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "32 · Готовый план — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 13100
+    },
+    "ImportPlanDarkEn.dc.html": {
+      "h": 1700,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "32 · Ready plan — dark",
+      "w": 390,
+      "x": 940,
+      "y": 13100,
+      "page": "en"
+    },
+    "ScheduleDark.dc.html": {
+      "h": 1080,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "33 · Схема приёма — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 13100
+    },
+    "ScheduleDarkEn.dc.html": {
+      "h": 1080,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "33 · Dosing schedule — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 13100,
+      "page": "en"
+    },
+    "CareDark.dc.html": {
+      "h": 1120,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "35 · Забота — тёмная",
+      "w": 390,
+      "x": 2350,
+      "y": 13100
+    },
+    "CareDarkEn.dc.html": {
+      "h": 1120,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "35 · Care — dark",
+      "w": 390,
+      "x": 2350,
+      "y": 13100,
+      "page": "en"
+    },
+    "AccessDark.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "36 · Близкие — тёмная",
+      "w": 390,
+      "x": 2820,
+      "y": 13100
+    },
+    "AccessDarkEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "36 · Family — dark",
+      "w": 390,
+      "x": 2820,
+      "y": 13100,
+      "page": "en"
+    },
+    "DoubleDoseDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "37 · Двойная доза — тёмная",
+      "w": 390,
+      "x": 3290,
+      "y": 13100
+    },
+    "DoubleDoseDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "37 · Double-dose guard — dark",
+      "w": 390,
+      "x": 3290,
+      "y": 13100,
+      "page": "en"
+    },
+    "EmergencyDark.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "38 · Экстренная карта — тёмная",
+      "w": 390,
+      "x": 3760,
+      "y": 13100
+    },
+    "EmergencyDarkEn.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "38 · Emergency card — dark",
+      "w": 390,
+      "x": 3760,
+      "y": 13100,
+      "page": "en"
+    },
+    "PetInjectionDogDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "39 · Питомец — собака, тёмная",
+      "w": 390,
+      "x": 4230,
+      "y": 13100
+    },
+    "PetInjectionDogDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "39 · Pet — dog, dark",
+      "w": 390,
+      "x": 4230,
+      "y": 13100,
+      "page": "en"
+    },
+    "Expiry.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "40 · Сроки годности",
+      "w": 390,
+      "x": 0,
+      "y": 15400
+    },
+    "ExpiryEn.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "40 · Expiry dates",
+      "w": 390,
+      "x": 0,
+      "y": 15400,
+      "page": "en"
+    },
+    "ExpiryEntry.dc.html": {
+      "h": 1320,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "41 · Срок — новая упаковка",
+      "w": 390,
+      "x": 470,
+      "y": 15400
+    },
+    "ExpiryEntryEn.dc.html": {
+      "h": 1320,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "41 · Expiry — new pack",
+      "w": 390,
+      "x": 470,
+      "y": 15400,
+      "page": "en"
+    },
+    "ExpiryDark.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "42 · Сроки — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 15400
+    },
+    "ExpiryDarkEn.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "42 · Expiry dates — dark",
+      "w": 390,
+      "x": 940,
+      "y": 15400,
+      "page": "en"
+    },
+    "ExpiryEntryDark.dc.html": {
+      "h": 1320,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "43 · Новая упаковка — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 15400
+    },
+    "ExpiryEntryDarkEn.dc.html": {
+      "h": 1320,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "43 · New pack — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 15400,
+      "page": "en"
+    },
+    "ShotGuide.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "44 · Укол пошагово — подкожно",
+      "w": 390,
+      "x": 0,
+      "y": 17700
+    },
+    "ShotGuideEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "44 · Step by step — under the skin",
+      "w": 390,
+      "x": 0,
+      "y": 17700,
+      "page": "en"
+    },
+    "ShotGuideIm.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "45 · Укол пошагово — в мышцу",
+      "w": 390,
+      "x": 470,
+      "y": 17700
+    },
+    "ShotGuideImEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "45 · Step by step — into the muscle",
+      "w": 390,
+      "x": 470,
+      "y": 17700,
+      "page": "en"
+    },
+    "ShotRules.dc.html": {
+      "h": 1640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "46 · Правила уколов",
+      "w": 390,
+      "x": 940,
+      "y": 17700
+    },
+    "ShotRulesEn.dc.html": {
+      "h": 1640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "46 · Injection rules",
+      "w": 390,
+      "x": 940,
+      "y": 17700,
+      "page": "en"
+    },
+    "ShotGuideDark.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "47 · Подкожно — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 17700
+    },
+    "ShotGuideDarkEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "47 · Under the skin — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 17700,
+      "page": "en"
+    },
+    "ShotGuideImDark.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "48 · В мышцу — тёмная",
+      "w": 390,
+      "x": 1880,
+      "y": 17700
+    },
+    "ShotGuideImDarkEn.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "48 · Into the muscle — dark",
+      "w": 390,
+      "x": 1880,
+      "y": 17700,
+      "page": "en"
+    },
+    "ShotRulesDark.dc.html": {
+      "h": 1640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "49 · Правила — тёмная",
+      "w": 390,
+      "x": 2350,
+      "y": 17700
+    },
+    "ShotRulesDarkEn.dc.html": {
+      "h": 1640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "49 · Rules — dark",
+      "w": 390,
+      "x": 2350,
+      "y": 17700,
+      "page": "en"
+    },
+    "AsNeeded.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "11 · По необходимости",
+      "w": 390,
+      "x": 470,
+      "y": 5000
+    },
+    "AsNeededEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "11 · As needed",
+      "w": 390,
+      "x": 470,
+      "y": 5000,
+      "page": "en"
+    },
+    "AsNeededDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "34 · По необходимости — тёмная",
+      "w": 390,
+      "x": 1880,
+      "y": 13100
+    },
+    "AsNeededDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "34 · As needed — dark",
+      "w": 390,
+      "x": 1880,
+      "y": 13100,
+      "page": "en"
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-26T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "n1": {
+      "text": "Лента дня по времени. Одно касание — «принято», просроченное подсвечено, кольцо показывает прогресс дня.",
+      "w": 390,
+      "x": 0,
+      "y": 904
+    },
+    "n10": {
+      "text": "Снижение и повышение дозы по ступеням, циклы, раз в неделю, чередование, «по необходимости» и пауза. Накануне смены дозы — напоминание.",
+      "w": 390,
+      "x": 0,
+      "y": 6140
+    },
+    "n11": {
+      "text": "Таймер до следующего разрешённого приёма и счётчик за сутки. Раньше интервала — только через подтверждение, сверх лимита — нельзя.",
+      "w": 390,
+      "x": 470,
+      "y": 5904
+    },
+    "n12": {
+      "text": "Телефон Анны: копия маминого расписания (передаётся по QR, когда вы рядом) и SMS о пропусках. Без интернета: нет SMS — приём отмечен.",
+      "w": 390,
+      "x": 940,
+      "y": 6180
+    },
+    "n13": {
+      "text": "Мама решает, что уходит Анне по SMS и что передаётся по QR. Врачу — PDF-отчёт вместо ссылки.",
+      "w": 390,
+      "x": 1410,
+      "y": 6360
+    },
+    "n14": {
+      "text": "Без интернета из кода «Честного знака» читаются срок годности, серия и номер упаковки, название — из справочника на телефоне. Повторный скан той же упаковки не задвоит запас.",
+      "w": 390,
+      "x": 1880,
+      "y": 5904
+    },
+    "n15": {
+      "text": "Если приём уже отмечен — останавливаем. Лишний приём можно записать для врача.",
+      "w": 390,
+      "x": 2350,
+      "y": 5904
+    },
+    "n16": {
+      "text": "Аллергии, диагнозы, лекарства и время последнего приёма — на экране блокировки. SMS Анне с координатами, если карту открыли. QR содержит саму карту.",
+      "w": 390,
+      "x": 2820,
+      "y": 6240
+    },
+    "n17": {
+      "text": "Силуэт кошки, вид сбоку. Переключатель «левый / правый бок» зеркалит рисунок; холка общая. Цифра — дни с укола, рекомендуем место, которое дольше отдыхало.",
+      "w": 390,
+      "x": 0,
+      "y": 8184
+    },
+    "n18": {
+      "text": "Тот же экран для собаки: свой силуэт и свои места. Питомцы переключаются вверху, вес — в подписи.",
+      "w": 390,
+      "x": 470,
+      "y": 8184
+    },
+    "n19": {
+      "text": "Палитра тёмной темы. Тёмные версии — у всех экранов: 20–25, 28–29 и 30–39, ссылки между ними ведут на тёмные. Напоминание (2) и сканер (14) тёмные в любой теме.",
+      "w": 390,
+      "x": 0,
+      "y": 10160
+    },
+    "n2": {
+      "text": "Для важных препаратов — полноэкранное напоминание: повтор через 10 минут, затем SMS близкому. Пропуск — с причиной для врача.",
+      "w": 390,
+      "x": 470,
+      "y": 904
+    },
+    "n3": {
+      "text": "Ротация мест укола: цифра — дни с прошлого укола, приложение предлагает место, которое дольше всех отдыхало. Доза и сахар — тут же.",
+      "w": 390,
+      "x": 940,
+      "y": 904
+    },
+    "n4": {
+      "text": "Всё на одном экране, данные подтягиваются из справочника на телефоне. Сразу видно, хватит ли упаковки на курс. Сверху — вход в импорт назначения.",
+      "w": 390,
+      "x": 1410,
+      "y": 1372
+    },
+    "n5": {
+      "text": "Запас считается от расписания: «хватит на N дней». Расходники (иглы) и сроки годности — тоже.",
+      "w": 390,
+      "x": 1880,
+      "y": 904
+    },
+    "n6": {
+      "text": "Календарь соблюдения, подсказка по частым пропускам и PDF-отчёт для врача.",
+      "w": 390,
+      "x": 2350,
+      "y": 1250
+    },
+    "n7": {
+      "text": "Текст, фото рецепта, голос или файл — всё распознаётся на телефоне, без интернета. Можно переслать сообщение врача через «Поделиться». Разбор идёт на лету — отредактируйте текст в Play.",
+      "w": 390,
+      "x": 0,
+      "y": 3164
+    },
+    "n8": {
+      "text": "Каждая строка — карточка. Сплошная рамка — взято из текста, пунктир — додумано. Чего не хватает — спрашиваем. Совпадение с текущим лекарством — показываем как изменение дозы.",
+      "w": 390,
+      "x": 470,
+      "y": 3880
+    },
+    "n9": {
+      "text": "Что, когда, куда и сколько: раскладка по режиму дня, места уколов, сроки курсов и сколько купить. Дозы приложение не меняет.",
+      "w": 390,
+      "x": 940,
+      "y": 4020
+    },
+    "offline": {
+      "fill": "teal",
+      "maxH": 520,
+      "size": 24,
+      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.",
+      "w": 440,
+      "x": 3380,
+      "y": 0
+    },
+    "title": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Ampulse — трекер таблеток и уколов",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "title2": {
+      "kind": "title1",
+      "maxW": 1330,
+      "text": "Назначение → готовый план",
+      "w": 240,
+      "x": 0,
+      "y": 1960
+    },
+    "title3": {
+      "kind": "title1",
+      "maxW": 3210,
+      "text": "Схемы, близкие, сканер, безопасность",
+      "w": 240,
+      "x": 0,
+      "y": 4700
+    },
+    "title4": {
+      "kind": "title1",
+      "maxW": 860,
+      "text": "Питомцы",
+      "w": 240,
+      "x": 0,
+      "y": 6980
+    },
+    "title5": {
+      "kind": "title1",
+      "maxW": 3210,
+      "text": "Тёмная тема",
+      "w": 240,
+      "x": 0,
+      "y": 8800
+    },
+    "todo": {
+      "fill": "orange",
+      "maxH": 1200,
+      "size": 24,
+      "text": "TODO\n\n1. Учёт для животных: кошки, собаки и другие.\n2. Рисунок животного или человека. (Силуэты кошки и собаки — экраны 17–18.)\n3. Тёмная тема. (Сделано: палитра — 19, тёмные версии всех экранов — 20–25, 28–39; при правке экрана обновлять и его Dark-копии.)\n4. Английский язык. (Сделано: страница English на холсте; при правке экрана обновлять и его En-копии.)\n5. Вносить и отслеживать срок годности лекарств. (Макет: экраны 40–43 — список сроков, вскрытые, прогноз «успеете ли», ввод кодом, фото или вручную. Дальше: срок после вскрытия для капель и сиропов — в справочник.)\n6. Базовые правила уколов в мышцу и подкожно — чтобы напоминать и контролировать процесс. (Макет: экраны 44–49 — укол пошагово с проверками и отсчётом, памятка. Для питомцев — свои правила, позже.)\n7. Собрать рецепт как шаблон.\n8. Офлайн-распознавание: справочник ГРЛС внутри приложения, распознавание фото и речи на телефоне (кириллица), исправление по словарю.\n9. Расширить правила разбора: числа словами, дроби и диапазоны, точное время, «1т × 3р», ампулы, латинские сокращения, «по схеме».\n10. Почерк: фото подложкой + построчный ввод или диктовка с подсказками из справочника.\n11. Сканер: таблица «код товара → лекарство» — найти источник.\n12. Близкие без интернета: SMS о пропуске и передача по QR. Проверить: на iPhone SMS только с нажатием, на Android — разрешение на SMS в Google Play.\n13. Позже, по желанию: языковая модель на телефоне отдельным пакетом.\n14. Давление: приём с тонометров по Bluetooth (профиль Blood Pressure), распознавание экрана тонометра по фото, напоминания утром и вечером.",
+      "w": 440,
+      "x": 2860,
+      "y": 0
+    },
+    "n26": {
+      "text": "Своя цифровая клавиатура: поля переключаются сами (128 → 82 → 71), ⌫ на пустом поле возвращает назад. Серия из двух замеров, среднее. Оценка — относительно цели врача. Ещё способы: фото тонометра, голос, Bluetooth — всё без интернета.",
+      "w": 390,
+      "x": 0,
+      "y": 12004
+    },
+    "n27": {
+      "text": "Средние утром и вечером, график по дням с линиями цели, подсказка, последние замеры словами и цветом. Замеры идут в PDF-отчёт врачу.",
+      "w": 390,
+      "x": 470,
+      "y": 12260
+    },
+    "n28": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 940,
+      "y": 12004
+    },
+    "n29": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 1410,
+      "y": 12260
+    },
+    "title6": {
+      "kind": "title1",
+      "maxW": 1800,
+      "text": "Давление",
+      "x": 0,
+      "y": 10800
+    },
+    "title_en": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Ampulse — pill and injection tracker",
+      "w": 240,
+      "x": 0,
+      "y": -300,
+      "page": "en"
+    },
+    "title2_en": {
+      "kind": "title1",
+      "maxW": 1330,
+      "text": "Prescription → ready plan",
+      "w": 240,
+      "x": 0,
+      "y": 1960,
+      "page": "en"
+    },
+    "title3_en": {
+      "kind": "title1",
+      "maxW": 3210,
+      "text": "Schedules, family, scanner, safety",
+      "w": 240,
+      "x": 0,
+      "y": 4700,
+      "page": "en"
+    },
+    "title4_en": {
+      "kind": "title1",
+      "maxW": 860,
+      "text": "Pets",
+      "w": 240,
+      "x": 0,
+      "y": 6980,
+      "page": "en"
+    },
+    "title5_en": {
+      "kind": "title1",
+      "maxW": 3210,
+      "text": "Dark theme",
+      "w": 240,
+      "x": 0,
+      "y": 8800,
+      "page": "en"
+    },
+    "title6_en": {
+      "kind": "title1",
+      "maxW": 1800,
+      "text": "Blood pressure",
+      "x": 0,
+      "y": 10800,
+      "page": "en"
+    },
+    "n1_en": {
+      "text": "The day as a timeline. One tap marks a dose, overdue ones are highlighted, the ring shows the day’s progress.",
+      "w": 390,
+      "x": 0,
+      "y": 904,
+      "page": "en"
+    },
+    "n2_en": {
+      "text": "For important medicines — a full-screen reminder: repeats after 10 minutes, then a text to a family member. Skips are logged with a reason for the doctor.",
+      "w": 390,
+      "x": 470,
+      "y": 904,
+      "page": "en"
+    },
+    "n3_en": {
+      "text": "Injection site rotation: the number is days since the last injection, the app suggests the site that has rested longest. Dose and sugar right here.",
+      "w": 390,
+      "x": 940,
+      "y": 904,
+      "page": "en"
+    },
+    "n4_en": {
+      "text": "All on one screen, filled from the on-device directory. You see right away whether the pack lasts the course. Prescription import is at the top.",
+      "w": 390,
+      "x": 1410,
+      "y": 1372,
+      "page": "en"
+    },
+    "n5_en": {
+      "text": "Supply is counted from the schedule: “lasts N days”. Supplies (needles) and expiry dates too.",
+      "w": 390,
+      "x": 1880,
+      "y": 904,
+      "page": "en"
+    },
+    "n6_en": {
+      "text": "Adherence calendar, a tip about frequent misses and a PDF report for the doctor.",
+      "w": 390,
+      "x": 2350,
+      "y": 1250,
+      "page": "en"
+    },
+    "n7_en": {
+      "text": "Text, prescription photo, voice or file — all recognized on the phone, offline. You can forward the doctor’s message via Share. Parsing is live — edit the text in Play.",
+      "w": 390,
+      "x": 0,
+      "y": 3164,
+      "page": "en"
+    },
+    "n8_en": {
+      "text": "Each line becomes a card. Solid border — taken from the text, dashed — guessed. Missing details are asked. A match with a current medicine shows as a dose change.",
+      "w": 390,
+      "x": 470,
+      "y": 3880,
+      "page": "en"
+    },
+    "n9_en": {
+      "text": "What, when, where and how much: fitted to the daily routine, injection sites, course dates and how much to buy. The app never changes doses.",
+      "w": 390,
+      "x": 940,
+      "y": 4020,
+      "page": "en"
+    },
+    "n10_en": {
+      "text": "Stepped tapering and increasing, cycles, weekly, alternating, as needed and pause. A reminder the day before each dose change.",
+      "w": 390,
+      "x": 0,
+      "y": 6140,
+      "page": "en"
+    },
+    "n11_en": {
+      "text": "A timer to the next allowed dose and a 24-hour counter. Sooner than the interval — only after confirming, over the limit — not allowed.",
+      "w": 390,
+      "x": 470,
+      "y": 5904,
+      "page": "en"
+    },
+    "n12_en": {
+      "text": "Anna’s phone: a copy of Mom’s schedule (sent by QR when together) and texts about misses. Offline: no text means the dose was marked.",
+      "w": 390,
+      "x": 940,
+      "y": 6180,
+      "page": "en"
+    },
+    "n13_en": {
+      "text": "Mom decides what goes to Anna by text and what is shared by QR. The doctor gets a PDF report instead of a link.",
+      "w": 390,
+      "x": 1410,
+      "y": 6360,
+      "page": "en"
+    },
+    "n14_en": {
+      "text": "Offline, the Chestny Znak code gives the expiry, batch and pack number; the name comes from the on-device directory. Scanning the same pack again won’t double the supply.",
+      "w": 390,
+      "x": 1880,
+      "y": 5904,
+      "page": "en"
+    },
+    "n15_en": {
+      "text": "If a dose is already marked, we stop you. An extra dose can be recorded for the doctor.",
+      "w": 390,
+      "x": 2350,
+      "y": 5904,
+      "page": "en"
+    },
+    "n16_en": {
+      "text": "Allergies, conditions, medicines and last-dose times — on the lock screen. A text to Anna with location if the card is opened. The QR holds the card itself.",
+      "w": 390,
+      "x": 2820,
+      "y": 6240,
+      "page": "en"
+    },
+    "n17_en": {
+      "text": "Cat silhouette, side view. The left/right switch mirrors the drawing; the scruff is shared. The number is days since an injection; the longest-rested site is suggested.",
+      "w": 390,
+      "x": 0,
+      "y": 8184,
+      "page": "en"
+    },
+    "n18_en": {
+      "text": "The same screen for a dog: its own silhouette and sites. Pets switch at the top, weight is in the subtitle.",
+      "w": 390,
+      "x": 470,
+      "y": 8184,
+      "page": "en"
+    },
+    "n19_en": {
+      "text": "The dark theme palette. Every screen has a dark version: 20–25, 28–29 and 30–39, and links between them stay dark. Reminder (2) and scanner (14) are dark in any theme.",
+      "w": 390,
+      "x": 0,
+      "y": 10160,
+      "page": "en"
+    },
+    "n26_en": {
+      "text": "A custom keypad: fields advance by themselves (128 → 82 → 71), ⌫ on an empty field goes back. A series of two readings and their average. Judged against the doctor’s target. Also: monitor photo, voice, Bluetooth — all offline.",
+      "w": 390,
+      "x": 0,
+      "y": 12004,
+      "page": "en"
+    },
+    "n27_en": {
+      "text": "Morning and evening averages, a daily chart with target lines, a tip, latest readings in words and color. Readings go into the doctor’s PDF report.",
+      "w": 390,
+      "x": 470,
+      "y": 12260,
+      "page": "en"
+    },
+    "n28_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 940,
+      "y": 12004,
+      "page": "en"
+    },
+    "n29_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 1410,
+      "y": 12260,
+      "page": "en"
+    },
+    "offline_en": {
+      "fill": "teal",
+      "maxH": 520,
+      "size": 24,
+      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.",
+      "w": 440,
+      "x": 3380,
+      "y": 0,
+      "page": "en"
+    },
+    "title7": {
+      "kind": "title1",
+      "maxW": 4620,
+      "text": "Тёмная тема — остальные экраны",
+      "w": 240,
+      "x": 0,
+      "y": 12800
+    },
+    "title7_en": {
+      "kind": "title1",
+      "maxW": 4620,
+      "text": "Dark theme — other screens",
+      "w": 240,
+      "x": 0,
+      "y": 12800,
+      "page": "en"
+    },
+    "n30": {
+      "text": "Тёмные версии экранов 7–18, ссылки между ними ведут на тёмные. QR-код остаётся тёмным на белом — так его считает любая камера. Напоминание (2) и сканер (14) тёмные в любой теме, копий нет.",
+      "w": 390,
+      "x": 0,
+      "y": 14004
+    },
+    "n30_en": {
+      "text": "Dark versions of screens 7–18; links between them stay dark. The QR code stays dark on white so any camera can read it. Reminder (2) and scanner (14) are dark in any theme, so they have no copies.",
+      "w": 390,
+      "x": 0,
+      "y": 14004,
+      "page": "en"
+    },
+    "title8": {
+      "kind": "title1",
+      "maxW": 1800,
+      "text": "Сроки годности",
+      "x": 0,
+      "y": 15100
+    },
+    "title8_en": {
+      "kind": "title1",
+      "maxW": 1800,
+      "text": "Expiry dates",
+      "x": 0,
+      "y": 15100,
+      "page": "en"
+    },
+    "n40": {
+      "text": "Всё, что истекает, — в одном месте: просроченное — сверху с подсказкой, как утилизировать; вскрытые — с отсчётом дней после вскрытия; дальше «скоро» и «в порядке». Прогноз по расписанию: успеете ли допить до конца срока. Окно напоминания 1 / 3 / 6 мес. перекладывает списки — попробуйте в Play.",
+      "w": 390,
+      "x": 0,
+      "y": 16860
+    },
+    "n40_en": {
+      "text": "Everything that expires in one place: expired on top with how to dispose of it; opened ones with a countdown after opening; then “soon” and “in date”. A forecast from the schedule: will you finish it before it expires. The 1 / 3 / 6 mo reminder window moves items between lists — try it in Play.",
+      "w": 390,
+      "x": 0,
+      "y": 16860,
+      "page": "en"
+    },
+    "n41": {
+      "text": "Три способа: код «Честного знака» (срок, серия и номер — сами), фото даты (распознаётся на телефоне) или вручную — год и месяц касаниями, на кнопке номер месяца как на упаковке; числа нет — до конца месяца. Для инсулина — отсчёт 28 дней после вскрытия. Итог сразу: до какого числа и успеете ли.",
+      "w": 390,
+      "x": 470,
+      "y": 16780
+    },
+    "n41_en": {
+      "text": "Three ways: the Chestny Znak code (expiry, batch and number come by themselves), a photo of the date (recognized on the phone) or by hand — year and month by tapping, each month button shows its number as printed on the pack; no day means the end of the month. For insulin — a 28-day countdown after opening. The result is instant: good until when, and will you finish it.",
+      "w": 390,
+      "x": 470,
+      "y": 16780,
+      "page": "en"
+    },
+    "n42": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 940,
+      "y": 16860
+    },
+    "n42_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 940,
+      "y": 16860,
+      "page": "en"
+    },
+    "n43": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 1410,
+      "y": 16780
+    },
+    "n43_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 1410,
+      "y": 16780,
+      "page": "en"
+    },
+    "title9": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Уколы: пошагово и правила",
+      "x": 0,
+      "y": 17400
+    },
+    "title9_en": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Injections: step by step and rules",
+      "x": 0,
+      "y": 17400,
+      "page": "en"
+    },
+    "n44": {
+      "text": "Укол как чек-лист: сделанные шаги свёрнуты с итогом, текущий — крупно, впереди — названия. Данные подставляются сами: срок вскрытой ручки, иглы в запасе, доза из расписания, место по отдыху. На шаге «Укол» — отсчёт 10 секунд, «Готово» — после него. «Что-то пошло не так?» — что делать, если нет капли, подтекло или синяк; повторно колоть не даём. В «Месте укола» (3) — ссылка «Пошагово».",
+      "w": 390,
+      "x": 0,
+      "y": 19060
+    },
+    "n44_en": {
+      "text": "The injection as a checklist: done steps are collapsed with a result, the current one is large, upcoming ones show titles. Data fills in by itself: opened pen expiry, needles in stock, the dose from the schedule, the rested site. The “Inject” step has a 10-second countdown and “Done” unlocks after it. “Something went wrong?” — what to do if there is no drop, it leaked or bruised; no second injection. “Injection site” (3) links here as “Step by step”.",
+      "w": 390,
+      "x": 0,
+      "y": 19060,
+      "page": "en"
+    },
+    "n45": {
+      "text": "В мышцу — свой порядок: ампула, набор, место со схемой (верхняя наружная четверть ягодицы), медленное введение с отсчётом ≈ 10 секунд на 1 мл. Курс считается: укол 3 из 10.",
+      "w": 390,
+      "x": 470,
+      "y": 19060
+    },
+    "n45_en": {
+      "text": "Into the muscle — its own order: ampoule, drawing up, the site with a diagram (upper outer quarter of the buttock), slow injection with a countdown of ≈ 10 seconds per 1 ml. The course is counted: injection 3 of 10.",
+      "w": 390,
+      "x": 470,
+      "y": 19060,
+      "page": "en"
+    },
+    "n46": {
+      "text": "Памятка: разрез кожи показывает, куда попадает лекарство; дальше игла, угол, места, объём, скорость, общее «всегда» и когда нужен врач. Не обучение — первый укол при медсестре.",
+      "w": 390,
+      "x": 940,
+      "y": 19400
+    },
+    "n46_en": {
+      "text": "A reminder: the skin cross-section shows where the medicine goes; then needle, angle, sites, volume, speed, the “always” list and when to see a doctor. Not training — the first injection is done with a nurse.",
+      "w": 390,
+      "x": 940,
+      "y": 19400,
+      "page": "en"
+    },
+    "n47": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 1410,
+      "y": 19060
+    },
+    "n47_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 1410,
+      "y": 19060,
+      "page": "en"
+    },
+    "n48": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 1880,
+      "y": 19060
+    },
+    "n48_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 1880,
+      "y": 19060,
+      "page": "en"
+    },
+    "n49": {
+      "text": "Тот же экран в тёмной теме.",
+      "w": 390,
+      "x": 2350,
+      "y": 19400
+    },
+    "n49_en": {
+      "text": "The same screen in the dark theme.",
+      "w": 390,
+      "x": 2350,
+      "y": 19400,
+      "page": "en"
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Reminder.dc.html",
+    "Injection.dc.html",
+    "AddMed.dc.html",
+    "Stock.dc.html",
+    "History.dc.html",
+    "ImportFlow.dc.html",
+    "ImportReview.dc.html",
+    "ImportPlan.dc.html",
+    "Schedule.dc.html",
+    "AsNeeded.dc.html",
+    "Care.dc.html",
+    "Access.dc.html",
+    "Scan.dc.html",
+    "DoubleDose.dc.html",
+    "Emergency.dc.html",
+    "PetInjection.dc.html",
+    "PetInjectionDog.dc.html",
+    "Palette.dc.html",
+    "MainDark.dc.html",
+    "InjectionDark.dc.html",
+    "AddMedDark.dc.html",
+    "StockDark.dc.html",
+    "HistoryDark.dc.html",
+    "PetInjectionDark.dc.html",
+    "BPEntry.dc.html",
+    "BPHistory.dc.html",
+    "BPEntryDark.dc.html",
+    "BPHistoryDark.dc.html",
+    "MainEn.dc.html",
+    "ReminderEn.dc.html",
+    "InjectionEn.dc.html",
+    "AddMedEn.dc.html",
+    "StockEn.dc.html",
+    "HistoryEn.dc.html",
+    "ImportFlowEn.dc.html",
+    "ImportReviewEn.dc.html",
+    "ImportPlanEn.dc.html",
+    "ScheduleEn.dc.html",
+    "AsNeededEn.dc.html",
+    "CareEn.dc.html",
+    "AccessEn.dc.html",
+    "ScanEn.dc.html",
+    "DoubleDoseEn.dc.html",
+    "EmergencyEn.dc.html",
+    "PetInjectionEn.dc.html",
+    "PetInjectionDogEn.dc.html",
+    "PaletteEn.dc.html",
+    "MainDarkEn.dc.html",
+    "InjectionDarkEn.dc.html",
+    "AddMedDarkEn.dc.html",
+    "StockDarkEn.dc.html",
+    "HistoryDarkEn.dc.html",
+    "PetInjectionDarkEn.dc.html",
+    "BPEntryEn.dc.html",
+    "BPHistoryEn.dc.html",
+    "BPEntryDarkEn.dc.html",
+    "BPHistoryDarkEn.dc.html",
+    "ImportFlowDark.dc.html",
+    "ImportFlowDarkEn.dc.html",
+    "ImportReviewDark.dc.html",
+    "ImportReviewDarkEn.dc.html",
+    "ImportPlanDark.dc.html",
+    "ImportPlanDarkEn.dc.html",
+    "ScheduleDark.dc.html",
+    "ScheduleDarkEn.dc.html",
+    "AsNeededDark.dc.html",
+    "AsNeededDarkEn.dc.html",
+    "CareDark.dc.html",
+    "CareDarkEn.dc.html",
+    "AccessDark.dc.html",
+    "AccessDarkEn.dc.html",
+    "DoubleDoseDark.dc.html",
+    "DoubleDoseDarkEn.dc.html",
+    "EmergencyDark.dc.html",
+    "EmergencyDarkEn.dc.html",
+    "PetInjectionDogDark.dc.html",
+    "PetInjectionDogDarkEn.dc.html",
+    "Expiry.dc.html",
+    "ExpiryEn.dc.html",
+    "ExpiryEntry.dc.html",
+    "ExpiryEntryEn.dc.html",
+    "ExpiryDark.dc.html",
+    "ExpiryDarkEn.dc.html",
+    "ExpiryEntryDark.dc.html",
+    "ExpiryEntryDarkEn.dc.html",
+    "ShotGuide.dc.html",
+    "ShotGuideEn.dc.html",
+    "ShotGuideIm.dc.html",
+    "ShotGuideImEn.dc.html",
+    "ShotRules.dc.html",
+    "ShotRulesEn.dc.html",
+    "ShotGuideDark.dc.html",
+    "ShotGuideDarkEn.dc.html",
+    "ShotGuideImDark.dc.html",
+    "ShotGuideImDarkEn.dc.html",
+    "ShotRulesDark.dc.html",
+    "ShotRulesDarkEn.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "ru",
+      "name": "Русский"
+    },
+    {
+      "id": "en",
+      "name": "English"
+    }
+  ],
+  "title": "Ampulse — макет"
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Injection reminder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0F3531;color:#F4F2EC;font-family:Onest,system-ui,sans-serif}
+a{color:#9FE0D6}a:hover{color:#C4EFE8}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 20px 24px 28px; display: flex; flex-direction: column; gap: 16px; background: #0F3531; color: #F4F2EC; font-family: Onest, system-ui, sans-serif">
+<div style="display: flex; align-items: center; justify-content: space-between; min-height: 44px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: #B9CFCB">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+<span>Reminder</span>
+</div>
+<div style="font-family: Literata, Georgia, serif; font-size: 22px; font-weight: 600">22:00</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
+<div style="width: 112px; height: 112px; border-radius: 56px; margin-bottom: 26px; background: #1C4A45; color: #9FE0D6; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 14px rgba(159, 224, 214, 0.07), 0 0 0 30px rgba(159, 224, 214, 0.04)">
+<svg class="i" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 1.5"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg>
+</div>
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: {{statusColor}}">{{statusText}}</div>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 36px; line-height: 1.1; font-weight: 600">Insulin glargine</h1>
+<div style="font-size: 18px; color: #D5E3E0">12 U · subcutaneous</div>
+<a href="InjectionEn.dc.html" style="margin-top: 4px; min-height: 44px; box-sizing: border-box; padding: 0 14px 0 18px; border-radius: 22px; background: #1C4A45; color: #F4F2EC; display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; text-decoration: none">
+<span>Site: abdomen, right</span>
+<svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</div>
+<sc-if value="{{isMain}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="background: #174440; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: #D5E3E0">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: #9FE0D6; margin-top: 1px"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<span>Important medicine: if it isn’t marked, we’ll remind you again in 10 minutes and text Anna in 30.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<a href="MainEn.dc.html" style="height: 56px; border-radius: 28px; background: #F4F2EC; color: #0F3531; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 600; text-decoration: none">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.4"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>Done</span>
+</a>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" onClick="{{snooze}}" style="height: 52px; border-radius: 26px; box-sizing: border-box; border: 1.5px solid #4E7C76; background: transparent; color: #F4F2EC; font-size: 15px; font-weight: 500; cursor: pointer">{{snoozeLabel}}</button>
+<button type="button" onClick="{{skip}}" style="height: 52px; border-radius: 26px; box-sizing: border-box; border: 1.5px solid #4E7C76; background: transparent; color: #F4F2EC; font-size: 15px; font-weight: 500; cursor: pointer">Skip</button>
+</div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{isSkip}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 17px; font-weight: 600">Why are you skipping?</div>
+<div style="font-size: 14px; color: #B9CFCB">The reason goes into the doctor’s report</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<a href="MainEn.dc.html" style="min-height: 52px; box-sizing: border-box; padding: 8px 12px; border-radius: 16px; background: #1C4A45; color: #F4F2EC; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 15px; font-weight: 500; text-decoration: none">Don’t have it with me</a>
+<a href="MainEn.dc.html" style="min-height: 52px; box-sizing: border-box; padding: 8px 12px; border-radius: 16px; background: #1C4A45; color: #F4F2EC; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 15px; font-weight: 500; text-decoration: none">Feeling unwell</a>
+<a href="MainEn.dc.html" style="min-height: 52px; box-sizing: border-box; padding: 8px 12px; border-radius: 16px; background: #1C4A45; color: #F4F2EC; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 15px; font-weight: 500; text-decoration: none">Stopped by doctor</a>
+<a href="MainEn.dc.html" style="min-height: 52px; box-sizing: border-box; padding: 8px 12px; border-radius: 16px; background: #1C4A45; color: #F4F2EC; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 15px; font-weight: 500; text-decoration: none">Other</a>
+</div>
+<button type="button" onClick="{{back}}" style="height: 48px; border: none; border-radius: 24px; background: transparent; color: #B9CFCB; font-size: 15px; font-weight: 500; cursor: pointer">Back</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const mode = s.mode || 'main';
+    const snoozed = s.snoozed === true;
+    return {
+      isMain: mode === 'main',
+      isSkip: mode === 'skip',
+      statusText: snoozed ? 'Snoozed until 22:10' : 'Time for your injection',
+      statusColor: snoozed ? '#F2C197' : '#9FE0D6',
+      snoozeLabel: snoozed ? 'Snoozed' : 'In 10 min',
+      snooze: () => this.setState({ snoozed: !snoozed }),
+      skip: () => this.setState({ mode: 'skip' }),
+      back: () => this.setState({ mode: 'main' })
+    };
+  }
+}
+</script>
+</body>
+</html>

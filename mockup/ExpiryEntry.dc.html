@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Срок годности — новая упаковка</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 1320px; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 24px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{backHref}}" style="align-self: flex-start; height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<header style="margin-top: -8px; display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<div style="font-size: 14px; line-height: 1.4; color: {{t.ink3}}">{{l.sub}}</div>
+</header>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.medH}}</h2>
+<div role="radiogroup" aria-label="{{l.medH}}" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{meds}}" as="c" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{c.on}}" onClick="{{c.pick}}" style="height: 48px; box-sizing: border-box; padding: 0 16px; border-radius: 24px; border: 1.5px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{c.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.howH}}</h2>
+<div role="radiogroup" aria-label="{{l.howH}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 28px; background: {{t.fill}}">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{m.on}}" onClick="{{m.pick}}" style="height: 48px; border: none; border-radius: 24px; background: {{m.bg}}; color: {{m.fg}}; box-shadow: {{m.shadow}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{m.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<sc-if value="{{isCode}}" hint-placeholder-val="{{false}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.fill}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 8h3v3H8z"></path><path d="M13 13h3v3h-3z"></path><path d="M13 8h3"></path><path d="M8 13v3"></path></svg>
+</span>
+<span style="font-size: 14px; line-height: 1.45; color: {{t.ink2}}">{{l.codeText}}</span>
+</div>
+<a href="{{scanHref}}" style="height: 48px; box-sizing: border-box; border: 1.5px solid {{t.ink}}; border-radius: 24px; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; text-decoration: none">{{l.codeBtn}}</a>
+</section>
+</sc-if>
+
+<sc-if value="{{isPhoto}}" hint-placeholder-val="{{false}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="{{photoAria}}" style="height: 190px; border-radius: 14px; background: #0E1412; display: flex; align-items: center; justify-content: center">
+<div style="width: 236px; box-sizing: border-box; padding: 14px 16px; border-radius: 6px; background: #ECEAE4; color: #16211F; display: flex; flex-direction: column; gap: 6px; font-family: Onest, system-ui, sans-serif; transform: rotate(-2deg)">
+<span style="font-size: 15px; font-weight: 700; letter-spacing: 0.4px">{{pack.name}}</span>
+<span style="font-size: 12px">{{pack.line}}</span>
+<span style="align-self: flex-start; margin: 2px -6px; padding: 2px 6px; border-radius: 6px; border: 2px solid #9FE0D6; box-shadow: 0 0 0 3px rgba(159, 224, 214, 0.35); font-size: 14px; font-weight: 700; letter-spacing: 0.4px">{{pack.exp}}</span>
+<span style="font-size: 12px">{{pack.batch}}</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 4px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; color: {{t.ink3}}">{{l.photoText}}</span>
+<span style="font-size: 16px; font-weight: 600">{{photoResult}}</span>
+</div>
+<button type="button" onClick="{{toManual}}" style="flex-shrink: 0; height: 48px; padding: 0 12px; border: none; border-radius: 24px; background: transparent; color: {{t.acc}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{l.photoFix}}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isManual}}" hint-placeholder-val="{{true}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<span id="ex-year" style="font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{l.yearH}}</span>
+<div role="radiogroup" aria-labelledby="ex-year" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{years}}" as="y" hint-placeholder-count="5">
+<button type="button" role="radio" aria-checked="{{y.on}}" onClick="{{y.pick}}" style="height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{y.border}}; background: {{y.bg}}; color: {{y.fg}}; font-family: inherit; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; cursor: pointer">{{y.label}}</button>
+</sc-for>
+</div>
+<span id="ex-month" style="margin-top: 4px; font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{l.monthH}}</span>
+<div role="radiogroup" aria-labelledby="ex-month" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{months}}" as="m" hint-placeholder-count="12">
+<button type="button" role="radio" aria-checked="{{m.on}}" aria-label="{{m.aria}}" onClick="{{m.pick}}" style="height: 52px; box-sizing: border-box; border-radius: 14px; border: 1.5px solid {{m.border}}; background: {{m.bg}}; color: {{m.fg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; font-family: inherit; cursor: pointer">
+<span style="font-size: 16px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums">{{m.num}}</span>
+<span style="font-size: 12px; line-height: 1.1; color: {{m.sub}}">{{m.name}}</span>
+</button>
+</sc-for>
+</div>
+<button type="button" role="switch" aria-checked="{{hasDay}}" onClick="{{toggleDay}}" style="width: 100%; min-height: 60px; box-sizing: border-box; margin-top: 4px; padding: 8px 0 0; border: none; border-top: 1px solid {{t.divider}}; background: transparent; color: {{t.ink}}; display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer">
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">{{l.dayT}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{l.dayS}}</span>
+</span>
+<span style="position: relative; width: 50px; height: 30px; flex-shrink: 0; border-radius: 15px; background: {{dayTrack}}"><span style="position: absolute; top: 3px; left: {{dayKnob}}; width: 24px; height: 24px; border-radius: 12px; background: {{t.card}}; box-shadow: 0 1px 2px rgba(22, 33, 31, 0.3)"></span></span>
+</button>
+<sc-if value="{{hasDay}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 15px; color: {{t.ink2}}">{{l.dayWord}}</span>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="{{dayMinus}}" aria-label="{{l.dayMinus}}" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M5 12h14"></path></svg></button>
+<span aria-live="polite" style="min-width: 48px; text-align: center; font-family: Literata, Georgia, serif; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums">{{dayText}}</span>
+<button type="button" onClick="{{dayPlus}}" aria-label="{{l.dayPlus}}" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<section style="background: {{t.card}}; border-radius: 20px; padding: 4px 16px; display: flex; flex-direction: column">
+<div style="min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">{{countLabel}}</span>
+<span style="font-size: 13px; color: {{t.ink3}}">{{countSub}}</span>
+</span>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="{{countMinus}}" aria-label="{{l.less}}" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M5 12h14"></path></svg></button>
+<span aria-live="polite" style="min-width: 48px; text-align: center; font-family: Literata, Georgia, serif; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums">{{count}}</span>
+<button type="button" onClick="{{countPlus}}" aria-label="{{l.more}}" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+</div>
+</div>
+<sc-if value="{{isIns}}" hint-placeholder-val="{{false}}">
+<button type="button" role="switch" aria-checked="{{opened}}" onClick="{{toggleOpened}}" style="width: 100%; min-height: 68px; box-sizing: border-box; padding: 10px 0; border: none; border-top: 1px solid {{t.divider}}; background: transparent; color: {{t.ink}}; display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer">
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">{{l.openT}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{l.openS}}</span>
+</span>
+<span style="position: relative; width: 50px; height: 30px; flex-shrink: 0; border-radius: 15px; background: {{openTrack}}"><span style="position: absolute; top: 3px; left: {{openKnob}}; width: 24px; height: 24px; border-radius: 12px; background: {{t.card}}; box-shadow: 0 1px 2px rgba(22, 33, 31, 0.3)"></span></span>
+</button>
+</sc-if>
+<sc-if value="{{isTabs}}" hint-placeholder-val="{{true}}">
+<div style="padding: 12px 0; border-top: 1px solid {{t.divider}}; font-size: 13px; line-height: 1.4; color: {{t.ink3}}">{{l.openInfo}}</div>
+</sc-if>
+</section>
+
+<div role="status" style="border-radius: 20px; padding: 14px 16px; background: {{st.bg}}; display: flex; gap: 12px; align-items: flex-start">
+<span aria-hidden="true" style="width: 10px; height: 10px; margin-top: 6px; flex-shrink: 0; border-radius: 5px; background: {{st.dot}}"></span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 16px; font-weight: 600; color: {{st.fg}}">{{st.title}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink2}}">{{st.note}}</span>
+<sc-if value="{{st.hasOpen}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; line-height: 1.35; color: {{t.ink2}}">{{st.openLine}}</span></sc-if>
+<span style="font-size: 14px; line-height: 1.4; font-weight: 500; color: {{st.fcFg}}">{{st.forecast}}</span>
+</div>
+</div>
+
+<a href="{{backHref}}" style="flex-shrink: 0; height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{l.save}}</a>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":1320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const ru = lang === 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', fill: '#EFEBE3', line: '#D6D1C6', divider: '#ECE8DF', off: '#CFCAC0', shadow: '0 1px 3px rgba(22, 33, 31, 0.18)' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', fill: '#252F2C', line: '#3A4542', divider: '#262F2C', off: '#4A5552', shadow: '0 1px 3px rgba(0, 0, 0, 0.5)' }
+    }[theme];
+    const L = {
+      ru: {
+        back: 'Сроки', title: 'Новая упаковка', sub: 'Срок годности и сколько в ней',
+        medH: 'Лекарство', metf: 'Метформин 850 мг', ins: 'Инсулин гларгин', other: 'Другое…',
+        howH: 'Как ввести срок', modes: ['Код', 'Фото', 'Вручную'],
+        codeText: 'Наведите камеру на квадратный код на упаковке — срок, серия и номер прочитаются сами, без интернета.', codeBtn: 'Открыть сканер',
+        photoText: 'Распознано на телефоне', photoFix: 'Исправить', photoAria: 'Снимок упаковки, выделена дата: {date}',
+        packMetf: ['МЕТФОРМИН', '850 мг · 60 таблеток'], packIns: ['ИНСУЛИН ГЛАРГИН', '100 ЕД/мл · 5 шприц-ручек'],
+        expLabel: 'ГОДЕН ДО: ', batch: 'СЕРИЯ 240715',
+        yearH: 'Год', monthH: 'Месяц',
+        mons: ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+        monsFull: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
+        dayT: 'На упаковке есть число', dayS: 'Если числа нет — годен до последнего дня месяца',
+        dayWord: 'Число', dayMinus: 'Число раньше', dayPlus: 'Число позже',
+        openT: 'Одна ручка уже начата', openS: 'После вскрытия — 28 дней по инструкции, отсчёт с сегодня',
+        openInfo: 'Таблетки в блистере: если открыть пачку, срок не меняется.',
+        countTabs: 'В упаковке', countPens: 'Ручек в коробке', subTabs: 'таблеток, по 2 в день', subPens: 'по 300 ЕД, 12 ЕД в день',
+        less: 'Меньше', more: 'Больше',
+        until: 'Годен до {date}', lastDay: 'числа на упаковке нет — до конца месяца',
+        left: 'Ещё {num} {unit}', soon: 'Истекает скоро — ещё {num} {unit}',
+        expired: 'Срок уже вышел', expiredNote: 'Упаковка попадёт в «Просрочено» и в запас не войдёт.',
+        fits: 'Успеете: с тем, что есть дома, хватит до ≈ {date}', short: 'Не успеете: к концу срока останется ≈ {k} {unit}',
+        openLine: 'Начатая ручка — до {date}: 28 дней после вскрытия.',
+        save: 'Сохранить упаковку',
+        days: ['день', 'дня', 'дней'], years: ['год', 'года', 'лет'], mon: 'мес.', tabs: 'табл.', units: 'ЕД'
+      },
+      en: {
+        back: 'Expiry dates', title: 'New pack', sub: 'Expiry date and how much is inside',
+        medH: 'Medicine', metf: 'Metformin 850 mg', ins: 'Insulin glargine', other: 'Other…',
+        howH: 'How to enter the date', modes: ['Code', 'Photo', 'Manual'],
+        codeText: 'Point the camera at the square code on the pack — expiry, batch and number are read automatically, offline.', codeBtn: 'Open scanner',
+        photoText: 'Recognized on the phone', photoFix: 'Fix', photoAria: 'Photo of the pack, date highlighted: {date}',
+        packMetf: ['METFORMIN', '850 mg · 60 tablets'], packIns: ['INSULIN GLARGINE', '100 U/ml · 5 pens'],
+        expLabel: 'EXP: ', batch: 'LOT 240715',
+        yearH: 'Year', monthH: 'Month',
+        mons: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        monsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        dayT: 'The pack shows a day', dayS: 'Without a day, it is good until the last day of the month',
+        dayWord: 'Day', dayMinus: 'Earlier day', dayPlus: 'Later day',
+        openT: 'One pen is already in use', openS: '28 days after opening per the leaflet, counting from today',
+        openInfo: 'Tablets in blisters: opening the box does not change the expiry date.',
+        countTabs: 'In the pack', countPens: 'Pens in the box', subTabs: 'tablets, 2 a day', subPens: '300 U each, 12 U a day',
+        less: 'Fewer', more: 'More',
+        until: 'Good until {date}', lastDay: 'no day on the pack — end of the month',
+        left: '{num} {unit} left', soon: 'Expires soon — {num} {unit} left',
+        expired: 'Already expired', expiredNote: 'The pack goes to “Expired” and is not counted in the supply.',
+        fits: 'You’ll finish it: with what you have, it lasts until ≈ {date}', short: 'You won’t finish it: ≈ {k} {unit} will be left at expiry',
+        openLine: 'Opened pen — until {date}: 28 days after opening.',
+        save: 'Save pack',
+        days: ['day', 'days'], years: ['year', 'years'], mon: 'mo', tabs: 'tabs', units: 'U'
+      }
+    }[lang];
+    const plural = ru
+      ? (n, f) => { const a = n % 10, b = n % 100; if (a === 1 && b !== 11) return f[0]; if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return f[1]; return f[2]; }
+      : (n, f) => (n === 1 ? f[0] : f[1]);
+    const fill = (str, o) => str.replace(/\{(\w+)\}/g, (m, k) => (k in o ? o[k] : m));
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+
+    // «Сегодня» в макете — 26.09.2026
+    const DAY0 = Date.UTC(2026, 8, 26);
+    const dayNo = (y, m, d) => Math.round((Date.UTC(y, m - 1, d) - DAY0) / 86400000);
+    const lastDay = (y, m) => new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const atDay = (n) => { const x = new Date(DAY0 + n * 86400000); return [x.getUTCFullYear(), x.getUTCMonth() + 1, x.getUTCDate()]; };
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const p2 = (n) => (n < 10 ? '0' : '') + n;
+    const fFull = (a) => (ru ? p2(a[2]) + '.' + p2(a[1]) + '.' + a[0] : MON[a[1] - 1] + ' ' + a[2] + ', ' + a[0]);
+    const fMY = (y, m) => (ru ? p2(m) + '.' + y : p2(m) + '/' + y);
+    const left = (n) => {
+      if (n < 45) return { num: n, unit: plural(n, L.days) };
+      if (n < 365) return { num: Math.floor(n / 30.44), unit: L.mon };
+      const y = Math.floor(n / 365.25);
+      return { num: y, unit: plural(y, L.years) };
+    };
+
+    // Дома уже есть: метформин 34 табл. (2 в день), инсулин 48 ЕД (12 ЕД в день) — как на экране «Аптечка»
+    const MEDS = {
+      metf: { label: L.metf, y: 2028, m: 8, count: 60, step: 10, min: 10, max: 200, perUnit: 1, perDay: 2, have: 34, unit: L.tabs, pack: L.packMetf },
+      ins: { label: L.ins, y: 2027, m: 4, count: 5, step: 1, min: 1, max: 10, perUnit: 300, perDay: 12, have: 48, unit: L.units, pack: L.packIns }
+    };
+    const med = s.med === 'ins' ? 'ins' : 'metf';
+    const M = MEDS[med];
+    const mode = s.mode || 'manual';
+    const yr = s.y || M.y;
+    const mo = s.m || M.m;
+    const hasDay = s.hasDay === true;
+    const ld = lastDay(yr, mo);
+    const dd = Math.min(s.d || 15, ld);
+    const day = hasDay ? dd : ld;
+    const count = s.count || M.count;
+    const opened = med === 'ins' && s.opened === true;
+    const set = (o) => this.setState(o);
+
+    const n = dayNo(yr, mo, day);
+    const dateText = fFull([yr, mo, day]);
+    const qty = count * M.perUnit;
+    const finish = Math.floor((M.have + qty) / M.perDay);
+    const fits = finish <= n;
+    const leftover = Math.max(0, Math.min(qty, M.have + qty - M.perDay * n));
+    const lf = left(Math.max(n, 0));
+    const note = (n <= 91 ? fill(L.soon, lf) : fill(L.left, lf)) + (hasDay ? '' : ' · ' + L.lastDay);
+    let st;
+    if (n < 0) {
+      st = { bg: T.warnSoft, dot: T.warnLine, fg: T.warn, title: L.expired, note: dateText + '. ' + L.expiredNote, forecast: '', fcFg: T.warn };
+    } else {
+      const soon = n <= 91;
+      st = {
+        bg: soon || !fits ? T.warnSoft : T.accSoft,
+        dot: soon || !fits ? T.warnLine : T.acc,
+        fg: soon ? T.warn : T.ink,
+        title: fill(L.until, { date: dateText }),
+        note: note,
+        forecast: fits ? fill(L.fits, { date: fFull(atDay(finish)) }) : fill(L.short, { k: leftover, unit: M.unit }),
+        fcFg: fits ? T.accText : T.warn
+      };
+    }
+    st.hasOpen = opened && n >= 0;
+    st.openLine = fill(L.openLine, { date: fFull(atDay(Math.min(28, n))) });
+
+    const chip = (on) => ({ bg: on ? T.ink : T.card, fg: on ? T.card : T.ink, border: on ? T.ink : T.line });
+    const seg = (on) => ({ bg: on ? T.card : 'transparent', fg: on ? T.ink : T.ink2, shadow: on ? T.shadow : 'none' });
+    const recog = fMY(M.y, M.m);
+    return {
+      t: T, l: L, lang: lang, st: st,
+      backHref: 'Expiry' + sfx + '.dc.html',
+      scanHref: 'Scan' + (lang === 'en' ? 'En' : '') + '.dc.html',
+      meds: [
+        Object.assign({ label: L.metf, on: med === 'metf', pick: () => set({ med: 'metf', y: 0, m: 0, d: 0, count: 0, hasDay: false, opened: false }) }, chip(med === 'metf')),
+        Object.assign({ label: L.ins, on: med === 'ins', pick: () => set({ med: 'ins', y: 0, m: 0, d: 0, count: 0, hasDay: false, opened: false }) }, chip(med === 'ins')),
+        Object.assign({ label: L.other, on: false, pick: () => {} }, chip(false))
+      ],
+      modes: ['code', 'photo', 'manual'].map((k, i) => Object.assign({ label: L.modes[i], on: mode === k, pick: () => set({ mode: k }) }, seg(mode === k))),
+      isCode: mode === 'code',
+      isPhoto: mode === 'photo',
+      isManual: mode === 'manual',
+      toManual: () => set({ mode: 'manual' }),
+      pack: { name: M.pack[0], line: M.pack[1], exp: L.expLabel + recog, batch: L.batch },
+      photoResult: fill(L.until, { date: recog }),
+      photoAria: fill(L.photoAria, { date: recog }),
+      years: [2026, 2027, 2028, 2029, 2030].map((y) => Object.assign({ label: String(y), on: y === yr, pick: () => set({ y: y }) }, chip(y === yr))),
+      months: L.mons.map((name, i) => {
+        const on = i + 1 === mo;
+        return Object.assign({ num: p2(i + 1), name: name, aria: p2(i + 1) + ' — ' + L.monsFull[i], on: on, sub: on ? T.card : T.ink3, pick: () => set({ m: i + 1 }) }, chip(on));
+      }),
+      hasDay: hasDay,
+      toggleDay: () => set({ hasDay: !hasDay, d: dd }),
+      dayTrack: hasDay ? T.acc : T.off,
+      dayKnob: hasDay ? '23px' : '3px',
+      dayText: dd,
+      dayMinus: () => set({ d: Math.max(1, dd - 1) }),
+      dayPlus: () => set({ d: Math.min(ld, dd + 1) }),
+      countLabel: med === 'ins' ? L.countPens : L.countTabs,
+      countSub: med === 'ins' ? L.subPens : L.subTabs,
+      count: count,
+      countMinus: () => set({ count: Math.max(M.min, count - M.step) }),
+      countPlus: () => set({ count: Math.min(M.max, count + M.step) }),
+      isIns: med === 'ins',
+      isTabs: med === 'metf',
+      opened: opened,
+      toggleOpened: () => set({ opened: !opened }),
+      openTrack: opened ? T.acc : T.off,
+      openKnob: opened ? '23px' : '3px'
+    };
+  }
+}
+</script>
+</body>
+</html>

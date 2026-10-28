@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Injection site — dark theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111715;color:#ECEAE4;font-family:Onest,system-ui,sans-serif}
+a{color:#4FBFB0}a:hover{color:#7ED8CB}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 12px; background: #111715; color: #ECEAE4; font-family: Onest, system-ui, sans-serif">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="MainDarkEn.dc.html" style="height: 44px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: #4FBFB0; text-decoration: none">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+<span>Today</span>
+</a>
+<a href="ShotGuideDarkEn.dc.html" style="height: 44px; margin-right: -8px; padding: 0 8px; display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 500; color: #4FBFB0; text-decoration: none">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 2 2 4-4"></path><path d="m3 7 2 2 4-4"></path><path d="M13 6h8"></path><path d="M13 12h8"></path><path d="M13 18h8"></path></svg>
+<span>Step by step</span>
+</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">Insulin glargine</h1>
+<div style="font-size: 15px; color: #B7C0BD">Today, 22:00 · subcutaneous</div>
+</div>
+<section aria-label="Choose injection site" style="background: #1A2220; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="position: relative; height: 320px">
+<span style="position: absolute; left: 0; top: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #97A29F">Right</span>
+<span style="position: absolute; right: 0; top: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #97A29F">Left</span>
+<svg width="200" height="320" viewBox="0 0 200 320" aria-hidden="true" style="position: absolute; left: 59px; top: 0">
+<rect x="58" y="200" width="40" height="118" rx="18" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<rect x="102" y="200" width="40" height="118" rx="18" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<rect x="22" y="80" width="24" height="150" rx="12" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<rect x="154" y="80" width="24" height="150" rx="12" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<rect x="90" y="50" width="20" height="24" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<rect x="52" y="68" width="96" height="150" rx="30" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></rect>
+<circle cx="100" cy="34" r="24" style="fill: #111715; stroke: #3A4542; stroke-width: 1.5"></circle>
+</svg>
+<button type="button" onClick="{{z.shR.pick}}" aria-label="{{z.shR.aria}}" aria-pressed="{{z.shR.pressed}}" style="position: absolute; left: 71px; top: 90px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.shR.border}}; background: {{z.shR.bg}}; color: {{z.shR.fg}}; box-shadow: {{z.shR.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.shR.days}}</button>
+<button type="button" onClick="{{z.shL.pick}}" aria-label="{{z.shL.aria}}" aria-pressed="{{z.shL.pressed}}" style="position: absolute; left: 203px; top: 90px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.shL.border}}; background: {{z.shL.bg}}; color: {{z.shL.fg}}; box-shadow: {{z.shL.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.shL.days}}</button>
+<button type="button" onClick="{{z.abR.pick}}" aria-label="{{z.abR.aria}}" aria-pressed="{{z.abR.pressed}}" style="position: absolute; left: 113px; top: 146px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.abR.border}}; background: {{z.abR.bg}}; color: {{z.abR.fg}}; box-shadow: {{z.abR.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.abR.days}}</button>
+<button type="button" onClick="{{z.abL.pick}}" aria-label="{{z.abL.aria}}" aria-pressed="{{z.abL.pressed}}" style="position: absolute; left: 161px; top: 146px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.abL.border}}; background: {{z.abL.bg}}; color: {{z.abL.fg}}; box-shadow: {{z.abL.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.abL.days}}</button>
+<button type="button" onClick="{{z.thR.pick}}" aria-label="{{z.thR.aria}}" aria-pressed="{{z.thR.pressed}}" style="position: absolute; left: 115px; top: 240px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.thR.border}}; background: {{z.thR.bg}}; color: {{z.thR.fg}}; box-shadow: {{z.thR.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.thR.days}}</button>
+<button type="button" onClick="{{z.thL.pick}}" aria-label="{{z.thL.aria}}" aria-pressed="{{z.thL.pressed}}" style="position: absolute; left: 159px; top: 240px; width: 44px; height: 44px; box-sizing: border-box; border-radius: 22px; padding: 0; border: 2px solid {{z.thL.border}}; background: {{z.thL.bg}}; color: {{z.thL.fg}}; box-shadow: {{z.thL.ring}}; font-size: 15px; font-weight: 700; cursor: pointer">{{z.thL.days}}</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #B7C0BD">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 7px; background: #4FBFB0"></span>Recommended</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; box-sizing: border-box; border-radius: 7px; border: 2px solid #4FBFB0; background: #1A2220"></span>OK</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; box-sizing: border-box; border-radius: 7px; border: 2px solid #D98641; background: #3A2717"></span>Resting</span>
+</div>
+<div style="font-size: 12px; color: #97A29F">Number — days since the last injection here</div>
+</section>
+<div style="background: #1A2220; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<div style="font-size: 16px; font-weight: 600">{{sel.label}}</div>
+<div style="font-size: 13px; color: #97A29F">{{sel.last}}</div>
+</div>
+<span style="flex-shrink: 0; padding: 6px 10px; border-radius: 10px; font-size: 13px; font-weight: 600; background: {{sel.tagBg}}; color: {{sel.tagFg}}">{{sel.tag}}</span>
+</div>
+<div style="background: #1A2220; border-radius: 16px; padding: 4px 16px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; justify-content: space-between; min-height: 58px; border-bottom: 1px solid #262F2C">
+<span style="font-size: 15px; font-weight: 500">Dose</span>
+<div style="display: flex; align-items: center; gap: 4px">
+<button type="button" onClick="{{dec}}" aria-label="Decrease dose" style="width: 44px; height: 44px; border-radius: 22px; border: none; padding: 0; background: #252F2C; color: #ECEAE4; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path></svg>
+</button>
+<span style="min-width: 76px; text-align: center; font-family: Literata, Georgia, serif; font-size: 20px; font-weight: 600">{{dose}} U</span>
+<button type="button" onClick="{{inc}}" aria-label="Increase dose" style="width: 44px; height: 44px; border-radius: 22px; border: none; padding: 0; background: #252F2C; color: #ECEAE4; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+</button>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px">
+<label for="glucose" style="font-size: 15px; font-weight: 500">Blood sugar <span style="font-weight: 400; color: #97A29F">· optional</span></label>
+<input id="glucose" type="text" placeholder="mmol/L" style="width: 108px; height: 44px; box-sizing: border-box; border: 1.5px solid #3A4542; border-radius: 12px; padding: 0 12px; background: #1A2220; color: #ECEAE4; font-size: 16px; text-align: right">
+</div>
+</div>
+<a href="MainDarkEn.dc.html" style="margin-top: auto; height: 54px; flex-shrink: 0; border-radius: 27px; background: #4FBFB0; color: #1A2220; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 600; text-decoration: none">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.4"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>Injection done · {{sel.short}}</span>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const selId = s.sel || 'abR';
+    const dose = typeof s.dose === 'number' ? s.dose : 12;
+    const plural = (n, f) => (n === 1 ? f[0] : f[1]);
+    const zones = [
+      { id: 'abL', label: 'Abdomen, left', short: 'abdomen left', days: 1, date: 'September 25' },
+      { id: 'thR', label: 'Thigh, right', short: 'right thigh', days: 2, date: 'September 24' },
+      { id: 'thL', label: 'Thigh, left', short: 'left thigh', days: 3, date: 'September 23' },
+      { id: 'shR', label: 'Upper arm, right', short: 'right arm', days: 4, date: 'September 22' },
+      { id: 'shL', label: 'Upper arm, left', short: 'left arm', days: 5, date: 'September 21' },
+      { id: 'abR', label: 'Abdomen, right', short: 'abdomen right', days: 6, date: 'September 20' }
+    ];
+    const looks = {
+      best: { bg: '#4FBFB0', border: '#4FBFB0', fg: '#1A2220', tag: 'Recommended', tagBg: '#173530', tagFg: '#7ED8CB' },
+      ok: { bg: '#1A2220', border: '#4FBFB0', fg: '#7ED8CB', tag: 'OK', tagBg: '#252F2C', tagFg: '#ECEAE4' },
+      rest: { bg: '#3A2717', border: '#D98641', fg: '#F3A76E', tag: 'Let it rest', tagBg: '#3A2717', tagFg: '#F3A76E' }
+    };
+    const maxDays = Math.max.apply(null, zones.map((zn) => zn.days));
+    const z = {};
+    let sel = null;
+    zones.forEach((zn) => {
+      const look = looks[zn.days === maxDays ? 'best' : zn.days <= 3 ? 'rest' : 'ok'];
+      const isSel = zn.id === selId;
+      const ago = zn.days === 1 ? 'yesterday' : zn.days + ' ' + plural(zn.days, ['day', 'days', 'days']) + ' ago';
+      z[zn.id] = Object.assign({}, look, {
+        days: zn.days,
+        pressed: isSel,
+        ring: isSel ? '0 0 0 3px #1A2220, 0 0 0 6px #ECEAE4' : 'none',
+        aria: zn.label + ', last injection ' + ago,
+        pick: () => this.setState({ sel: zn.id })
+      });
+      if (isSel) sel = Object.assign({}, look, { label: zn.label, short: zn.short, last: 'Last injection here: ' + zn.date + ', ' + ago });
+    });
+    return {
+      z: z,
+      sel: sel,
+      dose: dose,
+      dec: () => this.setState({ dose: Math.max(1, dose - 1) }),
+      inc: () => this.setState({ dose: Math.min(80, dose + 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Сроки годности</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 1400px; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 24px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{stockHref}}" style="align-self: flex-start; height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<header style="margin-top: -8px; display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<div style="font-size: 14px; line-height: 1.4; color: {{t.ink3}}">{{subText}}</div>
+</header>
+
+<sc-if value="{{showExpired}}" hint-placeholder-val="{{true}}">
+<section aria-label="{{l.expiredTag}}" style="background: {{t.warnSoft}}; border: 1.5px solid {{t.warnEdge}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.card}}; color: {{t.warn}}; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<div style="font-size: 13px; font-weight: 600; color: {{t.warn}}">{{l.expiredTag}}</div>
+<div style="font-size: 16px; font-weight: 600">{{l.ibu}}</div>
+<div style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{expiredText}}</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" onClick="{{removeExpired}}" style="height: 48px; border: none; border-radius: 24px; background: {{t.acc}}; color: {{t.onAcc}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{l.remove}}</button>
+<button type="button" onClick="{{toggleHow}}" aria-expanded="{{how}}" style="height: 48px; box-sizing: border-box; border: 1.5px solid {{t.warnLine}}; border-radius: 24px; background: {{t.card}}; color: {{t.warn}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{l.how}}</button>
+</div>
+<sc-if value="{{how}}" hint-placeholder-val="{{false}}">
+<div style="font-size: 14px; line-height: 1.45">{{l.howText}}</div>
+</sc-if>
+</section>
+</sc-if>
+<sc-if value="{{showRemoved}}" hint-placeholder-val="{{false}}">
+<div style="background: {{t.accSoft}}; border-radius: 20px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; fill: none; stroke: {{t.accText}}; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+<div style="flex-grow: 1; font-size: 14px; line-height: 1.4; font-weight: 500; color: {{t.accText}}">{{l.removedText}}</div>
+<button type="button" onClick="{{undoRemove}}" style="height: 48px; padding: 0 12px; border: none; border-radius: 24px; background: transparent; color: {{t.accText}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{l.undo}}</button>
+</div>
+</sc-if>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 4px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.openedH}}</h2>
+<span style="font-size: 13px; color: {{t.ink3}}">{{l.openedR}}</span>
+</div>
+<div style="background: {{t.card}}; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: flex-start; gap: 12px">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg>
+</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">{{l.ins}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{op.sub}}</span>
+</div>
+<div style="width: 52px; flex-shrink: 0; padding-top: 2px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+<span style="font-family: Literata, Georgia, serif; font-size: 22px; line-height: 1; font-weight: 600; color: {{op.numColor}}">{{op.num}}</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{op.unit}}</span>
+</div>
+</div>
+<div role="img" aria-label="{{op.aria}}" style="height: 6px; border-radius: 3px; background: {{t.track}}; overflow: hidden"><div style="height: 6px; border-radius: 3px; width: {{op.barW}}; background: {{op.barColor}}"></div></div>
+<div style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.35; color: {{op.noteFg}}">
+<span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex-shrink: 0; border-radius: 4px; background: {{op.noteDot}}"></span>
+<span>{{op.note}}</span>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 4px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.soonH}}</h2>
+<span style="font-size: 13px; color: {{t.ink3}}">{{soonCount}}</span>
+</div>
+<sc-if value="{{soonEmpty}}" hint-placeholder-val="{{false}}">
+<div style="background: {{t.card}}; border-radius: 20px; padding: 16px; font-size: 14px; line-height: 1.4; color: {{t.ink2}}">{{soonEmptyText}}</div>
+</sc-if>
+<sc-if value="{{soonAny}}" hint-placeholder-val="{{true}}">
+<div style="background: {{t.card}}; border-radius: 20px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{soon}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid {{r.divider}}">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{r.isShot}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg></sc-if>
+<sc-if value="{{r.isPill}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg></sc-if>
+</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{r.sub}}</span>
+<span style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.35; color: {{r.noteFg}}"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex-shrink: 0; border-radius: 4px; background: {{r.noteDot}}"></span><span>{{r.note}}</span></span>
+</div>
+<div style="width: 52px; flex-shrink: 0; padding-top: 2px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+<span style="font-family: Literata, Georgia, serif; font-size: 22px; line-height: 1; font-weight: 600; color: {{r.numColor}}">{{r.num}}</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{r.unit}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 0 4px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.okH}}</h2>
+<span style="font-size: 13px; color: {{t.ink3}}">{{l.leftH}}</span>
+</div>
+<div style="background: {{t.card}}; border-radius: 20px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{ok}}" as="r" hint-placeholder-count="3">
+<div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid {{r.divider}}">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{r.isShot}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg></sc-if>
+<sc-if value="{{r.isPill}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg></sc-if>
+</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{r.sub}}</span>
+<sc-if value="{{r.hasFefo}}" hint-placeholder-val="{{false}}"><span style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.35; color: {{t.ink2}}"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex-shrink: 0; border-radius: 4px; background: {{t.ink3}}"></span><span>{{l.fefo}}</span></span></sc-if>
+</div>
+<div style="width: 52px; flex-shrink: 0; padding-top: 2px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+<span style="font-family: Literata, Georgia, serif; font-size: 22px; line-height: 1; font-weight: 600">{{r.num}}</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{r.unit}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">{{l.remindH}}</span>
+<span style="font-size: 13px; line-height: 1.4; color: {{t.ink3}}">{{remindNote}}</span>
+</div>
+<div role="radiogroup" aria-label="{{l.remindH}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 28px; background: {{t.fill}}">
+<sc-for list="{{windows}}" as="w" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{w.on}}" onClick="{{w.pick}}" style="height: 48px; border: none; border-radius: 24px; background: {{w.bg}}; color: {{w.fg}}; box-shadow: {{w.shadow}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{w.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<a href="{{entryHref}}" style="flex-shrink: 0; height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 600; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+<span>{{l.add}}</span>
+</a>
+<div style="margin-top: -8px; font-size: 13px; line-height: 1.4; text-align: center; color: {{t.ink3}}">{{l.addNote}}</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const ru = lang === 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', warnEdge: '#E7B894', fill: '#EFEBE3', line: '#D6D1C6', divider: '#ECE8DF', track: '#F1EEE7', shadow: '0 1px 3px rgba(22, 33, 31, 0.18)' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', warnEdge: '#6E4727', fill: '#252F2C', line: '#3A4542', divider: '#262F2C', track: '#252F2C', shadow: '0 1px 3px rgba(0, 0, 0, 0.5)' }
+    }[theme];
+    const L = {
+      ru: {
+        back: 'Аптечка', title: 'Сроки годности', sub: '{n} {packs} в аптечке · напоминание за {w}',
+        packs: ['упаковка', 'упаковки', 'упаковок'],
+        expiredTag: 'Срок вышел', ibu: 'Ибупрофен 400 мг',
+        ibuText: 'Годен до {date}, срок вышел {n} {days} назад. Осталось 14 табл. — не принимайте.',
+        remove: 'Убрал из аптечки', how: 'Как утилизировать',
+        howText: 'Не выбрасывайте в унитаз и раковину. Оставьте в упаковке, сложите в пакет и выбросьте с бытовым мусором — или сдайте в аптеку, где принимают просроченные лекарства.',
+        removedText: 'Ибупрофен 400 мг убран из аптечки и из запаса.', undo: 'Отменить',
+        openedH: 'Вскрытые', openedR: 'срок после вскрытия',
+        ins: 'Инсулин гларгин, шприц-ручка', insSub: 'Вскрыта {date} · годна 28 дней после вскрытия',
+        insAria: 'Прошло {used} из 28 дней',
+        soonH: 'Скоро истекают', soonR: '{k} за {w}', soonEmpty: 'За {w} ничего не истекает.',
+        okH: 'В порядке', leftH: 'до конца срока',
+        until: 'Годен до {date}', unitsLine: '{c} {unit}',
+        fits: 'Успеете: закончится ≈ {date}', short: 'Не успеете: останется ≈ {k} {unit}',
+        fefo: 'Сначала допейте начатую — у неё срок раньше',
+        metfSub: 'Начатая — до {d1}, {c1} табл.; новая — до {d2}, {c2} табл.',
+        remindH: 'Напоминать заранее', remindNote: 'Уведомление придёт утром, когда до конца срока останется {w}. Для вскрытых — за 3 дня.',
+        w: ['1 мес.', '3 мес.', '6 мес.'],
+        add: 'Добавить упаковку', addNote: 'Срок, серия и номер — из кода на упаковке. Можно сфотографировать дату или ввести её вручную.',
+        days: ['день', 'дня', 'дней'], years: ['год', 'года', 'лет'], mon: 'мес.',
+        tabs: 'табл.', caps: 'капс.', pcs: 'шт.', units: 'ЕД',
+        ator: 'Аторвастатин 20 мг', d3: 'Витамин D3 2000 МЕ', metf: 'Метформин 850 мг', levo: 'Левотироксин 50 мкг', ndl: 'Иглы для шприц-ручки'
+      },
+      en: {
+        back: 'Medicines', title: 'Expiry dates', sub: '{n} {packs} at home · reminder {w} ahead',
+        packs: ['pack', 'packs'],
+        expiredTag: 'Expired', ibu: 'Ibuprofen 400 mg',
+        ibuText: 'Exp. {date}, expired {n} {days} ago. 14 tabs left — do not take them.',
+        remove: 'Removed it', how: 'How to dispose',
+        howText: 'Do not flush them or pour them down the sink. Keep them in the pack, seal it in a bag and put it in household waste — or take it to a pharmacy that collects expired medicines.',
+        removedText: 'Ibuprofen 400 mg removed from your medicines and supply.', undo: 'Undo',
+        openedH: 'Opened', openedR: 'shelf life after opening',
+        ins: 'Insulin glargine, pen', insSub: 'Opened {date} · good for 28 days after opening',
+        insAria: '{used} of 28 days have passed',
+        soonH: 'Expiring soon', soonR: '{k} within {w}', soonEmpty: 'Nothing expires within {w}.',
+        okH: 'In date', leftH: 'time left',
+        until: 'Exp. {date}', unitsLine: '{c} {unit}',
+        fits: 'You’ll finish it: runs out ≈ {date}', short: 'You won’t finish it: ≈ {k} {unit} will be left',
+        fefo: 'Finish the opened pack first — it expires sooner',
+        metfSub: 'Opened — exp. {d1}, {c1} tabs; new — exp. {d2}, {c2} tabs',
+        remindH: 'Remind me ahead', remindNote: 'A notification comes in the morning when {w} are left. For opened ones — 3 days before.',
+        w: ['1 mo', '3 mo', '6 mo'],
+        add: 'Add a pack', addNote: 'Expiry, batch and number come from the pack code. You can also photograph the date or type it in.',
+        days: ['day', 'days'], years: ['year', 'years'], mon: 'mo',
+        tabs: 'tabs', caps: 'caps', pcs: 'pcs', units: 'U',
+        ator: 'Atorvastatin 20 mg', d3: 'Vitamin D3 2,000 IU', metf: 'Metformin 850 mg', levo: 'Levothyroxine 50 mcg', ndl: 'Pen needles'
+      }
+    }[lang];
+    const plural = ru
+      ? (n, f) => { const a = n % 10, b = n % 100; if (a === 1 && b !== 11) return f[0]; if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return f[1]; return f[2]; }
+      : (n, f) => (n === 1 ? f[0] : f[1]);
+    const fill = (str, o) => str.replace(/\{(\w+)\}/g, (m, k) => (k in o ? o[k] : m));
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+
+    // «Сегодня» в макете — 26.09.2026
+    const DAY0 = Date.UTC(2026, 8, 26);
+    const dayNo = (y, m, d) => Math.round((Date.UTC(y, m - 1, d) - DAY0) / 86400000);
+    const lastDay = (y, m) => new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const atDay = (n) => { const x = new Date(DAY0 + n * 86400000); return [x.getUTCFullYear(), x.getUTCMonth() + 1, x.getUTCDate()]; };
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const p2 = (n) => (n < 10 ? '0' : '') + n;
+    const fFull = (y, m, d) => (ru ? p2(d) + '.' + p2(m) + '.' + y : MON[m - 1] + ' ' + d + ', ' + y);
+    const fMY = (y, m) => (ru ? p2(m) + '.' + y : p2(m) + '/' + y);
+    const fDM = (a) => (ru ? p2(a[2]) + '.' + p2(a[1]) : MON[a[1] - 1] + ' ' + a[2]);
+    // Остаток срока: до 45 дней — днями, до года — месяцами, дальше — годами
+    const left = (n) => {
+      if (n < 45) return { num: n, unit: plural(n, L.days) };
+      if (n < 365) return { num: Math.floor(n / 30.44), unit: L.mon };
+      const y = Math.floor(n / 365.25);
+      return { num: y, unit: plural(y, L.years) };
+    };
+
+    const removed = s.removed === true;
+    const how = s.how === true;
+    const WIN = [1, 3, 6];
+    const win = WIN.indexOf(s.win) >= 0 ? s.win : 3;
+    const winLabel = L.w[WIN.indexOf(win)];
+    const winEnd = Math.round((Date.UTC(2026, 8 + win, 26) - DAY0) / 86400000);
+
+    // Упаковки — те же, что на экране «Аптечка»
+    const PACKS = [
+      { id: 'ator', name: L.ator, y: 2026, m: 10, d: 15, count: 27, unit: L.tabs, perDay: 1 },
+      { id: 'd3', name: L.d3, y: 2026, m: 11, count: 12, unit: L.caps, perDay: 1 },
+      { id: 'metf', name: L.metf, y: 2027, m: 1, count: 4, unit: L.tabs, perDay: 2, spare: { y: 2028, m: 8, count: 30 } },
+      { id: 'levo', name: L.levo, y: 2027, m: 2, count: 88, unit: L.tabs, perDay: 1 },
+      { id: 'ndl', name: L.ndl, y: 2030, m: 6, count: 9, unit: L.pcs, perDay: 1, shot: true }
+    ];
+    const rows = PACKS.map((p) => {
+      const n = dayNo(p.y, p.m, p.d || lastDay(p.y, p.m));
+      const date = p.d ? fFull(p.y, p.m, p.d) : fMY(p.y, p.m);
+      const supply = Math.floor(p.count / p.perDay);
+      const fits = supply <= n;
+      const lf = left(n);
+      return {
+        id: p.id, n: n, name: p.name, isShot: !!p.shot, isPill: !p.shot,
+        sub: p.spare
+          ? fill(L.metfSub, { d1: date, c1: p.count, d2: fMY(p.spare.y, p.spare.m), c2: p.spare.count })
+          : fill(L.until, { date: date }) + ' · ' + fill(L.unitsLine, { c: p.count, unit: p.unit }),
+        note: fits ? fill(L.fits, { date: fDM(atDay(supply)) }) : fill(L.short, { k: p.count - p.perDay * n, unit: p.unit }),
+        noteFg: fits ? T.accText : T.warn,
+        noteDot: fits ? T.acc : T.warnLine,
+        hasFefo: !!p.spare,
+        num: lf.num, unit: lf.unit,
+        numColor: n <= 30 ? T.warn : T.ink
+      };
+    }).sort((a, b) => a.n - b.n);
+    const withDiv = (list) => list.map((r, i) => Object.assign({}, r, { divider: i === 0 ? 'transparent' : T.divider }));
+    const soon = withDiv(rows.filter((r) => r.n <= winEnd));
+    const ok = withDiv(rows.filter((r) => r.n > winEnd));
+
+    // Вскрытая ручка: 300 ЕД, вскрыта 05.09, 28 дней после вскрытия, осталось 48 ЕД при 12 ЕД в день
+    const openedDay = dayNo(2026, 9, 5);
+    const opLeft = openedDay + 28;
+    const opSupply = Math.floor(48 / 12);
+    const opFits = opSupply <= opLeft;
+    const opLf = left(opLeft);
+    const op = {
+      sub: fill(L.insSub, { date: fDM(atDay(openedDay)) }),
+      num: opLf.num, unit: opLf.unit,
+      numColor: opLeft <= 3 ? T.warn : T.ink,
+      barW: Math.round(opLeft / 28 * 100) + '%',
+      barColor: opLeft <= 3 ? T.warnLine : T.acc,
+      aria: fill(L.insAria, { used: 28 - opLeft }),
+      note: opFits ? fill(L.fits, { date: fDM(atDay(opSupply)) }) : fill(L.short, { k: 48 - 12 * opLeft, unit: L.units }),
+      noteFg: opFits ? T.accText : T.warn,
+      noteDot: opFits ? T.acc : T.warnLine
+    };
+
+    const ibuDays = -dayNo(2026, 8, 31);
+    const packCount = PACKS.length + 1 + 1 + (removed ? 0 : 1);   // + запасная пачка метформина, ручка, ибупрофен
+    return {
+      t: T, l: L, lang: lang,
+      stockHref: 'Stock' + sfx + '.dc.html',
+      entryHref: 'ExpiryEntry' + sfx + '.dc.html',
+      subText: fill(L.sub, { n: packCount, packs: plural(packCount, L.packs), w: winLabel }),
+      showExpired: !removed,
+      showRemoved: removed,
+      expiredText: fill(L.ibuText, { date: fMY(2026, 8), n: ibuDays, days: plural(ibuDays, L.days) }),
+      how: how,
+      toggleHow: () => this.setState({ how: !how }),
+      removeExpired: () => this.setState({ removed: true, how: false }),
+      undoRemove: () => this.setState({ removed: false }),
+      op: op,
+      soon: soon,
+      ok: ok,
+      soonAny: soon.length > 0,
+      soonEmpty: soon.length === 0,
+      soonEmptyText: fill(L.soonEmpty, { w: winLabel }),
+      soonCount: fill(L.soonR, { k: soon.length, w: winLabel }),
+      remindNote: fill(L.remindNote, { w: winLabel }),
+      windows: WIN.map((w, i) => ({
+        label: L.w[i],
+        on: w === win,
+        bg: w === win ? T.card : 'transparent',
+        fg: w === win ? T.ink : T.ink2,
+        shadow: w === win ? T.shadow : 'none',
+        pick: () => this.setState({ win: w })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

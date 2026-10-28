@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Правила уколов</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 1640px; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 24px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{backHref}}" style="align-self: flex-start; height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<header style="margin-top: -8px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<div style="font-size: 14px; line-height: 1.45; color: {{t.ink2}}">{{l.sub}}</div>
+</header>
+<div role="radiogroup" aria-label="{{l.kindA}}" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 28px; background: {{t.fill}}">
+<sc-for list="{{kinds}}" as="k" hint-placeholder-count="2">
+<button type="button" role="radio" aria-checked="{{k.on}}" onClick="{{k.pick}}" style="height: 48px; border: none; border-radius: 24px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: {{k.shadow}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{k.label}}</button>
+</sc-for>
+</div>
+
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div role="img" aria-label="{{r.diagramA}}" style="position: relative; height: 168px">
+<svg width="318" height="168" viewBox="0 0 318 168" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<rect x="0" y="40" width="190" height="12" style="fill: {{t.skin}}"></rect>
+<rect x="0" y="52" width="190" height="{{r.fatH}}" style="fill: {{t.fat}}"></rect>
+<rect x="0" y="{{r.muscleY}}" width="190" height="{{r.muscleH}}" style="fill: {{t.muscle}}"></rect>
+<path d="M0 {{r.muscleY}} H190" style="fill: none; stroke: {{t.line}}; stroke-width: 1"></path>
+<rect x="86" y="6" width="18" height="26" rx="4" style="fill: {{t.card}}; stroke: {{t.ink2}}; stroke-width: 1.5"></rect>
+<path d="M95 32 V{{r.tipY}}" style="fill: none; stroke: {{t.ink}}; stroke-width: 2.4; stroke-linecap: round"></path>
+<circle cx="95" cy="{{r.tipY}}" r="11" style="fill: {{t.acc}}; opacity: 0.35"></circle>
+<circle cx="95" cy="{{r.tipY}}" r="5" style="fill: {{t.acc}}"></circle>
+<path d="M206 46 H198" style="fill: none; stroke: {{t.ink3}}; stroke-width: 1.2"></path>
+<path d="M206 {{r.fatMid}} H198" style="fill: none; stroke: {{t.ink3}}; stroke-width: 1.2"></path>
+<path d="M206 {{r.muscleMid}} H198" style="fill: none; stroke: {{t.ink3}}; stroke-width: 1.2"></path>
+</svg>
+<span style="position: absolute; left: 212px; white-space: nowrap; top: 38px; font-size: 12px; line-height: 16px; color: {{t.ink2}}">{{l.skin}}</span>
+<span style="position: absolute; left: 212px; white-space: nowrap; top: {{r.fatLabel}}; font-size: 12px; line-height: 16px; color: {{t.ink2}}">{{l.fat}}</span>
+<span style="position: absolute; left: 212px; white-space: nowrap; top: {{r.muscleLabel}}; font-size: 12px; line-height: 16px; color: {{t.ink2}}">{{l.muscle}}</span>
+<span style="position: absolute; left: 112px; top: 10px; font-size: 12px; font-weight: 600; color: {{t.ink}}">90°</span>
+</div>
+<div style="font-size: 14px; line-height: 1.45; color: {{t.ink2}}">{{r.caption}}</div>
+</section>
+
+<section style="background: {{t.card}}; border-radius: 20px; padding: 4px 16px; display: flex; flex-direction: column">
+<sc-for list="{{rows}}" as="w" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-top: 1px solid {{w.divider}}">
+<span style="font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{w.label}}</span>
+<span style="font-size: 15px; line-height: 1.45">{{w.text}}</span>
+</div>
+</sc-for>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.alwaysH}}</h2>
+<div style="background: {{t.card}}; border-radius: 20px; padding: 6px 16px; display: flex; flex-direction: column">
+<sc-for list="{{always}}" as="a" hint-placeholder-count="5">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-top: 1px solid {{a.divider}}">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; fill: none; stroke: {{t.acc}}; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+<span style="font-size: 15px; line-height: 1.45">{{a.text}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="sr-doc" style="background: {{t.warnSoft}}; border: 1.5px solid {{t.warnEdge}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; fill: none; stroke: {{t.warn}}; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<h2 id="sr-doc" style="margin: 0; font-size: 16px; font-weight: 600">{{l.docH}}</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 600; color: {{t.warn}}">{{l.urgentH}}</span>
+<span style="font-size: 15px; line-height: 1.45">{{l.urgent}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 600; color: {{t.warn}}">{{l.soonH}}</span>
+<span style="font-size: 15px; line-height: 1.45">{{l.soon}}</span>
+</div>
+</section>
+
+<a href="{{guideHref}}" style="flex-shrink: 0; height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{r.guide}}</a>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', onAcc: '#FFFFFF', warn: '#8F4207', warnSoft: '#FBEBDD', warnEdge: '#E7B894', fill: '#EFEBE3', line: '#D6D1C6', divider: '#ECE8DF', skin: '#E7B894', fat: '#FBEBDD', muscle: '#DDEEEA', shadow: '0 1px 3px rgba(22, 33, 31, 0.18)' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', onAcc: '#1A2220', warn: '#F3A76E', warnSoft: '#3A2717', warnEdge: '#6E4727', fill: '#252F2C', line: '#3A4542', divider: '#262F2C', skin: '#6E4727', fat: '#3A2717', muscle: '#173530', shadow: '0 1px 3px rgba(0, 0, 0, 0.5)' }
+    }[theme];
+    const L = {
+      ru: {
+        back: 'Укол пошагово', title: 'Правила уколов', kindA: 'Вид укола',
+        sub: 'Памятка, а не обучение: первый укол — при медсестре или враче. Главное — инструкция к лекарству и слова врача.',
+        kinds: ['Подкожно', 'В мышцу'],
+        skin: 'кожа', fat: 'подкожный жир', muscle: 'мышца',
+        sc: {
+          diagramA: 'Разрез кожи: короткая игла под прямым углом, лекарство — в подкожном жире',
+          caption: 'Короткая игла под прямым углом — лекарство попадает в жир под кожей и всасывается медленно и ровно.',
+          guide: 'Укол пошагово — подкожно',
+          rows: [
+            ['Игла', '4–6 мм для шприц-ручки, каждый раз новая.'],
+            ['Угол и складка', '90°. Складку кожи собирать, только если игла 6 мм и длиннее или под кожей мало жира.'],
+            ['Куда', 'Живот — не ближе 5 см от пупка; бедро спереди и сбоку; ягодица; плечо сзади.'],
+            ['Смена мест', 'Каждый раз новая точка — на палец от прошлой; зоны — по очереди. Приложение подскажет, какая отдохнула.'],
+            ['После нажатия', 'Держите кнопку ручки 10 секунд, потом выньте иглу. Место не растирайте.']
+          ]
+        },
+        im: {
+          diagramA: 'Разрез: длинная игла под прямым углом проходит жир, лекарство — в мышце',
+          caption: 'Длинная игла под прямым углом проходит кожу и жир — лекарство попадает в мышцу и всасывается быстрее.',
+          guide: 'Укол пошагово — в мышцу',
+          rows: [
+            ['Шприц и игла', 'Для ягодицы — шприц 5 мл: у него игла длиннее. Игла каждый раз новая.'],
+            ['Угол', '90°, быстро, на ¾ длины иглы — не до самого основания.'],
+            ['Куда', 'Ягодица — верхняя наружная четверть; бедро — середина наружной стороны; плечо — на 3 пальца ниже выступа плеча.'],
+            ['Сколько за раз', 'В ягодицу и бедро — до 5 мл, в плечо — не больше 1 мл.'],
+            ['Скорость', 'Медленно — около 10 секунд на 1 мл: меньше боль и уплотнения.'],
+            ['Смена мест', 'Правая и левая сторона — по очереди.']
+          ]
+        },
+        alwaysH: 'Всегда',
+        always: [
+          'Вымыть руки перед уколом.',
+          'Новая игла — каждый раз.',
+          'Не колоть в шрамы, родинки, синяки, уплотнения и воспалённую кожу.',
+          'Иглы — в твёрдый контейнер с крышкой, а не в пакет с мусором.',
+          'Укол отмечен — второй не нужен: приложение остановит двойную дозу.'
+        ],
+        docH: 'Когда нужен врач',
+        urgentH: 'Сразу — 103 или 112',
+        urgent: 'Сыпь по телу, отёк лица или губ, трудно дышать.',
+        soonH: 'Позвонить или записаться',
+        soon: 'Место краснеет, опухает и болит всё сильнее день-два; поднялась температура; на местах уколов плотные шишки.'
+      },
+      en: {
+        back: 'Step by step', title: 'Injection rules', kindA: 'Injection type',
+        sub: 'A reminder, not training: do your first injection with a nurse or doctor. The medicine leaflet and your doctor come first.',
+        kinds: ['Under the skin', 'Into the muscle'],
+        skin: 'skin', fat: 'fat layer', muscle: 'muscle',
+        sc: {
+          diagramA: 'Skin cross-section: a short needle at 90°, the medicine goes into the fat under the skin',
+          caption: 'A short needle at 90° — the medicine goes into the fat under the skin and is absorbed slowly and evenly.',
+          guide: 'Step by step — under the skin',
+          rows: [
+            ['Needle', '4–6 mm for a pen, a new one every time.'],
+            ['Angle and pinch', '90°. Pinch the skin only if the needle is 6 mm or longer, or there is little fat under the skin.'],
+            ['Where', 'Abdomen — at least 5 cm from the navel; front and side of the thigh; buttock; back of the upper arm.'],
+            ['Rotating sites', 'A new spot every time — a finger’s width from the last one; areas in turn. The app shows which one has rested.'],
+            ['After pressing', 'Hold the pen button for 10 seconds, then take the needle out. Do not rub the site.']
+          ]
+        },
+        im: {
+          diagramA: 'Cross-section: a long needle at 90° passes the fat, the medicine goes into the muscle',
+          caption: 'A long needle at 90° passes the skin and fat — the medicine goes into the muscle and is absorbed faster.',
+          guide: 'Step by step — into the muscle',
+          rows: [
+            ['Syringe and needle', 'For the buttock — a 5 ml syringe: its needle is longer. A new needle every time.'],
+            ['Angle', '90°, quickly, three quarters of the needle — not all the way to the hub.'],
+            ['Where', 'Buttock — upper outer quarter; thigh — middle of the outer side; upper arm — 3 fingers below the shoulder bone.'],
+            ['How much at once', 'Buttock and thigh — up to 5 ml, upper arm — no more than 1 ml.'],
+            ['Speed', 'Slowly — about 10 seconds per 1 ml: less pain and fewer lumps.'],
+            ['Rotating sites', 'Right and left side in turn.']
+          ]
+        },
+        alwaysH: 'Always',
+        always: [
+          'Wash your hands before the injection.',
+          'A new needle every time.',
+          'Not into scars, moles, bruises, lumps or inflamed skin.',
+          'Needles go into a hard container with a lid, not the trash bag.',
+          'Injection logged — no second one: the app stops a double dose.'
+        ],
+        docH: 'When to see a doctor',
+        urgentH: 'At once — call emergency services',
+        urgent: 'A rash all over, swelling of the face or lips, trouble breathing.',
+        soonH: 'Call or book a visit',
+        soon: 'The site gets redder, more swollen and more painful over a day or two; you get a fever; hard lumps appear at injection sites.'
+      }
+    }[lang];
+    const kind = s.kind === 'im' ? 'im' : 'sc';
+    const R = L[kind];
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    // Разрез: кожа 40–52; подкожно — жир 52–112, игла до 98; в мышцу — жир 52–96, игла до 136
+    const fatH = kind === 'sc' ? 60 : 44;
+    const muscleY = 52 + fatH;
+    const muscleH = 164 - muscleY;
+    const r = {
+      diagramA: R.diagramA, caption: R.caption, guide: R.guide,
+      fatH: fatH, muscleY: muscleY, muscleH: muscleH,
+      tipY: kind === 'sc' ? 92 : 138,
+      fatMid: 52 + fatH / 2, muscleMid: muscleY + muscleH / 2,
+      fatLabel: (52 + fatH / 2 - 8) + 'px', muscleLabel: (muscleY + muscleH / 2 - 8) + 'px'
+    };
+    return {
+      t: T, l: L, r: r, lang: lang,
+      backHref: 'ShotGuide' + sfx + '.dc.html',
+      guideHref: 'ShotGuide' + (kind === 'im' ? 'Im' : '') + sfx + '.dc.html',
+      kinds: ['sc', 'im'].map((k, i) => ({
+        label: L.kinds[i], on: k === kind,
+        bg: k === kind ? T.card : 'transparent', fg: k === kind ? T.ink : T.ink2, shadow: k === kind ? T.shadow : 'none',
+        pick: () => this.setState({ kind: k })
+      })),
+      rows: R.rows.map((w, i) => ({ label: w[0], text: w[1], divider: i === 0 ? 'transparent' : T.divider })),
+      always: L.always.map((a, i) => ({ text: a, divider: i === 0 ? 'transparent' : T.divider }))
+    };
+  }
+}
+</script>
+</body>
+</html>

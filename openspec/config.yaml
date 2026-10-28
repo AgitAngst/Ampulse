@@ -1,0 +1,53 @@
+schema: spec-driven
+
+context: |
+  Language: Russian
+  All artifacts must be written in Russian.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  Project: Ampulse (ampoule + pulse), an offline phone app for tracking pills, injections and blood
+  pressure - for yourself, a family member or a pet. Stage: design mockup only, no code yet; the
+  platform and stack are not chosen (the mockup follows Material 3 on a phone). The mockup lives on
+  a claude.ai Design canvas; its exported source is in mockup/ (canvas.json + *.dc.html; screens
+  1-25 are plain markup with En/Dark/DarkEn copies, newer screens are one component with theme and
+  lang props plus thin wrappers).
+  Where the project stands and how to work: HANDOFF.md; idea, features and plan: SPEC.md;
+  docs of what exists now: docs/README.md; UI rules: docs/ui-guideline.md; screens: docs/screens.md.
+  Owner rules every artifact must respect:
+  - every UI in the light AND the dark theme and in Russian AND English, mockups too;
+  - fully offline: no cloud service as a foundation; text, photo and speech recognition on the phone;
+  - the app never changes doses and never suggests a repeat dose; medical advice stays general and
+    safe, says it does not replace training or a doctor, and is reviewed by a doctor before release;
+  - the repository is public: only fictional data (people, phones, screenshots in demo mode);
+  - everything printed to a console or a log is in English; code comments are in Russian;
+  - no new dependencies or downloads without the owner's explicit permission;
+  - releases, tags, CI runs and pushes only on the owner's command;
+  - the version grows with the plan: a stage - the second digit +1 from the CURRENT version
+    (after 0.9.x comes 1.0.0), a fix inside a stage - the third; the fourth number is the
+    build = commit count;
+  - builds, target and temp files only on disk E:, never D:;
+  - no file names reserved on Windows (CON, PRN, AUX, NUL, COM1-9, LPT1-9, with any extension);
+  - tasks include their tests and the doc updates (docs/, HANDOFF.md, SPEC.md) the change
+    needs; nothing is marked verified live without the owner's words.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Укол пошагово</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 1300px; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="{{backHref}}" style="height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{backLabel}}</span>
+</a>
+<a href="{{rulesHref}}" style="height: 48px; margin-right: -8px; padding: 0 8px; display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+<span>{{l.rules}}</span>
+</a>
+</div>
+<header style="margin-top: -8px; display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<div style="font-size: 14px; line-height: 1.4; color: {{t.ink2}}">{{k.sub}}</div>
+</header>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{progressText}}</span>
+<div role="progressbar" aria-valuemin="0" aria-valuemax="{{total}}" aria-valuenow="{{doneCount}}" aria-label="{{progressText}}" style="display: flex; gap: 4px">
+<sc-for list="{{bar}}" as="b" hint-placeholder-count="8"><span style="flex: 1 1 0; height: 6px; border-radius: 3px; background: {{b.bg}}"></span></sc-for>
+</div>
+</div>
+
+<sc-if value="{{hasDone}}" hint-placeholder-val="{{true}}">
+<section aria-label="{{l.doneH}}" style="background: {{t.card}}; border-radius: 20px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{doneSteps}}" as="d" hint-placeholder-count="6">
+<button type="button" onClick="{{d.open}}" aria-label="{{d.aria}}" style="width: 100%; min-height: 52px; box-sizing: border-box; padding: 6px 0; border: none; border-top: 1px solid {{d.divider}}; background: transparent; color: {{t.ink}}; display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer">
+<span aria-hidden="true" style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 14px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" style="fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<span style="flex-grow: 1; min-width: 0; font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.title}}</span>
+<span style="flex-shrink: 0; max-width: 46%; font-size: 13px; color: {{t.ink3}}; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.short}}</span>
+</button>
+</sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{isRunning}}" hint-placeholder-val="{{true}}">
+<section aria-labelledby="sg-cur" style="background: {{t.card}}; border: 2px solid {{t.acc}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 16px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">{{cur.num}}</span>
+<h2 id="sg-cur" style="margin: 0; font-size: 19px; line-height: 1.25; font-weight: 600">{{cur.title}}</h2>
+</div>
+<div style="font-size: 15px; line-height: 1.5; color: {{t.ink2}}">{{cur.body}}</div>
+<sc-if value="{{cur.hasDose}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 16px; padding: 12px 16px; background: {{t.bg}}; display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+<span style="font-size: 13px; color: {{t.ink3}}">{{l.window}}</span>
+<span style="font-family: Literata, Georgia, serif; font-size: 40px; line-height: 1; font-weight: 600">{{cur.dose}}</span>
+</div>
+</sc-if>
+<sc-if value="{{cur.hasDiagram}}" hint-placeholder-val="{{false}}">
+<div role="img" aria-label="{{l.diagramA}}" style="border-radius: 16px; padding: 12px; background: {{t.bg}}; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<svg width="300" height="132" viewBox="0 0 300 132" aria-hidden="true">
+<rect x="14" y="8" width="128" height="116" rx="54" style="fill: {{t.card}}; stroke: {{t.line}}; stroke-width: 1.5"></rect>
+<rect x="158" y="8" width="128" height="116" rx="54" style="fill: {{t.card}}; stroke: {{t.line}}; stroke-width: 1.5"></rect>
+<path d="M14 66 H78 V8 H68 A54 54 0 0 0 14 62 Z" style="fill: {{t.accSoft}}"></path>
+<path d="M78 8 V124 M14 66 H142" style="fill: none; stroke: {{t.ink3}}; stroke-width: 1.2; stroke-dasharray: 4 4"></path>
+<path d="M222 8 V124 M158 66 H286" style="fill: none; stroke: {{t.line}}; stroke-width: 1.2; stroke-dasharray: 4 4"></path>
+<circle cx="50" cy="40" r="9" style="fill: {{t.acc}}"></circle>
+<circle cx="50" cy="40" r="15" style="fill: none; stroke: {{t.acc}}; stroke-width: 1.5; opacity: 0.5"></circle>
+</svg>
+<div style="width: 300px; display: flex; justify-content: space-between; font-size: 12px; color: {{t.ink3}}"><span>{{l.leftSide}}</span><span>{{l.backView}}</span><span>{{l.rightSide}}</span></div>
+</div>
+</sc-if>
+<sc-for list="{{cur.checks}}" as="c" hint-placeholder-count="1">
+<div style="border-radius: 14px; padding: 10px 12px; background: {{c.bg}}; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.4; color: {{c.fg}}">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>{{c.text}}</span>
+</div>
+</sc-for>
+<sc-if value="{{cur.hasTimer}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 4px 0">
+<div role="timer" aria-live="polite" aria-label="{{tm.aria}}" style="position: relative; width: 132px; height: 132px">
+<svg width="132" height="132" viewBox="0 0 132 132" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: rotate(-90deg)">
+<circle cx="66" cy="66" r="56" style="fill: none; stroke: {{t.track}}; stroke-width: 10"></circle>
+<circle cx="66" cy="66" r="56" style="fill: none; stroke: {{tm.color}}; stroke-width: 10; stroke-linecap: round; stroke-dasharray: {{tm.dash}}"></circle>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-family: Literata, Georgia, serif; font-size: 44px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums">{{tm.big}}</span>
+<span style="font-size: 13px; color: {{t.ink3}}">{{tm.small}}</span>
+</div>
+</div>
+<span style="font-size: 14px; line-height: 1.4; text-align: center; color: {{tm.capColor}}">{{tm.caption}}</span>
+<sc-if value="{{tm.canStart}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{startTimer}}" style="height: 48px; padding: 0 22px; box-sizing: border-box; border: 1.5px solid {{t.ink}}; border-radius: 24px; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{tm.startLabel}}</button>
+</sc-if>
+</div>
+</sc-if>
+<button type="button" onClick="{{next}}" aria-disabled="{{nextDisabled}}" style="height: 54px; border: none; border-radius: 27px; background: {{nextBg}}; color: {{nextFg}}; font-family: inherit; font-size: 17px; font-weight: 600; cursor: {{nextCursor}}">{{nextLabel}}</button>
+<div style="display: flex; justify-content: space-between; gap: 8px; margin-top: -6px">
+<sc-if value="{{canBack}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{prev}}" style="height: 48px; padding: 0 10px; border: none; border-radius: 24px; background: transparent; color: {{t.ink2}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{l.backStep}}</button></sc-if>
+<sc-if value="{{canSkipTimer}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{skipTimer}}" style="margin-left: auto; height: 48px; padding: 0 10px; border: none; border-radius: 24px; background: transparent; color: {{t.ink2}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{l.noTimer}}</button></sc-if>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isFinished}}" hint-placeholder-val="{{false}}">
+<section style="background: {{t.accSoft}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; fill: none; stroke: {{t.accText}}; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+<h2 style="margin: 0; font-size: 19px; font-weight: 600; color: {{t.accText}}">{{l.finalTitle}}</h2>
+</div>
+<div style="font-size: 15px; line-height: 1.45">{{k.finalText}}</div>
+<div style="font-size: 14px; line-height: 1.45; color: {{t.ink2}}">{{k.nextText}}</div>
+<a href="{{mainHref}}" style="margin-top: 4px; height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{l.toMain}}</a>
+<button type="button" onClick="{{restart}}" style="height: 48px; border: none; border-radius: 24px; background: transparent; color: {{t.accText}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{l.undoLog}}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{hasNext}}" hint-placeholder-val="{{true}}">
+<section aria-label="{{l.nextH}}" style="display: flex; flex-direction: column; padding: 0 4px">
+<sc-for list="{{nextSteps}}" as="u" hint-placeholder-count="1">
+<div style="min-height: 44px; display: flex; align-items: center; gap: 12px; color: {{t.ink2}}">
+<span aria-hidden="true" style="width: 28px; height: 28px; flex-shrink: 0; box-sizing: border-box; border-radius: 14px; border: 1.5px solid {{t.line}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{u.num}}</span>
+<span style="font-size: 15px">{{u.title}}</span>
+</div>
+</sc-for>
+</section>
+</sc-if>
+
+<section style="background: {{t.card}}; border-radius: 20px; padding: 4px 16px; display: flex; flex-direction: column">
+<button type="button" onClick="{{toggleProb}}" aria-expanded="{{probOpen}}" style="width: 100%; min-height: 56px; border: none; background: transparent; color: {{t.ink}}; display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; cursor: pointer; padding: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; color: {{t.warn}}; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+<span style="flex-grow: 1; font-size: 15px; font-weight: 600">{{l.probH}}</span>
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; color: {{t.ink3}}; transform: {{probRot}}; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{probOpen}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 0 0 14px">
+<sc-for list="{{probs}}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="width: 100%; min-height: 48px; box-sizing: border-box; padding: 10px 14px; border-radius: 14px; border: 1.5px solid {{p.border}}; background: {{p.bg}}; color: {{t.ink}}; text-align: left; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer">{{p.title}}</button>
+</sc-for>
+<sc-if value="{{hasAdvice}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 14px; padding: 12px 14px; background: {{t.warnSoft}}; font-size: 14px; line-height: 1.45">{{advice}}</div>
+</sc-if>
+</div>
+</sc-if>
+</section>
+<div style="font-size: 13px; line-height: 1.45; color: {{t.ink3}}; padding: 0 4px">{{l.disclaimer}}</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"kind":{"editor":"enum","options":["sc","im"],"default":"sc"},"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const kind = this.props.kind === 'im' ? 'im' : 'sc';
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', fill: '#EFEBE3', line: '#D6D1C6', divider: '#ECE8DF', track: '#F1EEE7' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', fill: '#252F2C', line: '#3A4542', divider: '#262F2C', track: '#252F2C' }
+    }[theme];
+    const L = {
+      ru: {
+        rules: 'Правила', title: 'Укол пошагово', stepOf: 'Шаг {i} из {n}', allDone: 'Все {n} шагов пройдены',
+        doneH: 'Сделано', nextH: 'Дальше', done: 'Готово', finish: 'Готово — записать укол', backStep: 'Назад', noTimer: 'Без отсчёта',
+        window: 'В окошке ручки', diagramA: 'Ягодицы, вид сзади: левая разделена на 4 части, отмечена верхняя наружная',
+        leftSide: 'левая', backView: 'вид сзади', rightSide: 'правая',
+        start: 'Начать отсчёт', again: 'Ещё раз', sec: 'сек', go: 'Можно', timerA: 'Осталось {n} сек',
+        finalTitle: 'Укол записан', toMain: 'На главную', undoLog: 'Отменить запись',
+        probH: 'Что-то пошло не так?',
+        disclaimer: 'Памятка не заменяет обучения: первый укол сделайте при медсестре или враче. Главное — инструкция к лекарству и слова врача.',
+        sc: {
+          back: 'Место укола', sub: 'Инсулин гларгин · 12 ЕД · живот справа · 22:00',
+          finalText: 'Инсулин гларгин 12 ЕД, живот справа. Проверка 2 ЕД, кнопку держали 10 секунд. Игл осталось 8.',
+          nextText: 'Следующий укол — завтра в 22:00. Место предложим то, что отдыхало дольше всех.',
+          steps: [
+            { title: 'Руки и ручка', short: 'готово', body: 'Вымойте руки. Ручка — комнатной температуры: холодный инсулин колоть больнее. Запасные ручки храните в холодильнике, начатую — нет.' },
+            { title: 'Проверьте инсулин', short: 'прозрачный', body: 'Гларгин прозрачный, как вода. Мутный, с хлопьями или кристаллами — не колите, возьмите новую ручку.', checks: ['Ручка вскрыта 05.09 — годна до 03.10, ещё 7 дней'] },
+            { title: 'Новая игла', short: '4 мм, новая', body: 'Каждый раз — новая: тупая игла больнее и оставляет уплотнения. Снимите оба колпачка, большой не выбрасывайте — он понадобится в конце.', checks: ['Игла 4 мм · в запасе 9, после укола останется 8'] },
+            { title: 'Проверка проходимости', short: 'капля есть', body: 'Наберите 2 ЕД, держите ручку иглой вверх, постучите по ней и нажмите кнопку до конца — на кончике иглы должна появиться капля. Нет капли — повторите, до 3 раз.' },
+            { title: 'Наберите дозу', short: '12 ЕД', body: 'Поверните кнопку до нужной дозы и сверьтесь с окошком.', dose: '12 ЕД', checks: ['Как в расписании: 12 ЕД на ночь. Дозу меняет только врач'] },
+            { title: 'Место', short: 'живот справа', body: 'Живот справа — отдыхал дольше всех. Не ближе 5 см от пупка, не в шрамы, синяки и уплотнения; на палец в сторону от прошлого укола.' },
+            { title: 'Укол', short: 'держали 10 с', body: 'Игла 4 мм — под прямым углом, складку собирать не нужно. Нажмите кнопку до конца и держите, пока идёт отсчёт.', timer: 10, timerNote: 'Держите кнопку нажатой, иначе часть дозы вытечет', timerDone: 'Можно вынимать иглу' },
+            { title: 'После укола', short: 'готово', body: 'Выньте иглу, наденьте большой колпачок и открутите иглу. Выбросьте её в твёрдый контейнер с крышкой. Место не растирайте.' }
+          ],
+          probs: [
+            { title: 'Нет капли при проверке', text: 'Повторите проверку, до 3 раз. Капли нет — смените иглу и проверьте снова. Не помогло — возьмите другую ручку, эту не используйте.' },
+            { title: 'Подтекло или игла вышла раньше', text: 'Не колите ещё раз — так можно получить двойную дозу. Запишем укол с пометкой «подтекло». Проверьте сахар, как советовал врач; сомневаетесь — позвоните ему.' },
+            { title: 'Кровь или синяк', text: 'Прижмите сухой салфеткой на минуту, не растирайте. Так бывает и это не опасно. Синяки появляются часто — покажите места врачу.' }
+          ]
+        },
+        im: {
+          back: 'Сегодня', sub: 'Мексидол · 2 мл · в мышцу · курс: день 3 из 10',
+          finalText: 'Мексидол 2 мл, ягодица слева, вводили 20 секунд. Курс: 3 укола из 10.',
+          nextText: 'Следующий — завтра в 09:00, ягодица справа.',
+          steps: [
+            { title: 'Подготовьте всё', short: 'готово', body: 'Вымойте руки. На чистую салфетку: ампула, шприц 5 мл, две спиртовые салфетки, контейнер для игл.' },
+            { title: 'Проверьте ампулу', short: 'прозрачная', body: 'Название и доза — как в назначении. Раствор прозрачный, без осадка и хлопьев.', checks: ['Срок: годна до 03.2028'] },
+            { title: 'Наберите лекарство', short: '2 мл', body: 'Протрите шейку ампулы, отломите её от себя через салфетку. Наберите 2 мл, поверните шприц иглой вверх, постучите и выдавите воздух до первой капли.' },
+            { title: 'Место', short: 'ягодица слева', body: 'Ягодица слева — прошлый укол был справа. Мысленно разделите ягодицу на 4 части и колите в верхнюю наружную.', diagram: true },
+            { title: 'Обработайте кожу', short: 'готово', body: 'Протрите место спиртовой салфеткой и подождите, пока высохнет, — так меньше щиплет.' },
+            { title: 'Укол', short: 'медленно, 20 с', body: 'Натяните кожу двумя пальцами, введите иглу быстро, под прямым углом, на ¾ длины. Лекарство вводите медленно — около 10 секунд на 1 мл.', timer: 20, timerNote: 'Вводите медленно — меньше боль и уплотнения', timerDone: 'Всё введено — можно вынимать иглу' },
+            { title: 'После укола', short: 'готово', body: 'Выньте иглу и прижмите место сухой салфеткой. Колпачок на иглу не надевайте — сразу в контейнер.' }
+          ],
+          probs: [
+            { title: 'Резкая боль или онемение в ноге', text: 'Остановитесь и выньте иглу — могли задеть нерв. В это место больше не колите, позвоните врачу.' },
+            { title: 'Кровь или синяк', text: 'Прижмите сухой салфеткой на минуту. Так бывает и это не опасно. Синяки появляются часто — расскажите врачу.' },
+            { title: 'Шишка на месте укола', text: 'Обычно проходит за несколько дней. Краснеет, болит всё сильнее, поднялась температура — к врачу.' }
+          ]
+        }
+      },
+      en: {
+        rules: 'Rules', title: 'Step by step', stepOf: 'Step {i} of {n}', allDone: 'All {n} steps done',
+        doneH: 'Done', nextH: 'Next', done: 'Done', finish: 'Done — log the injection', backStep: 'Back', noTimer: 'No countdown',
+        window: 'In the pen window', diagramA: 'Buttocks seen from behind: the left one split into 4 parts, upper outer part marked',
+        leftSide: 'left', backView: 'back view', rightSide: 'right',
+        start: 'Start countdown', again: 'Again', sec: 'sec', go: 'Go', timerA: '{n} sec left',
+        finalTitle: 'Injection logged', toMain: 'Back to Today', undoLog: 'Undo log',
+        probH: 'Something went wrong?',
+        disclaimer: 'This guide does not replace training: do your first injection with a nurse or doctor. The medicine leaflet and your doctor come first.',
+        sc: {
+          back: 'Injection site', sub: 'Insulin glargine · 12 U · abdomen right · 22:00',
+          finalText: 'Insulin glargine 12 U, abdomen right. Safety test 2 U, button held for 10 seconds. 8 needles left.',
+          nextText: 'Next injection — tomorrow at 22:00. We will suggest the site that has rested longest.',
+          steps: [
+            { title: 'Hands and pen', short: 'done', body: 'Wash your hands. The pen should be at room temperature: cold insulin stings more. Keep spare pens in the fridge, but not the one in use.' },
+            { title: 'Check the insulin', short: 'clear', body: 'Glargine is clear, like water. Cloudy, with flakes or crystals — do not inject, take a new pen.', checks: ['Pen opened Sep 5 — good until Oct 3, 7 days left'] },
+            { title: 'New needle', short: '4 mm, new', body: 'A new one every time: a blunt needle hurts more and leaves lumps. Take off both caps and keep the big one — you will need it at the end.', checks: ['4 mm needle · 9 in stock, 8 after this injection'] },
+            { title: 'Safety test', short: 'drop seen', body: 'Dial 2 U, hold the pen needle up, tap it and press the button all the way — a drop should appear at the needle tip. No drop — repeat, up to 3 times.' },
+            { title: 'Dial the dose', short: '12 U', body: 'Turn the button to your dose and check the window.', dose: '12 U', checks: ['As scheduled: 12 U at bedtime. Only your doctor changes the dose'] },
+            { title: 'Site', short: 'abdomen right', body: 'Abdomen right — it has rested longest. At least 5 cm from the navel, not into scars, bruises or lumps; a finger’s width from the last injection.' },
+            { title: 'Inject', short: 'held 10 s', body: '4 mm needle — straight in at 90°, no need to pinch the skin. Press the button all the way and hold it during the countdown.', timer: 10, timerNote: 'Keep the button pressed, or part of the dose will leak', timerDone: 'You can take the needle out' },
+            { title: 'After the injection', short: 'done', body: 'Take the needle out, put the big cap back on and unscrew the needle. Drop it into a hard container with a lid. Do not rub the site.' }
+          ],
+          probs: [
+            { title: 'No drop during the test', text: 'Repeat the test, up to 3 times. Still no drop — change the needle and test again. Still nothing — take another pen and do not use this one.' },
+            { title: 'Leaked or the needle came out early', text: 'Do not inject again — you could get a double dose. We will log the injection as “leaked”. Check your sugar as your doctor advised; if unsure, call them.' },
+            { title: 'Blood or a bruise', text: 'Press with a dry wipe for a minute, do not rub. It happens and is not dangerous. Frequent bruises — show the sites to your doctor.' }
+          ]
+        },
+        im: {
+          back: 'Today', sub: 'Mexidol · 2 ml · into the muscle · course: day 3 of 10',
+          finalText: 'Mexidol 2 ml, left buttock, injected over 20 seconds. Course: 3 of 10 injections.',
+          nextText: 'Next — tomorrow at 09:00, right buttock.',
+          steps: [
+            { title: 'Get everything ready', short: 'done', body: 'Wash your hands. On a clean napkin: the ampoule, a 5 ml syringe, two alcohol wipes, a needle container.' },
+            { title: 'Check the ampoule', short: 'clear', body: 'Name and dose match the prescription. The solution is clear, with no sediment or flakes.', checks: ['Exp. 03/2028'] },
+            { title: 'Draw the medicine', short: '2 ml', body: 'Wipe the ampoule neck and snap it away from you through a wipe. Draw 2 ml, turn the syringe needle up, tap it and push the air out until the first drop.' },
+            { title: 'Site', short: 'left buttock', body: 'Left buttock — last time it was the right one. Split the buttock into 4 parts in your mind and inject into the upper outer part.', diagram: true },
+            { title: 'Clean the skin', short: 'done', body: 'Wipe the site with an alcohol wipe and wait until it dries — it stings less.' },
+            { title: 'Inject', short: 'slowly, 20 s', body: 'Stretch the skin with two fingers, put the needle in quickly at 90°, three quarters of its length. Inject slowly — about 10 seconds per 1 ml.', timer: 20, timerNote: 'Inject slowly — less pain and fewer lumps', timerDone: 'All in — you can take the needle out' },
+            { title: 'After the injection', short: 'done', body: 'Take the needle out and press the site with a dry wipe. Do not recap the needle — straight into the container.' }
+          ],
+          probs: [
+            { title: 'Sharp pain or numbness in the leg', text: 'Stop and take the needle out — a nerve may have been touched. Do not use this spot again and call your doctor.' },
+            { title: 'Blood or a bruise', text: 'Press with a dry wipe for a minute. It happens and is not dangerous. Frequent bruises — tell your doctor.' },
+            { title: 'A lump at the site', text: 'It usually goes away in a few days. If it gets redder, hurts more and more, or you get a fever — see a doctor.' }
+          ]
+        }
+      }
+    }[lang];
+    const K = L[kind];
+    const fill = (str, o) => str.replace(/\{(\w+)\}/g, (m, key) => (key in o ? o[key] : m));
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    const set = (o) => this.setState(o);
+
+    const N = K.steps.length;
+    // На холсте: подкожно — шаг «Укол» с отсчётом, в мышцу — шаг «Место» со схемой
+    const step = typeof s.step === 'number' ? s.step : (kind === 'sc' ? 6 : 3);
+    const finished = step >= N;
+    const go = (i) => set({ step: i, t0: 0, now: 0, timerDone: false });
+    const cur = finished ? null : K.steps[step];
+
+    const dur = cur && cur.timer ? cur.timer : 0;
+    const t0 = s.t0 || 0;
+    const elapsed = t0 ? Math.min(dur, Math.floor(((s.now || t0) - t0) / 1000)) : 0;
+    const timerDone = dur > 0 && (s.timerDone === true || (t0 > 0 && elapsed >= dur));
+    const running = dur > 0 && t0 > 0 && !timerDone;
+    const C = 2 * Math.PI * 56;
+    const frac = timerDone ? 1 : dur ? elapsed / dur : 0;
+    const startTimer = () => {
+      const start = Date.now();
+      set({ t0: start, now: start, timerDone: false });
+      const tick = () => {
+        if (!this.state || this.state.t0 !== start) return;
+        const now = Date.now();
+        set({ now: now });
+        if (now - start < dur * 1000) setTimeout(tick, 200);
+      };
+      setTimeout(tick, 200);
+    };
+    const tm = {
+      big: timerDone ? L.go : String(dur - elapsed),
+      small: timerDone ? '' : L.sec,
+      dash: (C * frac).toFixed(1) + ' ' + C.toFixed(1),
+      color: timerDone ? T.acc : T.acc,
+      caption: timerDone ? (cur && cur.timerDone) : (cur && cur.timerNote),
+      capColor: timerDone ? T.accText : T.ink2,
+      canStart: dur > 0 && !running && !timerDone,
+      startLabel: t0 ? L.again : L.start,
+      aria: timerDone ? (cur && cur.timerDone) : fill(L.timerA, { n: dur - elapsed })
+    };
+    const blocked = dur > 0 && !timerDone;
+    const prob = typeof s.prob === 'number' ? s.prob : -1;
+
+    return {
+      t: T, l: L, k: K, lang: lang, tm: tm,
+      backLabel: K.back,
+      backHref: (kind === 'sc' ? 'Injection' : 'Main') + sfx + '.dc.html',
+      mainHref: 'Main' + sfx + '.dc.html',
+      rulesHref: 'ShotRules' + sfx + '.dc.html',
+      total: N,
+      doneCount: Math.min(step, N),
+      progressText: finished ? fill(L.allDone, { n: N }) : fill(L.stepOf, { i: step + 1, n: N }),
+      bar: K.steps.map((x, i) => ({ bg: i < step ? T.acc : i === step ? T.ink3 : T.track })),
+      hasDone: step > 0,
+      doneSteps: K.steps.slice(0, Math.min(step, N)).map((x, i) => ({
+        title: x.title, short: x.short, aria: x.title + ': ' + x.short,
+        divider: i === 0 ? 'transparent' : T.divider,
+        open: () => go(i)
+      })),
+      isRunning: !finished,
+      isFinished: finished,
+      cur: finished ? {} : {
+        num: step + 1, title: cur.title, body: cur.body,
+        hasDose: !!cur.dose, dose: cur.dose || '',
+        hasDiagram: !!cur.diagram,
+        hasTimer: dur > 0,
+        checks: (cur.checks || []).map((c) => ({ text: c, bg: T.accSoft, fg: T.accText }))
+      },
+      startTimer: startTimer,
+      skipTimer: () => set({ timerDone: true }),
+      canSkipTimer: dur > 0 && !timerDone,
+      next: () => { if (!blocked) go(step + 1); },
+      nextDisabled: blocked,
+      nextLabel: step === N - 1 ? L.finish : L.done,
+      nextBg: blocked ? T.fill : T.acc,
+      nextFg: blocked ? T.ink3 : T.onAcc,
+      nextCursor: blocked ? 'not-allowed' : 'pointer',
+      canBack: step > 0,
+      prev: () => go(Math.max(0, step - 1)),
+      restart: () => go(N - 1),
+      hasNext: !finished && step < N - 1,
+      nextSteps: K.steps.slice(step + 1).map((x, i) => ({ num: step + 2 + i, title: x.title })),
+      probOpen: s.probOpen === true,
+      probRot: s.probOpen === true ? 'rotate(180deg)' : 'none',
+      toggleProb: () => set({ probOpen: s.probOpen !== true }),
+      probs: K.probs.map((p, i) => ({
+        title: p.title, on: i === prob,
+        bg: i === prob ? T.warnSoft : T.card,
+        border: i === prob ? T.warnLine : T.line,
+        pick: () => set({ prob: i === prob ? -1 : i })
+      })),
+      hasAdvice: prob >= 0,
+      advice: prob >= 0 ? K.probs[prob].text : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

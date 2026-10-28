@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Family</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111715;color:#ECEAE4;font-family:Onest,system-ui,sans-serif}
+a{color:#4FBFB0}a:hover{color:#7ED8CB}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1300px; box-sizing: border-box; display: flex; flex-direction: column; background: #111715; color: #ECEAE4; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.4px">Family</h1>
+<div style="font-size: 14px; line-height: 1.4; color: #97A29F">Offline: misses go by text, everything else by QR when you’re together.</div>
+</div>
+<a href="EmergencyDarkEn.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 14px 12px 14px 14px; border-radius: 16px; background: #ECEAE4; color: #1A2220; text-decoration: none">
+<span style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #3A2717; color: #F3A76E; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2c0 1.1.9 2 2 2h5v5c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"></path></svg>
+</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">Emergency card</span>
+<span style="font-size: 13px; line-height: 1.35; color: #4E5A57">Allergies, conditions and medicines — visible without unlocking</span>
+</span>
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: #4E5A57"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Anna · daughter</h2>
+<div style="background: #1A2220; border-radius: 20px; padding: 4px 16px 12px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 64px">
+<span style="width: 40px; height: 40px; border-radius: 20px; flex-shrink: 0; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">A</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 600">Texts to ···12</span>
+<span style="font-size: 13px; color: #97A29F">{{annaSummary}}</span>
+</div>
+</div>
+<sc-for list="{{perms}}" as="p" hint-placeholder-count="4">
+<button type="button" role="switch" aria-checked="{{p.on}}" onClick="{{p.toggle}}" style="width: 100%; min-height: 60px; box-sizing: border-box; padding: 10px 0; border: none; border-top: 1px solid #262F2C; background: transparent; color: #ECEAE4; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer">
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 500">{{p.title}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: #97A29F">{{p.sub}}</span>
+</span>
+<span style="position: relative; width: 50px; height: 30px; flex-shrink: 0; border-radius: 15px; background: {{p.track}}"><span style="position: absolute; top: 3px; left: {{p.knob}}; width: 24px; height: 24px; border-radius: 12px; background: #1A2220; box-shadow: 0 1px 2px rgba(22, 33, 31, 0.3)"></span></span>
+</button>
+</sc-for>
+<div style="border-top: 1px solid #262F2C; padding-top: 10px; font-size: 12px; line-height: 1.4; color: #97A29F">On iPhone the system asks you to tap Send — texts go out automatically only on Android.</div>
+</div>
+</section>
+<section style="background: #1A2220; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">Send data to Anna</span>
+<span style="font-size: 13px; line-height: 1.4; color: #97A29F">Anna points her camera at this code and gets the schedule, history and whatever you allowed above. No internet needed.</span>
+</div>
+<sc-if value="{{qrShown}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0">
+<div aria-label="QR code for data transfer" role="img" style="width: 168px; height: 168px; box-sizing: border-box; padding: 10px; border-radius: 12px; background: #ffffff; border: 1.5px solid #e2ded4; display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); grid-template-rows: repeat(21, minmax(0, 1fr))">
+<sc-for list="{{qr}}" as="c" hint-placeholder-count="441"><span style="background: {{c.bg}}"></span></sc-for>
+</div>
+<span style="font-size: 13px; color: #97A29F">Code is valid for 5 minutes</span>
+</div>
+</sc-if>
+<button type="button" onClick="{{toggleQr}}" style="height: 44px; box-sizing: border-box; border: 1.5px solid #ECEAE4; border-radius: 22px; background: transparent; color: #ECEAE4; font-size: 14px; font-weight: 600; cursor: pointer">{{qrLabel}}</button>
+<span style="font-size: 12px; color: #97A29F; text-align: center">Last transfer — September 24</span>
+</section>
+<section style="background: #1A2220; border-radius: 20px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 20px; flex-shrink: 0; background: #252F2C; color: #B7C0BD; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M9 13h6"></path><path d="M9 17h4"></path></svg>
+</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">For the doctor</span>
+<span style="font-size: 13px; line-height: 1.35; color: #97A29F">PDF report: show it at the visit or send it</span>
+</div>
+<a href="HistoryDarkEn.dc.html" style="flex-shrink: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 22px; border: 1.5px solid #3A4542; background: #1A2220; color: #ECEAE4; display: flex; align-items: center; font-size: 14px; font-weight: 600; text-decoration: none">Create</a>
+</section>
+<button type="button" style="height: 52px; box-sizing: border-box; border-radius: 26px; border: 1.5px solid #ECEAE4; background: transparent; color: #ECEAE4; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600; cursor: pointer">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+<span>Add family member</span>
+</button>
+<div style="margin-top: -8px; font-size: 13px; line-height: 1.4; text-align: center; color: #97A29F">Only a phone number is needed — for texts</div>
+<a href="CareDarkEn.dc.html" style="align-self: center; min-height: 44px; display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; color: #4FBFB0; text-decoration: none">
+<span>How Anna sees it</span>
+<svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+</a>
+</main>
+<nav aria-label="Sections" style="flex-shrink: 0; height: 76px; box-sizing: border-box; padding: 8px 8px 14px; background: #1A2220; border-top: 1px solid #2A3431; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="MainDarkEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+<span>Today</span>
+</a>
+<a href="HistoryDarkEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+<span>History</span>
+</a>
+<a href="StockDarkEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v4"></path><path d="M14 13h-4"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M18 6v14"></path><path d="M6 6v14"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg>
+<span>Medicines</span>
+</a>
+<a href="AccessDarkEn.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #4FBFB0; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<span>Family</span>
+</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const DEFAULTS = { miss: true, names: true, card: true, stock: true };
+    const on = Object.assign({}, DEFAULTS, s.perms || {});
+    const qrShown = s.qr !== false;
+    const LIST = [
+      { id: 'miss', title: 'Text about a missed dose', sub: 'If a dose isn’t marked within 30 minutes' },
+      { id: 'names', title: 'Medicine name in the text', sub: 'Turn off to send just “Missed dose at 13:00”' },
+      { id: 'card', title: 'Text if the emergency card is opened', sub: 'With location — GPS works offline' },
+      { id: 'stock', title: 'Medicines in QR transfer', sub: 'Anna sees what’s running low' }
+    ];
+    const perms = LIST.map((p) => ({
+      title: p.title,
+      sub: p.sub,
+      on: on[p.id],
+      track: on[p.id] ? '#4FBFB0' : '#4A5552',
+      knob: on[p.id] ? '23px' : '3px',
+      toggle: () => this.setState({ perms: Object.assign({}, on, { [p.id]: !on[p.id] }) })
+    }));
+    const count = LIST.filter((p) => on[p.id]).length;
+
+    const N = 21;
+    const finder = (r, c) => {
+      const inBox = (r0, c0) => r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7;
+      const boxes = [[0, 0], [0, N - 7], [N - 7, 0]];
+      for (let k = 0; k < boxes.length; k++) {
+        const r0 = boxes[k][0], c0 = boxes[k][1];
+        if (inBox(r0, c0)) {
+          const y = r - r0, x = c - c0;
+          const ring = y === 0 || y === 6 || x === 0 || x === 6;
+          const core = y >= 2 && y <= 4 && x >= 2 && x <= 4;
+          return ring || core ? 1 : 0;
+        }
+        if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0;
+      }
+      return null;
+    };
+    const qr = [];
+    for (let r = 0; r < N; r++) {
+      for (let c = 0; c < N; c++) {
+        const f = finder(r, c);
+        const dark = f === null ? ((r * 11 + c * 7 + r * c) % 3) === 0 : f === 1;
+        qr.push({ bg: dark ? '#16211f' : 'transparent' });
+      }
+    }
+    return {
+      perms: perms,
+      annaSummary: 'On: ' + count + ' of ' + LIST.length,
+      qrShown: qrShown,
+      qr: qr,
+      qrLabel: qrShown ? 'Hide code' : 'Show QR code',
+      toggleQr: () => this.setState({ qr: !qrShown })
+    };
+  }
+}
+</script>
+</body>
+</html>

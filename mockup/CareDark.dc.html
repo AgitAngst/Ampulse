@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Забота о маме</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111715;color:#ECEAE4;font-family:Onest,system-ui,sans-serif}
+a{color:#4FBFB0}a:hover{color:#7ED8CB}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1120px; box-sizing: border-box; display: flex; flex-direction: column; background: #111715; color: #ECEAE4; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 20px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<div role="group" aria-label="Чьё расписание" style="display: flex; gap: 8px">
+<button type="button" aria-pressed="false" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #3A4542; background: #1A2220; color: #ECEAE4; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #252F2C; display: flex; align-items: center; justify-content: center; font-size: 13px">А</span>Я
+</button>
+<button type="button" aria-pressed="true" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #ECEAE4; background: #ECEAE4; color: #1A2220; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 13px">Г</span>Мама
+</button>
+<button type="button" aria-pressed="false" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #3A4542; background: #1A2220; color: #ECEAE4; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #252F2C; display: flex; align-items: center; justify-content: center; font-size: 13px">М</span>Миша
+</button>
+</div>
+<header style="display: flex; flex-direction: column; gap: 2px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.4px">Мама сегодня</h1>
+<div style="font-size: 14px; line-height: 1.4; color: #97A29F">Копия маминого расписания · передана по QR 24 сентября · пропуски приходят по SMS</div>
+</header>
+<sc-if value="{{showAlert}}" hint-placeholder-val="{{true}}">
+<section aria-label="Требует внимания" style="background: #3A2717; border: 1.5px solid #6E4727; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #1A2220; color: #F3A76E; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 13px; font-weight: 600; color: #F3A76E">SMS с маминого телефона · 13:30</div>
+<div style="font-size: 16px; font-weight: 600">Витамин D3 не отмечен</div>
+<div style="font-size: 14px; line-height: 1.4; color: #F3A76E">Приём был в 13:00. Мама получила два напоминания.</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="height: 44px; border: none; border-radius: 22px; background: #4FBFB0; color: #1A2220; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>Позвонить</span>
+</button>
+<button type="button" onClick="{{remind}}" style="height: 44px; box-sizing: border-box; border: 1.5px solid #D98641; border-radius: 22px; background: #1A2220; color: #F3A76E; font-size: 14px; font-weight: 600; cursor: pointer">{{remindLabel}}</button>
+</div>
+<button type="button" onClick="{{markForHer}}" style="height: 44px; box-sizing: border-box; border: 1.5px solid #ECEAE4; border-radius: 22px; background: transparent; color: #ECEAE4; font-size: 14px; font-weight: 600; cursor: pointer">Она приняла — записать у себя</button>
+</section>
+</sc-if>
+<sc-if value="{{showMarked}}" hint-placeholder-val="{{false}}">
+<div style="background: #173530; border-radius: 20px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: #7ED8CB; stroke-width: 2.2"><path d="M20 6 9 17l-5-5"></path></svg>
+<div style="flex-grow: 1; font-size: 14px; line-height: 1.4; font-weight: 500; color: #7ED8CB">Записано у вас в 13:52. В мамину историю попадёт при следующей передаче по QR.</div>
+<button type="button" onClick="{{unmark}}" style="height: 44px; padding: 0 10px; border: none; border-radius: 22px; background: transparent; color: #7ED8CB; font-size: 14px; font-weight: 600; cursor: pointer">Отменить</button>
+</div>
+</sc-if>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Приёмы</h2>
+<span style="font-size: 13px; color: #97A29F">{{countText}}</span>
+</div>
+<div style="background: #1A2220; border-radius: 20px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; border-top: 1px solid {{r.divider}}">
+<span style="width: 46px; flex-shrink: 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">{{r.time}}</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="font-size: 13px; color: {{r.subColor}}">{{r.sub}}</span>
+</div>
+<span aria-hidden="true" style="width: 24px; height: 24px; flex-shrink: 0; box-sizing: border-box; border-radius: 12px; border: 2px solid {{r.dotBorder}}; background: {{r.dotBg}}; color: {{r.dotFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{r.isOk}}" hint-placeholder-val="{{false}}"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="stroke-width: 3"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+</span>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 13px; line-height: 1.4; color: #97A29F; padding: 0 4px">Мамин телефон пишет только о пропусках: нет SMS — приём отмечен.</div>
+</section>
+<section style="background: #1A2220; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Аптечка мамы</h2>
+<span style="font-size: 13px; color: #F3A76E; font-weight: 600">1 заканчивается</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">Инсулин гларгин</span>
+<span style="font-size: 13px; line-height: 1.35; color: #F3A76E">≈ 48 ЕД по расписанию — хватит на 4 дня</span>
+</div>
+<button type="button" onClick="{{toggleBuy}}" aria-pressed="{{buying}}" style="flex-shrink: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 22px; border: 1.5px solid {{buyBorder}}; background: {{buyBg}}; color: {{buyFg}}; font-size: 14px; font-weight: 600; cursor: pointer">{{buyLabel}}</button>
+</div>
+</section>
+<section style="background: #1A2220; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #252F2C; color: #ECEAE4; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><path d="M14 14h3v3h-3z"></path><path d="M17 20h4"></path><path d="M20 17v3"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">Обновить всё целиком</span>
+<span style="font-size: 13px; line-height: 1.4; color: #97A29F">Когда будете рядом: откройте QR на мамином телефоне и наведите камеру. История, отметки и аптечка обновятся без интернета.</span>
+</div>
+</div>
+<button type="button" style="height: 44px; box-sizing: border-box; border: 1.5px solid #ECEAE4; border-radius: 22px; background: transparent; color: #ECEAE4; font-size: 14px; font-weight: 600; cursor: pointer">Сканировать QR мамы</button>
+</section>
+</main>
+<nav aria-label="Разделы" style="flex-shrink: 0; height: 76px; box-sizing: border-box; padding: 8px 8px 14px; background: #1A2220; border-top: 1px solid #2A3431; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="MainDark.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #4FBFB0; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+<span>Сегодня</span>
+</a>
+<a href="HistoryDark.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+<span>История</span>
+</a>
+<a href="StockDark.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v4"></path><path d="M14 13h-4"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M18 6v14"></path><path d="M6 6v14"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg>
+<span>Аптечка</span>
+</a>
+<a href="AccessDark.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #B7C0BD; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<span>Близкие</span>
+</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const marked = s.marked === true;
+    const reminded = s.reminded === true;
+    const buying = s.buying === true;
+    const list = [
+      { time: '07:00', name: 'Левотироксин 50 мкг', sub: 'без пропуска', kind: 'ok' },
+      { time: '08:30', name: 'Метформин 850 мг', sub: 'без пропуска', kind: 'ok' },
+      marked
+        ? { time: '13:00', name: 'Витамин D3 2000 МЕ', sub: 'записали вы в 13:52', kind: 'ok' }
+        : { time: '13:00', name: 'Витамин D3 2000 МЕ', sub: 'пропуск · SMS в 13:30', kind: 'late' },
+      { time: '14:00', name: 'Метформин 850 мг', sub: 'через 8 мин', kind: 'later' },
+      { time: '21:00', name: 'Аторвастатин 20 мг', sub: 'вечером', kind: 'later' },
+      { time: '22:00', name: 'Инсулин гларгин', sub: '12 ЕД · живот справа', kind: 'later' }
+    ];
+    const rows = list.map((r, i) => ({
+      time: r.time,
+      name: r.name,
+      sub: r.sub,
+      isOk: r.kind === 'ok',
+      subColor: r.kind === 'ok' ? '#7ED8CB' : r.kind === 'late' ? '#F3A76E' : '#97A29F',
+      dotBg: r.kind === 'ok' ? '#173530' : r.kind === 'late' ? '#3A2717' : '#1A2220',
+      dotBorder: r.kind === 'ok' ? '#173530' : r.kind === 'late' ? '#D98641' : '#3A4542',
+      dotFg: '#7ED8CB',
+      divider: i === 0 ? '#1A2220' : '#262F2C'
+    }));
+    const misses = list.filter((r) => r.kind === 'late').length;
+    return {
+      rows: rows,
+      countText: misses ? misses + ' пропуск по SMS' : 'пропусков нет',
+      showAlert: !marked,
+      showMarked: marked,
+      markForHer: () => this.setState({ marked: true }),
+      unmark: () => this.setState({ marked: false }),
+      remind: () => this.setState({ reminded: true }),
+      remindLabel: reminded ? 'SMS отправлено' : 'SMS маме',
+      buying: buying,
+      toggleBuy: () => this.setState({ buying: !buying }),
+      buyLabel: buying ? 'В вашем списке' : 'Куплю',
+      buyBg: buying ? '#173530' : '#1A2220',
+      buyFg: buying ? '#7ED8CB' : '#ECEAE4',
+      buyBorder: buying ? '#173530' : '#3A4542'
+    };
+  }
+}
+</script>
+</body>
+</html>

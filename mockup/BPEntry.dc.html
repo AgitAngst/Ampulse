@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Давление — ввод</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 844px; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 12px; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="{{mainHref}}" style="height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<a href="{{historyHref}}" style="height: 48px; margin-right: -8px; padding: 0 8px; display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+<span>{{l.history}}</span>
+</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<span style="flex-shrink: 0; padding: 5px 10px; border-radius: 12px; background: {{t.fill}}; font-size: 13px; font-weight: 600; color: {{t.ink2}}">{{seriesText}}</span>
+</div>
+<div style="font-size: 14px; color: {{t.ink3}}">{{l.sub}}</div>
+</div>
+<sc-if value="{{isStep2}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 14px; padding: 8px 8px 8px 14px; background: {{t.accSoft}}; display: flex; align-items: center; gap: 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: {{t.accText}}; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+<span style="flex-grow: 1; font-size: 14px; line-height: 1.35; color: {{t.accText}}">{{l.banner}}</span>
+<button type="button" onClick="{{skipSecond}}" style="flex-shrink: 0; height: 48px; padding: 0 12px; border: none; border-radius: 24px; background: transparent; color: {{t.accText}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{l.skip}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isEntering}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div role="group" aria-label="{{l.title}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+<button type="button" onClick="{{f.pick}}" aria-pressed="{{f.on}}" aria-label="{{f.aria}}" style="height: 112px; box-sizing: border-box; border-radius: 18px; border: 2px solid {{f.border}}; background: {{f.bg}}; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; color: {{t.ink}}; font-family: inherit; cursor: pointer">
+<span style="font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{f.label}}</span>
+<span style="font-family: Literata, Georgia, serif; font-size: 40px; line-height: 1; font-weight: 600; color: {{f.valueColor}}; font-variant-numeric: tabular-nums">{{f.shown}}</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{f.unit}}</span>
+</button>
+</sc-for>
+</div>
+<div style="border-radius: 14px; padding: 10px 12px; background: {{st.bg}}; display: flex; gap: 10px; align-items: flex-start; min-height: 40px; box-sizing: border-box">
+<span aria-hidden="true" style="width: 10px; height: 10px; margin-top: 5px; flex-shrink: 0; border-radius: 5px; background: {{st.dot}}"></span>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600; color: {{st.fg}}">{{st.title}}</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.ink3}}">{{st.note}}</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<button type="button" aria-label="{{l.photoA}}" title="{{l.photoA}}" style="height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+<span>{{l.photo}}</span>
+</button>
+<button type="button" aria-label="{{l.voiceA}}" title="{{l.voiceA}}" style="height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><path d="M12 19v3"></path></svg>
+<span>{{l.voice}}</span>
+</button>
+<button type="button" aria-label="{{l.btA}}" title="{{l.btA}}" style="height: 48px; box-sizing: border-box; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m7 7 10 10-5 5V2l5 5L7 17"></path></svg>
+<span>{{l.bt}}</span>
+</button>
+</div>
+<div role="group" aria-label="{{l.keypad}}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+<button type="button" onClick="{{k.press}}" aria-label="{{k.aria}}" style="height: 56px; box-sizing: border-box; border: none; border-radius: 16px; background: {{k.bg}}; color: {{k.fg}}; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; font-size: {{k.size}}; font-weight: {{k.weight}}; font-variant-numeric: tabular-nums; cursor: pointer">
+<sc-if value="{{k.isDel}}" hint-placeholder-val="{{false}}"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"></path><path d="m12 9 6 6"></path><path d="m18 9-6 6"></path></svg></sc-if>
+<span>{{k.label}}</span>
+<sc-if value="{{k.isNext}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 0 8px">
+<span style="width: 72px; height: 72px; border-radius: 36px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center">
+<svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+</span>
+<h2 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 26px; font-weight: 600">{{l.doneTitle}}</h2>
+<div style="font-size: 14px; color: {{t.ink3}}">{{l.doneAvg}}</div>
+<div style="font-family: Literata, Georgia, serif; font-size: 48px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums">{{avgText}}</div>
+<div style="font-size: 15px; color: {{t.ink2}}">{{avgPulse}}</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 14px; background: {{doneSt.bg}}">
+<span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 5px; background: {{doneSt.dot}}"></span>
+<span style="font-size: 15px; font-weight: 600; color: {{doneSt.fg}}">{{doneSt.title}}</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isEntering}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{save}}" disabled="{{cannotSave}}" style="margin-top: auto; height: 54px; flex-shrink: 0; border: none; border-radius: 27px; background: {{saveBg}}; color: {{saveFg}}; font-family: inherit; font-size: 17px; font-weight: 600; cursor: {{saveCursor}}">{{saveLabel}}</button>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; flex-shrink: 0">
+<a href="{{historyHref}}" style="height: 54px; box-sizing: border-box; border-radius: 27px; border: 1.5px solid {{t.ink}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; text-decoration: none">{{l.toHistory}}</a>
+<a href="{{mainHref}}" style="height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; text-decoration: none">{{l.done}}</a>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', fill: '#EFEBE3', line: '#D6D1C6' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', fill: '#252F2C', line: '#3A4542' }
+    }[theme];
+    const L = {
+      ru: {
+        back: 'Сегодня', history: 'История', title: 'Давление', sub: 'Утро, 08:12 · левая рука, сидя',
+        series: 'Замер {n} из 2', sys: 'Верхнее', dia: 'Нижнее', pulse: 'Пульс', unitP: 'мм рт. ст.', unitHr: 'уд/мин',
+        photo: 'Фото', voice: 'Голос', bt: 'Тонометр',
+        photoA: 'Сфотографировать экран тонометра', voiceA: 'Продиктовать числа', btA: 'Принять с тонометра по Bluetooth',
+        keypad: 'Цифры', next: 'Далее', del: 'Стереть',
+        save1: 'Сохранить первый замер', save2: 'Сохранить второй замер',
+        banner: 'Второй замер через минуту — так точнее. Рука та же.', skip: 'Пропустить',
+        empty: 'Наберите верхнее и нижнее', emptyNote: 'Прошлый замер: вчера, 20:30 — 131/84',
+        inTarget: 'В пределах цели врача', above: 'Выше цели врача', crisis: 'Очень высокое', low: 'Низкое',
+        target: 'Цель — ниже 135/85', crisisNote: 'Если плохо — звоните 103 или 112',
+        pulseLeft: 'Допишите пульс или сотрите его',
+        errOrder: 'Верхнее должно быть больше нижнего', errRange: 'Проверьте число — такое бывает редко',
+        doneTitle: 'Сохранено', doneAvg: 'Среднее из двух замеров', pulseWord: 'пульс', toHistory: 'К истории', done: 'Готово'
+      },
+      en: {
+        back: 'Today', history: 'History', title: 'Blood pressure', sub: 'Morning, 8:12 AM · left arm, seated',
+        series: 'Reading {n} of 2', sys: 'Systolic', dia: 'Diastolic', pulse: 'Pulse', unitP: 'mmHg', unitHr: 'bpm',
+        photo: 'Photo', voice: 'Voice', bt: 'Monitor',
+        photoA: 'Take a photo of the monitor screen', voiceA: 'Dictate the numbers', btA: 'Get the reading from the monitor via Bluetooth',
+        keypad: 'Digits', next: 'Next', del: 'Delete',
+        save1: 'Save first reading', save2: 'Save second reading',
+        banner: 'Second reading in a minute — it is more accurate. Same arm.', skip: 'Skip',
+        empty: 'Enter systolic and diastolic', emptyNote: 'Last reading: yesterday, 8:30 PM — 131/84',
+        inTarget: 'Within your doctor’s target', above: 'Above your doctor’s target', crisis: 'Very high', low: 'Low',
+        target: 'Target — below 135/85', crisisNote: 'If you feel unwell, call emergency services',
+        pulseLeft: 'Finish the pulse or delete it',
+        errOrder: 'Systolic must be higher than diastolic', errRange: 'Check the number — this is unusual',
+        doneTitle: 'Saved', doneAvg: 'Average of two readings', pulseWord: 'pulse', toHistory: 'History', done: 'Done'
+      }
+    }[lang];
+
+    const step = s.step || 1;
+    const vals = s.vals || (step === 1 ? { sys: '128', dia: '82', pulse: '7' } : { sys: '', dia: '', pulse: '' });
+    const active = s.active || (s.vals ? 'sys' : 'pulse');
+    const ORDER = ['sys', 'dia', 'pulse'];
+    const maxLen = (f, v) => { const d = (v || '')[0]; if (f === 'sys') return d === '1' || d === '2' ? 3 : 2; return d === '1' ? 3 : 2; };
+    const full = (f) => vals[f].length > 0 && vals[f].length === maxLen(f, vals[f]);
+    const go = (nextVals, nextActive) => this.setState({ vals: nextVals, active: nextActive });
+    const press = (d) => () => {
+      const v = vals[active];
+      const nv = v + d;
+      if (v.length >= maxLen(active, nv)) return;
+      const nextVals = Object.assign({}, vals, { [active]: nv });
+      const i = ORDER.indexOf(active);
+      go(nextVals, nv.length >= maxLen(active, nv) && i < 2 ? ORDER[i + 1] : active);
+    };
+    const del = () => {
+      if (vals[active]) { go(Object.assign({}, vals, { [active]: vals[active].slice(0, -1) }), active); return; }
+      const i = ORDER.indexOf(active);
+      if (i > 0) { const p = ORDER[i - 1]; go(Object.assign({}, vals, { [p]: vals[p].slice(0, -1) }), p); }
+    };
+    const next = () => { const i = ORDER.indexOf(active); if (i < 2) go(vals, ORDER[i + 1]); };
+
+    const sysN = parseInt(vals.sys, 10);
+    const diaN = parseInt(vals.dia, 10);
+    const pulseN = parseInt(vals.pulse, 10);
+    const bothFull = full('sys') && full('dia');
+    let err = '';
+    if (bothFull && sysN <= diaN) err = L.errOrder;
+    else if ((full('sys') && (sysN < 60 || sysN > 260)) || (full('dia') && (diaN < 30 || diaN > 160)) || (full('pulse') && (pulseN < 30 || pulseN > 220))) err = L.errRange;
+    const pulseOk = vals.pulse === '' || full('pulse');
+
+    const classify = (sy, di) => {
+      if (sy >= 180 || di >= 110) return { title: L.crisis, note: L.crisisNote, dot: T.warnLine, fg: T.warn, bg: T.warnSoft };
+      if (sy < 90 || di < 60) return { title: L.low, note: L.crisisNote, dot: T.warnLine, fg: T.warn, bg: T.warnSoft };
+      if (sy >= 135 || di >= 85) return { title: L.above, note: L.target, dot: T.warnLine, fg: T.warn, bg: T.warnSoft };
+      return { title: L.inTarget, note: L.target, dot: T.acc, fg: T.accText, bg: T.accSoft };
+    };
+    let st;
+    if (err) st = { title: err, note: '', dot: T.warnLine, fg: T.warn, bg: T.warnSoft };
+    else if (bothFull) {
+      st = classify(sysN, diaN);
+      if (!pulseOk) st = Object.assign({}, st, { note: L.pulseLeft });
+    } else st = { title: L.empty, note: L.emptyNote, dot: T.line, fg: T.ink, bg: T.card };
+
+    const fields = ORDER.map((f) => {
+      const on = f === active;
+      const bad = !!err && ((err === L.errOrder && f !== 'pulse') || (err === L.errRange));
+      return {
+        label: L[f],
+        unit: f === 'pulse' ? L.unitHr : L.unitP,
+        shown: vals[f] || '—',
+        valueColor: vals[f] ? T.ink : T.ink3,
+        on: on,
+        aria: L[f] + ': ' + (vals[f] || '—'),
+        border: bad ? T.warnLine : on ? T.acc : T.card,
+        bg: on ? T.accSoft : T.card,
+        pick: () => this.setState({ vals: vals, active: f })
+      };
+    });
+
+    const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'del', '0', 'next'].map((k) => {
+      const isDel = k === 'del';
+      const isNext = k === 'next';
+      return {
+        label: isDel ? '' : isNext ? L.next : k,
+        aria: isDel ? L.del : isNext ? L.next : k,
+        isDel: isDel,
+        isNext: isNext,
+        bg: isDel || isNext ? T.fill : T.card,
+        fg: T.ink,
+        size: isNext ? '15px' : '24px',
+        weight: isNext ? '600' : '500',
+        press: isDel ? del : isNext ? next : press(k)
+      };
+    });
+
+    const canSave = bothFull && !err && pulseOk;
+    const empty = { sys: '', dia: '', pulse: '' };
+    const save = () => {
+      if (!canSave) return;
+      const reading = { sys: sysN, dia: diaN, pulse: isNaN(pulseN) ? null : pulseN };
+      if (step === 1) this.setState({ step: 2, first: reading, vals: empty, active: 'sys' });
+      else this.setState({ step: 'done', second: reading });
+    };
+    const skipSecond = () => this.setState({ step: 'done', second: null });
+
+    const first = s.first || { sys: 128, dia: 82, pulse: 71 };
+    const second = s.second;
+    const avg = (a, b) => (b == null ? a : Math.round((a + b) / 2));
+    const aSys = avg(first.sys, second && second.sys);
+    const aDia = avg(first.dia, second && second.dia);
+    const pulses = [first.pulse, second && second.pulse].filter((p) => p != null);
+    const aPulse = pulses.length ? Math.round(pulses.reduce((x, y) => x + y, 0) / pulses.length) : null;
+
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    return {
+      t: T,
+      l: L,
+      lang: lang,
+      mainHref: 'Main' + sfx + '.dc.html',
+      historyHref: 'BPHistory' + sfx + '.dc.html',
+      seriesText: L.series.replace('{n}', step === 2 ? '2' : '1'),
+      isStep2: step === 2,
+      isEntering: step !== 'done',
+      isDone: step === 'done',
+      fields: fields,
+      st: st,
+      keys: keys,
+      cannotSave: !canSave,
+      save: save,
+      saveLabel: step === 2 ? L.save2 : L.save1,
+      saveBg: canSave ? T.acc : T.fill,
+      saveFg: canSave ? T.onAcc : T.ink3,
+      saveCursor: canSave ? 'pointer' : 'default',
+      skipSecond: skipSecond,
+      avgText: aSys + '/' + aDia,
+      avgPulse: aPulse == null ? '' : L.pulseWord + ' ' + aPulse + ' ' + L.unitHr,
+      doneSt: classify(aSys, aDia)
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Приём уже отмечен</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EC;color:#16211F;font-family:Onest,system-ui,sans-serif}
+a{color:#0B6B63}a:hover{color:#08524C}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #F4F2EC; color: #16211F; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<div aria-hidden="true" style="box-sizing: border-box; padding: 24px 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; color: #5E6967">Суббота, 26 сентября</div>
+<div style="font-family: Literata, Georgia, serif; font-size: 34px; line-height: 1.15; font-weight: 600">Сегодня</div>
+</div>
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #5E6967; padding: 0 4px">День</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 12px; background: #DDEEEA; color: #0B6B63; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 600">Витамин D3 2000 МЕ</span><span style="font-size: 13px; color: #0B5A53">Принято в 13:58</span></span>
+</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 12px; background: #DDEEEA; color: #0B6B63; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 600">Метформин 850 мг</span><span style="font-size: 13px; color: #0B5A53">Принято в 14:03</span></span>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(22, 33, 31, 0.5)"></div>
+<section role="dialog" aria-modal="true" aria-labelledby="dd-title" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 10px 20px 24px; border-radius: 24px 24px 0 0; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+<span aria-hidden="true" style="align-self: center; width: 36px; height: 4px; border-radius: 2px; background: #D6D1C6"></span>
+<sc-if value="{{isAsk}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 13px; color: #5E6967">Вы нажали «Принять» в уведомлении</div>
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<span style="width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0; background: #FBEBDD; color: #8F4207; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="dd-title" style="margin: 0; font-family: Literata, Georgia, serif; font-size: 24px; line-height: 1.2; font-weight: 600">Этот приём уже отмечен</h2>
+<div style="font-size: 15px; line-height: 1.45; color: #4A5654">Метформин 850 мг, приём в 14:00. Вы уже отметили его в 14:03 на экране «Сегодня».</div>
+</div>
+</div>
+<div style="border-radius: 14px; padding: 12px 14px; background: #F4F2EC; font-size: 14px; line-height: 1.45">Двойная доза может навредить. Если вы уже выпили ещё одну таблетку и чувствуете себя плохо — звоните <b>103</b> или <b>112</b>.</div>
+<a href="Main.dc.html" style="height: 54px; border-radius: 27px; background: #0B6B63; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">Понятно, не принимаю</a>
+<button type="button" onClick="{{logExtra}}" style="min-height: 48px; border: none; border-radius: 24px; background: transparent; color: #8F4207; font-size: 15px; font-weight: 600; cursor: pointer">Вторая таблетка уже принята — записать</button>
+</div>
+</sc-if>
+<sc-if value="{{isLogged}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<span style="width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0; background: #EFEBE3; color: #16211F; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M9 13h6"></path><path d="M9 17h4"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 24px; line-height: 1.2; font-weight: 600">Записали лишний приём</h2>
+<div style="font-size: 15px; line-height: 1.45; color: #4A5654">Метформин 850 мг, 14:15. Он будет в отчёте для врача.</div>
+</div>
+</div>
+<div style="border-radius: 14px; padding: 12px 14px; background: #F4F2EC; font-size: 14px; line-height: 1.45">Следующий приём Метформина — завтра в 08:30, как обычно. При плохом самочувствии звоните <b>103</b> или <b>112</b>.</div>
+<a href="Main.dc.html" style="height: 54px; border-radius: 27px; background: #16211F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">Готово</a>
+<button type="button" onClick="{{back}}" style="min-height: 48px; border: none; border-radius: 24px; background: transparent; color: #4A5654; font-size: 15px; font-weight: 600; cursor: pointer">Отменить запись</button>
+</div>
+</sc-if>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const logged = s.logged === true;
+    return {
+      isAsk: !logged,
+      isLogged: logged,
+      logExtra: () => this.setState({ logged: true }),
+      back: () => this.setState({ logged: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

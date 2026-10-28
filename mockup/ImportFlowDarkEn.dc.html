@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prescription to plan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 390px; height: {{rootH}}; box-sizing: border-box; display: flex; flex-direction: column; background: #111715; color: #ECEAE4; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+
+<sc-if value="{{isInput}}" hint-placeholder-val="{{true}}">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px">
+<a href="AddMedDarkEn.dc.html" style="align-self: flex-start; height: 44px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: #4FBFB0; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="m15 18-6-6 6-6"></path></svg>
+<span>Cancel</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">From a prescription</h1>
+<div style="font-size: 15px; line-height: 1.4; color: #B7C0BD">Paste, photograph or dictate the list from your doctor — I’ll schedule it myself</div>
+<div style="align-self: flex-start; margin-top: 4px; padding: 5px 10px 5px 8px; border-radius: 12px; background: #173530; color: #7ED8CB; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600">
+<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="M12 20h.01"></path><path d="M8.5 16.429a5 5 0 0 1 7 0"></path><path d="M5 12.859a10 10 0 0 1 5.17-2.69"></path><path d="M19 12.859a10 10 0 0 0-2.007-1.523"></path><path d="M2 8.82a15 15 0 0 1 4.177-2.643"></path><path d="M22 8.82a15 15 0 0 0-11.288-3.764"></path><path d="m2 2 20 20"></path></svg>
+<span>Works offline — everything stays on the phone</span>
+</div>
+</div>
+<div role="group" aria-label="Prescription source" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 16px; background: #2A3431">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="4">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="height: 58px; border: none; border-radius: 12px; padding: 0; background: {{m.bg}}; color: {{m.fg}}; box-shadow: {{m.shadow}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer">
+<sc-if value="{{m.isText}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 7V4h16v3"></path><path d="M9 20h6"></path><path d="M12 4v16"></path></svg></sc-if>
+<sc-if value="{{m.isPhoto}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></sc-if>
+<sc-if value="{{m.isVoice}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><path d="M12 19v3"></path></svg></sc-if>
+<sc-if value="{{m.isFile}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></svg></sc-if>
+<span>{{m.label}}</span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{modeText}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="rx-text" style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Prescription text</label>
+<textarea id="rx-text" value="{{text}}" onChange="{{setText}}" style="width: 100%; height: 268px; box-sizing: border-box; resize: none; border: 1.5px solid #3A4542; border-radius: 16px; background: #1A2220; padding: 14px; color: #ECEAE4; font-family: inherit; font-size: 15px; line-height: 1.5"></textarea>
+<div style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; line-height: 1.4; color: {{foundColor}}">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>{{foundText}}</span>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{modePhoto}}" hint-placeholder-val="{{false}}">
+<div style="height: 300px; box-sizing: border-box; border: 2px dashed #56615E; border-radius: 20px; background: #1A2220; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center">
+<svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: #B7C0BD; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+<div style="font-size: 16px; font-weight: 600">Photograph the prescription sheet</div>
+<div style="font-size: 14px; line-height: 1.4; color: #B7C0BD">Printed text is recognized right on the phone. Can’t read the handwriting? I’ll show the photo on top while you type or dictate the lines — I’ll suggest names from the directory.</div>
+<button type="button" style="height: 44px; padding: 0 20px; border: none; border-radius: 22px; background: #ECEAE4; color: #1A2220; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Open camera</button>
+</div>
+</sc-if>
+<sc-if value="{{modeVoice}}" hint-placeholder-val="{{false}}">
+<div style="height: 300px; box-sizing: border-box; border-radius: 20px; background: #1A2220; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center">
+<button type="button" aria-label="Start recording" style="width: 76px; height: 76px; border: none; border-radius: 38px; background: #4FBFB0; color: #1A2220; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px #173530; cursor: pointer">
+<svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><path d="M12 19v3"></path></svg>
+</button>
+<div style="font-size: 16px; font-weight: 600; margin-top: 8px">Dictate the prescription</div>
+<div style="font-size: 14px; line-height: 1.4; color: #B7C0BD">For example: “Amoxicillin five hundred, one capsule three times a day for a week”</div>
+<div style="font-size: 13px; color: #7ED8CB; font-weight: 600">Speech is recognized on the phone</div>
+</div>
+</sc-if>
+<sc-if value="{{modeFile}}" hint-placeholder-val="{{false}}">
+<div style="height: 300px; box-sizing: border-box; border: 2px dashed #56615E; border-radius: 20px; background: #1A2220; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center">
+<svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: #B7C0BD; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></svg>
+<div style="font-size: 16px; font-weight: 600">Discharge summary or prescription file</div>
+<div style="font-size: 14px; line-height: 1.4; color: #B7C0BD">A PDF from the clinic, a screenshot or a photo from your gallery</div>
+<button type="button" style="height: 44px; padding: 0 20px; border: none; border-radius: 22px; background: #ECEAE4; color: #1A2220; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Choose file</button>
+</div>
+</sc-if>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: #1A2220; font-size: 14px; line-height: 1.4; color: #B7C0BD">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: #4FBFB0; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.59 13.51 6.83 3.98"></path><path d="m15.41 6.51-6.82 3.98"></path></svg>
+<span>You can simply forward your doctor’s message from a messenger: Share → Ampulse</span>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 20px; border-top: 1px solid #2A3431; background: #111715">
+<button type="button" onClick="{{toReview}}" disabled="{{noItems}}" style="width: 100%; height: 54px; border: none; border-radius: 27px; background: {{parseBg}}; color: {{parseFg}}; font-family: inherit; font-size: 17px; font-weight: 600; cursor: pointer">Read prescription</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isReview}}" hint-placeholder-val="{{false}}">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+<button type="button" onClick="{{toInput}}" style="align-self: flex-start; height: 44px; margin-left: -8px; padding: 0 8px; border: none; background: transparent; display: flex; align-items: center; gap: 2px; font-family: inherit; font-size: 16px; font-weight: 500; color: #4FBFB0; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="m15 18-6-6 6-6"></path></svg>
+<span>Edit text</span>
+</button>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">Check it</h1>
+<div style="font-size: 15px; line-height: 1.4; color: #B7C0BD">{{reviewSub}}</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 13px; color: #B7C0BD">
+<span style="padding: 3px 9px; border-radius: 10px; border: 1.5px solid #252F2C; background: #252F2C; color: #ECEAE4; font-weight: 500">from the text</span>
+<span style="padding: 3px 9px; border-radius: 10px; border: 1.5px dashed #6F7976; background: #1A2220; color: #ECEAE4; font-weight: 500">guessed — please check</span>
+</div>
+</div>
+<sc-for list="{{items}}" as="it" hint-placeholder-count="5">
+<div style="background: #1A2220; border-radius: 18px; box-sizing: border-box; border: 1.5px solid {{it.cardBorder}}; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #252F2C; color: #B7C0BD; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{it.inj}}" hint-placeholder-val="{{false}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg></sc-if>
+<sc-if value="{{it.pill}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 16px; font-weight: 600">{{it.name}}</div>
+<div style="font-size: 13px; font-weight: 500; color: {{it.statusColor}}">{{it.status}}</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{it.chips}}" as="c" hint-placeholder-count="5">
+<span style="padding: 4px 10px; border-radius: 10px; font-size: 13px; font-weight: 500; background: {{c.bg}}; border: {{c.border}}">{{c.label}}</span>
+</sc-for>
+</div>
+<sc-if value="{{it.asked}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 12px; padding: 12px; background: {{it.qBg}}; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px; font-weight: 600; color: {{it.qFg}}">{{it.question}}</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{it.options}}" as="o" hint-placeholder-count="3">
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.on}}" style="height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 22px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{it.hasChange}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 12px; padding: 10px 12px; background: #3A2717; color: #F3A76E; font-size: 14px; line-height: 1.4">{{it.changeText}}</div>
+</sc-if>
+<div style="font-size: 13px; line-height: 1.4; color: #97A29F">«{{it.src}}»</div>
+</div>
+</sc-for>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 20px; border-top: 1px solid #2A3431; background: #111715">
+<button type="button" onClick="{{toPlan}}" disabled="{{hasOpen}}" style="width: 100%; height: 54px; border: none; border-radius: 27px; background: {{planBtnBg}}; color: {{planBtnFg}}; font-family: inherit; font-size: 17px; font-weight: 600; cursor: pointer">{{planBtnLabel}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isPlan}}" hint-placeholder-val="{{false}}">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<button type="button" onClick="{{toReview}}" style="align-self: flex-start; height: 44px; margin-left: -8px; padding: 0 8px; border: none; background: transparent; display: flex; align-items: center; gap: 2px; font-family: inherit; font-size: 16px; font-weight: 500; color: #4FBFB0; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0"><path d="m15 18-6-6 6-6"></path></svg>
+<span>Back to check</span>
+</button>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">Plan is ready</h1>
+<div style="font-size: 15px; line-height: 1.4; color: #B7C0BD">{{planSummary}}</div>
+</div>
+<div style="background: #1A2220; border-radius: 16px; padding: 10px 8px 10px 16px; display: flex; align-items: center; gap: 12px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Fits your daily routine</div>
+<div style="font-size: 14px; line-height: 1.4">wake 07:00 · breakfast 07:30 · lunch 13:00 · dinner 19:00 · sleep 23:00</div>
+</div>
+<button type="button" style="height: 44px; padding: 0 12px; border: none; border-radius: 22px; background: transparent; color: #4FBFB0; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Change</button>
+</div>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Your day</h2>
+<div style="background: #1A2220; border-radius: 20px; padding: 4px 16px; display: flex; flex-direction: column">
+<sc-for list="{{slots}}" as="sl" hint-placeholder-count="6">
+<div style="display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid {{sl.divider}}">
+<div style="width: 50px; flex-shrink: 0; font-family: Literata, Georgia, serif; font-size: 17px; font-weight: 600; line-height: 1.3; font-variant-numeric: tabular-nums">{{sl.time}}</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{sl.entries}}" as="e" hint-placeholder-count="1">
+<div style="display: flex; gap: 10px; align-items: flex-start">
+<span style="width: 20px; height: 22px; flex-shrink: 0; color: #B7C0BD; display: flex; align-items: center">
+<sc-if value="{{e.isInj}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path></svg></sc-if>
+<sc-if value="{{e.isPill}}" hint-placeholder-val="{{true}}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg></sc-if>
+</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 15px; line-height: 1.35"><span style="font-weight: 600">{{e.name}}</span><span style="color: #B7C0BD"> · {{e.amount}}</span></div>
+<sc-if value="{{e.hasTag}}" hint-placeholder-val="{{false}}"><div style="font-size: 13px; line-height: 1.35; color: {{e.tagColor}}">{{e.tag}}</div></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">Courses · from September 27</h2>
+<div style="background: #1A2220; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<sc-for list="{{courses}}" as="k" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px">
+<span style="font-weight: 600">{{k.name}}</span>
+<span style="color: #B7C0BD; text-align: right">{{k.label}}</span>
+</div>
+<div style="height: 6px; border-radius: 3px; background: #252F2C; overflow: hidden"><div style="height: 6px; border-radius: 3px; width: {{k.barW}}; background: {{k.barColor}}"></div></div>
+</div>
+</sc-for>
+</div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #97A29F">How much you need</h2>
+<div style="background: #1A2220; border-radius: 20px; padding: 4px 16px 16px; display: flex; flex-direction: column">
+<sc-for list="{{qty}}" as="q" hint-placeholder-count="5">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid {{q.divider}}; font-size: 14px">
+<span style="font-weight: 600">{{q.name}}</span>
+<span style="color: #ECEAE4; text-align: right; font-variant-numeric: tabular-nums">{{q.value}}</span>
+</div>
+</sc-for>
+<button type="button" onClick="{{toggleList}}" aria-pressed="{{listed}}" style="margin-top: 4px; height: 44px; box-sizing: border-box; border-radius: 22px; border: 1.5px solid {{listBorder}}; background: {{listBg}}; color: {{listFg}}; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+<span>{{listLabel}}</span>
+</button>
+</div>
+</section>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 16px; border-top: 1px solid #2A3431; background: #111715; display: flex; flex-direction: column; gap: 8px">
+<a href="MainDarkEn.dc.html" style="height: 54px; border-radius: 27px; background: #4FBFB0; color: #1A2220; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">Add to schedule</a>
+<div style="font-size: 12px; line-height: 1.4; text-align: center; color: #97A29F">Your doctor set the regimen. The app only schedules it and never changes doses.</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startStep":{"editor":"enum","options":["input","review","plan"],"default":"input"},"screenHeight":{"editor":null,"default":844},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const startStep = this.props.startStep || 'input';
+    const step = s.step || startStep;
+    const H = Number(this.props.screenHeight) || 844;
+    const SAMPLE = [
+      '1. Amoxicillin 500 mg 1 cap 3 times a day, 7 days',
+      '2. Omeprazole 20 mg in the morning on an empty stomach 30 min before meals, 14 days',
+      '3. Prednisolone 5 mg 4 tabs in the morning after meals 3 days, then 3 tabs 3 days, then 2 tabs 3 days, then 1 tab 3 days',
+      '4. Mexidol 2 ml IM, 10 days',
+      '5. Insulin glargine 14 U subcut at bedtime'
+    ].join('\n');
+    const text = typeof s.text === 'string' ? s.text : SAMPLE;
+    const mode = s.mode || 'text';
+    const answers = s.answers || {};
+    const listed = s.listed === true;
+
+    const plural = (n, f) => (n === 1 ? f[0] : f[1]);
+    const DAY = ['day', 'days'];
+    const DRUG = ['medicine', 'medicines'];
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const UNIT = { mcg: 'mcg', 'µg': 'mcg', mg: 'mg', g: 'g', iu: 'IU', u: 'U', unit: 'U', units: 'U', ml: 'ml' };
+    const ABBR = { caps: 'caps.', tab: 'tab.', unit: 'pcs.' };
+    const EXISTING = [
+      { key: 'insulin glargine', dose: '12 U' },
+      { key: 'metformin', dose: '850 mg' },
+      { key: 'levothyroxine', dose: '50 mcg' },
+      { key: 'vitamin d3', dose: '2000 IU' },
+      { key: 'atorvastatin', dose: '20 mg' }
+    ];
+    const freqText = (n) => (n === 1 ? 'once a day' : n === 2 ? 'twice a day' : n + ' times a day');
+    const R = { wake: 420, breakfast: 450, lunch: 780, dinner: 1140, sleep: 1380 };
+    const hhmm = (m) => { const t = ((m % 1440) + 1440) % 1440; return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+
+    // Parse one prescription line
+    const parse = (raw) => {
+      const line = raw.replace(/^\s*\d+\s*[.)]\s*/, '').trim();
+      if (!/[a-z]{3,}/i.test(line)) return null;
+      const doseM = line.match(/(\d+(?:[.,]\d+)?)\s*(mcg|µg|mg|g|iu|units?|u|ml)(?![a-z])/i);
+      let cut = line.length;
+      if (doseM) cut = Math.min(cut, doseM.index);
+      const cm = line.match(/\s(?:\d+\s*(?:caps?|capsules?|tabs?|tablets?)\b|in the morning|in the evening|at bedtime|at night|on an empty stomach|once\b|twice\b|\d\s*(?:times|x)\b|[bt]\.?i\.?d\b|q\.?i\.?d\b)|,/i);
+      if (cm) cut = Math.min(cut, cm.index);
+      const name = line.slice(0, cut).trim().replace(/[.,;:–—-]+$/, '').trim() || line.split(/\s+/)[0];
+      const dose = doseM ? doseM[1] + ' ' + UNIT[doseM[2].toLowerCase()] : null;
+
+      const countM = line.match(/(\d+)\s*(caps?|capsules?|tabs?|tablets?|pcs|doses?)\b/i);
+      const form = /\bcap/i.test(line) ? 'caps' : /\btab/i.test(line) ? 'tab' : 'unit';
+      const route = /\b(?:sc|s\/c|subcut|subcutaneous(?:ly)?)\b/i.test(line) ? 'sc' : /\b(?:im|i\/m|intramuscular(?:ly)?)\b/i.test(line) ? 'im' : null;
+
+      let hint = null;
+      if (/at bedtime|at night|before bed/i.test(line)) hint = 'night';
+      else if (/morning and evening/i.test(line)) hint = 'both';
+      else if (/in the morning|every morning/i.test(line)) hint = 'morning';
+      else if (/in the evening|every evening/i.test(line)) hint = 'evening';
+      let n = null;
+      const fm = line.match(/(\d)\s*(?:times?|x)\s*(?:a|per|\/)?\s*day/i);
+      if (fm) n = Number(fm[1]);
+      else if (/\bq\.?i\.?d\b|four times/i.test(line)) n = 4;
+      else if (/\bt\.?i\.?d\b|three times/i.test(line)) n = 3;
+      else if (/\bb\.?i\.?d\b|twice/i.test(line)) n = 2;
+      else if (hint === 'both') n = 2;
+      else if (hint) n = 1;
+      else if (/once (?:a|per) day|\bdaily\b|\bq\.?d\b|\bo\.?d\b/i.test(line)) n = 1;
+      const everyOther = /every other day/i.test(line);
+      if (everyOther && n == null) n = 1;
+
+      let food = 'any';
+      if (/empty stomach/i.test(line)) food = 'fasting';
+      else if (/before (?:meals?|food|eating)/i.test(line)) food = 'before';
+      else if (/with (?:meals?|food)|during meals?/i.test(line)) food = 'during';
+      else if (/after (?:meals?|food|eating)/i.test(line)) food = 'after';
+
+      let days = null;
+      let ongoing = false;
+      let durFound = true;
+      let dm;
+      if ((dm = line.match(/(\d+)\s*days?\b/i))) days = Number(dm[1]);
+      else if ((dm = line.match(/(\d+)\s*weeks?\b/i))) days = Number(dm[1]) * 7;
+      else if ((dm = line.match(/(\d+)\s*months?\b/i))) days = Number(dm[1]) * 30;
+      else if (/ongoing|long[- ]term|indefinitely|continuously/i.test(line)) ongoing = true;
+      else { ongoing = true; durFound = false; }
+
+      // Stepped regimen: "4 tabs 3 days, then 3 tabs 3 days…"
+      let steps = null;
+      const segs = line.split(/,?\s*then\s+/i);
+      if (segs.length > 1) {
+        steps = segs.map((sg) => {
+          const c = sg.match(/(\d+)\s*(caps?|capsules?|tabs?|tablets?|pcs|doses?)\b/i);
+          const d = sg.match(/(\d+)\s*days?\b/i);
+          return { per: c ? Number(c[1]) : null, days: d ? Number(d[1]) : null };
+        });
+        if (steps.some((st) => st.per == null || st.days == null)) steps = null;
+      }
+      if (steps) { days = steps.reduce((a, st) => a + st.days, 0); ongoing = false; durFound = true; }
+
+      const low = name.toLowerCase();
+      const ex = EXISTING.find((e) => low.indexOf(e.key) === 0 || e.key.indexOf(low) === 0);
+      const change = ex && dose && ex.dose.toLowerCase() !== dose.toLowerCase() ? ex.dose : null;
+
+      return {
+        src: line, name: name, dose: dose,
+        per: countM ? Number(countM[1]) : 1, countFound: !!countM, form: form,
+        route: route, inj: !!route,
+        hint: hint, nParsed: n, asked: n == null, everyOther: everyOther,
+        food: food, days: days, ongoing: ongoing, durFound: durFound,
+        steps: steps,
+        change: change
+      };
+    };
+
+    const parsed = text.split(/\n+/).map(parse).filter(Boolean).map((it, idx) => {
+      const ans = answers[idx] != null ? answers[idx] : (it.asked && startStep === 'plan' ? 1 : null);
+      const n = it.asked ? ans : it.nParsed;
+      return Object.assign({}, it, { idx: idx, n: n, open: n == null });
+    });
+
+    // Fit the doses into the daily routine
+    const spread = (n) => {
+      const span = R.sleep - R.wake;
+      const stepMin = Math.min(1440 / n, span / (n - 1));
+      return { step: stepMin, start: R.wake + (span - stepMin * (n - 1)) / 2 };
+    };
+    const timesFor = (it) => {
+      const n = it.n || 1;
+      if (it.hint === 'night') return [R.sleep - 60];
+      if (it.food !== 'any') {
+        const off = { fasting: -30, before: -30, during: 0, after: 30 }[it.food];
+        let base;
+        if (n === 1) base = [it.hint === 'evening' ? R.dinner : R.breakfast];
+        else if (n === 2) base = [R.breakfast, R.dinner];
+        else base = [R.breakfast, R.lunch, R.dinner];
+        const out = base.map((t) => t + off);
+        if (n >= 4) out.push(R.sleep - 60);
+        return out;
+      }
+      if (n === 1) return [it.hint === 'evening' ? 1200 : it.hint === 'morning' ? R.breakfast : 540];
+      if (it.hint === 'both') return [R.breakfast, 1200];
+      const sp = spread(n);
+      const out = [];
+      for (let i = 0; i < n; i++) out.push(Math.round((sp.start + sp.step * i) / 30) * 30);
+      return out;
+    };
+    const intervalH = (it) => (it.food === 'any' && !it.hint && (it.n || 0) >= 2 ? Math.round(spread(it.n).step / 60) : 0);
+
+    // Review screen
+    const HINT = { night: 'at bedtime', morning: 'in the morning', evening: 'in the evening', both: 'morning and evening' };
+    const FOOD = { fasting: 'empty stomach', before: 'before meals', during: 'with meals', after: 'after meals' };
+    const items = parsed.map((it) => {
+      const chips = [];
+      const add = (label, assumed) => chips.push({ label: label, bg: assumed ? '#1A2220' : '#252F2C', border: assumed ? '1.5px dashed #6F7976' : '1.5px solid #252F2C' });
+      if (it.dose) add(it.dose, false);
+      if (it.inj) add(it.route === 'sc' ? 'subcutaneous' : 'into muscle', false);
+      else if (it.steps) add(it.steps.map((st) => st.per).join(' → ') + ' ' + ABBR[it.form], false);
+      else add(it.per + ' ' + ABBR[it.form] + ' per dose', !it.countFound);
+      if (it.n) add(freqText(it.n), false);
+      if (it.everyOther) add('every other day', false);
+      if (it.hint) add(HINT[it.hint], false);
+      if (!it.inj) add(it.food === 'any' ? 'food doesn’t matter' : FOOD[it.food], it.food === 'any');
+      const iv = intervalH(it);
+      if (iv) add('every ' + iv + ' h', true);
+      if (it.ongoing) add('ongoing', !it.durFound);
+      else add(it.days + ' ' + plural(it.days, DAY), false);
+      if (it.steps && it.steps.every((st) => st.days === it.steps[0].days)) add('dose changes every ' + it.steps[0].days + ' ' + plural(it.steps[0].days, DAY), false);
+      if (it.inj) add(it.route === 'sc' ? 'rotate sites' : 'alternate buttocks', true);
+      const stepDir = it.steps ? (it.steps[it.steps.length - 1].per < it.steps[0].per ? 'tapering dose' : 'increasing dose') : '';
+      const status = it.open ? 'Check how often' : it.change ? 'Already taking · new dose' : it.steps ? 'New medicine · ' + stepDir : 'New medicine';
+      return {
+        name: it.name,
+        inj: it.inj,
+        pill: !it.inj,
+        chips: chips,
+        src: it.src,
+        status: status,
+        statusColor: it.open || it.change ? '#F3A76E' : '#7ED8CB',
+        cardBorder: it.open ? '#6E4727' : '#1A2220',
+        asked: it.asked,
+        question: 'No frequency in the text. How many times a day to ' + (it.inj ? 'inject?' : 'take it?'),
+        qBg: it.open ? '#3A2717' : '#111715',
+        qFg: it.open ? '#F3A76E' : '#ECEAE4',
+        options: [1, 2, 3].map((v) => ({
+          label: v === 1 ? 'Once' : v === 2 ? 'Twice' : v + ' times',
+          on: it.n === v,
+          bg: it.n === v ? '#ECEAE4' : '#1A2220',
+          fg: it.n === v ? '#1A2220' : '#ECEAE4',
+          border: it.n === v ? '#ECEAE4' : '#3A4542',
+          pick: () => this.setState({ answers: Object.assign({}, answers, { [it.idx]: v }) })
+        })),
+        hasChange: !!it.change,
+        changeText: it.change ? 'Now scheduled: ' + it.change + ' — will be ' + it.dose + '. Times and injection sites stay the same.' : ''
+      };
+    });
+    const openCount = parsed.filter((it) => it.open).length;
+
+    // Ready plan
+    const ready = parsed.filter((it) => !it.open);
+    const SC = ['abdomen right', 'thigh left', 'upper arm right', 'abdomen left', 'thigh right', 'upper arm left'];
+    const FOOD_TAG = { fasting: 'empty stomach, 30 min before breakfast', before: '30 min before meals', during: 'with meals', after: '30 min after meals' };
+    const slotMap = {};
+    let perDay = 0;
+    ready.forEach((it) => {
+      const ts = timesFor(it);
+      perDay += ts.length;
+      ts.forEach((t, k) => {
+        const key = hhmm(t);
+        const tag = [];
+        if (it.inj) tag.push(it.route === 'sc' ? 'SC, ' + SC[k % SC.length] : 'IM, ' + (k % 2 ? 'left buttock' : 'right buttock'));
+        else if (it.food !== 'any') tag.push(FOOD_TAG[it.food]);
+        if (it.everyOther) tag.push('every other day');
+        if (it.steps) tag.push('then ' + it.steps.slice(1).map((st) => st.per).join(' → ') + ' ' + ABBR[it.form] + ', reminder the day before');
+        if (it.change) tag.push('dose ' + it.change + ' → ' + it.dose);
+        (slotMap[key] = slotMap[key] || []).push({
+          name: it.inj ? it.name : it.name + (it.dose ? ' ' + it.dose : ''),
+          amount: it.inj ? (it.dose || '1 injection') : it.per + ' ' + ABBR[it.form] + (it.steps ? ' for the first ' + it.steps[0].days + ' ' + plural(it.steps[0].days, DAY) : ''),
+          tag: tag.join(' · '),
+          hasTag: tag.length > 0,
+          tagColor: it.change ? '#F3A76E' : it.inj ? '#7ED8CB' : '#97A29F',
+          isInj: it.inj,
+          isPill: !it.inj
+        });
+      });
+    });
+    const slots = Object.keys(slotMap).sort().map((k, i) => ({ time: k, entries: slotMap[k], divider: i === 0 ? '#1A2220' : '#262F2C' }));
+
+    const maxD = Math.max.apply(null, [30].concat(ready.filter((it) => !it.ongoing).map((it) => it.days)));
+    const until = (d) => { const dt = new Date(2026, 8, 27 + d - 1); return MONTHS[dt.getMonth()] + ' ' + dt.getDate(); };
+    const courses = ready.map((it) => ({
+      name: it.name,
+      label: it.ongoing ? 'ongoing' : it.days + ' ' + plural(it.days, DAY) + ', until ' + until(it.days),
+      barW: it.ongoing ? '100%' : (it.days / maxD * 100).toFixed(1) + '%',
+      barColor: it.ongoing ? '#4A5552' : '#4FBFB0'
+    }));
+
+    const qty = ready.map((it, i) => {
+      const n = it.n || 1;
+      const d = it.ongoing ? 30 : it.days;
+      const times = (it.everyOther ? Math.ceil(d / 2) : d) * n;
+      let v;
+      if (it.inj) {
+        v = times + ' ' + plural(times, ['injection', 'injections']);
+        const dm = it.dose ? it.dose.match(/^([\d.,]+)\s+(\S+)$/) : null;
+        if (dm) v += ' · ' + Math.round(parseFloat(dm[1].replace(',', '.')) * times * 10) / 10 + ' ' + dm[2];
+      } else if (it.steps) {
+        v = it.steps.reduce((a, st) => a + st.per * st.days, 0) * n + ' ' + ABBR[it.form];
+      } else {
+        v = times * it.per + ' ' + ABBR[it.form];
+      }
+      return { name: it.name, value: v + (it.ongoing ? ' per month' : ' per course'), divider: i === 0 ? '#1A2220' : '#262F2C' };
+    });
+
+    const MODES = [
+      { id: 'text', label: 'Text' },
+      { id: 'photo', label: 'Photo' },
+      { id: 'voice', label: 'Voice' },
+      { id: 'file', label: 'File' }
+    ];
+    const N = parsed.length;
+    return {
+      rootH: H + 'px',
+      isInput: step === 'input',
+      isReview: step === 'review',
+      isPlan: step === 'plan',
+      modes: MODES.map((m) => ({
+        label: m.label,
+        isText: m.id === 'text', isPhoto: m.id === 'photo', isVoice: m.id === 'voice', isFile: m.id === 'file',
+        on: mode === m.id,
+        bg: mode === m.id ? '#1A2220' : 'transparent',
+        fg: mode === m.id ? '#ECEAE4' : '#B7C0BD',
+        shadow: mode === m.id ? '0 1px 3px rgba(22, 33, 31, 0.18)' : 'none',
+        pick: () => this.setState({ mode: m.id })
+      })),
+      modeText: mode === 'text', modePhoto: mode === 'photo', modeVoice: mode === 'voice', modeFile: mode === 'file',
+      text: text,
+      setText: (e) => this.setState({ text: e.target.value, answers: {} }),
+      foundText: N ? 'I see ' + N + ' ' + plural(N, DRUG) + ': ' + parsed.map((it) => it.name).join(', ') : 'No medicines yet — paste the prescription text',
+      foundColor: N ? '#7ED8CB' : '#97A29F',
+      noItems: N === 0,
+      parseBg: N ? '#4FBFB0' : '#2A3431',
+      parseFg: N ? '#1A2220' : '#B7C0BD',
+      toInput: () => this.setState({ step: 'input' }),
+      toReview: () => this.setState({ step: 'review' }),
+      toPlan: () => this.setState({ step: 'plan' }),
+      items: items,
+      reviewSub: 'Found ' + N + ' ' + plural(N, DRUG) + '. Only what you confirm goes into the schedule.',
+      hasOpen: openCount > 0,
+      planBtnLabel: openCount ? 'Answer ' + openCount + ' ' + plural(openCount, ['question', 'questions']) : 'Build the plan',
+      planBtnBg: openCount ? '#2A3431' : '#4FBFB0',
+      planBtnFg: openCount ? '#B7C0BD' : '#1A2220',
+      planSummary: ready.length + ' ' + plural(ready.length, DRUG) + ' · ' + perDay + ' ' + plural(perDay, ['dose', 'doses']) + ' a day · starting Sep 27',
+      slots: slots,
+      courses: courses,
+      qty: qty,
+      listed: listed,
+      listLabel: listed ? 'Added to shopping list' : 'Add all to shopping list',
+      listBg: listed ? '#173530' : '#1A2220',
+      listFg: listed ? '#7ED8CB' : '#ECEAE4',
+      listBorder: listed ? '#173530' : '#3A4542',
+      toggleList: () => this.setState({ listed: !listed })
+    };
+  }
+}
+</script>
+</body>
+</html>

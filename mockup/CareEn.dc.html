@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Caring for Mom</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EC;color:#16211F;font-family:Onest,system-ui,sans-serif}
+a{color:#0B6B63}a:hover{color:#08524C}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 1120px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F2EC; color: #16211F; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 20px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<div role="group" aria-label="Whose schedule" style="display: flex; gap: 8px">
+<button type="button" aria-pressed="false" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #D6D1C6; background: #FFFFFF; color: #16211F; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #EFEBE3; display: flex; align-items: center; justify-content: center; font-size: 13px">A</span>Me
+</button>
+<button type="button" aria-pressed="true" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #16211F; background: #16211F; color: #FFFFFF; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 13px">G</span>Mom
+</button>
+<button type="button" aria-pressed="false" style="height: 44px; box-sizing: border-box; padding: 0 14px 0 6px; border-radius: 22px; border: 1.5px solid #D6D1C6; background: #FFFFFF; color: #16211F; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<span style="width: 32px; height: 32px; border-radius: 16px; background: #EFEBE3; display: flex; align-items: center; justify-content: center; font-size: 13px">M</span>Misha
+</button>
+</div>
+<header style="display: flex; flex-direction: column; gap: 2px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.4px">Mom today</h1>
+<div style="font-size: 14px; line-height: 1.4; color: #5E6967">Copy of Mom’s schedule · sent by QR on September 24 · misses arrive by text</div>
+</header>
+<sc-if value="{{showAlert}}" hint-placeholder-val="{{true}}">
+<section aria-label="Needs attention" style="background: #FBEBDD; border: 1.5px solid #E7B894; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #FFFFFF; color: #8F4207; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<div style="font-size: 13px; font-weight: 600; color: #8F4207">Text from Mom’s phone · 13:30</div>
+<div style="font-size: 16px; font-weight: 600">Vitamin D3 not marked</div>
+<div style="font-size: 14px; line-height: 1.4; color: #8F4207">The dose was at 13:00. Mom got two reminders.</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="height: 44px; border: none; border-radius: 22px; background: #0B6B63; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer">
+<svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>Call</span>
+</button>
+<button type="button" onClick="{{remind}}" style="height: 44px; box-sizing: border-box; border: 1.5px solid #B4540A; border-radius: 22px; background: #FFFFFF; color: #8F4207; font-size: 14px; font-weight: 600; cursor: pointer">{{remindLabel}}</button>
+</div>
+<button type="button" onClick="{{markForHer}}" style="height: 44px; box-sizing: border-box; border: 1.5px solid #16211F; border-radius: 22px; background: transparent; color: #16211F; font-size: 14px; font-weight: 600; cursor: pointer">She took it — record here</button>
+</section>
+</sc-if>
+<sc-if value="{{showMarked}}" hint-placeholder-val="{{false}}">
+<div style="background: #DDEEEA; border-radius: 20px; padding: 12px 12px 12px 16px; display: flex; align-items: center; gap: 12px">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: #0B5A53; stroke-width: 2.2"><path d="M20 6 9 17l-5-5"></path></svg>
+<div style="flex-grow: 1; font-size: 14px; line-height: 1.4; font-weight: 500; color: #0B5A53">Recorded on your phone at 13:52. It reaches Mom’s history with the next QR transfer.</div>
+<button type="button" onClick="{{unmark}}" style="height: 44px; padding: 0 10px; border: none; border-radius: 22px; background: transparent; color: #0B5A53; font-size: 14px; font-weight: 600; cursor: pointer">Undo</button>
+</div>
+</sc-if>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #5E6967">Doses</h2>
+<span style="font-size: 13px; color: #5E6967">{{countText}}</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; border-top: 1px solid {{r.divider}}">
+<span style="width: 46px; flex-shrink: 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">{{r.time}}</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="font-size: 13px; color: {{r.subColor}}">{{r.sub}}</span>
+</div>
+<span aria-hidden="true" style="width: 24px; height: 24px; flex-shrink: 0; box-sizing: border-box; border-radius: 12px; border: 2px solid {{r.dotBorder}}; background: {{r.dotBg}}; color: {{r.dotFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{r.isOk}}" hint-placeholder-val="{{false}}"><svg class="i" width="14" height="14" viewBox="0 0 24 24" style="stroke-width: 3"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+</span>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 13px; line-height: 1.4; color: #5E6967; padding: 0 4px">Mom’s phone only texts about misses: no text means the dose is marked.</div>
+</section>
+<section style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #5E6967">Mom’s medicines</h2>
+<span style="font-size: 13px; color: #8F4207; font-weight: 600">1 running low</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">Insulin glargine</span>
+<span style="font-size: 13px; line-height: 1.35; color: #8F4207">≈ 48 U by schedule — enough for 4 days</span>
+</div>
+<button type="button" onClick="{{toggleBuy}}" aria-pressed="{{buying}}" style="flex-shrink: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 22px; border: 1.5px solid {{buyBorder}}; background: {{buyBg}}; color: {{buyFg}}; font-size: 14px; font-weight: 600; cursor: pointer">{{buyLabel}}</button>
+</div>
+</section>
+<section style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: #EFEBE3; color: #16211F; display: flex; align-items: center; justify-content: center">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><path d="M14 14h3v3h-3z"></path><path d="M17 20h4"></path><path d="M20 17v3"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">Update everything</span>
+<span style="font-size: 13px; line-height: 1.4; color: #5E6967">When you’re together: open the QR on Mom’s phone and point the camera. History, marks and medicines update offline.</span>
+</div>
+</div>
+<button type="button" style="height: 44px; box-sizing: border-box; border: 1.5px solid #16211F; border-radius: 22px; background: transparent; color: #16211F; font-size: 14px; font-weight: 600; cursor: pointer">Scan Mom’s QR</button>
+</section>
+</main>
+<nav aria-label="Sections" style="flex-shrink: 0; height: 76px; box-sizing: border-box; padding: 8px 8px 14px; background: #FFFFFF; border-top: 1px solid #E2DED4; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="MainEn.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: #0B6B63; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+<span>Today</span>
+</a>
+<a href="HistoryEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #4A5654; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+<span>History</span>
+</a>
+<a href="StockEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #4A5654; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v4"></path><path d="M14 13h-4"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M18 6v14"></path><path d="M6 6v14"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg>
+<span>Medicines</span>
+</a>
+<a href="AccessEn.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: #4A5654; text-decoration: none">
+<svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<span>Family</span>
+</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const marked = s.marked === true;
+    const reminded = s.reminded === true;
+    const buying = s.buying === true;
+    const list = [
+      { time: '07:00', name: 'Levothyroxine 50 mcg', sub: 'no miss', kind: 'ok' },
+      { time: '08:30', name: 'Metformin 850 mg', sub: 'no miss', kind: 'ok' },
+      marked
+        ? { time: '13:00', name: 'Vitamin D3 2,000 IU', sub: 'you recorded at 13:52', kind: 'ok' }
+        : { time: '13:00', name: 'Vitamin D3 2,000 IU', sub: 'missed · text at 13:30', kind: 'late' },
+      { time: '14:00', name: 'Metformin 850 mg', sub: 'in 8 min', kind: 'later' },
+      { time: '21:00', name: 'Atorvastatin 20 mg', sub: 'evening', kind: 'later' },
+      { time: '22:00', name: 'Insulin glargine', sub: '12 U · abdomen right', kind: 'later' }
+    ];
+    const rows = list.map((r, i) => ({
+      time: r.time,
+      name: r.name,
+      sub: r.sub,
+      isOk: r.kind === 'ok',
+      subColor: r.kind === 'ok' ? '#0B5A53' : r.kind === 'late' ? '#8F4207' : '#5E6967',
+      dotBg: r.kind === 'ok' ? '#DDEEEA' : r.kind === 'late' ? '#FBEBDD' : '#FFFFFF',
+      dotBorder: r.kind === 'ok' ? '#DDEEEA' : r.kind === 'late' ? '#B4540A' : '#D6D1C6',
+      dotFg: '#0B5A53',
+      divider: i === 0 ? '#FFFFFF' : '#ECE8DF'
+    }));
+    const misses = list.filter((r) => r.kind === 'late').length;
+    return {
+      rows: rows,
+      countText: misses ? misses + ' missed (by text)' : 'no misses',
+      showAlert: !marked,
+      showMarked: marked,
+      markForHer: () => this.setState({ marked: true }),
+      unmark: () => this.setState({ marked: false }),
+      remind: () => this.setState({ reminded: true }),
+      remindLabel: reminded ? 'Text sent' : 'Text Mom',
+      buying: buying,
+      toggleBuy: () => this.setState({ buying: !buying }),
+      buyLabel: buying ? 'On your list' : 'I’ll buy it',
+      buyBg: buying ? '#DDEEEA' : '#FFFFFF',
+      buyFg: buying ? '#0B5A53' : '#16211F',
+      buyBorder: buying ? '#DDEEEA' : '#D6D1C6'
+    };
+  }
+}
+</script>
+</body>
+</html>

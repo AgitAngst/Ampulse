@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Приём по необходимости</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EC;color:#16211F;font-family:Onest,system-ui,sans-serif}
+a{color:#0B6B63}a:hover{color:#08524C}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F2EC; color: #16211F; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<a href="Schedule.dc.html" style="align-self: flex-start; height: 44px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: #0B6B63; text-decoration: none">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+<span>Схема приёма</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">Ибупрофен 400 мг</h1>
+<div style="font-size: 15px; line-height: 1.4; color: #4A5654">По необходимости · не больше 3 раз в сутки, между приёмами от 6 часов</div>
+</div>
+<section aria-label="Когда можно принять" style="background: #FFFFFF; border-radius: 20px; padding: 20px 16px 16px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<div style="position: relative; width: 168px; height: 168px">
+<svg width="168" height="168" viewBox="0 0 168 168" aria-hidden="true" style="transform: rotate(-90deg)">
+<circle cx="84" cy="84" r="72" style="fill: none; stroke: #ECE8DF; stroke-width: 10"></circle>
+<circle cx="84" cy="84" r="72" style="fill: none; stroke: {{ringColor}}; stroke-width: 10; stroke-linecap: round; stroke-dasharray: {{ringDash}}"></circle>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center">
+<span style="font-family: Literata, Georgia, serif; font-size: 23px; font-weight: 600; line-height: 1.1">{{ringBig}}</span>
+<span style="font-size: 13px; color: #5E6967">{{ringSmall}}</span>
+</div>
+</div>
+<div style="font-size: 15px; font-weight: 600; color: {{statusColor}}">{{statusText}}</div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #4A5654">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="width: 12px; height: 12px; box-sizing: border-box; border-radius: 6px; border: 2px solid {{d.border}}; background: {{d.bg}}"></span></sc-for>
+<span>{{countText}}</span>
+</div>
+</section>
+<sc-if value="{{canTake}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{take}}" style="height: 54px; border: none; border-radius: 27px; background: #0B6B63; color: #FFFFFF; font-size: 17px; font-weight: 600; cursor: pointer">Принять сейчас</button>
+</sc-if>
+<sc-if value="{{canAskEarly}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{askEarly}}" style="height: 54px; box-sizing: border-box; border: 1.5px solid #B4540A; border-radius: 27px; background: #FFFFFF; color: #8F4207; font-size: 16px; font-weight: 600; cursor: pointer">Нужно раньше…</button>
+</sc-if>
+<sc-if value="{{showConfirm}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 16px; padding: 16px; background: #FBEBDD; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 15px; font-weight: 600; color: #8F4207">Интервал ещё не прошёл</div>
+<div style="font-size: 14px; line-height: 1.45; color: #8F4207">Врач назначил не чаще раза в 6 часов. Если боль сильная и не проходит — лучше позвонить врачу.</div>
+<div style="display: flex; gap: 8px">
+<button type="button" onClick="{{take}}" style="height: 44px; padding: 0 16px; border: none; border-radius: 22px; background: #16211F; color: #FFFFFF; font-size: 14px; font-weight: 600; cursor: pointer">Всё равно записать</button>
+<button type="button" onClick="{{cancelEarly}}" style="height: 44px; padding: 0 16px; border: none; border-radius: 22px; background: transparent; color: #8F4207; font-size: 14px; font-weight: 600; cursor: pointer">Подожду</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{limitReached}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 16px; padding: 14px 16px; background: #EFEBE3; font-size: 14px; line-height: 1.45; color: #16211F">Лимит на сутки исчерпан. Если лекарство нужно чаще, чем назначено, — это вопрос к врачу.</div>
+</sc-if>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #5E6967">Причина</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="5">
+<button type="button" onClick="{{r.pick}}" aria-pressed="{{r.on}}" style="height: 40px; box-sizing: border-box; padding: 0 14px; border-radius: 20px; border: 1.5px solid {{r.border}}; background: {{r.bg}}; color: {{r.fg}}; font-size: 14px; font-weight: 600; cursor: pointer">{{r.label}}</button>
+</sc-for>
+</div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: #5E6967">За последние сутки</h2>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{logRows}}" as="l" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 52px; border-top: 1px solid {{l.divider}}">
+<span style="width: 48px; font-family: Literata, Georgia, serif; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums">{{l.time}}</span>
+<span style="flex-grow: 1; font-size: 14px; color: #4A5654">{{l.why}}</span>
+<sc-if value="{{l.isExtra}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{l.undo}}" style="height: 44px; padding: 0 8px; border: none; background: transparent; color: #0B6B63; font-size: 14px; font-weight: 600; cursor: pointer">Отменить</button>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+<button type="button" role="switch" aria-checked="{{followUp}}" onClick="{{toggleFollow}}" style="width: 100%; min-height: 64px; box-sizing: border-box; padding: 10px 16px; border: none; border-radius: 16px; background: #FFFFFF; color: #16211F; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer">
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600">Через час спросить, помогло ли</span>
+<span style="font-size: 13px; color: #5E6967">Ответы попадут в отчёт врачу</span>
+</span>
+<span style="position: relative; width: 50px; height: 30px; flex-shrink: 0; border-radius: 15px; background: {{swTrack}}"><span style="position: absolute; top: 3px; left: {{swKnob}}; width: 24px; height: 24px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(22, 33, 31, 0.3)"></span></span>
+</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const NOW = 13 * 60 + 52;
+    const MAX = 3;
+    const GAP = 6 * 60;
+    const REASONS = [
+      { id: 'head', label: 'Голова', log: 'головная боль' },
+      { id: 'tooth', label: 'Зуб', log: 'зубная боль' },
+      { id: 'fever', label: 'Температура', log: 'температура' },
+      { id: 'back', label: 'Спина', log: 'боль в спине' },
+      { id: 'other', label: 'Другое', log: 'другое' }
+    ];
+    const reason = s.reason || 'head';
+    const extra = s.extra || [];
+    const log = [{ t: 210, why: 'головная боль, ночью' }, { t: 580, why: 'головная боль' }].concat(extra);
+    const followUp = s.followUp !== false;
+    const confirm = s.confirm === true;
+    const hhmm = (m) => { const t = ((m % 1440) + 1440) % 1440; return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+    const dur = (m) => (m >= 60 ? Math.floor(m / 60) + ' ч ' : '') + (m % 60) + ' мин';
+
+    const inDay = log.filter((e) => NOW - e.t < 1440);
+    const last = log[log.length - 1].t;
+    const limit = inDay.length >= MAX;
+    const next = Math.max(last + GAP, limit ? inDay[0].t + 1440 : 0);
+    const wait = next - NOW;
+    const allowed = wait <= 0;
+    const nextLabel = next >= 1440 ? 'завтра после ' + hhmm(next - 1440) : 'после ' + hhmm(next);
+    const prog = allowed ? 1 : limit ? Math.min(1, (NOW - inDay[0].t) / 1440) : Math.min(1, (NOW - last) / GAP);
+    const C = 2 * Math.PI * 72;
+    const why = REASONS.find((r) => r.id === reason).log;
+
+    return {
+      ringDash: (C * prog).toFixed(1) + ' ' + C.toFixed(1),
+      ringColor: allowed ? '#0B6B63' : limit ? '#B4540A' : '#6FAFA5',
+      ringBig: allowed ? 'Можно' : dur(wait),
+      ringSmall: allowed ? 'принять сейчас' : 'до следующего приёма',
+      statusText: allowed ? 'Интервал прошёл' : (limit ? 'Лимит на сутки — ' : 'Можно ') + nextLabel,
+      statusColor: limit ? '#8F4207' : '#16211F',
+      dots: [0, 1, 2].map((i) => ({ bg: i < inDay.length ? '#0B6B63' : '#FFFFFF', border: i < inDay.length ? '#0B6B63' : '#CFCAC0' })),
+      countText: inDay.length + ' из ' + MAX + ' за сутки',
+      canTake: allowed && !limit,
+      canAskEarly: !allowed && !limit && !confirm,
+      showConfirm: !allowed && !limit && confirm,
+      limitReached: limit,
+      take: () => this.setState({ extra: extra.concat([{ t: NOW, why: why, extra: true }]), confirm: false }),
+      askEarly: () => this.setState({ confirm: true }),
+      cancelEarly: () => this.setState({ confirm: false }),
+      reasons: REASONS.map((r) => ({
+        label: r.label,
+        on: r.id === reason,
+        bg: r.id === reason ? '#16211F' : '#FFFFFF',
+        fg: r.id === reason ? '#FFFFFF' : '#16211F',
+        border: r.id === reason ? '#16211F' : '#D6D1C6',
+        pick: () => this.setState({ reason: r.id })
+      })),
+      logRows: log.slice().reverse().map((e, i) => ({
+        time: hhmm(e.t),
+        why: e.why,
+        isExtra: !!e.extra && i === 0,
+        divider: i === 0 ? '#FFFFFF' : '#ECE8DF',
+        undo: () => this.setState({ extra: extra.slice(0, -1) })
+      })),
+      followUp: followUp,
+      toggleFollow: () => this.setState({ followUp: !followUp }),
+      swTrack: followUp ? '#0B6B63' : '#CFCAC0',
+      swKnob: followUp ? '23px' : '3px'
+    };
+  }
+}
+</script>
+</body>
+</html>

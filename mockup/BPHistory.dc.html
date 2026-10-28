@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Давление — история</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div lang="{{lang}}" style="width: 390px; height: 1100px; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; box-sizing: border-box; padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{entryHref}}" style="align-self: flex-start; height: 48px; margin-left: -8px; padding: 0 8px; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+<div style="font-size: 14px; color: {{t.ink3}}">{{l.period}}</div>
+</div>
+<div role="group" aria-label="{{l.periodA}}" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 16px; background: {{t.seg}}">
+<sc-for list="{{periods}}" as="p" hint-placeholder-count="2">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="height: 44px; border: none; border-radius: 12px; padding: 0; background: {{p.bg}}; color: {{p.fg}}; box-shadow: {{p.shadow}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{p.label}}</button>
+</sc-for>
+</div>
+<section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{avgs}}" as="a" hint-placeholder-count="2">
+<div style="background: {{t.card}}; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 600; color: {{t.ink3}}">{{a.label}}</span>
+<span style="font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.1; font-weight: 600; font-variant-numeric: tabular-nums">{{a.value}}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: {{a.fg}}">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: {{a.dot}}"></span>{{a.status}}
+</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{a.pulse}}</span>
+</div>
+</sc-for>
+</section>
+<section aria-label="{{l.chartA}}" style="background: {{t.card}}; border-radius: 20px; padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.chartTitle}}</h2>
+<span style="font-size: 12px; color: {{t.ink3}}">{{l.unitP}}</span>
+</div>
+<div aria-hidden="true" style="position: relative; width: 318px; height: 196px">
+<sc-for list="{{grid}}" as="g" hint-placeholder-count="4">
+<div style="position: absolute; left: 0; width: 26px; top: {{g.labelTop}}; font-size: 11px; color: {{g.labelColor}}; font-variant-numeric: tabular-nums; text-align: right">{{g.v}}</div>
+<div style="position: absolute; left: 32px; right: 0; top: {{g.top}}; height: 0; border-top: 1px {{g.style}} {{g.color}}"></div>
+</sc-for>
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="13">
+<div style="position: absolute; left: {{b.left}}; top: {{b.top}}; width: 8px; height: {{b.h}}; border-radius: 4px; background: {{b.color}}; opacity: {{b.opacity}}"></div>
+</sc-for>
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<div style="position: absolute; top: 178px; left: {{d.left}}; width: 40px; text-align: center; font-size: 11px; line-height: 1.2; color: {{d.color}}; font-weight: {{d.weight}}">{{d.label}}</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: {{t.ink2}}">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 14px; border-radius: 4px; background: {{t.acc}}"></span>{{l.legendIn}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 14px; border-radius: 4px; background: {{t.warnLine}}"></span>{{l.legendAbove}}</span>
+<span>{{l.legendPair}}</span>
+</div>
+</section>
+<section style="background: {{t.card}}; border-radius: 18px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; background: {{t.warnSoft}}; color: {{t.warn}}; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600">{{insightTitle}}</span>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.ink2}}">{{l.insightNote}}</span>
+</div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; padding: 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.listTitle}}</h2>
+<div style="background: {{t.card}}; border-radius: 18px; padding: 0 16px; display: flex; flex-direction: column">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; border-top: 1px solid {{r.divider}}">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums">{{r.value}} <span style="font-weight: 400; color: {{t.ink3}}">· {{r.pulse}}</span></span>
+<span style="font-size: 13px; color: {{t.ink3}}">{{r.when}}</span>
+</div>
+<span style="flex-shrink: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: {{r.fg}}">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: {{r.dot}}"></span>{{r.status}}
+</span>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 20px; border-top: 1px solid {{t.line2}}; background: {{t.bg}}; display: flex; flex-direction: column; gap: 8px">
+<a href="{{entryHref}}" style="height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{l.measure}}</a>
+<div style="font-size: 12px; text-align: center; color: {{t.ink3}}">{{l.pdfNote}}</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const period = s.period || 'week';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', line2: '#E2DED4', grid: '#ECE8DF', seg: '#E9E5DC' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', line2: '#2A3431', grid: '#262F2C', seg: '#2A3431' }
+    }[theme];
+    const L = {
+      ru: {
+        back: 'Давление', title: 'История давления', period: '20–26 сентября · цель врача — ниже 135/85', periodA: 'Период',
+        week: 'Неделя', month: 'Месяц', morning: 'Утро, в среднем', evening: 'Вечер, в среднем',
+        inTarget: 'в пределах цели', above: 'выше цели', pulse: 'пульс', unitHr: 'уд/мин', unitP: 'мм рт. ст.',
+        chartTitle: 'По дням', chartA: 'График давления по дням', legendIn: 'в пределах цели', legendAbove: 'выше цели', legendPair: 'слева утро, справа вечер',
+        insight: 'Вечером выше цели в {n} из {m} дней', insightNote: 'Покажите врачу: отчёт в PDF соберётся на экране «История».',
+        listTitle: 'Последние замеры', today: 'сегодня', yesterday: 'вчера', morningW: 'утро', eveningW: 'вечер',
+        measure: 'Измерить сейчас', pdfNote: 'Замеры попадают в отчёт для врача вместе с приёмами',
+        dows: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'], months: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+      },
+      en: {
+        back: 'Blood pressure', title: 'Blood pressure history', period: 'Sep 20–26 · doctor’s target — below 135/85', periodA: 'Period',
+        week: 'Week', month: 'Month', morning: 'Morning average', evening: 'Evening average',
+        inTarget: 'within target', above: 'above target', pulse: 'pulse', unitHr: 'bpm', unitP: 'mmHg',
+        chartTitle: 'By day', chartA: 'Blood pressure by day', legendIn: 'within target', legendAbove: 'above target', legendPair: 'left morning, right evening',
+        insight: 'Evenings above target on {n} of {m} days', insightNote: 'Show your doctor: the PDF report is on the History screen.',
+        listTitle: 'Latest readings', today: 'today', yesterday: 'yesterday', morningW: 'morning', eveningW: 'evening',
+        measure: 'Measure now', pdfNote: 'Readings go into the doctor’s report together with doses',
+        dows: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      }
+    }[lang];
+
+    // 20–26 сентября 2026: утро и вечер
+    const DATA = [
+      { d: 20, m: [124, 80, 68, '08:05'], e: [131, 84, 72, '20:30'] },
+      { d: 21, m: [126, 81, 70, '08:10'], e: [138, 88, 74, '20:40'] },
+      { d: 22, m: [122, 79, 67, '07:55'], e: [134, 86, 71, '20:25'] },
+      { d: 23, m: [129, 83, 69, '08:20'], e: [141, 90, 76, '21:05'] },
+      { d: 24, m: [125, 80, 68, '08:00'], e: [132, 84, 70, '20:35'] },
+      { d: 25, m: [127, 82, 71, '08:15'], e: [136, 87, 73, '20:30'] },
+      { d: 26, m: [128, 82, 71, '08:12'], e: null }
+    ];
+    const above = (r) => r[0] >= 135 || r[1] >= 85;
+    const avgOf = (list, k) => Math.round(list.reduce((a, r) => a + r[k], 0) / list.length);
+    const mList = DATA.map((x) => x.m);
+    const eList = DATA.filter((x) => x.e).map((x) => x.e);
+    const avgCard = (label, list) => {
+      const v = [avgOf(list, 0), avgOf(list, 1)];
+      const hi = above(v);
+      return {
+        label: label,
+        value: v[0] + '/' + v[1],
+        status: hi ? L.above : L.inTarget,
+        fg: hi ? T.warn : T.accText,
+        dot: hi ? T.warnLine : T.acc,
+        pulse: L.pulse + ' ' + avgOf(list, 2) + ' ' + L.unitHr
+      };
+    };
+
+    // График: 60–160 мм рт. ст. на 170 px, слева 32 px под подписи
+    const TOP = 4, H = 166, MIN = 60, MAX = 160;
+    const y = (v) => TOP + (MAX - v) / (MAX - MIN) * H;
+    const PLOT_L = 32, PLOT_W = 286, COL = PLOT_W / 7;
+    const grid = [160, 135, 85, 60].map((v) => {
+      const target = v === 135 || v === 85;
+      return {
+        v: v,
+        top: y(v).toFixed(1) + 'px',
+        labelTop: (y(v) - 7).toFixed(1) + 'px',
+        style: target ? 'dashed' : 'solid',
+        color: target ? T.warnLine : T.grid,
+        labelColor: target ? T.warn : T.ink3
+      };
+    });
+    const bars = [];
+    const days = [];
+    DATA.forEach((x, i) => {
+      const cx = PLOT_L + COL * i + COL / 2;
+      [['m', -10], ['e', 2]].forEach((pair) => {
+        const r = x[pair[0]];
+        if (!r) return;
+        bars.push({
+          left: (cx + pair[1]).toFixed(1) + 'px',
+          top: y(r[0]).toFixed(1) + 'px',
+          h: (y(r[1]) - y(r[0])).toFixed(1) + 'px',
+          color: above(r) ? T.warnLine : T.acc,
+          opacity: '1'
+        });
+      });
+      const date = new Date(2026, 8, x.d);
+      days.push({
+        left: (cx - 20).toFixed(1) + 'px',
+        label: L.dows[date.getDay()] + ' ' + x.d,
+        color: x.d === 26 ? T.ink : T.ink3,
+        weight: x.d === 26 ? '700' : '400'
+      });
+    });
+
+    const hiEvenings = eList.filter(above).length;
+    const when = (d, part, time) => {
+      const day = d === 26 ? L.today : d === 25 ? L.yesterday : (lang === 'en' ? L.months[8] + ' ' + d : d + ' ' + L.months[8]);
+      const t = lang === 'en' ? (() => { const h = Number(time.slice(0, 2)); const mm = time.slice(3); return (h % 12 || 12) + ':' + mm + (h < 12 ? ' AM' : ' PM'); })() : time;
+      return day + ', ' + t + ' · ' + part;
+    };
+    const latest = [
+      [26, 'm'], [25, 'e'], [25, 'm'], [24, 'e']
+    ].map((p, i) => {
+      const x = DATA.find((q) => q.d === p[0]);
+      const r = x[p[1]];
+      const hi = above(r);
+      return {
+        value: r[0] + '/' + r[1],
+        pulse: L.pulse + ' ' + r[2],
+        when: when(p[0], p[1] === 'm' ? L.morningW : L.eveningW, r[3]),
+        status: hi ? L.above : L.inTarget,
+        fg: hi ? T.warn : T.accText,
+        dot: hi ? T.warnLine : T.acc,
+        divider: i === 0 ? T.card : T.grid
+      };
+    });
+    const seg = (on) => (on ? { bg: T.card, fg: T.ink, shadow: '0 1px 3px rgba(22, 33, 31, 0.18)' } : { bg: 'transparent', fg: T.ink2, shadow: 'none' });
+
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    return {
+      t: T,
+      l: L,
+      lang: lang,
+      entryHref: 'BPEntry' + sfx + '.dc.html',
+      periods: [
+        Object.assign({ label: L.week, on: period === 'week', pick: () => this.setState({ period: 'week' }) }, seg(period === 'week')),
+        Object.assign({ label: L.month, on: period === 'month', pick: () => this.setState({ period: 'month' }) }, seg(period === 'month'))
+      ],
+      avgs: [avgCard(L.morning, mList), avgCard(L.evening, eList)],
+      grid: grid,
+      bars: bars,
+      days: days,
+      insightTitle: L.insight.replace('{n}', hiEvenings).replace('{m}', eList.length),
+      rows: latest
+    };
+  }
+}
+</script>
+</body>
+</html>
