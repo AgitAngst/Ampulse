@@ -1,6 +1,7 @@
 package io.github.agitangst.ampulse.data
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Insert
@@ -66,14 +67,24 @@ interface DoseEventDao {
 
     @Query("DELETE FROM dose_event WHERE id = :id")
     suspend fun delete(id: Long)
+
+    @Query("SELECT * FROM dose_event WHERE id = :id")
+    suspend fun get(id: Long): DoseEventEntity?
 }
 
 /** База Ampulse. Новая версия схемы — миграция и файл схемы в `app/schemas` (проверяются тестом миграций). */
-@Database(entities = [MedicineEntity::class, ScheduleEntity::class, DoseEventEntity::class], version = 1, exportSchema = true)
+@Database(
+    entities = [MedicineEntity::class, ScheduleEntity::class, DoseEventEntity::class, PackEntity::class, PackUseEntity::class],
+    version = 2,
+    exportSchema = true,
+    // 2 — упаковки и списания (этап 0.4).
+    autoMigrations = [AutoMigration(from = 1, to = 2)],
+)
 abstract class AmpulseDb : RoomDatabase() {
     abstract fun medicines(): MedicineDao
     abstract fun schedules(): ScheduleDao
     abstract fun events(): DoseEventDao
+    abstract fun packs(): PackDao
 
     companion object {
         fun open(context: Context): AmpulseDb =
