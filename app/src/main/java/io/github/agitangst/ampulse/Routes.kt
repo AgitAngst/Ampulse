@@ -2,7 +2,11 @@ package io.github.agitangst.ampulse
 
 import androidx.compose.runtime.Composable
 import io.github.agitangst.ampulse.ui.AsNeededScreen
+import io.github.agitangst.ampulse.ui.ExpiryScreen
 import io.github.agitangst.ampulse.ui.MedicineEditScreen
+import io.github.agitangst.ampulse.ui.PackEditScreen
+import io.github.agitangst.ampulse.ui.ScanScreen
+import io.github.agitangst.ampulse.ui.StockDetailScreen
 import io.github.agitangst.anvil.compose.AnvilSettings
 
 /**
@@ -18,10 +22,26 @@ sealed interface Route {
     /** «По необходимости» (макет, экран 11). */
     data class AsNeeded(val medicineId: Long) : Route
 
+    /** Запас лекарства: упаковки, сроки (макет, экран 5). */
+    data class Stock(val medicineId: Long) : Route
+
+    /** Новая упаковка (`packId` = 0) или правка; `fromScan` — поля из кода «Честного знака» (`PendingScan`). */
+    data class PackEdit(val medicineId: Long, val packId: Long, val fromScan: Boolean = false) : Route
+
+    /** «Сроки годности» (макет, экран 40). */
+    data object Expiry : Route
+
+    /** Сканер упаковки (макет, экран 14). */
+    data object Scan : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
         is AsNeeded -> "prn:$medicineId"
+        is Stock -> "stock:$medicineId"
+        is PackEdit -> "pack:$medicineId:$packId:${if (fromScan) 1 else 0}"
+        Expiry -> "expiry"
+        Scan -> "scan"
     }
 
     companion object {
@@ -31,6 +51,13 @@ sealed interface Route {
                 "settings" -> Settings
                 "med" -> arg?.toLongOrNull()?.let(::MedicineEdit)
                 "prn" -> arg?.toLongOrNull()?.let(::AsNeeded)
+                "stock" -> arg?.toLongOrNull()?.let(::Stock)
+                "pack" -> arg?.split(':')?.takeIf { it.size == 3 }?.let { (m, p, s) ->
+                    val med = m.toLongOrNull() ?: return null
+                    PackEdit(med, p.toLongOrNull() ?: 0, s == "1")
+                }
+                "expiry" -> Expiry
+                "scan" -> Scan
                 else -> null
             }
         }
@@ -51,5 +78,9 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.Settings -> SettingsScreen(settings, onBack = nav::back)
         is Route.MedicineEdit -> MedicineEditScreen(route.id, nav)
         is Route.AsNeeded -> AsNeededScreen(route.medicineId, nav)
+        is Route.Stock -> StockDetailScreen(route.medicineId, nav)
+        is Route.PackEdit -> PackEditScreen(route.medicineId, route.packId, route.fromScan, nav)
+        Route.Expiry -> ExpiryScreen(nav)
+        Route.Scan -> ScanScreen(nav)
     }
 }

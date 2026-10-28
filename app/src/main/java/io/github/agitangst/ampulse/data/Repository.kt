@@ -86,14 +86,16 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
     }
 
     /** Лишний приём или приём «по необходимости» — для истории и отчёта врачу. */
-    suspend fun logExtra(medicineId: Long, amount: Double, at: LocalDateTime, status: EventStatus = EventStatus.Extra, note: String = "") {
-        db.withTransaction {
+    suspend fun logExtra(medicineId: Long, amount: Double, at: LocalDateTime, status: EventStatus = EventStatus.Extra, note: String = ""): Long {
+        val id = db.withTransaction {
             val eventId = db.events().insert(
                 DoseEventEntity(medicineId = medicineId, scheduleId = null, plannedAt = null, at = Codec.millis(at), status = status.name, amount = amount, note = note),
             )
             if (status != EventStatus.Skipped) writeOff(eventId, medicineId, amount)
+            eventId
         }
         onChange.onPlanChanged()
+        return id
     }
 
     /** Отменить отметку. */
