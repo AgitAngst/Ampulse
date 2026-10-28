@@ -42,54 +42,6 @@ import io.github.agitangst.anvil.compose.AnvilTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-/** «Сегодня»: шапка с датой и шестерёнкой настроек; приёмов пока нет. */
-@Composable
-fun TodayScreen(onOpenSettings: () -> Unit, modifier: Modifier = Modifier) {
-    PageLayout(
-        modifier,
-        header = {
-            TabHeader(
-                title = stringResource(R.string.tab_today),
-                date = todayText(),
-                action = { SettingsButton(onOpenSettings) },
-            )
-        },
-    ) {
-        EmptyState(
-            AmpulseIcons.Pill,
-            stringResource(R.string.today_empty_title),
-            stringResource(R.string.today_empty_hint),
-            Modifier.weight(1f),
-        )
-    }
-}
-
-/** «История»: отметок о приёмах и замеров пока нет. */
-@Composable
-fun HistoryScreen(modifier: Modifier = Modifier) {
-    PageLayout(modifier, header = { TabHeader(stringResource(R.string.tab_history)) }) {
-        EmptyState(
-            AmpulseIcons.Calendar,
-            stringResource(R.string.history_empty_title),
-            stringResource(R.string.history_empty_hint),
-            Modifier.weight(1f),
-        )
-    }
-}
-
-/** «Аптечка»: лекарств пока нет. */
-@Composable
-fun MedicinesScreen(modifier: Modifier = Modifier) {
-    PageLayout(modifier, header = { TabHeader(stringResource(R.string.tab_medicines)) }) {
-        EmptyState(
-            AmpulseIcons.BriefcaseMedical,
-            stringResource(R.string.medicines_empty_title),
-            stringResource(R.string.medicines_empty_hint),
-            Modifier.weight(1f),
-        )
-    }
-}
-
 /** «Близкие»: людей, которым придёт SMS, пока нет. */
 @Composable
 fun FamilyScreen(modifier: Modifier = Modifier) {
@@ -105,7 +57,7 @@ fun FamilyScreen(modifier: Modifier = Modifier) {
 
 /** Корень вкладки: поля 20, сверху 24, промежуток между блоками 16 (docs/ui-guideline.md, §2). */
 @Composable
-private fun PageLayout(
+internal fun PageLayout(
     modifier: Modifier,
     header: @Composable () -> Unit,
     content: @Composable ColumnScope.() -> Unit,
@@ -121,7 +73,7 @@ private fun PageLayout(
 
 /** Шапка вкладки: над заголовком — [date] (если есть), справа — [action] (если есть), выровнены по низу. */
 @Composable
-private fun TabHeader(
+internal fun TabHeader(
     title: String,
     modifier: Modifier = Modifier,
     date: String? = null,
@@ -145,7 +97,7 @@ private fun TabHeader(
 
 /** Круглая обычная кнопка 48 dp со значком шестерёнки; для TalkBack — «Настройки». */
 @Composable
-private fun SettingsButton(onClick: () -> Unit) {
+internal fun SettingsButton(onClick: () -> Unit) {
     val p = AnvilTheme.palette
     Box(
         Modifier
@@ -219,7 +171,7 @@ internal fun screenTitleStyle(size: Int): TextStyle =
 
 /** Сегодняшняя дата словами по языку программы: «Суббота, 26 сентября» / «Saturday, September 26». */
 @Composable
-private fun todayText(): String {
+internal fun todayText(): String {
     val locale = LocalConfiguration.current.locales[0]
     val pattern = stringResource(R.string.date_pattern)
     return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern, locale))

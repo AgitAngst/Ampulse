@@ -3,6 +3,7 @@
 
     <!-- Облачная копия выключена (здоровье — личные данные), перенос между телефонами — можно (anvil/docs/ANDROID.md, §10). -->
     <application
+        android:name=".AmpulseApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

@@ -1,0 +1,82 @@
+package io.github.agitangst.ampulse.data
+
+import android.content.Context
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.Update
+import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface MedicineDao {
+    @Query("SELECT * FROM medicine WHERE archived = 0 ORDER BY name COLLATE NOCASE")
+    fun active(): Flow<List<MedicineEntity>>
+
+    @Query("SELECT * FROM medicine ORDER BY name COLLATE NOCASE")
+    fun all(): Flow<List<MedicineEntity>>
+
+    @Query("SELECT * FROM medicine WHERE id = :id")
+    suspend fun get(id: Long): MedicineEntity?
+
+    @Insert
+    suspend fun insert(m: MedicineEntity): Long
+
+    @Update
+    suspend fun update(m: MedicineEntity)
+
+    @Query("DELETE FROM medicine WHERE id = :id")
+    suspend fun delete(id: Long)
+}
+
+@Dao
+interface ScheduleDao {
+    @Query("SELECT * FROM schedule")
+    fun all(): Flow<List<ScheduleEntity>>
+
+    @Query("SELECT * FROM schedule")
+    suspend fun allNow(): List<ScheduleEntity>
+
+    @Query("SELECT * FROM schedule WHERE medicineId = :medicineId")
+    suspend fun forMedicine(medicineId: Long): List<ScheduleEntity>
+
+    @Upsert
+    suspend fun upsert(s: ScheduleEntity): Long
+
+    @Query("DELETE FROM schedule WHERE medicineId = :medicineId")
+    suspend fun deleteFor(medicineId: Long)
+}
+
+@Dao
+interface DoseEventDao {
+    @Query("SELECT * FROM dose_event WHERE at >= :from AND at < :to ORDER BY at")
+    fun between(from: Long, to: Long): Flow<List<DoseEventEntity>>
+
+    @Query("SELECT * FROM dose_event WHERE at >= :from AND at < :to ORDER BY at")
+    suspend fun betweenNow(from: Long, to: Long): List<DoseEventEntity>
+
+    @Query("SELECT * FROM dose_event WHERE plannedAt = :plannedAt AND medicineId = :medicineId")
+    suspend fun forPlanned(medicineId: Long, plannedAt: Long): List<DoseEventEntity>
+
+    @Insert
+    suspend fun insert(e: DoseEventEntity): Long
+
+    @Query("DELETE FROM dose_event WHERE id = :id")
+    suspend fun delete(id: Long)
+}
+
+/** База Ampulse. Новая версия схемы — миграция и файл схемы в `app/schemas` (проверяются тестом миграций). */
+@Database(entities = [MedicineEntity::class, ScheduleEntity::class, DoseEventEntity::class], version = 1, exportSchema = true)
+abstract class AmpulseDb : RoomDatabase() {
+    abstract fun medicines(): MedicineDao
+    abstract fun schedules(): ScheduleDao
+    abstract fun events(): DoseEventDao
+
+    companion object {
+        fun open(context: Context): AmpulseDb =
+            Room.databaseBuilder(context.applicationContext, AmpulseDb::class.java, "ampulse.db").build()
+    }
+}

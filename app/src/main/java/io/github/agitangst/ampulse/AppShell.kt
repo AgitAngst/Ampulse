@@ -32,7 +32,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import io.github.agitangst.ampulse.ui.HistoryScreen
+import io.github.agitangst.ampulse.ui.MedicinesScreen
+import io.github.agitangst.ampulse.ui.TodayScreen
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -79,13 +83,21 @@ fun AppShell(settings: AnvilSettings) {
     val context = LocalContext.current
     val p = AnvilTheme.palette
     var tab by rememberSaveable { mutableStateOf(Tab.Today) }
-    var settingsOpen by rememberSaveable { mutableStateOf(false) }
+    // Стек экранов поверх вкладок — строками (Route.encode), чтобы пережить пересоздание экрана.
+    var stack by rememberSaveable { mutableStateOf(ArrayList<String>()) }
+    val nav = remember {
+        Nav(
+            push = { route -> stack = ArrayList(stack).apply { add(route.encode()) } },
+            pop = { if (stack.isNotEmpty()) stack = ArrayList(stack.dropLast(1)) },
+        )
+    }
+    val top = stack.lastOrNull()?.let(Route::decode)
 
     // Проверка обновления при первом показе: раз за процесс и только если включено «Проверять обновления».
     if (!LocalInspectionMode.current) {
         LaunchedEffect(Unit) { Store.onStart(context, settings) }
     }
-    BackHandler(enabled = settingsOpen) { settingsOpen = false }
+    BackHandler(enabled = stack.isNotEmpty()) { nav.back() }
 
     Surface(Modifier.fillMaxSize(), color = p.bg, contentColor = p.text) {
         Column(Modifier.fillMaxSize()) {
@@ -98,20 +110,16 @@ fun AppShell(settings: AnvilSettings) {
                 // Баннер над содержимым; скрытый места не занимает (отступы у самой карточки).
                 Store.Banner(Modifier.padding(start = 20.dp, top = 16.dp, end = 20.dp))
                 Crossfade(
-                    targetState = settingsOpen,
+                    targetState = top,
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     animationSpec = motionSpec(Motion.STATE),
                     label = "page",
-                ) { open ->
-                    if (open) {
-                        SettingsScreen(settings, onBack = { settingsOpen = false })
-                    } else {
-                        TabContent(tab, onOpenSettings = { settingsOpen = true })
-                    }
+                ) { route ->
+                    if (route != null) RouteContent(route, nav, settings) else TabContent(tab, nav)
                 }
             }
             AnimatedVisibility(
-                visible = !settingsOpen,
+                visible = top == null,
                 enter = fadeIn(motionSpec(Motion.ENTER)) + expandVertically(motionSpec(Motion.ENTER)),
                 exit = fadeOut(motionSpec(Motion.LEAVE, AnvilEasing.In)) +
                     shrinkVertically(motionSpec(Motion.LEAVE, AnvilEasing.In)),
@@ -123,11 +131,11 @@ fun AppShell(settings: AnvilSettings) {
 }
 
 @Composable
-private fun TabContent(tab: Tab, onOpenSettings: () -> Unit) {
+private fun TabContent(tab: Tab, nav: Nav) {
     when (tab) {
-        Tab.Today -> TodayScreen(onOpenSettings)
-        Tab.History -> HistoryScreen()
-        Tab.Medicines -> MedicinesScreen()
+        Tab.Today -> TodayScreen(nav)
+        Tab.History -> HistoryScreen(nav)
+        Tab.Medicines -> MedicinesScreen(nav)
         Tab.Family -> FamilyScreen()
     }
 }

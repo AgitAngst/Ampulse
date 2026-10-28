@@ -4,6 +4,13 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+}
+
+// Схемы базы — в репозитории: по ним проверяются миграции.
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.generateKotlin", "true")
 }
 
 // Версия: X.Y.Z из gradle.properties; versionCode = (X·10000 + Y·100 + Z)·100 + K, K = 99 у выпуска, N у -beta.N.
@@ -97,6 +104,9 @@ dependencies {
     // Обновление из GitHub — только в сборке github: с ним приходят разрешения на сеть и установку.
     "githubImplementation"(libs.anvil.update)
     implementation(libs.activity.compose)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
