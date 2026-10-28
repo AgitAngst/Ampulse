@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Раздел «Напоминания» в настройках: строки состояния разрешений -->
+    <string name="rem_section">Reminders</string>
+    <string name="rem_notifications">Notifications</string>
+    <string name="rem_notifications_on">Allowed</string>
+    <string name="rem_notifications_note">Without notifications, reminders will not show.</string>
+    <string name="rem_exact">Exact reminders</string>
+    <string name="rem_exact_on">Allowed</string>
+    <string name="rem_exact_note">A reminder may be several minutes late.</string>
+    <string name="rem_fullscreen">Full screen for important</string>
+    <string name="rem_fullscreen_on">Allowed</string>
+    <string name="rem_fullscreen_note">An important dose will come as a regular notification, not on the full screen.</string>
+    <string name="rem_off_plural">Off</string>
+    <string name="rem_off_neuter">Off</string>
+    <string name="rem_allow">Allow</string>
+
+    <!-- Каналы уведомлений (видны в настройках системы) -->
+    <string name="rem_channel_doses">Doses</string>
+    <string name="rem_channel_doses_desc">Reminders to take a medicine</string>
+    <string name="rem_channel_important">Important doses</string>
+    <string name="rem_channel_important_desc">Loud reminders that repeat until the dose is marked</string>
+
+    <!-- Уведомление и экран «Напоминание» -->
+    <string name="rem_action_take">Take</string>
+    <string name="rem_action_snooze">Snooze 10 min</string>
+    <string name="rem_action_skip">Skip</string>
+    <string name="rem_screen_title">Reminder</string>
+    <string name="rem_status_take">Time to take</string>
+    <string name="rem_status_inject">Time for the injection</string>
+    <string name="rem_important_note">Important medicine: if you do not mark it, we will remind you again in 10 minutes.</string>
+    <string name="rem_food_empty">On an empty stomach</string>
+    <string name="rem_food_before">Before a meal</string>
+    <string name="rem_food_with">With a meal</string>
+    <string name="rem_food_after">After a meal</string>
+
+    <!-- Пропуск с причиной: причина попадает в отчёт для врача -->
+    <string name="rem_skip_title">Why are you skipping?</string>
+    <string name="rem_skip_hint">The reason goes into the report for the doctor</string>
+    <string name="rem_skip_none">Don\'t have it with me</string>
+    <string name="rem_skip_unwell">Feeling unwell</string>
+    <string name="rem_skip_doctor">Doctor cancelled it</string>
+    <string name="rem_skip_other">Other</string>
+    <string name="rem_back">Back</string>
+</resources>
