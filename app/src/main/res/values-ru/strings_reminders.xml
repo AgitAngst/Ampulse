@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Раздел «Напоминания» в настройках: строки состояния разрешений -->
+    <string name="rem_section">Напоминания</string>
+    <string name="rem_notifications">Уведомления</string>
+    <string name="rem_notifications_on">Разрешены</string>
+    <string name="rem_notifications_note">Без уведомлений напоминания не появятся.</string>
+    <string name="rem_exact">Точные напоминания</string>
+    <string name="rem_exact_on">Разрешены</string>
+    <string name="rem_exact_note">Напоминание может опоздать на несколько минут.</string>
+    <string name="rem_fullscreen">На весь экран для важных</string>
+    <string name="rem_fullscreen_on">Разрешено</string>
+    <string name="rem_fullscreen_note">Важный приём придёт обычным уведомлением, а не на весь экран.</string>
+    <string name="rem_off_plural">Выключены</string>
+    <string name="rem_off_neuter">Выключено</string>
+    <string name="rem_allow">Разрешить</string>
+
+    <!-- Каналы уведомлений (видны в настройках системы) -->
+    <string name="rem_channel_doses">Приёмы</string>
+    <string name="rem_channel_doses_desc">Напоминания о приёме лекарств</string>
+    <string name="rem_channel_important">Важные приёмы</string>
+    <string name="rem_channel_important_desc">Громкие напоминания, которые повторяются, пока приём не отмечен</string>
+
+    <!-- Уведомление и экран «Напоминание» -->
+    <string name="rem_action_take">Принять</string>
+    <string name="rem_action_snooze">Отложить на 10 мин</string>
+    <string name="rem_action_skip">Пропустить</string>
+    <string name="rem_screen_title">Напоминание</string>
+    <string name="rem_status_take">Пора принять</string>
+    <string name="rem_status_inject">Пора сделать укол</string>
+    <string name="rem_important_note">Важный препарат: без отметки напомним снова через 10 минут.</string>
+    <string name="rem_food_empty">Натощак</string>
+    <string name="rem_food_before">До еды</string>
+    <string name="rem_food_with">Во время еды</string>
+    <string name="rem_food_after">После еды</string>
+
+    <!-- Пропуск с причиной: причина попадает в отчёт для врача -->
+    <string name="rem_skip_title">Почему пропускаете?</string>
+    <string name="rem_skip_hint">Причина попадёт в отчёт для врача</string>
+    <string name="rem_skip_none">Нет с собой</string>
+    <string name="rem_skip_unwell">Плохое самочувствие</string>
+    <string name="rem_skip_doctor">Отменил врач</string>
+    <string name="rem_skip_other">Другое</string>
+    <string name="rem_back">Назад</string>
+</resources>

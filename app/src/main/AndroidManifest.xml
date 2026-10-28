@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--
+        Напоминания о приёмах (anvil/docs/ANDROID.md, §2, §10). Сейчас сборка одна — github, поэтому разрешения в общем
+        манифесте. Когда появится play: SCHEDULE_EXACT_ALARM и USE_FULL_SCREEN_INTENT Google Play разрешает не всем —
+        перенести их в src/play/AndroidManifest.xml с объяснением в консоли; запасной путь в коде уже есть
+        (неточный будильник и обычное уведомление вместо экрана на весь экран).
+    -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <!-- Облачная копия выключена (здоровье — личные данные), перенос между телефонами — можно (anvil/docs/ANDROID.md, §10). -->
     <application
         android:name=".AmpulseApp"
@@ -21,5 +32,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Экран «Напоминание» важного лекарства: поверх блокировки, тёмный в любой теме; открывает его только уведомление. -->
+        <activity
+            android:name=".reminders.ReminderActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Material.NoActionBar"
+            android:turnScreenOn="true" />
+
+        <!-- Будильники приёмов и суточный пересчёт: будит только AlarmManager через свои PendingIntent. -->
+        <receiver
+            android:name=".reminders.ReminderReceiver"
+            android:exported="false" />
+
+        <!-- Кнопки «Принять» и «Отложить» в уведомлении. -->
+        <receiver
+            android:name=".reminders.ActionReceiver"
+            android:exported="false" />
+
+        <!--
+            Пересчёт будильников после перезагрузки, смены времени и часового пояса, обновления программы и выдачи права
+            на точные будильники. Принимает системные рассылки, поэтому exported; чужие действия приёмник отбрасывает.
+        -->
+        <receiver
+            android:name=".reminders.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
