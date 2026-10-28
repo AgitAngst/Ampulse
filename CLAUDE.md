@@ -1,7 +1,7 @@
 # Ampulse — правила для сессий и агентов
 
 Что это: офлайн-приложение для телефона — учёт таблеток, уколов и давления для себя, близкого или
-питомца (ampoule + pulse, по-русски «Ампульс»). Сейчас — только макет, кода нет; платформа — Android, Kotlin + Jetpack Compose (решение владельца 29.10.2026).
+питомца (ampoule + pulse, по-русски «Ампульс»). Сейчас — макет и каркас приложения (0.2.0); платформа — Android, Kotlin + Jetpack Compose (решение владельца 29.10.2026).
 Состояние и долги владельца — [HANDOFF.md](HANDOFF.md); замысел, возможности и план — [SPEC.md](SPEC.md);
 документация того, что есть сейчас, — [docs/README.md](docs/README.md); работа идёт через OpenSpec
 (`openspec/changes/<имя>`). Весь текст пользователю — по-русски; тексты в интерфейсе — RU/EN, светлая и
@@ -48,12 +48,18 @@
 
 - Общие правила Android-программ семьи — `docs/ANDROID.md` в репозитории Anvil (инструменты, сборки под
   магазины, версия, подпись, выпуск, обновление, вид, проверка).
-
+- Набор Anvil — **подмодуль `anvil/`** (`settings.gradle.kts` → `includeBuild("anvil/android")`): клонировать с
+  `git clone --recurse-submodules`, иначе `git submodule update --init`; без него проект не собирается. Подмодуль
+  на коммите набора 0.2.0, после тега `android-kit-v0.2.0` — на теге; обновлять только по слову владельца.
 - JDK и SDK — только читаются с `D:\Android`: `JAVA_HOME='D:\Android\jdk-21'`, `ANDROID_HOME='D:\Android\Sdk'`;
   всё, что собирается, — в репозитории на E:.
 - Gradle — `--max-workers=2`, после работы `./gradlew --stop` (память ПК).
-- Проверка: `./gradlew :app:testGithubDebugUnitTest :app:lintGithubDebug`; телефон — `E:\dev_personal\tools\phone.py`
-  с `PKG`, `APK`.
+- Проверка: `./gradlew :app:testGithubDebugUnitTest :app:lintGithubDebug :app:assembleGithubDebug --max-workers=2`;
+  телефон — `E:\dev_personal\tools\phone.py` с `PKG`, `APK`.
+- Подпись выпуска — `keystore.properties` (в `.gitignore`) или `AMPULSE_KEYSTORE*`; без ключа `*Release` падает.
+  Ключ создаёт владелец: `scripts/new-keystore.ps1`. Выпуск — тег `vX.Y.Z` (= `appVersion`), workflow
+  `.github/workflows/android.yml` — только по кнопке и на тег, по слову владельца.
+- Подробно: [docs/dev/development.md](docs/dev/development.md).
 
 ## Работа агентов
 
@@ -64,5 +70,5 @@
 ## Документация, версия и коммиты
 
 - Изменил поведение, экран, формат файла — в том же шаге поправь `docs/`, `HANDOFF.md`, `SPEC.md`.
-- Версия — 0.1.0 (макет); растёт по скилу `stage-version`.
+- Версия — 0.2.0 (каркас приложения; одно место — `appVersion` в `gradle.properties`); растёт по скилу `stage-version`.
 - Коммиты — по-английски. Пуш, выпуск, тег и CI — по команде владельца.
