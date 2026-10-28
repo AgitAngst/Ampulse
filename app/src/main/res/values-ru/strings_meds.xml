@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Аптечка, правка лекарства и «по необходимости» (этап 0.3); ключи те же в values -->
+
+    <!-- Общее -->
+    <string name="meds_add">Добавить лекарство</string>
+    <string name="meds_cancel">Отмена</string>
+    <string name="meds_ok">ОК</string>
+    <string name="meds_save">Сохранить</string>
+    <string name="meds_less">Меньше: %s</string>
+    <string name="meds_more">Больше: %s</string>
+
+    <!-- Шаблоны java.time: полная дата и дата без года -->
+    <string name="meds_date_pattern">dd.MM.yyyy</string>
+    <string name="meds_date_short_pattern">d MMM</string>
+
+    <plurals name="meds_days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+        <item quantity="other">%d дня</item>
+    </plurals>
+    <plurals name="meds_times_count">
+        <item quantity="one">%d раз</item>
+        <item quantity="few">%d раза</item>
+        <item quantity="many">%d раз</item>
+        <item quantity="other">%d раза</item>
+    </plurals>
+    <string name="meds_hours_short">%d ч</string>
+    <string name="meds_dur_h_min">%1$d ч %2$d мин</string>
+    <string name="meds_dur_h">%d ч</string>
+    <string name="meds_dur_min">%d мин</string>
+
+    <!-- Сводка схемы в списке -->
+    <string name="meds_sum_none">Без схемы</string>
+    <string name="meds_sum_paused">Пауза</string>
+    <plurals name="meds_sum_per_day">
+        <item quantity="one">%d раз в день</item>
+        <item quantity="few">%d раза в день</item>
+        <item quantity="many">%d раз в день</item>
+        <item quantity="other">%d раза в день</item>
+    </plurals>
+    <string name="meds_sum_every_other">Через день</string>
+    <plurals name="meds_sum_every_n">
+        <item quantity="one">Раз в %d день</item>
+        <item quantity="few">Раз в %d дня</item>
+        <item quantity="many">Раз в %d дней</item>
+        <item quantity="other">Раз в %d дня</item>
+    </plurals>
+    <plurals name="meds_sum_cycle_on">
+        <item quantity="one">%d день приём</item>
+        <item quantity="few">%d дня приём</item>
+        <item quantity="many">%d дней приём</item>
+        <item quantity="other">%d дня приём</item>
+    </plurals>
+    <string name="meds_sum_cycle_off">%d перерыв</string>
+    <string name="meds_sum_taper">Ступени: %s</string>
+    <string name="meds_sum_until">до %s</string>
+    <string name="meds_sum_prn_interval">не чаще раза в %d ч</string>
+    <string name="meds_sum_prn_max">до %d в сутки</string>
+
+    <!-- Форма лекарства и единица дозы -->
+    <string name="meds_form_tablet">Таблетка</string>
+    <string name="meds_form_capsule">Капсула</string>
+    <string name="meds_form_injection">Укол</string>
+    <string name="meds_form_drops">Капли</string>
+    <string name="meds_form_liquid">Раствор</string>
+    <string name="meds_form_other">Другое</string>
+    <string name="meds_unit_tablet">табл.</string>
+    <string name="meds_unit_capsule">капс.</string>
+    <string name="meds_unit_injection">ЕД</string>
+    <string name="meds_unit_drops">кап.</string>
+    <string name="meds_unit_liquid">мл</string>
+    <string name="meds_unit_other">шт.</string>
+
+    <!-- Еда -->
+    <string name="meds_food_none">Не важно</string>
+    <string name="meds_food_empty">Натощак</string>
+    <string name="meds_food_before">До еды</string>
+    <string name="meds_food_with">Во время</string>
+    <string name="meds_food_after">После</string>
+
+    <!-- Правка лекарства -->
+    <string name="meds_new_title">Новое лекарство</string>
+    <string name="meds_edit_title">Лекарство</string>
+    <string name="meds_field_name">Название</string>
+    <string name="meds_field_strength">Дозировка</string>
+    <string name="meds_field_strength_hint">Например, 850 мг</string>
+    <string name="meds_field_unit">Единица дозы</string>
+    <string name="meds_section_form">Форма</string>
+    <string name="meds_section_food">Еда</string>
+    <string name="meds_important">Важное лекарство</string>
+    <string name="meds_important_hint">Напоминание на весь экран с повтором, пока приём не отмечен</string>
+
+    <!-- Схема приёма -->
+    <string name="meds_section_plan">Схема</string>
+    <string name="meds_kind_daily">Каждый день</string>
+    <string name="meds_kind_weekly">По дням недели</string>
+    <string name="meds_kind_every_n">Раз в N дней</string>
+    <string name="meds_kind_cycle">Циклы</string>
+    <string name="meds_kind_taper">Ступени</string>
+    <string name="meds_kind_prn">По необходимости</string>
+    <string name="meds_section_times">Время приёма</string>
+    <string name="meds_time_add">Добавить время</string>
+    <string name="meds_time_change">Изменить время, сейчас %s</string>
+    <string name="meds_time_remove">Убрать время %s</string>
+    <string name="meds_time_dialog">Время приёма</string>
+    <string name="meds_time_taken">Это время уже есть в схеме</string>
+    <string name="meds_dose_label">Доза</string>
+    <string name="meds_section_weekdays">Дни недели</string>
+    <string name="meds_every_n_label">Повторять каждые</string>
+    <string name="meds_cycle_on_label">Приём</string>
+    <string name="meds_cycle_off_label">Перерыв</string>
+    <string name="meds_section_steps">Ступени</string>
+    <string name="meds_step_title">Ступень %d</string>
+    <string name="meds_step_days_label">Дней</string>
+    <string name="meds_step_add">Добавить ступень</string>
+    <string name="meds_step_remove">Убрать ступень %d</string>
+    <plurals name="meds_steps_total">
+        <item quantity="one">Всего %1$d день · последний день %2$s</item>
+        <item quantity="few">Всего %1$d дня · последний день %2$s</item>
+        <item quantity="many">Всего %1$d дней · последний день %2$s</item>
+        <item quantity="other">Всего %1$d дня · последний день %2$s</item>
+    </plurals>
+    <string name="meds_prn_dose_label">Доза за приём</string>
+    <string name="meds_prn_interval_label">Интервал не меньше</string>
+    <string name="meds_prn_max_label">Не больше в сутки</string>
+
+    <!-- Начало, длительность, пауза -->
+    <string name="meds_section_start">Начало и длительность</string>
+    <string name="meds_start_label">Начало</string>
+    <string name="meds_start_change">Дата начала: %s. Изменить</string>
+    <string name="meds_dur_endless">Без конца</string>
+    <string name="meds_dur_course">Курс</string>
+    <string name="meds_dur_days_label">Дней</string>
+    <string name="meds_dur_until">Последний день — %s</string>
+    <string name="meds_dur_taper">Курс закончится после последней ступени</string>
+    <string name="meds_pause">Пауза</string>
+    <string name="meds_pause_hint">Без напоминаний, пропуски не считаются</string>
+
+    <!-- Что мешает сохранить -->
+    <string name="meds_need_name">Введите название, чтобы сохранить</string>
+    <string name="meds_need_time">Добавьте время приёма, чтобы сохранить</string>
+    <string name="meds_need_weekday">Выберите хотя бы один день недели, чтобы сохранить</string>
+    <string name="meds_need_step">Добавьте хотя бы одну ступень, чтобы сохранить</string>
+
+    <!-- Удаление -->
+    <string name="meds_delete">Удалить лекарство</string>
+    <string name="meds_delete_title">Удалить «%s»?</string>
+    <string name="meds_delete_text">Удалятся лекарство, его схема и все отметки о приёмах. Это нельзя отменить.</string>
+    <string name="meds_delete_confirm">Удалить</string>
+
+    <!-- По необходимости -->
+    <string name="meds_prn_take">Принять</string>
+    <string name="meds_prn_can">Можно</string>
+    <string name="meds_prn_can_now">принять сейчас</string>
+    <string name="meds_prn_until_next">до следующего приёма</string>
+    <string name="meds_prn_status_passed">Интервал прошёл</string>
+    <string name="meds_prn_status_first">Можно принять, когда нужно</string>
+    <string name="meds_prn_status_wait">Можно принять %s</string>
+    <string name="meds_prn_status_limit">Лимит на сутки — %s</string>
+    <string name="meds_after_today">после %s</string>
+    <string name="meds_after_tomorrow">завтра после %s</string>
+    <string name="meds_after_date">после %s</string>
+    <string name="meds_prn_count">%1$d из %2$d за сутки</string>
+    <string name="meds_prn_count_free">Принято за сутки: %d</string>
+    <string name="meds_prn_last">Последний приём: %s</string>
+    <string name="meds_prn_none">За последние сутки приёмов не было</string>
+    <string name="meds_day_today">сегодня, %s</string>
+    <string name="meds_day_yesterday">вчера, %s</string>
+    <string name="meds_prn_dose">Доза за приём: %s</string>
+    <string name="meds_prn_early_title">Интервал ещё не прошёл</string>
+    <string name="meds_prn_early_text">Точно принять? Назначено не чаще раза в %d ч. Если лекарство нужно чаще, чем назначено, — это вопрос к врачу.</string>
+    <string name="meds_prn_early_yes">Всё равно записать</string>
+    <string name="meds_prn_early_no">Подожду</string>
+    <string name="meds_prn_limit_note">Лимит на сутки исчерпан. Снова можно %s. Если лекарство нужно чаще, чем назначено, — это вопрос к врачу.</string>
+    <string name="meds_prn_not">Для этого лекарства не задана схема «по необходимости»</string>
+    <string name="meds_prn_edit_plan">Изменить схему</string>
+</resources>

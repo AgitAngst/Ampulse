@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Аптечка, правка лекарства и «по необходимости» (этап 0.3); ключи те же в values-ru -->
+
+    <!-- Общее -->
+    <string name="meds_add">Add medicine</string>
+    <string name="meds_cancel">Cancel</string>
+    <string name="meds_ok">OK</string>
+    <string name="meds_save">Save</string>
+    <string name="meds_less">Less: %s</string>
+    <string name="meds_more">More: %s</string>
+
+    <!-- Шаблоны java.time: полная дата и дата без года -->
+    <string name="meds_date_pattern">MMM d, yyyy</string>
+    <string name="meds_date_short_pattern">MMM d</string>
+
+    <plurals name="meds_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="meds_times_count">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d times</item>
+    </plurals>
+    <string name="meds_hours_short">%d h</string>
+    <string name="meds_dur_h_min">%1$d h %2$d min</string>
+    <string name="meds_dur_h">%d h</string>
+    <string name="meds_dur_min">%d min</string>
+
+    <!-- Сводка схемы в списке -->
+    <string name="meds_sum_none">No schedule</string>
+    <string name="meds_sum_paused">Paused</string>
+    <plurals name="meds_sum_per_day">
+        <item quantity="one">%d time a day</item>
+        <item quantity="other">%d times a day</item>
+    </plurals>
+    <string name="meds_sum_every_other">Every other day</string>
+    <plurals name="meds_sum_every_n">
+        <item quantity="one">Every %d day</item>
+        <item quantity="other">Every %d days</item>
+    </plurals>
+    <plurals name="meds_sum_cycle_on">
+        <item quantity="one">%d day on</item>
+        <item quantity="other">%d days on</item>
+    </plurals>
+    <string name="meds_sum_cycle_off">%d off</string>
+    <string name="meds_sum_taper">Steps: %s</string>
+    <string name="meds_sum_until">until %s</string>
+    <string name="meds_sum_prn_interval">no more than once every %d h</string>
+    <string name="meds_sum_prn_max">up to %d a day</string>
+
+    <!-- Форма лекарства и единица дозы -->
+    <string name="meds_form_tablet">Tablet</string>
+    <string name="meds_form_capsule">Capsule</string>
+    <string name="meds_form_injection">Injection</string>
+    <string name="meds_form_drops">Drops</string>
+    <string name="meds_form_liquid">Solution</string>
+    <string name="meds_form_other">Other</string>
+    <string name="meds_unit_tablet">tab.</string>
+    <string name="meds_unit_capsule">caps.</string>
+    <string name="meds_unit_injection">IU</string>
+    <string name="meds_unit_drops">drops</string>
+    <string name="meds_unit_liquid">ml</string>
+    <string name="meds_unit_other">pcs</string>
+
+    <!-- Еда -->
+    <string name="meds_food_none">Doesn\'t matter</string>
+    <string name="meds_food_empty">Empty stomach</string>
+    <string name="meds_food_before">Before meals</string>
+    <string name="meds_food_with">With a meal</string>
+    <string name="meds_food_after">After meals</string>
+
+    <!-- Правка лекарства -->
+    <string name="meds_new_title">New medicine</string>
+    <string name="meds_edit_title">Medicine</string>
+    <string name="meds_field_name">Name</string>
+    <string name="meds_field_strength">Strength</string>
+    <string name="meds_field_strength_hint">For example, 850 mg</string>
+    <string name="meds_field_unit">Dose unit</string>
+    <string name="meds_section_form">Form</string>
+    <string name="meds_section_food">Food</string>
+    <string name="meds_important">Important medicine</string>
+    <string name="meds_important_hint">Full-screen reminder that repeats until you mark the dose</string>
+
+    <!-- Схема приёма -->
+    <string name="meds_section_plan">Schedule</string>
+    <string name="meds_kind_daily">Every day</string>
+    <string name="meds_kind_weekly">On weekdays</string>
+    <string name="meds_kind_every_n">Every N days</string>
+    <string name="meds_kind_cycle">Cycles</string>
+    <string name="meds_kind_taper">Steps</string>
+    <string name="meds_kind_prn">As needed</string>
+    <string name="meds_section_times">Dose times</string>
+    <string name="meds_time_add">Add a time</string>
+    <string name="meds_time_change">Change time, now %s</string>
+    <string name="meds_time_remove">Remove time %s</string>
+    <string name="meds_time_dialog">Dose time</string>
+    <string name="meds_time_taken">This time is already in the schedule</string>
+    <string name="meds_dose_label">Dose</string>
+    <string name="meds_section_weekdays">Weekdays</string>
+    <string name="meds_every_n_label">Repeat every</string>
+    <string name="meds_cycle_on_label">Take for</string>
+    <string name="meds_cycle_off_label">Break for</string>
+    <string name="meds_section_steps">Steps</string>
+    <string name="meds_step_title">Step %d</string>
+    <string name="meds_step_days_label">Days</string>
+    <string name="meds_step_add">Add a step</string>
+    <string name="meds_step_remove">Remove step %d</string>
+    <plurals name="meds_steps_total">
+        <item quantity="one">%1$d day in total · last day %2$s</item>
+        <item quantity="other">%1$d days in total · last day %2$s</item>
+    </plurals>
+    <string name="meds_prn_dose_label">Dose per intake</string>
+    <string name="meds_prn_interval_label">Interval at least</string>
+    <string name="meds_prn_max_label">At most per day</string>
+
+    <!-- Начало, длительность, пауза -->
+    <string name="meds_section_start">Start and duration</string>
+    <string name="meds_start_label">Start</string>
+    <string name="meds_start_change">Start date: %s. Change</string>
+    <string name="meds_dur_endless">No end</string>
+    <string name="meds_dur_course">Course</string>
+    <string name="meds_dur_days_label">Days</string>
+    <string name="meds_dur_until">Last day: %s</string>
+    <string name="meds_dur_taper">The course ends after the last step</string>
+    <string name="meds_pause">Pause</string>
+    <string name="meds_pause_hint">No reminders, missed doses are not counted</string>
+
+    <!-- Что мешает сохранить -->
+    <string name="meds_need_name">Enter a name to save</string>
+    <string name="meds_need_time">Add a dose time to save</string>
+    <string name="meds_need_weekday">Pick at least one weekday to save</string>
+    <string name="meds_need_step">Add at least one step to save</string>
+
+    <!-- Удаление -->
+    <string name="meds_delete">Delete medicine</string>
+    <string name="meds_delete_title">Delete “%s”?</string>
+    <string name="meds_delete_text">The medicine, its schedule and all its dose records will be deleted. This cannot be undone.</string>
+    <string name="meds_delete_confirm">Delete</string>
+
+    <!-- По необходимости -->
+    <string name="meds_prn_take">Take</string>
+    <string name="meds_prn_can">You can</string>
+    <string name="meds_prn_can_now">take it now</string>
+    <string name="meds_prn_until_next">until the next dose</string>
+    <string name="meds_prn_status_passed">Interval has passed</string>
+    <string name="meds_prn_status_first">You can take it when needed</string>
+    <string name="meds_prn_status_wait">You can take it %s</string>
+    <string name="meds_prn_status_limit">Daily limit reached — %s</string>
+    <string name="meds_after_today">after %s</string>
+    <string name="meds_after_tomorrow">tomorrow after %s</string>
+    <string name="meds_after_date">after %s</string>
+    <string name="meds_prn_count">%1$d of %2$d in the last 24 h</string>
+    <string name="meds_prn_count_free">Taken in the last 24 h: %d</string>
+    <string name="meds_prn_last">Last dose: %s</string>
+    <string name="meds_prn_none">No doses in the last 24 h</string>
+    <string name="meds_day_today">today, %s</string>
+    <string name="meds_day_yesterday">yesterday, %s</string>
+    <string name="meds_prn_dose">Dose per intake: %s</string>
+    <string name="meds_prn_early_title">The interval has not passed yet</string>
+    <string name="meds_prn_early_text">Take it anyway? It was prescribed no more often than once every %d h. If you need it more often than prescribed, ask your doctor.</string>
+    <string name="meds_prn_early_yes">Record anyway</string>
+    <string name="meds_prn_early_no">I\'ll wait</string>
+    <string name="meds_prn_limit_note">Daily limit reached. You can take it again %s. If you need it more often than prescribed, ask your doctor.</string>
+    <string name="meds_prn_not">This medicine has no as-needed schedule</string>
+    <string name="meds_prn_edit_plan">Edit schedule</string>
+</resources>
