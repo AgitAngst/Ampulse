@@ -1,0 +1,195 @@
+# Сборка Ampulse на GitHub (скилл github-ci, anvil/docs/ANDROID.md разделы 4–5, RELEASES.md).
+#   * по кнопке (Actions -> Android -> Run workflow): тесты, lint и отладочный APK артефактом;
+#   * на тег vX.Y.Z (X.Y.Z = appVersion в gradle.properties): то же без отладочного APK, затем подписанный
+#     ampulse-X.Y.Z-android.apk + SHA256SUMS и GitHub Release; заметки Release - аннотация тега.
+# Запуск на push в ветку и на pull request намеренно нет: запускать - только по слову владельца.
+name: Android
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+# Новый запуск отменяет ещё идущий для той же ветки или тега: нужен только последний.
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+# По умолчанию - только чтение. Запись (Release) выдана одному заданию publish ниже.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    # Версия системы закреплена, а не ubuntu-latest: образ не должен смениться между прогонами сам.
+    runs-on: ubuntu-24.04
+    # Потолок на случай зависшей сборки: без него задание может идти до шести часов.
+    timeout-minutes: 45
+    steps:
+      # Подмодуль anvil/ (набор Anvil) и вся история: номер сборки = число коммитов (git rev-list --count HEAD).
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # Дешёвое - первым: тег должен совпасть с версией, а секреты ключа - быть заданы, иначе нет смысла собирать.
+      # Значения секретов сюда не попадают - только признак, что секрет не пуст.
+      - name: Check tag and signing secrets
+        if: github.ref_type == 'tag'
+        env:
+          HAVE_KEYSTORE: ${{ secrets.AMPULSE_KEYSTORE != '' }}
+          HAVE_KEYSTORE_PASSWORD: ${{ secrets.AMPULSE_KEYSTORE_PASSWORD != '' }}
+          HAVE_KEY_ALIAS: ${{ secrets.AMPULSE_KEY_ALIAS != '' }}
+          HAVE_KEY_PASSWORD: ${{ secrets.AMPULSE_KEY_PASSWORD != '' }}
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          version="$(sed -n 's/^appVersion=//p' gradle.properties | tr -d '[:space:]')"
+          if ! printf '%s' "$tag" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|rc)\.[0-9]+)?$'; then
+            echo "::error::Tag '$tag' is not vX.Y.Z or vX.Y.Z-(alpha|beta|rc).N"
+            exit 1
+          fi
+          if [ "$tag" != "v$version" ]; then
+            echo "::error::Tag '$tag' does not match appVersion=$version in gradle.properties (expected v$version). Raise appVersion first, then tag that commit."
+            exit 1
+          fi
+          missing=""
+          [ "$HAVE_KEYSTORE" = "true" ] || missing="$missing AMPULSE_KEYSTORE"
+          [ "$HAVE_KEYSTORE_PASSWORD" = "true" ] || missing="$missing AMPULSE_KEYSTORE_PASSWORD"
+          [ "$HAVE_KEY_ALIAS" = "true" ] || missing="$missing AMPULSE_KEY_ALIAS"
+          [ "$HAVE_KEY_PASSWORD" = "true" ] || missing="$missing AMPULSE_KEY_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error::Release signing secrets are missing:$missing. Create the key with scripts/new-keystore.ps1 and add the secrets (docs/dev/development.md). Nothing is published."
+            exit 1
+          fi
+          echo "Tag $tag matches appVersion; signing secrets are set."
+
+      # Версия JDK - как на ПК (Temurin 21); обновлять вместе с ПК.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      # Кеш Gradle; сам Gradle - из wrapper (gradle/wrapper/gradle-wrapper.properties), версия закреплена там.
+      - uses: gradle/actions/setup-gradle@v4
+
+      # В индексе git gradlew без права на запуск (файл создан на Windows) - на Linux нужно его выдать.
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      # Те же команды, что на ПК (CLAUDE.md, "Сборка (Android)"). --max-workers=2 - как на ПК, одинаково везде.
+      - name: Test, lint, debug APK
+        if: github.ref_type != 'tag'
+        run: ./gradlew :app:testGithubDebugUnitTest :app:lintGithubDebug :app:assembleGithubDebug --max-workers=2
+
+      - name: Upload debug APK
+        if: github.ref_type != 'tag'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ampulse-debug-apk
+          path: app/build/outputs/apk/github/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Test and lint
+        if: github.ref_type == 'tag'
+        run: ./gradlew :app:testGithubDebugUnitTest :app:lintGithubDebug --max-workers=2
+
+      # Ключ видит только этот шаг: файл - во временную папку раннера (удаляется при выходе), пароли - переменные шага.
+      - name: Build signed release APK
+        if: github.ref_type == 'tag'
+        env:
+          KEYSTORE_B64: ${{ secrets.AMPULSE_KEYSTORE }}
+          AMPULSE_KEYSTORE_PASSWORD: ${{ secrets.AMPULSE_KEYSTORE_PASSWORD }}
+          AMPULSE_KEY_ALIAS: ${{ secrets.AMPULSE_KEY_ALIAS }}
+          AMPULSE_KEY_PASSWORD: ${{ secrets.AMPULSE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          keystore="$RUNNER_TEMP/ampulse-release.jks"
+          trap 'rm -f "$keystore"' EXIT
+          printf '%s' "$KEYSTORE_B64" | tr -d '\r\n ' | base64 -d > "$keystore"
+          export AMPULSE_KEYSTORE="$keystore"
+          ./gradlew :app:assembleGithubRelease --max-workers=2
+
+      # Имя и сумма - по соглашению Anvil: ampulse-X.Y.Z-android.apk, строка "<sha256>  <имя>" в SHA256SUMS.
+      - name: Name the APK and write SHA256SUMS
+        if: github.ref_type == 'tag'
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          mapfile -t apks < <(find app/build/outputs/apk/github/release -name '*.apk')
+          if [ "${#apks[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one release APK, found ${#apks[@]}"
+            exit 1
+          fi
+          mkdir -p dist
+          cp "${apks[0]}" "dist/ampulse-${version}-android.apk"
+          (cd dist && sha256sum "ampulse-${version}-android.apk" > SHA256SUMS)
+          cat dist/SHA256SUMS
+
+      - name: Upload release files
+        if: github.ref_type == 'tag'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-files
+          path: |
+            dist/ampulse-*-android.apk
+            dist/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 7
+
+      # Отчёты lint и тестов - только если сборка упала.
+      - name: Upload reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            app/build/reports
+            app/build/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # Публикация - отдельным заданием: только оно получает право записи и не видит ключа подписи.
+  publish:
+    name: Publish release
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      # Нужен только для заметок: аннотация тега. Подмодуль не нужен.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-files
+          path: dist
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          version="${tag#v}"
+          # checkout мог принести тег как простой коммит - берём тег целиком, с аннотацией.
+          git fetch --force origin "+refs/tags/${tag}:refs/tags/${tag}"
+          # Заметки - тело аннотации (git tag -a ... --cleanup=verbatim -F notes.md). Тег без аннотации - заметки GitHub.
+          notes_args=(--generate-notes)
+          if [ "$(git cat-file -t "refs/tags/${tag}")" = "tag" ]; then
+            git tag -l --format='%(contents)' "$tag" > notes.md
+            if [ -s notes.md ]; then notes_args=(--notes-file notes.md); fi
+          fi
+          # -alpha.N, -beta.N, -rc.N - пред-выпуск: его предлагают только тем, кто включил пред-выпуски.
+          pre_args=()
+          case "$version" in *-*) pre_args=(--prerelease) ;; esac
+          ls -l dist
+          gh release create "$tag" \
+            "dist/ampulse-${version}-android.apk" dist/SHA256SUMS \
+            --verify-tag --title "Ampulse ${version}" "${notes_args[@]}" "${pre_args[@]}"

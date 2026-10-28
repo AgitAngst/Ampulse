@@ -3,7 +3,9 @@
 *ampoule + pulse* — an offline phone app for tracking pills, injections and blood pressure: for
 yourself, a family member or a pet. [Русский](README.ru.md)
 
-**Status:** design mockup (49 screens, Russian and English, light and dark theme). No app code yet.
+**Status:** design mockup (49 screens, Russian and English, light and dark theme) and the 0.2.0 app
+skeleton for Android (tabs with empty states, settings, update from GitHub). The APK will be in
+[Releases](https://github.com/AgitAngst/Ampulse/releases) with the first release.
 
 ## Ideas
 
@@ -21,7 +23,7 @@ yourself, a family member or a pet. [Русский](README.ru.md)
 ## Repository
 
 - [SPEC.md](SPEC.md) — idea, features, plan (Russian)
-- [docs/](docs/README.md) — screens and the UI guideline (Russian)
+- [docs/](docs/README.md) — how to install, how to build, screens and the UI guideline (Russian)
 - [mockup/](mockup/README.md) — the exported design canvas
 
 All data in the mockup is fictional.
