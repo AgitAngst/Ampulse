@@ -93,9 +93,9 @@ tasks.matching { it.name.matches(Regex("(assemble|bundle|package)\\w*Release")) 
 }
 
 dependencies {
-    implementation("io.github.agitangst.anvil:anvil-compose")
+    implementation(libs.anvil.compose)
     // Обновление из GitHub — только в сборке github: с ним приходят разрешения на сеть и установку.
-    "githubImplementation"("io.github.agitangst.anvil:anvil-update")
+    "githubImplementation"(libs.anvil.update)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui.tooling.preview)
