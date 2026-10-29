@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- «Место укола» (этап 0.6): схема тела, ротация мест, доза и сахар; ключи те же в values -->
+
+    <!-- Шапка экрана и вид укола -->
+    <string name="injection_steps">Пошагово</string>
+    <string name="injection_route_sc">Подкожно</string>
+    <string name="injection_route_im">В мышцу</string>
+    <string name="injection_sub_route_sc">подкожно</string>
+    <string name="injection_sub_route_im">в мышцу</string>
+    <string name="injection_side_left">Левый бок</string>
+    <string name="injection_side_right">Правый бок</string>
+
+    <!-- Профиль в строке под заголовком -->
+    <string name="injection_kind_cat">кошка</string>
+    <string name="injection_kind_dog">собака</string>
+    <string name="injection_kind_pet">питомец</string>
+    <string name="injection_weight_kg">%s кг</string>
+
+    <!-- Схема: стороны человека, легенда, подсказка -->
+    <string name="injection_person_right">Правая</string>
+    <string name="injection_person_left">Левая</string>
+    <string name="injection_legend_best">Рекомендуем</string>
+    <string name="injection_legend_ok">Можно</string>
+    <string name="injection_legend_rest">Отдыхает</string>
+    <string name="injection_hint">Цифра — сколько дней назад кололи в это место; прочерк — сюда ещё не кололи.</string>
+    <string name="injection_hint_pet">Цифра — сколько дней назад кололи в это место; прочерк — сюда ещё не кололи. Холка видна с обеих сторон.</string>
+
+    <!-- Выбранное место: когда кололи в прошлый раз и метка -->
+    <string name="injection_last">Последний укол сюда: %s</string>
+    <string name="injection_never">Сюда ещё не кололи</string>
+    <string name="injection_ago_today">сегодня</string>
+    <string name="injection_ago_yesterday">вчера</string>
+    <plurals name="injection_days_ago">
+        <item quantity="one">%d день назад</item>
+        <item quantity="few">%d дня назад</item>
+        <item quantity="many">%d дней назад</item>
+        <item quantity="other">%d дня назад</item>
+    </plurals>
+    <string name="injection_tag_best">Рекомендуем</string>
+    <string name="injection_tag_ok">Можно</string>
+    <string name="injection_tag_rest">Пусть отдохнёт</string>
+
+    <!-- Подпись точки для TalkBack: место, когда кололи, метка -->
+    <string name="injection_dot_desc">%1$s, последний укол %2$s. %3$s</string>
+    <string name="injection_dot_desc_never">%1$s, сюда ещё не кололи. %2$s</string>
+
+    <!-- Доза и сахар крови -->
+    <string name="injection_dose">Доза</string>
+    <string name="injection_glucose">Сахар крови</string>
+    <string name="injection_glucose_optional">по желанию</string>
+    <string name="injection_glucose_unit">ммоль/л</string>
+    <string name="injection_glucose_note">сахар %s</string>
+
+    <!-- Главная кнопка -->
+    <string name="injection_done">Укол сделан · %s</string>
+
+    <!-- Названия мест: полное — в карточке выбранного, короткое — на кнопке -->
+    <string name="injection_site_abdomen_left">Живот, слева</string>
+    <string name="injection_site_abdomen_left_short">живот слева</string>
+    <string name="injection_site_abdomen_right">Живот, справа</string>
+    <string name="injection_site_abdomen_right_short">живот справа</string>
+    <string name="injection_site_thigh_left">Бедро, левое</string>
+    <string name="injection_site_thigh_left_short">левое бедро</string>
+    <string name="injection_site_thigh_right">Бедро, правое</string>
+    <string name="injection_site_thigh_right_short">правое бедро</string>
+    <string name="injection_site_arm_left">Плечо, левое</string>
+    <string name="injection_site_arm_left_short">левое плечо</string>
+    <string name="injection_site_arm_right">Плечо, правое</string>
+    <string name="injection_site_arm_right_short">правое плечо</string>
+    <string name="injection_site_buttock_left">Ягодица, левая</string>
+    <string name="injection_site_buttock_left_short">левая ягодица</string>
+    <string name="injection_site_buttock_right">Ягодица, правая</string>
+    <string name="injection_site_buttock_right_short">правая ягодица</string>
+    <string name="injection_site_outer_thigh_left">Бедро снаружи, левое</string>
+    <string name="injection_site_outer_thigh_left_short">левое бедро снаружи</string>
+    <string name="injection_site_outer_thigh_right">Бедро снаружи, правое</string>
+    <string name="injection_site_outer_thigh_right_short">правое бедро снаружи</string>
+    <string name="injection_site_scruff">Холка</string>
+    <string name="injection_site_scruff_short">холка</string>
+    <string name="injection_site_flank_left">Бок, слева</string>
+    <string name="injection_site_flank_left_short">бок слева</string>
+    <string name="injection_site_flank_right">Бок, справа</string>
+    <string name="injection_site_flank_right_short">бок справа</string>
+    <string name="injection_site_pet_thigh_left">Бедро, левое</string>
+    <string name="injection_site_pet_thigh_left_short">левое бедро</string>
+    <string name="injection_site_pet_thigh_right">Бедро, правое</string>
+    <string name="injection_site_pet_thigh_right_short">правое бедро</string>
+</resources>

@@ -68,6 +68,7 @@ import io.github.agitangst.ampulse.R
 import io.github.agitangst.ampulse.Route
 import io.github.agitangst.ampulse.SettingsButton
 import io.github.agitangst.ampulse.TabHeader
+import io.github.agitangst.ampulse.data.Codec
 import io.github.agitangst.ampulse.domain.DayItem
 import io.github.agitangst.ampulse.domain.DoseEvent
 import io.github.agitangst.ampulse.domain.DoseState
@@ -146,10 +147,15 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
     val prn = remember(meds, schedules, events, now) { prnLines(meds.orEmpty(), schedules, events, now) }
 
     val onTake: (DayItem) -> Unit = { item ->
-        scope.launch {
-            val check = repo.mark(item.planned, EventStatus.Taken, LocalDateTime.now())
-            // Повторная отметка не записывается — показываем, когда приём уже отмечен (защита от двойной дозы).
-            if (check is MarkCheck.AlreadyTaken) sheet = TodaySheetState.DoubleDose(item, check.at)
+        if (item.medicine.form == MedForm.Injection) {
+            // Укол — сначала «Место укола» (ротация мест, доза, сахар); отметка с местом пишется там.
+            nav.open(Route.Injection(item.medicine.id, Codec.millis(item.planned.at)))
+        } else {
+            scope.launch {
+                val check = repo.mark(item.planned, EventStatus.Taken, LocalDateTime.now())
+                // Повторная отметка не записывается — показываем, когда приём уже отмечен (защита от двойной дозы).
+                if (check is MarkCheck.AlreadyTaken) sheet = TodaySheetState.DoubleDose(item, check.at)
+            }
         }
     }
     val onUndo: (DayItem) -> Unit = { item -> item.event?.let { e -> scope.launch { repo.undo(e.id) } } }
