@@ -1,0 +1,132 @@
+# Ретранслятор Ampulse (server/): проверки и выпуск двух статических бинарников под Linux для центра Anvil.
+#   * по кнопке (Actions -> Server -> Run workflow): fmt, clippy, тесты, сборка x86_64 и arm64 (musl) артефактом;
+#   * на тег server-vX.Y.Z (X.Y.Z = версия в server/Cargo.toml): то же, затем GitHub Release с ampulse-server,
+#     ampulse-server-arm64 и SHA256SUMS; заметки Release - аннотация тега.
+# Теги приложения (vX.Y.Z) этот файл не запускают, а выпуск сервера не становится "последним" выпуском репозитория:
+# центр Anvil находит его по началу тега (server/module.toml, source.tag_prefix).
+# Запуск на push в ветку и на pull request намеренно нет: запускать - только по слову владельца (скилл github-ci).
+name: Server
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["server-v*"]
+
+concurrency:
+  group: server-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    name: Check and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+
+      # Дешёвое - первым: тег должен совпасть с версией пакета.
+      - name: Check tag against the package version
+        if: github.ref_type == 'tag'
+        working-directory: .
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          version="$(sed -n 's/^version = "\(.*\)"$/\1/p' server/Cargo.toml | head -n1)"
+          if ! printf '%s' "$tag" | grep -Eq '^server-v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::Tag '$tag' is not server-vX.Y.Z"
+            exit 1
+          fi
+          if [ "$tag" != "server-v$version" ]; then
+            echo "::error::Tag '$tag' does not match version $version in server/Cargo.toml (expected server-v$version). Raise the version first, then tag that commit."
+            exit 1
+          fi
+
+      # Версия Rust - как на ПК владельца (скилл github-ci): с -D warnings новый выпуск ломал бы проверку сам.
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.98.1"
+          components: clippy, rustfmt
+          targets: x86_64-unknown-linux-musl, aarch64-unknown-linux-musl
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: server
+
+      - run: cargo fmt --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked --no-fail-fast
+
+      # Статические бинарники: zig вместо C-компилятора под обе цели; версии - как на ПК.
+      - name: Install zig and cargo-zigbuild
+        run: python3 -m pip install --user ziglang==0.16.0 cargo-zigbuild==0.23.4
+      - name: Build x86_64 and arm64
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.local/bin:$PATH"
+          for target in x86_64-unknown-linux-musl aarch64-unknown-linux-musl; do
+            cargo zigbuild --release --locked --target "$target"
+          done
+      - name: Collect release files
+        working-directory: .
+        run: |
+          set -euo pipefail
+          mkdir dist
+          cp server/target/x86_64-unknown-linux-musl/release/ampulse-server dist/ampulse-server
+          cp server/target/aarch64-unknown-linux-musl/release/ampulse-server dist/ampulse-server-arm64
+          # Оба файла статические: на машине нет ни libc нужной версии, ни компилятора.
+          file dist/ampulse-server dist/ampulse-server-arm64
+          for f in dist/ampulse-server dist/ampulse-server-arm64; do
+            file "$f" | grep -q 'statically linked' || { echo "::error::$f is not statically linked"; exit 1; }
+          done
+          file dist/ampulse-server | grep -q 'x86-64' || { echo "::error::wrong architecture"; exit 1; }
+          file dist/ampulse-server-arm64 | grep -q 'ARM aarch64' || { echo "::error::wrong architecture"; exit 1; }
+          (cd dist && sha256sum ampulse-server ampulse-server-arm64 > SHA256SUMS && cat SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: server-files
+          path: dist
+          retention-days: 7
+
+  # Публикация - отдельным заданием: только оно получает право записи.
+  publish:
+    name: Publish release
+    if: github.ref_type == 'tag'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      # Нужен только для заметок: аннотация тега.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: server-files
+          path: dist
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          version="${tag#server-v}"
+          git fetch --force origin "+refs/tags/${tag}:refs/tags/${tag}"
+          notes_args=(--generate-notes)
+          if [ "$(git cat-file -t "refs/tags/${tag}")" = "tag" ]; then
+            git tag -l --format='%(contents)' "$tag" > notes.md
+            if [ -s notes.md ]; then notes_args=(--notes-file notes.md); fi
+          fi
+          ls -l dist
+          # --latest=false: "последний" выпуск репозитория остаётся за приложением.
+          gh release create "$tag" dist/ampulse-server dist/ampulse-server-arm64 dist/SHA256SUMS \
+            --verify-tag --latest=false --title "Ampulse server ${version}" "${notes_args[@]}"
