@@ -12,6 +12,7 @@ room = "2.8.5"
 camera = "1.6.2"
 mlkitBarcode = "17.3.0"
 tesseract = "4.8.0"
+zxing = "3.5.3"
 
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
@@ -36,6 +37,8 @@ camera-view = { module = "androidx.camera:camera-view", version.ref = "camera" }
 mlkit-barcode = { module = "com.google.mlkit:barcode-scanning", version.ref = "mlkitBarcode" }
 # Распознавание текста на фото без сети (русский и английский; модели — app/src/main/assets/tessdata).
 tesseract = { module = "cz.adaptech.tesseract4android:tesseract4android", version.ref = "tesseract" }
+# QR для близких и экстренной карты (только генерация).
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
 
 # Набор Anvil — из подмодуля anvil/ (includeBuild): версия — по коммиту подмодуля.
 anvil-compose = { module = "io.github.agitangst.anvil:anvil-compose" }

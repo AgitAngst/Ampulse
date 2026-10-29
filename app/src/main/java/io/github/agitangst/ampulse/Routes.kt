@@ -4,7 +4,13 @@ import androidx.compose.runtime.Composable
 import io.github.agitangst.ampulse.ui.AsNeededScreen
 import io.github.agitangst.ampulse.ui.ExpiryScreen
 import io.github.agitangst.ampulse.ui.ImportScreen
+import io.github.agitangst.ampulse.ui.CareScanScreen
+import io.github.agitangst.ampulse.ui.ContactEditScreen
+import io.github.agitangst.ampulse.ui.EmergencyEditScreen
+import io.github.agitangst.ampulse.ui.EmergencyScreen
 import io.github.agitangst.ampulse.ui.InjectionScreen
+import io.github.agitangst.ampulse.ui.ReportScreen
+import io.github.agitangst.ampulse.ui.ShareQrScreen
 import io.github.agitangst.ampulse.ui.PressureEntryScreen
 import io.github.agitangst.ampulse.ui.PressureHistoryScreen
 import io.github.agitangst.ampulse.ui.ProfileEditScreen
@@ -72,6 +78,23 @@ sealed interface Route {
     /** История давления (макет, экран 27). */
     data object PressureHistory : Route
 
+    /** Близкий: имя, телефон, какие SMS (`id` = 0 — новый). */
+    data class ContactEdit(val id: Long) : Route
+
+    /** QR с моим расписанием — для телефона близкого (макет, экран 13). */
+    data object ShareQr : Route
+
+    /** Сканер QR чужого расписания → профиль-копия (макет, экран 12). */
+    data object CareScan : Route
+
+    /** Экстренная карта текущего профиля (макет, экран 16). */
+    data object Emergency : Route
+
+    data object EmergencyEdit : Route
+
+    /** Отчёт врачу: период, PDF, «Поделиться» (макет, экраны 6, 13). */
+    data object Report : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -88,6 +111,12 @@ sealed interface Route {
         is ProfileEdit -> "profile:$id"
         PressureEntry -> "bp"
         PressureHistory -> "bphistory"
+        is ContactEdit -> "contact:$id"
+        ShareQr -> "shareqr"
+        CareScan -> "carescan"
+        Emergency -> "emergency"
+        EmergencyEdit -> "emergencyedit"
+        Report -> "report"
     }
 
     companion object {
@@ -114,6 +143,12 @@ sealed interface Route {
                 "profile" -> arg?.toLongOrNull()?.let(::ProfileEdit)
                 "bp" -> PressureEntry
                 "bphistory" -> PressureHistory
+                "contact" -> arg?.toLongOrNull()?.let(::ContactEdit)
+                "shareqr" -> ShareQr
+                "carescan" -> CareScan
+                "emergency" -> Emergency
+                "emergencyedit" -> EmergencyEdit
+                "report" -> Report
                 else -> null
             }
         }
@@ -151,5 +186,11 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         is Route.ProfileEdit -> ProfileEditScreen(route.id, nav)
         Route.PressureEntry -> PressureEntryScreen(nav)
         Route.PressureHistory -> PressureHistoryScreen(nav)
+        is Route.ContactEdit -> ContactEditScreen(route.id, nav)
+        Route.ShareQr -> ShareQrScreen(nav)
+        Route.CareScan -> CareScanScreen(nav)
+        Route.Emergency -> EmergencyScreen(nav)
+        Route.EmergencyEdit -> EmergencyEditScreen(nav)
+        Route.Report -> ReportScreen(nav)
     }
 }

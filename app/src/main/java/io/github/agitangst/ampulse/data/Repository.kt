@@ -1,5 +1,8 @@
 package io.github.agitangst.ampulse.data
 
+import io.github.agitangst.ampulse.domain.Contact
+import io.github.agitangst.ampulse.domain.EmergencyCard
+import io.github.agitangst.ampulse.domain.ProfileKind
 import androidx.room.withTransaction
 import io.github.agitangst.ampulse.domain.Reading
 import io.github.agitangst.ampulse.domain.ReadingSource
@@ -152,6 +155,55 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
         db.pressure().insert(PressureEntity(0, profileId, Codec.millis(r.at), r.sys, r.dia, r.pulse, source.name, r.note))
 
     suspend fun deleteReading(id: Long) = db.pressure().delete(id)
+
+    // --- Близкие, карта, копия расписания (этап 0.8) ---
+
+    val contacts: Flow<List<Contact>> = db.family().contacts().map { l -> l.map(FamilyCodec::contact) }
+
+    suspend fun contactsNow(): List<Contact> = db.family().contactsNow().map(FamilyCodec::contact)
+
+    suspend fun saveContact(c: Contact): Long = db.family().upsert(FamilyCodec.entity(c, System.currentTimeMillis())).let { if (c.id == 0L) it else c.id }
+
+    suspend fun deleteContact(id: Long) = db.family().deleteContact(id)
+
+    /** Экстренная карта профиля; нет — пустая. */
+    fun emergency(profileId: Long): Flow<EmergencyCard> = db.family().emergency(profileId).map { it?.let(FamilyCodec::card) ?: EmergencyCard(profileId) }
+
+    suspend fun emergencyNow(profileId: Long): EmergencyCard = db.family().emergencyNow(profileId)?.let(FamilyCodec::card) ?: EmergencyCard(profileId)
+
+    suspend fun saveEmergency(card: EmergencyCard) = db.family().upsert(FamilyCodec.entity(card))
+
+    /** Лекарства и схемы профиля — для QR «моё расписание близкому». Пауза и архив не передаются. */
+    suspend fun shareItems(profileId: Long): List<Pair<Medicine, Plan>> {
+        val meds = db.medicines().allNow().map(Codec::medicine).filter { it.profileId == profileId }
+        val byMed = db.schedules().allNow().map(Codec::schedule).groupBy { it.medicineId }
+        return meds.mapNotNull { m -> byMed[m.id]?.firstOrNull()?.plan?.takeIf { !it.paused }?.let { m to it } }
+    }
+
+    /**
+     * Копия расписания из QR: профиль-копия с именем владельца (тот же — обновляется, лекарства заменяются). Возвращает
+     * id профиля.
+     */
+    suspend fun importShared(shared: ScheduleShare.Shared): Long {
+        val id = db.withTransaction {
+            val existing = db.profiles().allNow().firstOrNull { it.watchOnly && it.name.equals(shared.owner, ignoreCase = true) }
+            val profileId = existing?.id
+                ?: db.profiles().upsert(CareCodec.entity(Profile(0, shared.owner, ProfileKind.Person, watchOnly = true), System.currentTimeMillis()))
+            db.profiles().deleteMedicines(profileId)
+            shared.items.forEach { (m, p) ->
+                val medId = db.medicines().insert(
+                    MedicineEntity(
+                        name = m.name, strength = m.strength, form = m.form.name, unit = m.unit, important = m.important, food = m.food.name,
+                        note = m.note, createdAt = System.currentTimeMillis(), profileId = profileId,
+                    ),
+                )
+                db.schedules().upsert(Codec.entity(medId, p))
+            }
+            profileId
+        }
+        onChange.onPlanChanged()
+        return id
+    }
 
     // --- Аптечка (этап 0.4) ---
 

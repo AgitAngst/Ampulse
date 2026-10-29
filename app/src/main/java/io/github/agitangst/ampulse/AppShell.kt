@@ -145,7 +145,7 @@ private fun TabContent(tab: Tab, nav: Nav) {
         Tab.Today -> TodayScreen(nav)
         Tab.History -> HistoryScreen(nav)
         Tab.Medicines -> MedicinesScreen(nav)
-        Tab.Family -> FamilyScreen()
+        Tab.Family -> FamilyScreen(nav)
     }
 }
 

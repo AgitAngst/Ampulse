@@ -1,5 +1,6 @@
 package io.github.agitangst.ampulse
 
+import io.github.agitangst.ampulse.ui.FamilyTab
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -42,18 +43,9 @@ import io.github.agitangst.anvil.compose.AnvilTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-/** «Близкие»: людей, которым придёт SMS, пока нет. */
+/** «Близкие» (этап 0.8) — `ui/FamilyScreens.kt`. */
 @Composable
-fun FamilyScreen(modifier: Modifier = Modifier) {
-    PageLayout(modifier, header = { TabHeader(stringResource(R.string.tab_family)) }) {
-        EmptyState(
-            AmpulseIcons.Users,
-            stringResource(R.string.family_empty_title),
-            stringResource(R.string.family_empty_hint),
-            Modifier.weight(1f),
-        )
-    }
-}
+fun FamilyScreen(nav: Nav, modifier: Modifier = Modifier) = FamilyTab(nav, modifier)
 
 /** Корень вкладки: поля 20, сверху 24, промежуток между блоками 16 (docs/ui-guideline.md, §2). */
 @Composable
