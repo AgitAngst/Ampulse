@@ -35,6 +35,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import io.github.agitangst.ampulse.ui.HistoryScreen
+import io.github.agitangst.ampulse.ui.PendingImport
 import io.github.agitangst.ampulse.ui.MedicinesScreen
 import io.github.agitangst.ampulse.ui.TodayScreen
 import androidx.compose.runtime.setValue
@@ -92,6 +93,9 @@ fun AppShell(settings: AnvilSettings) {
         )
     }
     val top = stack.lastOrNull()?.let(Route::decode)
+    // Пришёл текст из «Поделиться» — открыть разбор назначения.
+    val shared = PendingImport.text
+    LaunchedEffect(shared) { if (shared != null && top != Route.Import) nav.open(Route.Import) }
 
     // Проверка обновления при первом показе: раз за процесс и только если включено «Проверять обновления».
     if (!LocalInspectionMode.current) {

@@ -3,6 +3,7 @@ package io.github.agitangst.ampulse
 import androidx.compose.runtime.Composable
 import io.github.agitangst.ampulse.ui.AsNeededScreen
 import io.github.agitangst.ampulse.ui.ExpiryScreen
+import io.github.agitangst.ampulse.ui.ImportScreen
 import io.github.agitangst.ampulse.ui.MedicineEditScreen
 import io.github.agitangst.ampulse.ui.PackEditScreen
 import io.github.agitangst.ampulse.ui.ScanScreen
@@ -34,6 +35,9 @@ sealed interface Route {
     /** Сканер упаковки (макет, экран 14). */
     data object Scan : Route
 
+    /** Назначение → план: текст, фото, голос, файл (макет, экраны 7–9). Текст из «Поделиться» — `PendingImport`. */
+    data object Import : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -42,6 +46,7 @@ sealed interface Route {
         is PackEdit -> "pack:$medicineId:$packId:${if (fromScan) 1 else 0}"
         Expiry -> "expiry"
         Scan -> "scan"
+        Import -> "import"
     }
 
     companion object {
@@ -58,6 +63,7 @@ sealed interface Route {
                 }
                 "expiry" -> Expiry
                 "scan" -> Scan
+                "import" -> Import
                 else -> null
             }
         }
@@ -82,5 +88,6 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         is Route.PackEdit -> PackEditScreen(route.medicineId, route.packId, route.fromScan, nav)
         Route.Expiry -> ExpiryScreen(nav)
         Route.Scan -> ScanScreen(nav)
+        Route.Import -> ImportScreen(nav)
     }
 }
