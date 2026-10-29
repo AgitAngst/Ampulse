@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Значок-заглушка: белая линейная ампула (Lucide-подобная, линия 1,8 на сетке 24), увеличенная в 2,8 раза и
-    поставленная в центр 108 dp; вся внутри безопасной зоны 66 dp. Настоящий значок — отдельно, по ICONS.md.
+    Одноцветный значок (тема системы): стекло целиком непрозрачное, жидкость — вполовину прозрачнее, поэтому
+    линия пульса читается как граница. Стекло обрезано по линии пульса, чтобы слои не накладывались.
+    Размеры и положение как у ic_launcher_foreground.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
@@ -9,21 +10,24 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
     <group
-        android:scaleX="2.8"
-        android:scaleY="2.8"
-        android:translateX="20.4"
-        android:translateY="20.4">
-        <path
-            android:pathData="M10.5,3h3v5c3,1.5 4.5,4 4.5,7a6,6 0,0 1,-12 0c0,-3 1.5,-5.5 4.5,-7V3Z"
-            android:strokeColor="#FFFFFF"
-            android:strokeLineCap="round"
-            android:strokeLineJoin="round"
-            android:strokeWidth="1.8" />
-        <path
-            android:pathData="M6.2,15.5h11.6"
-            android:strokeColor="#FFFFFF"
-            android:strokeLineCap="round"
-            android:strokeLineJoin="round"
-            android:strokeWidth="1.8" />
+        android:scaleX="0.09375"
+        android:scaleY="0.09375"
+        android:translateX="6"
+        android:translateY="6.19">
+        <group>
+            <clip-path
+                android:pathData="M0,0 L1024,0 L1024,590 L612,590 L552,720 L474,440 L400,590 L0,590 Z" />
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M464,240 Q464,190 512,190 Q560,190 560,240 L560,340 C560,410 702,400 702,520 L702,640 A190,190 0 0,1 322,640 L322,520 C322,400 464,410 464,340 Z" />
+        </group>
+        <group>
+            <clip-path
+                android:pathData="M464,240 Q464,190 512,190 Q560,190 560,240 L560,340 C560,410 702,400 702,520 L702,640 A190,190 0 0,1 322,640 L322,520 C322,400 464,410 464,340 Z" />
+            <path
+                android:fillColor="#FFFFFF"
+                android:fillAlpha="0.5"
+                android:pathData="M322,590 L400,590 L474,440 L552,720 L612,590 L702,590 L702,900 L322,900 Z" />
+        </group>
     </group>
 </vector>
