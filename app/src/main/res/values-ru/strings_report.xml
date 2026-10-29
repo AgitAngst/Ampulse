@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Отчёт врачу в PDF (этап 0.8, задача 3.1, макет — «История»); ключи те же в values -->
+
+    <!-- Вход в «Истории» -->
+    <string name="report_entry">Отчёт врачу (PDF)</string>
+    <string name="report_entry_hint">Приёмы, пропуски с причинами и давление за выбранный период</string>
+
+    <!-- Экран -->
+    <string name="report_title">Отчёт врачу</string>
+    <string name="report_intro">PDF, чтобы показать на приёме или отправить врачу. Пока вы не поделитесь файлом, данные остаются на этом телефоне.</string>
+    <string name="report_period_h">Период</string>
+    <string name="report_range">%1$s – %2$s</string>
+    <string name="report_profile_h">Чей отчёт</string>
+    <string name="report_profile_me">Я</string>
+    <string name="report_profile_hint">Отчёт собирается по текущему профилю</string>
+    <string name="report_content_h">Что войдёт</string>
+    <string name="report_sw_doses">Приёмы лекарств</string>
+    <string name="report_sw_doses_hint">Соблюдение, пропуски с причинами, лишние приёмы</string>
+    <string name="report_sw_pressure">Давление</string>
+    <string name="report_sw_pressure_hint">Средние утром и вечером, замеры по дням</string>
+    <string name="report_preview_h">Сводка</string>
+    <string name="report_preview_none_selected">Ничего не выбрано</string>
+    <string name="report_preview_no_doses">Приёмов по схеме за этот период ещё не было</string>
+    <string name="report_preview_no_pressure">Замеров давления за этот период нет</string>
+    <string name="report_preview_a11y">Принято %1$s приёмов по схеме</string>
+    <string name="report_taken_of">Принято %1$d из %2$d</string>
+    <string name="report_of">%1$d из %2$d</string>
+    <string name="report_stat_skipped">Пропущено с отметкой</string>
+    <string name="report_stat_missed">Не отмечено</string>
+    <string name="report_stat_extra">Лишние приёмы</string>
+    <string name="report_stat_prn">%1$s — по необходимости</string>
+    <string name="report_stat_bp_morning">Утром в среднем, мм рт. ст.</string>
+    <string name="report_stat_bp_evening">Вечером в среднем, мм рт. ст.</string>
+    <string name="report_stat_bp_count">Замеры</string>
+
+    <!-- Кнопки и сообщения внизу -->
+    <string name="report_create">Создать PDF</string>
+    <string name="report_creating">Создаю PDF…</string>
+    <string name="report_done">PDF готов: %1$s</string>
+    <string name="report_share">Поделиться…</string>
+    <string name="report_open">Открыть…</string>
+    <string name="report_nothing_hint">Нечего включать: включите раздел, в котором за этот период есть данные</string>
+    <string name="report_error">Не получилось создать PDF: %1$s. Попробуйте ещё раз.</string>
+    <string name="report_no_share">На телефоне нет программы, которая примет файл. Попробуйте «Открыть…».</string>
+    <string name="report_no_viewer">На телефоне нет программы для просмотра PDF — нажмите «Поделиться…».</string>
+    <string name="report_share_title">Отправить отчёт</string>
+    <string name="report_share_subject">Отчёт для врача из Ampulse</string>
+
+    <!-- Сам PDF: язык — языка программы -->
+    <string name="report_pdf_title">Отчёт для врача</string>
+    <string name="report_pdf_version">Ampulse %1$s</string>
+    <string name="report_pdf_profile">Профиль: %1$s</string>
+    <string name="report_pdf_period">Период: %1$s – %2$s (%3$s)</string>
+    <string name="report_pdf_created">Создан: %1$s</string>
+    <string name="report_pdf_footer">Данные из приложения Ampulse; дозы назначает врач.</string>
+    <string name="report_pdf_page">Стр. %1$d из %2$d</string>
+
+    <string name="report_pdf_adherence_h">Соблюдение схемы</string>
+    <string name="report_pdf_adherence_none">За этот период не было приёмов по схеме.</string>
+    <string name="report_pdf_adherence_total">Принято %1$d из %2$d приёмов по схеме (%3$s)</string>
+    <string name="report_pdf_adherence_note">Считаются только приёмы, время которых прошло; будущие пропусками не считаются. «Не отмечено» — приём без отметки в обе стороны.</string>
+    <string name="report_pdf_col_med">Лекарство</string>
+    <string name="report_pdf_col_plan">Схема</string>
+    <string name="report_pdf_col_taken">Принято</string>
+    <string name="report_pdf_col_percent">%%</string>
+    <string name="report_pdf_col_skipped">Пропущено</string>
+    <string name="report_pdf_col_missed">Не отмечено</string>
+    <string name="report_pdf_col_extra">Лишние</string>
+
+    <string name="report_pdf_skips_h">Пропущенные приёмы</string>
+    <string name="report_pdf_skips_none">Приёмов с отметкой «пропущено» нет.</string>
+    <string name="report_pdf_col_when">Дата и время</string>
+    <string name="report_pdf_col_reason">Причина</string>
+    <string name="report_pdf_reason_none">не указана</string>
+
+    <string name="report_pdf_extra_h">Лишние приёмы</string>
+    <string name="report_pdf_col_dose">Доза</string>
+
+    <string name="report_pdf_prn_h">По необходимости</string>
+    <string name="report_pdf_col_times">Раз за период</string>
+
+    <string name="report_pdf_bp_h">Давление</string>
+    <string name="report_pdf_bp_target">Цель врача: ниже %1$d/%2$d мм рт. ст.</string>
+    <string name="report_pdf_bp_none">За этот период замеров нет.</string>
+    <string name="report_pdf_bp_morning">Утром (до 12:00)</string>
+    <string name="report_pdf_bp_evening">Вечером (с 17:00)</string>
+    <string name="report_pdf_bp_avg">%1$s: в среднем %2$s</string>
+    <string name="report_pdf_bp_mm">%1$d/%2$d мм рт. ст.</string>
+    <string name="report_pdf_bp_pulse">, пульс %1$d уд/мин</string>
+    <string name="report_pdf_bp_total">Всего: %1$s</string>
+    <string name="report_pdf_bp_table_note">Среднее за день, мм рт. ст.; пульс — в скобках, уд/мин.</string>
+    <string name="report_pdf_bp_flag">* вне цели врача (выше цели или слишком низкое)</string>
+    <string name="report_pdf_col_date">Дата</string>
+    <string name="report_pdf_col_morning">Утро</string>
+    <string name="report_pdf_col_daytime">День</string>
+    <string name="report_pdf_col_evening">Вечер</string>
+    <plurals name="report_pdf_bp_readings">
+        <item quantity="one">%d замер</item>
+        <item quantity="few">%d замера</item>
+        <item quantity="many">%d замеров</item>
+        <item quantity="other">%d замера</item>
+    </plurals>
+</resources>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Снимок рецепта с камеры пишется сюда на время распознавания и сразу удаляется (ui/Capture.kt). -->
+<!--
+    Что FileProvider отдаёт другим программам — только подпапки кэша: снимок рецепта на время распознавания (сразу
+    удаляется, ui/Capture.kt) и PDF отчёта врачу (ui/ReportPdf.kt).
+-->
 <paths>
     <cache-path name="capture" path="capture/" />
+    <cache-path name="reports" path="reports/" />
 </paths>

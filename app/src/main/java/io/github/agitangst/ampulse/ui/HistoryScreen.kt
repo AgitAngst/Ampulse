@@ -100,7 +100,7 @@ private class HistoryLine(
 
 /**
  * «История» (макет, экран 6): календарь месяца с долей принятого, итог месяца, подсказка про частые пропуски и отметки
- * выбранного дня. Данные — из [AppGraph.repository]. Отчёт врачу (PDF) — этап 0.8.
+ * выбранного дня. Данные — из [AppGraph.repository]. Внизу — вход в отчёт врачу (PDF): [ReportEntry] → [ReportScreen].
  */
 @Composable
 fun HistoryScreen(nav: Nav, modifier: Modifier = Modifier) {
@@ -188,6 +188,7 @@ fun HistoryScreen(nav: Nav, modifier: Modifier = Modifier) {
                         dayLines(selected, stat, events, meds.associateBy { it.id })
                     }
                     DayCard(selected, lines, time, locale)
+                    ReportEntry(onClick = { nav.open(Route.Report) })
                 }
             }
         }
