@@ -90,5 +90,19 @@
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <!--
+            Файлы для других программ (PDF отчёта врачу — «Поделиться» и «Открыть», этап 0.8): только то, что лежит в
+            cacheDir по res/xml/file_paths.xml, и только по выданному на один раз адресу.
+        -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 </manifest>

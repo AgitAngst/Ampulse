@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Что FileProvider отдаёт другим программам: только подпапки кэша. PDF отчёта врачу — cacheDir/reports (ReportPdf). -->
+<paths>
+    <cache-path name="reports" path="reports/" />
+</paths>

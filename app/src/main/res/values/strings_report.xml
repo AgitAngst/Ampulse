@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Отчёт врачу в PDF (этап 0.8, задача 3.1, макет — «История»); ключи те же в values-ru -->
+
+    <!-- Вход в «Истории» -->
+    <string name="report_entry">Doctor\'s report (PDF)</string>
+    <string name="report_entry_hint">Doses, skips with reasons and blood pressure for the chosen period</string>
+
+    <!-- Экран -->
+    <string name="report_title">Doctor\'s report</string>
+    <string name="report_intro">A PDF to show at an appointment or send to the doctor. The data stays on this phone until you share the file.</string>
+    <string name="report_period_h">Period</string>
+    <string name="report_range">%1$s – %2$s</string>
+    <string name="report_profile_h">Whose report</string>
+    <string name="report_profile_me">Me</string>
+    <string name="report_profile_hint">The report covers the current profile</string>
+    <string name="report_content_h">What goes in</string>
+    <string name="report_sw_doses">Doses</string>
+    <string name="report_sw_doses_hint">Adherence, skips with reasons, extra doses</string>
+    <string name="report_sw_pressure">Blood pressure</string>
+    <string name="report_sw_pressure_hint">Morning and evening averages, readings by day</string>
+    <string name="report_preview_h">Summary</string>
+    <string name="report_preview_none_selected">Nothing is selected</string>
+    <string name="report_preview_no_doses">No scheduled doses in this period yet</string>
+    <string name="report_preview_no_pressure">No blood pressure readings in this period</string>
+    <string name="report_preview_a11y">%1$s of scheduled doses taken</string>
+    <string name="report_taken_of">Taken %1$d of %2$d</string>
+    <string name="report_of">%1$d of %2$d</string>
+    <string name="report_stat_skipped">Skipped, with a mark</string>
+    <string name="report_stat_missed">Not marked</string>
+    <string name="report_stat_extra">Extra doses</string>
+    <string name="report_stat_prn">%1$s, as needed</string>
+    <string name="report_stat_bp_morning">Morning average, mmHg</string>
+    <string name="report_stat_bp_evening">Evening average, mmHg</string>
+    <string name="report_stat_bp_count">Readings</string>
+
+    <!-- Кнопки и сообщения внизу -->
+    <string name="report_create">Create PDF</string>
+    <string name="report_creating">Creating PDF…</string>
+    <string name="report_done">The PDF is ready: %1$s</string>
+    <string name="report_share">Share…</string>
+    <string name="report_open">Open…</string>
+    <string name="report_nothing_hint">Nothing to include: turn on a section that has data for this period</string>
+    <string name="report_error">Could not create the PDF: %1$s. Try again.</string>
+    <string name="report_no_share">No app on this phone can receive the file. Try Open instead.</string>
+    <string name="report_no_viewer">No app on this phone can open a PDF. Use Share instead.</string>
+    <string name="report_share_title">Send the report</string>
+    <string name="report_share_subject">Doctor\'s report from Ampulse</string>
+
+    <!-- Сам PDF: язык — языка программы -->
+    <string name="report_pdf_title">Report for the doctor</string>
+    <string name="report_pdf_version">Ampulse %1$s</string>
+    <string name="report_pdf_profile">Profile: %1$s</string>
+    <string name="report_pdf_period">Period: %1$s – %2$s (%3$s)</string>
+    <string name="report_pdf_created">Created: %1$s</string>
+    <string name="report_pdf_footer">Data from the Ampulse app; doses are prescribed by the doctor.</string>
+    <string name="report_pdf_page">Page %1$d of %2$d</string>
+
+    <string name="report_pdf_adherence_h">Adherence to the schedule</string>
+    <string name="report_pdf_adherence_none">No scheduled doses fell in this period.</string>
+    <string name="report_pdf_adherence_total">Taken %1$d of %2$d scheduled doses (%3$s)</string>
+    <string name="report_pdf_adherence_note">Only doses whose time has passed are counted; upcoming doses are not misses. \"Not marked\" is a dose with no mark either way.</string>
+    <string name="report_pdf_col_med">Medicine</string>
+    <string name="report_pdf_col_plan">Schedule</string>
+    <string name="report_pdf_col_taken">Taken</string>
+    <string name="report_pdf_col_percent">%%</string>
+    <string name="report_pdf_col_skipped">Skipped</string>
+    <string name="report_pdf_col_missed">Not marked</string>
+    <string name="report_pdf_col_extra">Extra</string>
+
+    <string name="report_pdf_skips_h">Skipped doses</string>
+    <string name="report_pdf_skips_none">No doses were marked as skipped.</string>
+    <string name="report_pdf_col_when">Date and time</string>
+    <string name="report_pdf_col_reason">Reason</string>
+    <string name="report_pdf_reason_none">not given</string>
+
+    <string name="report_pdf_extra_h">Extra doses</string>
+    <string name="report_pdf_col_dose">Dose</string>
+
+    <string name="report_pdf_prn_h">As needed</string>
+    <string name="report_pdf_col_times">Times in the period</string>
+
+    <string name="report_pdf_bp_h">Blood pressure</string>
+    <string name="report_pdf_bp_target">Doctor\'s target: below %1$d/%2$d mmHg</string>
+    <string name="report_pdf_bp_none">No readings in this period.</string>
+    <string name="report_pdf_bp_morning">Morning (before 12:00)</string>
+    <string name="report_pdf_bp_evening">Evening (from 17:00)</string>
+    <string name="report_pdf_bp_avg">%1$s: average %2$s</string>
+    <string name="report_pdf_bp_mm">%1$d/%2$d mmHg</string>
+    <string name="report_pdf_bp_pulse">, pulse %1$d bpm</string>
+    <string name="report_pdf_bp_total">Total: %1$s</string>
+    <string name="report_pdf_bp_table_note">Average of the day\'s readings, mmHg; pulse in brackets, bpm.</string>
+    <string name="report_pdf_bp_flag">* outside the doctor\'s target (above it or too low)</string>
+    <string name="report_pdf_col_date">Date</string>
+    <string name="report_pdf_col_morning">Morning</string>
+    <string name="report_pdf_col_daytime">Daytime</string>
+    <string name="report_pdf_col_evening">Evening</string>
+    <plurals name="report_pdf_bp_readings">
+        <item quantity="one">%d reading</item>
+        <item quantity="other">%d readings</item>
+    </plurals>
+</resources>
