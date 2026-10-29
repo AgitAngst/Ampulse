@@ -1,5 +1,6 @@
 # Сборка Ampulse на GitHub (скилл github-ci, anvil/docs/ANDROID.md разделы 4–5, RELEASES.md).
-#   * по кнопке (Actions -> Android -> Run workflow): тесты, lint и отладочный APK артефактом;
+#   * по кнопке (Actions -> Android -> Run workflow): тесты, lint и отладочный APK артефактом, проверка сборок rustore и
+#     play; с галочкой "stores" - ещё подписанные rustore APK и play AAB артефактом (в Release не идут, ANDROID.md §5);
 #   * на тег vX.Y.Z (X.Y.Z = appVersion в gradle.properties): то же без отладочного APK, затем подписанный
 #     ampulse-X.Y.Z-android.apk + SHA256SUMS и GitHub Release; заметки Release - аннотация тега.
 # Запуск на push в ветку и на pull request намеренно нет: запускать - только по слову владельца.
@@ -7,6 +8,11 @@ name: Android
 
 on:
   workflow_dispatch:
+    inputs:
+      stores:
+        description: "Also build signed RuStore APK and Google Play AAB (artifact, not released)"
+        type: boolean
+        default: false
   push:
     tags: ["v*"]
 
@@ -82,6 +88,45 @@ jobs:
       - name: Test, lint, debug APK
         if: github.ref_type != 'tag'
         run: ./gradlew :app:testGithubDebugUnitTest :app:lintGithubDebug :app:assembleGithubDebug --max-workers=2
+
+      # Сборки магазинов отличаются своим кодом (src/stores) и манифестами - собираются ли они, проверять каждый раз.
+      - name: Store builds compile (rustore, play)
+        if: github.ref_type != 'tag'
+        run: ./gradlew :app:assembleRustoreDebug :app:assemblePlayDebug --max-workers=2
+
+      # Подписанные сборки для магазинов - только по галочке; ключ видит только этот шаг.
+      - name: Signed store builds (RuStore APK, Google Play AAB)
+        if: github.ref_type != 'tag' && inputs.stores
+        env:
+          KEYSTORE_B64: ${{ secrets.AMPULSE_KEYSTORE }}
+          AMPULSE_KEYSTORE_PASSWORD: ${{ secrets.AMPULSE_KEYSTORE_PASSWORD }}
+          AMPULSE_KEY_ALIAS: ${{ secrets.AMPULSE_KEY_ALIAS }}
+          AMPULSE_KEY_PASSWORD: ${{ secrets.AMPULSE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "::error::Signing secrets are missing: create the key with scripts/new-keystore.ps1 and add the secrets (docs/dev/development.md)."
+            exit 1
+          fi
+          keystore="$RUNNER_TEMP/ampulse-release.jks"
+          trap 'rm -f "$keystore"' EXIT
+          printf '%s' "$KEYSTORE_B64" | tr -d '\r\n ' | base64 -d > "$keystore"
+          export AMPULSE_KEYSTORE="$keystore"
+          ./gradlew :app:assembleRustoreRelease :app:bundlePlayRelease --max-workers=2
+          version="$(sed -n 's/^appVersion=//p' gradle.properties | tr -d '[:space:]')"
+          mkdir -p stores
+          cp "$(find app/build/outputs/apk/rustore/release -name '*.apk' | head -n1)" "stores/ampulse-${version}-rustore.apk"
+          cp "$(find app/build/outputs/bundle/playRelease -name '*.aab' | head -n1)" "stores/ampulse-${version}-play.aab"
+          (cd stores && sha256sum * > SHA256SUMS && cat SHA256SUMS)
+
+      - name: Upload store builds
+        if: github.ref_type != 'tag' && inputs.stores
+        uses: actions/upload-artifact@v4
+        with:
+          name: ampulse-store-builds
+          path: stores/
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Upload debug APK
         if: github.ref_type != 'tag'

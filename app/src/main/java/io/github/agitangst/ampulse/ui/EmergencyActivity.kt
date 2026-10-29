@@ -26,9 +26,9 @@ import androidx.core.content.edit
 import io.github.agitangst.ampulse.AmpulseTheme
 import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.R
-import io.github.agitangst.ampulse.Store
 import io.github.agitangst.ampulse.ampulsePalette
 import io.github.agitangst.ampulse.domain.FamilyTexts
+import io.github.agitangst.ampulse.reminders.SmsOut
 import io.github.agitangst.anvil.compose.AnvilActivity
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -163,7 +163,7 @@ internal object EmergencySms {
         val text = FamilyTexts.emergencyOpened(ru, who, LocalDateTime.now())
         var sent = false
         for (contact in contacts) {
-            if (Store.sendSms(app, contact.phone, text)) sent = true
+            if (SmsOut.deliver(app, contact.name, contact.phone, text)) sent = true
         }
         if (sent) prefs.edit { putLong(KEY_SENT_AT, now) }
     }

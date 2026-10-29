@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.util.Log
 import io.github.agitangst.ampulse.AppGraph
-import io.github.agitangst.ampulse.Store
 import io.github.agitangst.ampulse.data.Codec
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -106,9 +105,10 @@ class Reminders(context: Context) {
         val nowMs = System.currentTimeMillis()
         // Отметки за двое суток назад: приём, отмеченный заранее или с опозданием, всё равно найдётся.
         val events = repository.eventsNow(now.minusDays(2), now.plusDays(1))
-        // Копии чужого расписания не напоминаются; «проверка» для SMS о пропуске — только если есть кому и чем слать.
+        // Копии чужого расписания не напоминаются; «проверка» для SMS о пропуске — только если есть кому слать (в сборках
+        // магазинов SMS не уходит сама — вместо неё уведомление с готовым сообщением, SmsOut).
         val silent = repository.profiles.first().filter { it.watchOnly }.map { it.id }.toSet()
-        val missedCheck = Store.SILENT_SMS && repository.contactsNow().any { it.smsMissed && it.phone.isNotBlank() }
+        val missedCheck = repository.contactsNow().any { it.smsMissed && it.phone.isNotBlank() }
         val plan = ReminderPlan.upcoming(repository.schedulesNow(), repository.medicines.first(), events, now, silent, missedCheck)
         Notifier.ensureChannels(app)
 

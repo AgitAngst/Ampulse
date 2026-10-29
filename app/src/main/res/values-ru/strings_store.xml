@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SMS близкому в сборках магазинов: уведомление вместо отправки (reminders/SmsOut.kt). -->
+    <string name="sms_channel">SMS близким</string>
+    <string name="sms_compose_title">Отправьте SMS: %1$s</string>
+    <string name="sms_compose_hint">Коснитесь — откроется готовое сообщение, останется нажать «Отправить».</string>
+</resources>

@@ -5,7 +5,6 @@ import android.util.Log
 import io.github.agitangst.anvil.compose.AnvilLocale
 import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.R
-import io.github.agitangst.ampulse.Store
 import io.github.agitangst.ampulse.data.Codec
 import io.github.agitangst.ampulse.domain.FamilyTexts
 import io.github.agitangst.ampulse.ui.FamilyPhone
@@ -44,7 +43,7 @@ internal object MissedSms {
         val text = FamilyTexts.missed(ru, who, medicine, dose.planned)
         var sent = 0
         for (contact in recipients) {
-            if (Store.sendSms(app, FamilyPhone.clean(contact.phone), text)) sent++
+            if (SmsOut.deliver(app, contact.name, FamilyPhone.clean(contact.phone), text)) sent++
         }
         Log.i(TAG, "Missed-dose SMS for medicine ${dose.medicineId}: $sent of ${recipients.size} sent")
     }
