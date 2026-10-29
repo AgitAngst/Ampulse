@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Сканер упаковки (этап 0.4, макет — экран 14); ключи те же в values -->
+
+    <!-- Окно камеры -->
+    <string name="scan_title">Код на упаковке</string>
+    <string name="scan_close">Закрыть сканер</string>
+    <string name="scan_torch">Фонарик</string>
+    <string name="scan_hint">Наведите на квадратный код «Честного знака»</string>
+    <string name="scan_not_code">Это не код лекарства</string>
+
+    <!-- Нет доступа к камере и камера не открылась -->
+    <string name="scan_perm_title">Камера выключена</string>
+    <string name="scan_perm_hint">Камера нужна только чтобы прочитать код на упаковке. Снимки не сохраняются и никуда не отправляются.</string>
+    <string name="scan_perm_blocked">Система больше не спросит — включите камеру в настройках приложения.</string>
+    <string name="scan_perm_allow">Разрешить</string>
+    <string name="scan_perm_settings">Открыть настройки</string>
+    <string name="scan_cam_failed_title">Камера не открылась</string>
+    <string name="scan_cam_failed_hint">Закройте другие программы, которые используют камеру, и откройте сканер снова.</string>
+
+    <!-- Карточка результата -->
+    <string name="scan_result">Результат</string>
+    <string name="scan_status_ok">Код прочитан на телефоне, без интернета</string>
+    <string name="scan_status_dup">Эта упаковка уже в аптечке</string>
+    <string name="scan_unknown_title">Лекарство не найдено в аптечке</string>
+    <string name="scan_gtin">Код товара (GTIN) %1$s</string>
+    <string name="scan_expires">Годен до</string>
+    <string name="scan_batch">Серия</string>
+    <string name="scan_pack_no">Упаковка №</string>
+    <string name="scan_note">Срок, серия и номер — из самого кода; подлинность и отзыв партии без интернета не проверить.</string>
+    <string name="scan_no_expiry">В коде нет срока годности — введите его с упаковки.</string>
+    <string name="scan_expired">Срок годности истёк.</string>
+    <!-- Срок как на упаковке (java.time): месяц и год -->
+    <string name="scan_expiry_month_pattern">MM.yyyy</string>
+
+    <!-- Действия -->
+    <string name="scan_add">Добавить в аптечку</string>
+    <string name="scan_choose">Выбрать лекарство</string>
+    <string name="scan_new">Новое лекарство</string>
+    <string name="scan_again">Сканировать ещё</string>
+
+    <!-- Лист выбора лекарства -->
+    <string name="scan_choose_title">Какое это лекарство?</string>
+    <string name="scan_choose_empty">Лекарств пока нет. Сначала добавьте новое.</string>
+</resources>
