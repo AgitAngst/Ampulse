@@ -59,7 +59,7 @@ internal fun ScanCamera(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val owner: LifecycleOwner? = LocalActivity.current
+    val owner: LifecycleOwner? = LocalActivity.current as? LifecycleOwner
     val latestOnRaw by rememberUpdatedState(onRaw)
     val latestOnFlash by rememberUpdatedState(onFlash)
     val latestOnError by rememberUpdatedState(onError)

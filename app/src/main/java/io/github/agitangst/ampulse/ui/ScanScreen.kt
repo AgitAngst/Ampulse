@@ -247,6 +247,17 @@ fun ScanScreen(nav: Nav) {
     val allPacks = packs
     val match = if (current != null && allMedicines != null && allPacks != null) matchCode(current, allMedicines, allPacks) else null
 
+    // Экран во весь рост (оболочка не даёт ему верхний отступ): отступы системных панелей — у верхних частей,
+    // значки строки состояния — светлые на тёмном, как бы ни была настроена тема.
+    val topInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+    val view = androidx.compose.ui.platform.LocalView.current
+    DisposableEffect(view) {
+        val window = (view.context as? android.app.Activity)?.window
+        val bars = window?.let { androidx.core.view.WindowCompat.getInsetsController(it, view) }
+        val before = bars?.isAppearanceLightStatusBars
+        bars?.isAppearanceLightStatusBars = false
+        onDispose { if (bars != null && before != null) bars.isAppearanceLightStatusBars = before }
+    }
     BoxWithConstraints(Modifier.fillMaxSize().background(ScanColors.Bg)) {
         // Всё на тёмном — палитра тёмной темы, как бы ни была настроена тема программы.
         CompositionLocalProvider(
@@ -264,7 +275,7 @@ fun ScanScreen(nav: Nav) {
                         onError = { cameraFailed = true },
                         modifier = Modifier.fillMaxSize(),
                     )
-                    if (current == null) ScanGuide(notCode, Modifier.align(Alignment.TopCenter))
+                    if (current == null) ScanGuide(notCode, Modifier.align(Alignment.TopCenter).windowInsetsPadding(topInsets))
                 }
                 granted -> ScanMessage(
                     icon = ScanIcons.Camera,
@@ -289,7 +300,7 @@ fun ScanScreen(nav: Nav) {
                 torch = torch,
                 onTorch = { torch = it },
                 onClose = { leave() },
-                modifier = Modifier.align(Alignment.TopCenter),
+                modifier = Modifier.align(Alignment.TopCenter).windowInsetsPadding(topInsets),
             )
         }
 

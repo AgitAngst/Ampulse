@@ -110,7 +110,14 @@ fun endOfMonth(year: Int, month: Int): LocalDate = YearMonth.of(year, month).atE
  */
 data class PackCode(val gtin: String, val serial: String, val expiry: LocalDate?, val expiryHasDay: Boolean, val batch: String)
 
-fun parsePackCode(raw: String): PackCode? {
+fun parsePackCode(raw: String): PackCode? = try {
+    parseOrThrow(raw)
+} catch (e: RuntimeException) {
+    // Битая дата или число в коде — «не код лекарства», а не падение.
+    null
+}
+
+private fun parseOrThrow(raw: String): PackCode? {
     val s = raw.removePrefix("]d2").removePrefix("è").trim('\u001D')
     var i = 0
     var gtin = ""

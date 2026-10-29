@@ -105,7 +105,11 @@ fun AppShell(settings: AnvilSettings) {
                 Modifier
                     .weight(1f)
                     .fillMaxWidth()
-                    .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)),
+                    // Сканер тёмный во весь экран и сам держит отступы системных панелей.
+                    .then(
+                        if (top == Route.Scan) Modifier
+                        else Modifier.windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)),
+                    ),
             ) {
                 // Баннер над содержимым; скрытый места не занимает (отступы у самой карточки).
                 Store.Banner(Modifier.padding(start = 20.dp, top = 16.dp, end = 20.dp))
