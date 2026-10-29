@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        Только сборка play (anvil/docs/ANDROID.md, §2). Напоминание на весь экран Google Play с 2025 года оставляет
+        только звонилкам и будильникам: без объявления в консоли разрешение снимают. Здесь его нет — важное лекарство
+        напоминает обычным уведомлением с повтором (запасной путь в reminders/Notifier.kt). Точные будильники
+        (SCHEDULE_EXACT_ALARM) остаются: человек даёт их сам, без разрешения — неточный будильник (docs/dev/stores.md).
+    -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" tools:node="remove" />
+</manifest>

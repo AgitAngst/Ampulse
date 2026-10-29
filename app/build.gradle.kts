@@ -53,10 +53,21 @@ android {
         buildConfigField("int", "BUILD_NUMBER", buildNumber.toString())
     }
 
-    // Сборки по магазину (anvil/docs/ANDROID.md, §2). Пока одна — APK из GitHub Releases.
+    // Сборки по магазину (anvil/docs/ANDROID.md, §2): APK из GitHub Releases, RuStore, Google Play (AAB).
     flavorDimensions += "store"
     productFlavors {
         create("github") { dimension = "store" }
+        create("rustore") { dimension = "store" }
+        create("play") { dimension = "store" }
+    }
+    // У rustore и play одинаково всё, что отличает их от github (обновляет магазин, SMS — через приложение сообщений).
+    sourceSets {
+        getByName("rustore").kotlin.directories += "src/stores/java"
+        getByName("play").kotlin.directories += "src/stores/java"
+    }
+    // Play раскладывает AAB по языкам — тогда выбор языка внутри программы не находит строк (§2).
+    bundle {
+        language { enableSplit = false }
     }
 
     signingConfigs {
