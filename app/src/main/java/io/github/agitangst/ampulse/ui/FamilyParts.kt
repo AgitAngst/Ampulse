@@ -287,13 +287,15 @@ internal fun FamilyField(
         placeholder = { if (hint != null) Text(hint) },
         singleLine = true,
         isError = error != null,
-        supportingText = error?.let {
+        supportingText = if (error != null) {
             {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                     Icon(TodayIcons.Alert, contentDescription = null, modifier = Modifier.size(16.dp), tint = p.warning)
-                    Text(it, color = p.warning)
+                    Text(error, color = p.warning)
                 }
             }
+        } else {
+            null
         },
         shape = RoundedCornerShape(14.dp),
         keyboardOptions = KeyboardOptions(capitalization = capitalization, keyboardType = keyboardType, imeAction = imeAction),
