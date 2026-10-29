@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
+import android.graphics.text.LineBreaker
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -128,7 +129,7 @@ internal object ReportPdf {
                 .setLineSpacing(0f, 1.12f)
                 .setIncludePad(false)
                 .setHyphenationFrequency(Layout.HYPHENATION_FREQUENCY_NONE)
-                .setBreakStrategy(Layout.BREAK_STRATEGY_SIMPLE)
+                .setBreakStrategy(LineBreaker.BREAK_STRATEGY_SIMPLE)
                 .build()
 
         private fun draw(l: StaticLayout, x: Float, top: Float) {

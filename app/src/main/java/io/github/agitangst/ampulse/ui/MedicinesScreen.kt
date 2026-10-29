@@ -72,17 +72,19 @@ fun MedicinesScreen(nav: Nav, modifier: Modifier = Modifier) {
     val packs by remember { repo.packs }.collectAsState(initial = null)
     val texts = rememberMedTexts()
     val add = stringResource(R.string.meds_add)
+    val copyOf = watchOnlyOwner()
     PageLayout(
         modifier,
         header = {
             TabHeader(
                 stringResource(R.string.tab_medicines),
-                action = {
+                // У копии чужого расписания (QR близкого) — только просмотр: ни лекарств, ни упаковок не добавить.
+                action = if (copyOf != null) null else ({
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         MedRoundButton(StockIcons.Scan, stringResource(R.string.stock_scan), onClick = { nav.open(Route.Scan) })
                         MedRoundButton(MedIcons.Plus, add, onClick = { nav.open(Route.MedicineEdit(0)) })
                     }
-                },
+                }),
             )
         },
     ) {
@@ -100,7 +102,7 @@ fun MedicinesScreen(nav: Nav, modifier: Modifier = Modifier) {
                     stringResource(R.string.medicines_empty_hint),
                     Modifier.weight(1f),
                 )
-                MedMainButton(add, onClick = { nav.open(Route.MedicineEdit(0)) })
+                if (copyOf == null) MedMainButton(add, onClick = { nav.open(Route.MedicineEdit(0)) })
             }
             else -> {
                 val today = LocalDate.now()

@@ -49,7 +49,7 @@ class ReportModelTest {
         val today = LocalDate.of(2026, 10, 29)
         assertEquals(LocalDate.of(2026, 10, 16) to today, reportRange(today, 14))
         assertEquals(LocalDate.of(2026, 9, 30) to today, reportRange(today, 30))
-        assertEquals(LocalDate.of(2026, 7, 31) to today, reportRange(today, 90))
+        assertEquals(LocalDate.of(2026, 8, 1) to today, reportRange(today, 90))
     }
 
     @Test

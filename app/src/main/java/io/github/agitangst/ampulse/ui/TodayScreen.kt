@@ -188,7 +188,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
                     stringResource(R.string.today_empty_hint),
                     Modifier.weight(1f),
                 )
-                TodayButton(
+                if (copyOf == null) TodayButton(
                     stringResource(R.string.today_add_medicine),
                     onClick = { nav.open(Route.MedicineEdit(0)) },
                     modifier = Modifier.fillMaxWidth(),

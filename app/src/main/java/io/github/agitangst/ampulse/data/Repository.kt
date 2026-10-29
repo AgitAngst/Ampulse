@@ -162,7 +162,11 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
 
     suspend fun contactsNow(): List<Contact> = db.family().contactsNow().map(FamilyCodec::contact)
 
-    suspend fun saveContact(c: Contact): Long = db.family().upsert(FamilyCodec.entity(c, System.currentTimeMillis())).let { if (c.id == 0L) it else c.id }
+    /** Новый или правка; у правки порядок в списке (время создания) не меняется. */
+    suspend fun saveContact(c: Contact): Long {
+        val createdAt = db.family().contactsNow().firstOrNull { it.id == c.id }?.createdAt ?: System.currentTimeMillis()
+        return db.family().upsert(FamilyCodec.entity(c, createdAt)).let { if (c.id == 0L) it else c.id }
+    }
 
     suspend fun deleteContact(id: Long) = db.family().deleteContact(id)
 
