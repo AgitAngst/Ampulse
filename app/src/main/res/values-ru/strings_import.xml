@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Назначение → план и «Режим дня» (этап 0.5, макет — экраны 7–9); ключи те же в values -->
+
+    <!-- Вход: карточка на экране «Новое лекарство» -->
+    <string name="import_entry_title">Есть назначение врача?</string>
+    <string name="import_entry_hint">Вставьте список или фото — план составлю сам</string>
+
+    <!-- Шаг 1: ввод -->
+    <string name="import_title">Из назначения</string>
+    <string name="import_sub">Вставьте, сфотографируйте или надиктуйте список от врача — разложу по времени сам</string>
+    <string name="import_offline">Работает без интернета — всё на телефоне</string>
+    <string name="import_text_label">Текст назначения</string>
+    <string name="import_text_hint">По строке на лекарство, например: Амоксициллин 500 мг по 1 капс. 3 р/д, 7 дней</string>
+    <string name="import_found_none">Пока не вижу лекарств — вставьте текст назначения</string>
+    <plurals name="import_found">
+        <item quantity="one">Вижу %1$d лекарство: %2$s</item>
+        <item quantity="few">Вижу %1$d лекарства: %2$s</item>
+        <item quantity="many">Вижу %1$d лекарств: %2$s</item>
+        <item quantity="other">Вижу %1$d лекарства: %2$s</item>
+    </plurals>
+    <string name="import_sources">Или добавьте из</string>
+    <string name="import_file">Из файла</string>
+    <string name="import_file_failed">Не удалось прочитать файл</string>
+    <string name="import_file_big">Файл слишком большой для назначения</string>
+    <string name="import_share_hint">Можно просто переслать сообщение врача из мессенджера: «Поделиться» → Ampulse</string>
+    <string name="import_read">Разобрать назначение</string>
+
+    <!-- Шаг 2: проверка -->
+    <string name="import_edit_text">Изменить текст</string>
+    <string name="import_review_title">Проверьте</string>
+    <plurals name="import_review_sub">
+        <item quantity="one">Нашёл %d лекарство. В расписание попадёт только то, что вы подтвердите.</item>
+        <item quantity="few">Нашёл %d лекарства. В расписание попадёт только то, что вы подтвердите.</item>
+        <item quantity="many">Нашёл %d лекарств. В расписание попадёт только то, что вы подтвердите.</item>
+        <item quantity="other">Нашёл %d лекарства. В расписание попадёт только то, что вы подтвердите.</item>
+    </plurals>
+    <string name="import_legend_found">из текста</string>
+    <string name="import_legend_guess">додумал — проверьте</string>
+    <string name="import_status_ask">Уточните частоту</string>
+    <string name="import_status_change">Уже принимаете · изменение дозы</string>
+    <string name="import_status_known">Уже принимаете · схема обновится</string>
+    <string name="import_status_new">Новое лекарство</string>
+    <string name="import_status_taper_down">Новое лекарство · снижение дозы</string>
+    <string name="import_status_taper_up">Новое лекарство · повышение дозы</string>
+    <string name="import_remove">Убрать из разбора: %s</string>
+    <string name="import_removed">Убрано: %s</string>
+    <string name="import_undo">Отменить</string>
+    <string name="import_question_take">В тексте нет частоты. Сколько раз в день принимать?</string>
+    <string name="import_question_inject">В тексте нет частоты. Сколько раз в день колоть?</string>
+    <string name="import_change_dose">Сейчас в расписании: %1$s — станет %2$s. Схема заменится на новую; упаковки и история приёмов останутся.</string>
+    <string name="import_change_same">Это лекарство уже есть в вашем списке. Его схема заменится на новую; упаковки и история приёмов останутся.</string>
+    <string name="import_quote">«%s»</string>
+    <string name="import_plan_btn">Составить план</string>
+    <plurals name="import_answer_n">
+        <item quantity="one">Ответьте на %d вопрос</item>
+        <item quantity="few">Ответьте на %d вопроса</item>
+        <item quantity="many">Ответьте на %d вопросов</item>
+        <item quantity="other">Ответьте на %d вопроса</item>
+    </plurals>
+    <string name="import_empty_review">Лекарств не осталось — вернитесь и поправьте текст</string>
+
+    <!-- Чипы карточки: сплошная рамка — из текста, пунктир — додумано -->
+    <string name="import_chip_sc">подкожно</string>
+    <string name="import_chip_im">в мышцу</string>
+    <string name="import_chip_per_dose">по %s</string>
+    <string name="import_chip_every_other">через день</string>
+    <string name="import_chip_night">на ночь</string>
+    <string name="import_chip_morning">утром</string>
+    <string name="import_chip_evening">вечером</string>
+    <string name="import_chip_both">утром и вечером</string>
+    <string name="import_chip_food_none">еда не важна</string>
+    <string name="import_chip_food_empty">натощак</string>
+    <string name="import_chip_food_before">до еды</string>
+    <string name="import_chip_food_with">во время еды</string>
+    <string name="import_chip_food_after">после еды</string>
+    <string name="import_chip_every_h">каждые %d ч</string>
+    <string name="import_chip_ongoing">постоянно</string>
+    <plurals name="import_chip_step_every">
+        <item quantity="one">смена дозы каждый %d день</item>
+        <item quantity="few">смена дозы каждые %d дня</item>
+        <item quantity="many">смена дозы каждые %d дней</item>
+        <item quantity="other">смена дозы каждые %d дня</item>
+    </plurals>
+    <string name="import_chip_guess_desc">%s, додумано</string>
+
+    <!-- Шаг 3: готовый план -->
+    <string name="import_back_review">К проверке</string>
+    <string name="import_plan_title">План готов</string>
+    <string name="import_plan_summary">%1$s · %2$s · с %3$s</string>
+    <plurals name="import_n_medicines">
+        <item quantity="one">%d лекарство</item>
+        <item quantity="few">%d лекарства</item>
+        <item quantity="many">%d лекарств</item>
+        <item quantity="other">%d лекарства</item>
+    </plurals>
+    <plurals name="import_doses_per_day">
+        <item quantity="one">%d приём в день</item>
+        <item quantity="few">%d приёма в день</item>
+        <item quantity="many">%d приёмов в день</item>
+        <item quantity="other">%d приёма в день</item>
+    </plurals>
+    <string name="import_routine_title">Под ваш режим дня</string>
+    <string name="import_routine_summary">подъём %1$s · завтрак %2$s · обед %3$s · ужин %4$s · сон %5$s</string>
+    <string name="import_routine_change">Изменить</string>
+    <string name="import_routine_done">Готово</string>
+    <string name="import_start_label">Начать приём</string>
+    <string name="import_start_today">Сегодня</string>
+    <string name="import_start_tomorrow">Завтра</string>
+    <string name="import_day_title">Как пройдёт день</string>
+    <string name="import_courses_title">Курсы · с %s</string>
+    <string name="import_total_title">Сколько понадобится</string>
+    <string name="import_course_days">%1$s, до %2$s</string>
+    <string name="import_tag_empty">натощак, за 30 мин до еды</string>
+    <string name="import_tag_before">за 30 мин до еды</string>
+    <string name="import_tag_with">во время еды</string>
+    <string name="import_tag_after">через 30 мин после еды</string>
+    <string name="import_tag_taper">дальше %s</string>
+    <string name="import_tag_change">доза %1$s → %2$s</string>
+    <string name="import_amount_first">%1$s первые %2$s</string>
+    <plurals name="import_injections">
+        <item quantity="one">%d укол</item>
+        <item quantity="few">%d укола</item>
+        <item quantity="many">%d уколов</item>
+        <item quantity="other">%d укола</item>
+    </plurals>
+    <string name="import_total_course">%s на курс</string>
+    <string name="import_total_month">%s в месяц</string>
+    <string name="import_footer_note">Схему назначил врач. Приложение раскладывает её по времени и не меняет дозы.</string>
+    <string name="import_save">Добавить в расписание</string>
+    <plurals name="import_saved">
+        <item quantity="one">Добавлено в расписание: %d лекарство</item>
+        <item quantity="few">Добавлено в расписание: %d лекарства</item>
+        <item quantity="many">Добавлено в расписание: %d лекарств</item>
+        <item quantity="other">Добавлено в расписание: %d лекарства</item>
+    </plurals>
+    <string name="import_save_failed">Не удалось сохранить — попробуйте ещё раз</string>
+
+    <!-- «Настройки → Режим дня» -->
+    <string name="routine_section">Режим дня</string>
+    <string name="routine_hint">По нему разбор назначения ставит время приёмов: «до еды» — за 30 минут до завтрака, «на ночь» — за час до сна.</string>
+    <string name="routine_wake">Подъём</string>
+    <string name="routine_breakfast">Завтрак</string>
+    <string name="routine_lunch">Обед</string>
+    <string name="routine_dinner">Ужин</string>
+    <string name="routine_sleep">Сон</string>
+    <string name="routine_time_desc">%1$s: %2$s</string>
+    <string name="routine_invalid">Подъём должен быть раньше сна</string>
+</resources>
