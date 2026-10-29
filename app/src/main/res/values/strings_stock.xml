@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Запас и сроки годности (этап 0.4): «Аптечка», запас лекарства, упаковка, «Сроки годности»; ключи те же в values-ru -->
+
+    <!-- Шаблоны java.time: срок как на упаковке и день с месяцем -->
+    <string name="stock_month_year_pattern">MM/yyyy</string>
+    <string name="stock_day_month_pattern">MMM d</string>
+
+    <!-- Остаток срока: дни — plurals meds_days -->
+    <string name="stock_months_short">%d mo</string>
+    <plurals name="stock_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+
+    <!-- «Аптечка» -->
+    <string name="stock_scan">Scan a pack</string>
+    <string name="stock_expiry_link">Expiry dates</string>
+    <plurals name="stock_sum_expired">
+        <item quantity="one">%d expired</item>
+        <item quantity="other">%d expired</item>
+    </plurals>
+    <plurals name="stock_sum_soon">
+        <item quantity="one">%d expiring soon</item>
+        <item quantity="other">%d expiring soon</item>
+    </plurals>
+    <string name="stock_sum_ok">All packs are in date</string>
+    <string name="stock_sum_no_packs">Add a pack to keep an eye on expiry</string>
+    <string name="stock_low_title">%s is running low</string>
+    <string name="stock_low_empty_title">No supply left: %s</string>
+    <string name="stock_low_text">%1$s left — enough for %2$s</string>
+    <string name="stock_low_text_empty">Add a new pack once you buy it</string>
+    <string name="stock_buy">Bought a pack</string>
+    <string name="stock_to_list">Add to shopping list</string>
+    <string name="stock_in_list">On the shopping list</string>
+    <string name="stock_per_day">%s a day</string>
+    <string name="stock_row_expired">has an expired pack</string>
+    <string name="stock_row_until">good until %s</string>
+
+    <!-- Запас лекарства -->
+    <string name="stock_edit_med">Edit medicine</string>
+    <string name="stock_left_total">%s left</string>
+    <string name="stock_enough">enough for %s</string>
+    <string name="stock_by_plan">On schedule: %s a day</string>
+    <string name="stock_no_forecast">Not counted: the schedule is “as needed” or paused</string>
+    <string name="stock_not_counted">Expired packs are not counted in the supply</string>
+    <string name="stock_packs_title">Packs</string>
+    <string name="stock_packs_empty">No packs yet. Add one — the app will count the supply and the expiry date.</string>
+    <string name="stock_pack_until">Good until %s</string>
+    <string name="stock_pack_no_expiry">No expiry date</string>
+    <string name="stock_pack_opened">Opened %s</string>
+    <string name="stock_pack_opened_left">Opened %1$s · %2$s left</string>
+    <string name="stock_pack_batch">Batch %s</string>
+    <string name="stock_pack_first">Used first</string>
+    <string name="stock_pack_expired">Expired</string>
+    <string name="stock_pack_empty">Empty</string>
+    <string name="stock_remove">Remove from medicines</string>
+    <string name="stock_remove_pack">Remove from medicines: pack with %s left</string>
+    <string name="stock_removed">Pack removed from your medicines</string>
+    <string name="stock_undo">Undo</string>
+    <string name="stock_add_pack">Add a pack</string>
+
+    <!-- Упаковка -->
+    <string name="stock_pack_new_title">New pack</string>
+    <string name="stock_pack_edit_title">Pack</string>
+    <string name="stock_back_stock">Supply</string>
+    <string name="stock_from_code">From the code: %s</string>
+    <string name="stock_code_batch">batch %s</string>
+    <string name="stock_code_serial">no. %s</string>
+    <string name="stock_code_gtin">GTIN %s</string>
+    <string name="stock_amount_label">In the pack</string>
+    <string name="stock_expiry_h">Expiry date</string>
+    <string name="stock_year">Year</string>
+    <string name="stock_month">Month</string>
+    <string name="stock_month_desc">%1$s — %2$s</string>
+    <string name="stock_day_toggle">The pack shows a day</string>
+    <string name="stock_day_toggle_hint">Without a day, it is good until the last day of the month</string>
+    <string name="stock_day_label">Day</string>
+    <string name="stock_opened_title">Already opened</string>
+    <string name="stock_opened_hint">After opening, the shelf life may be shorter — see the leaflet</string>
+    <string name="stock_opened_on">Opened on</string>
+    <string name="stock_opened_change">Opened on %s. Change</string>
+    <string name="stock_after_open_label">Good after opening</string>
+    <string name="stock_after_open_hint">0 — the shelf life does not change after opening</string>
+    <string name="stock_pick_hint">Pick the year and month — the app will show how long the pack stays good</string>
+    <string name="stock_state_expired">Already expired</string>
+    <string name="stock_state_expired_note">The pack goes to “Expired” and is not counted in the supply.</string>
+    <string name="stock_state_until">Good until %s</string>
+    <string name="stock_state_left">%s left</string>
+    <string name="stock_state_soon">Expires soon — %s left</string>
+    <string name="stock_state_month_end">no day on the pack — end of the month</string>
+    <string name="stock_state_open_line">Opened %1$s — good for %2$s after opening</string>
+    <string name="stock_fits">You’ll finish it: runs out ≈ %s</string>
+    <string name="stock_leftover">You won’t finish it: ≈ %s will be left</string>
+    <string name="stock_need_expiry">Pick the year and month to save</string>
+    <string name="stock_need_amount">Enter how much is in the pack to save</string>
+    <string name="stock_duplicate">This pack is already in your medicines — the supply did not change</string>
+    <string name="stock_save">Save pack</string>
+    <string name="stock_done">Done</string>
+
+    <!-- «Сроки годности» -->
+    <string name="stock_expiry_title">Expiry dates</string>
+    <plurals name="stock_packs_count">
+        <item quantity="one">%d pack at home</item>
+        <item quantity="other">%d packs at home</item>
+    </plurals>
+    <string name="stock_remind_ahead">reminder %s ahead</string>
+    <string name="stock_window">%d mo</string>
+    <string name="stock_expired_tag">Expired</string>
+    <string name="stock_expired_text">Expired %1$s, %2$s ago. %3$s left — do not take them.</string>
+    <string name="stock_expired_remove">Removed it</string>
+    <string name="stock_how">How to dispose</string>
+    <string name="stock_how_text">Do not flush them or pour them down the sink. Keep them in the pack, seal it in a bag and put it in household waste — or take it to a pharmacy that collects expired medicines.</string>
+    <string name="stock_removed_text">%s removed from your medicines and supply.</string>
+    <string name="stock_opened_h">Opened</string>
+    <string name="stock_opened_r">shelf life after opening</string>
+    <string name="stock_opened_sub">Opened %1$s · good for %2$s after opening</string>
+    <string name="stock_opened_aria">%1$d of %2$s have passed</string>
+    <string name="stock_soon_h">Expiring soon</string>
+    <string name="stock_soon_r">%1$d within %2$s</string>
+    <string name="stock_soon_empty">Nothing expires within %s.</string>
+    <string name="stock_ok_h">In date</string>
+    <string name="stock_ok_r">time left</string>
+    <string name="stock_row_until_qty">Good until %1$s · %2$s</string>
+    <string name="stock_row_unknown">No expiry date · %s</string>
+    <string name="stock_remind_h">Remind me ahead</string>
+    <string name="stock_remind_note">Packs that expire within %s appear under “Expiring soon”.</string>
+    <string name="stock_expiry_add_note">Expiry, batch and number come from the pack code. You can also type the date in.</string>
+    <string name="stock_empty_title">No packs yet</string>
+    <string name="stock_empty_hint">Add a pack — its expiry date will show up here</string>
+    <string name="stock_pick_med">Which medicine is the pack for?</string>
+    <string name="stock_pick_none">Add a medicine first — then you can add its packs.</string>
+</resources>

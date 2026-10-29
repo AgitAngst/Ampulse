@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Запас и сроки годности (этап 0.4): «Аптечка», запас лекарства, упаковка, «Сроки годности»; ключи те же в values -->
+
+    <!-- Шаблоны java.time: срок как на упаковке и день с месяцем -->
+    <string name="stock_month_year_pattern">MM.yyyy</string>
+    <string name="stock_day_month_pattern">dd.MM</string>
+
+    <!-- Остаток срока: дни — plurals meds_days -->
+    <string name="stock_months_short">%d мес.</string>
+    <plurals name="stock_years">
+        <item quantity="one">%d год</item>
+        <item quantity="few">%d года</item>
+        <item quantity="many">%d лет</item>
+        <item quantity="other">%d года</item>
+    </plurals>
+
+    <!-- «Аптечка» -->
+    <string name="stock_scan">Сканировать упаковку</string>
+    <string name="stock_expiry_link">Сроки годности</string>
+    <plurals name="stock_sum_expired">
+        <item quantity="one">%d просрочена</item>
+        <item quantity="few">%d просрочены</item>
+        <item quantity="many">%d просрочено</item>
+        <item quantity="other">%d просрочено</item>
+    </plurals>
+    <plurals name="stock_sum_soon">
+        <item quantity="one">%d скоро истекает</item>
+        <item quantity="few">%d скоро истекают</item>
+        <item quantity="many">%d скоро истекают</item>
+        <item quantity="other">%d скоро истекают</item>
+    </plurals>
+    <string name="stock_sum_ok">Все упаковки в порядке</string>
+    <string name="stock_sum_no_packs">Добавьте упаковку, чтобы следить за сроком</string>
+    <string name="stock_low_title">%s заканчивается</string>
+    <string name="stock_low_empty_title">Запас закончился: %s</string>
+    <string name="stock_low_text">Осталось %1$s — хватит на %2$s</string>
+    <string name="stock_low_text_empty">Отметьте новую упаковку, когда купите</string>
+    <string name="stock_buy">Купил упаковку</string>
+    <string name="stock_to_list">В список покупок</string>
+    <string name="stock_in_list">В списке покупок</string>
+    <string name="stock_per_day">%s в день</string>
+    <string name="stock_row_expired">есть просроченная упаковка</string>
+    <string name="stock_row_until">срок до %s</string>
+
+    <!-- Запас лекарства -->
+    <string name="stock_edit_med">Изменить лекарство</string>
+    <string name="stock_left_total">Осталось %s</string>
+    <string name="stock_enough">хватит на %s</string>
+    <string name="stock_by_plan">По схеме: %s в день</string>
+    <string name="stock_no_forecast">Не считается: приём «по необходимости» или схема на паузе</string>
+    <string name="stock_not_counted">Просроченные упаковки в запас не входят</string>
+    <string name="stock_packs_title">Упаковки</string>
+    <string name="stock_packs_empty">Упаковок пока нет. Добавьте — приложение посчитает запас и срок годности.</string>
+    <string name="stock_pack_until">Годна до %s</string>
+    <string name="stock_pack_no_expiry">Срок не указан</string>
+    <string name="stock_pack_opened">Вскрыта %s</string>
+    <string name="stock_pack_opened_left">Вскрыта %1$s · ещё %2$s</string>
+    <string name="stock_pack_batch">Серия %s</string>
+    <string name="stock_pack_first">Расходуется первой</string>
+    <string name="stock_pack_expired">Срок вышел</string>
+    <string name="stock_pack_empty">Закончилась</string>
+    <string name="stock_remove">Убрать из аптечки</string>
+    <string name="stock_remove_pack">Убрать из аптечки: упаковка, осталось %s</string>
+    <string name="stock_removed">Упаковка убрана из аптечки</string>
+    <string name="stock_undo">Отменить</string>
+    <string name="stock_add_pack">Добавить упаковку</string>
+
+    <!-- Упаковка -->
+    <string name="stock_pack_new_title">Новая упаковка</string>
+    <string name="stock_pack_edit_title">Упаковка</string>
+    <string name="stock_back_stock">Запас</string>
+    <string name="stock_from_code">Из кода: %s</string>
+    <string name="stock_code_batch">серия %s</string>
+    <string name="stock_code_serial">номер %s</string>
+    <string name="stock_code_gtin">GTIN %s</string>
+    <string name="stock_amount_label">В упаковке</string>
+    <string name="stock_expiry_h">Срок годности</string>
+    <string name="stock_year">Год</string>
+    <string name="stock_month">Месяц</string>
+    <string name="stock_month_desc">%1$s — %2$s</string>
+    <string name="stock_day_toggle">На упаковке есть число</string>
+    <string name="stock_day_toggle_hint">Если числа нет — годна до последнего дня месяца</string>
+    <string name="stock_day_label">Число</string>
+    <string name="stock_opened_title">Уже вскрыта</string>
+    <string name="stock_opened_hint">После вскрытия срок может быть короче — смотрите инструкцию</string>
+    <string name="stock_opened_on">Дата вскрытия</string>
+    <string name="stock_opened_change">Вскрыта %s. Изменить</string>
+    <string name="stock_after_open_label">Годна после вскрытия</string>
+    <string name="stock_after_open_hint">0 — срок после вскрытия не меняется</string>
+    <string name="stock_pick_hint">Выберите год и месяц — приложение покажет, сколько ещё годна упаковка</string>
+    <string name="stock_state_expired">Срок уже вышел</string>
+    <string name="stock_state_expired_note">Упаковка попадёт в «Просрочено» и в запас не войдёт.</string>
+    <string name="stock_state_until">Годна до %s</string>
+    <string name="stock_state_left">Ещё %s</string>
+    <string name="stock_state_soon">Истекает скоро — ещё %s</string>
+    <string name="stock_state_month_end">числа на упаковке нет — до конца месяца</string>
+    <string name="stock_state_open_line">Вскрыта %1$s — годна %2$s после вскрытия</string>
+    <string name="stock_fits">Успеете: закончится ≈ %s</string>
+    <string name="stock_leftover">Не успеете: останется ≈ %s</string>
+    <string name="stock_need_expiry">Выберите год и месяц, чтобы сохранить</string>
+    <string name="stock_need_amount">Укажите, сколько в упаковке, чтобы сохранить</string>
+    <string name="stock_duplicate">Эта упаковка уже в аптечке — запас не изменился</string>
+    <string name="stock_save">Сохранить упаковку</string>
+    <string name="stock_done">Готово</string>
+
+    <!-- «Сроки годности» -->
+    <string name="stock_expiry_title">Сроки годности</string>
+    <plurals name="stock_packs_count">
+        <item quantity="one">%d упаковка в аптечке</item>
+        <item quantity="few">%d упаковки в аптечке</item>
+        <item quantity="many">%d упаковок в аптечке</item>
+        <item quantity="other">%d упаковки в аптечке</item>
+    </plurals>
+    <string name="stock_remind_ahead">напоминание за %s</string>
+    <string name="stock_window">%d мес.</string>
+    <string name="stock_expired_tag">Срок вышел</string>
+    <string name="stock_expired_text">Срок до %1$s, вышел %2$s назад. Осталось %3$s — не принимайте.</string>
+    <string name="stock_expired_remove">Убрал из аптечки</string>
+    <string name="stock_how">Как утилизировать</string>
+    <string name="stock_how_text">Не выбрасывайте в унитаз и раковину. Оставьте в упаковке, сложите в пакет и выбросьте с бытовым мусором — или сдайте в аптеку, где принимают просроченные лекарства.</string>
+    <string name="stock_removed_text">%s убран из аптечки и из запаса.</string>
+    <string name="stock_opened_h">Вскрытые</string>
+    <string name="stock_opened_r">срок после вскрытия</string>
+    <string name="stock_opened_sub">Вскрыта %1$s · годна %2$s после вскрытия</string>
+    <string name="stock_opened_aria">Прошло %1$d из %2$s</string>
+    <string name="stock_soon_h">Скоро истекают</string>
+    <string name="stock_soon_r">%1$d за %2$s</string>
+    <string name="stock_soon_empty">За %s ничего не истекает.</string>
+    <string name="stock_ok_h">В порядке</string>
+    <string name="stock_ok_r">до конца срока</string>
+    <string name="stock_row_until_qty">Годна до %1$s · %2$s</string>
+    <string name="stock_row_unknown">Срок не указан · %s</string>
+    <string name="stock_remind_h">Напоминать заранее</string>
+    <string name="stock_remind_note">Упаковки со сроком в пределах %s попадают в «Скоро истекают».</string>
+    <string name="stock_expiry_add_note">Срок, серия и номер — из кода на упаковке. Или введите дату вручную.</string>
+    <string name="stock_empty_title">Упаковок пока нет</string>
+    <string name="stock_empty_hint">Добавьте упаковку — её срок годности появится здесь</string>
+    <string name="stock_pick_med">Для какого лекарства упаковка?</string>
+    <string name="stock_pick_none">Сначала добавьте лекарство — потом можно добавлять его упаковки.</string>
+</resources>
