@@ -5,6 +5,8 @@ import io.github.agitangst.ampulse.ui.AsNeededScreen
 import io.github.agitangst.ampulse.ui.ExpiryScreen
 import io.github.agitangst.ampulse.ui.ImportScreen
 import io.github.agitangst.ampulse.ui.InjectionScreen
+import io.github.agitangst.ampulse.ui.PressureEntryScreen
+import io.github.agitangst.ampulse.ui.PressureHistoryScreen
 import io.github.agitangst.ampulse.ui.ProfileEditScreen
 import io.github.agitangst.ampulse.ui.ProfilesScreen
 import io.github.agitangst.ampulse.ui.ShotGuideScreen
@@ -64,6 +66,12 @@ sealed interface Route {
     /** Новый профиль (`id` = 0) или правка. */
     data class ProfileEdit(val id: Long) : Route
 
+    /** Ввод давления (макет, экран 26): клавиатура, серия из двух, тонометр по Bluetooth. Профиль — текущий. */
+    data object PressureEntry : Route
+
+    /** История давления (макет, экран 27). */
+    data object PressureHistory : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -78,6 +86,8 @@ sealed interface Route {
         ShotRules -> "shotrules"
         Profiles -> "profiles"
         is ProfileEdit -> "profile:$id"
+        PressureEntry -> "bp"
+        PressureHistory -> "bphistory"
     }
 
     companion object {
@@ -102,6 +112,8 @@ sealed interface Route {
                 "shotrules" -> ShotRules
                 "profiles" -> Profiles
                 "profile" -> arg?.toLongOrNull()?.let(::ProfileEdit)
+                "bp" -> PressureEntry
+                "bphistory" -> PressureHistory
                 else -> null
             }
         }
@@ -137,5 +149,7 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.ShotRules -> ShotRulesScreen(nav)
         Route.Profiles -> ProfilesScreen(nav)
         is Route.ProfileEdit -> ProfileEditScreen(route.id, nav)
+        Route.PressureEntry -> PressureEntryScreen(nav)
+        Route.PressureHistory -> PressureHistoryScreen(nav)
     }
 }
