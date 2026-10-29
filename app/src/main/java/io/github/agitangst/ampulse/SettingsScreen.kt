@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
+import io.github.agitangst.ampulse.ui.ShotRulesLink
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -48,7 +49,7 @@ private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
  * «Оформление», «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
-fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, onShotRules: () -> Unit = {}, modifier: Modifier = Modifier) {
     val about = Store.about()
     Column(
         modifier
@@ -66,6 +67,7 @@ fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifi
             color = AnvilTheme.palette.text,
             style = screenTitleStyle(30),
         )
+        ShotRulesLink(onShotRules)
         RemindersSection()
         AppearanceSection(settings)
         Store.UpdatesSettings(settings)

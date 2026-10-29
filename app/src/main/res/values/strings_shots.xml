@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Step-by-step injection and injection rules (stage 0.6, mockup screens 44–46); same keys in values-ru. Step and rule texts come from the mockup (approved by the owner); a doctor reviews them before release -->
+
+    <!-- Common -->
+    <string name="shot_title">Step by step</string>
+    <string name="shot_rules">Rules</string>
+    <string name="shot_back">Back</string>
+    <string name="shot_back_site">Injection site</string>
+    <string name="shot_kind_a">Injection type</string>
+    <string name="shot_kind_pen">Under the skin</string>
+    <string name="shot_kind_muscle">Into the muscle</string>
+    <string name="shot_step_of">Step %1$d of %2$d</string>
+    <string name="shot_all_done">All %1$d steps done</string>
+    <string name="shot_done">Done</string>
+    <string name="shot_finish">Done — log the injection</string>
+    <string name="shot_no_timer">No countdown</string>
+    <string name="shot_window">In the pen window</string>
+    <string name="shot_side_left">left</string>
+    <string name="shot_side_right">right</string>
+    <string name="shot_back_view">back view</string>
+    <string name="shot_diagram_a">Buttocks seen from behind: the %1$s one split into 4 parts, upper outer part marked</string>
+    <string name="shot_expanded">expanded</string>
+    <string name="shot_collapsed">collapsed</string>
+    <string name="shot_dose_prescribed">the prescribed dose</string>
+
+    <!-- Subtitle: course -->
+    <string name="shot_course_day">course: day %1$d of %2$d</string>
+
+    <!-- Countdown -->
+    <string name="shot_timer_start">Start countdown</string>
+    <string name="shot_sec">sec</string>
+    <string name="shot_go">Go</string>
+    <string name="shot_timer_left">%1$d sec left</string>
+    <string name="shot_timer_note_pen">Keep the button pressed, or part of the dose will leak</string>
+    <string name="shot_timer_done_pen">You can take the needle out</string>
+    <string name="shot_timer_note_muscle">Inject slowly — less pain and fewer lumps</string>
+    <string name="shot_timer_done_muscle">All in — you can take the needle out</string>
+    <plurals name="shot_seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <!-- Checks from the app data -->
+    <string name="shot_check_prescribed">Prescribed: %1$s</string>
+    <string name="shot_check_opened">Opened %1$s — good until %2$s, %3$s left</string>
+    <string name="shot_check_until">Good until %1$s</string>
+    <string name="shot_check_expired">Expired %1$s</string>
+    <string name="shot_check_dose">As scheduled: %1$s. Only your doctor changes the dose</string>
+
+    <!-- Result -->
+    <string name="shot_final_title">Injection logged</string>
+    <string name="shot_final_line">%1$s.</string>
+    <string name="shot_final_held">Button held for %1$s.</string>
+    <string name="shot_final_injected">Injected over %1$s.</string>
+    <plurals name="shot_course_done">
+        <item quantity="one">Course: %1$d injection of %2$d.</item>
+        <item quantity="other">Course: %1$d injections of %2$d.</item>
+    </plurals>
+    <string name="shot_next_site">Next injection — %1$s. We will suggest the site that has rested longest.</string>
+    <string name="shot_to_main">Back to Today</string>
+    <string name="shot_undo">Undo log</string>
+    <string name="shot_already_title">Already logged</string>
+    <string name="shot_already_text">This dose was already logged at %1$s. The app does not log it a second time — this guards against a double dose.</string>
+    <string name="shot_note_leaked">leaked</string>
+
+    <!-- Pen steps: t — name, s — result in the collapsed row, b — text -->
+    <string name="shot_s_hands_t">Hands and pen</string>
+    <string name="shot_s_hands_s">done</string>
+    <string name="shot_s_hands_b">Wash your hands. The pen should be at room temperature: cold insulin stings more. Keep spare pens in the fridge, but not the one in use.</string>
+    <string name="shot_s_checkpen_t">Check the solution</string>
+    <string name="shot_s_checkpen_s">checked</string>
+    <string name="shot_s_checkpen_b">Look at the solution. If the leaflet says it is clear but it is cloudy, with flakes or crystals, do not inject — take a new pen.</string>
+    <string name="shot_s_needle_t">New needle</string>
+    <string name="shot_s_needle_s">new</string>
+    <string name="shot_s_needle_b">A new one every time: a blunt needle hurts more and leaves lumps. Take off both caps and keep the big one — you will need it at the end.</string>
+    <string name="shot_s_prime_t">Safety test</string>
+    <string name="shot_s_prime_s">drop seen</string>
+    <string name="shot_s_prime_b">Dial 2 U, hold the pen needle up, tap it and press the button all the way — a drop should appear at the needle tip. No drop — repeat, up to 3 times.</string>
+    <string name="shot_s_dial_t">Dial the dose</string>
+    <string name="shot_s_dial_s">done</string>
+    <string name="shot_s_dial_b">Turn the button to your dose and check the window.</string>
+    <string name="shot_s_sitepen_t">Site</string>
+    <string name="shot_s_sitepen_s">done</string>
+    <string name="shot_s_sitepen_b">%1$s. Not into scars, bruises or lumps; a finger’s width from the last injection.</string>
+    <string name="shot_s_sitepen_abdomen_b">%1$s. At least 5 cm from the navel, not into scars, bruises or lumps; a finger’s width from the last injection.</string>
+    <string name="shot_s_sitepen_none_b">Abdomen — at least 5 cm from the navel; front and side of the thigh; buttock; back of the upper arm. Not into scars, bruises or lumps; a finger’s width from the last injection.</string>
+    <string name="shot_s_injectpen_t">Inject</string>
+    <string name="shot_s_injectpen_b">4 mm needle — straight in at 90°, no need to pinch the skin. A needle of 6 mm or longer, or little fat under the skin — pinch the skin. Press the button all the way and hold it during the countdown.</string>
+    <string name="shot_s_afterpen_t">After the injection</string>
+    <string name="shot_s_afterpen_s">done</string>
+    <string name="shot_s_afterpen_b">Take the needle out, put the big cap back on and unscrew the needle. Drop it into a hard container with a lid. Do not rub the site.</string>
+    <string name="shot_short_held">held %1$d s</string>
+    <string name="shot_short_slow">slowly, %1$d s</string>
+    <string name="shot_short_no_timer">no countdown</string>
+
+    <!-- Intramuscular steps -->
+    <string name="shot_s_prepare_t">Get everything ready</string>
+    <string name="shot_s_prepare_s">done</string>
+    <string name="shot_s_prepare_b">Wash your hands. On a clean napkin: the ampoule, a 5 ml syringe, two alcohol wipes, a needle container.</string>
+    <string name="shot_s_ampoule_t">Check the ampoule</string>
+    <string name="shot_s_ampoule_s">checked</string>
+    <string name="shot_s_ampoule_b">Name and dose match the prescription. There should be no sediment or flakes in the solution.</string>
+    <string name="shot_s_draw_t">Draw the medicine</string>
+    <string name="shot_s_draw_s">done</string>
+    <string name="shot_s_draw_b">Wipe the ampoule neck and snap it away from you through a wipe. Draw %1$s, turn the syringe needle up, tap it and push the air out until the first drop.</string>
+    <string name="shot_s_sitemuscle_t">Site</string>
+    <string name="shot_s_sitemuscle_s">done</string>
+    <string name="shot_s_sitemuscle_buttock_b">%1$s. Split the buttock into 4 parts in your mind and inject into the upper outer part.</string>
+    <string name="shot_s_sitemuscle_thigh_b">%1$s. Thigh — middle of the outer side.</string>
+    <string name="shot_s_sitemuscle_none_b">Buttock — upper outer quarter; thigh — middle of the outer side; upper arm — 3 fingers below the shoulder bone.</string>
+    <string name="shot_s_skin_t">Clean the skin</string>
+    <string name="shot_s_skin_s">done</string>
+    <string name="shot_s_skin_b">Wipe the site with an alcohol wipe and wait until it dries — it stings less.</string>
+    <string name="shot_s_injectmuscle_t">Inject</string>
+    <string name="shot_s_injectmuscle_b">Stretch the skin with two fingers, put the needle in quickly at 90°, three quarters of its length. Inject slowly — about 10 seconds per 1 ml.</string>
+    <string name="shot_s_aftermuscle_t">After the injection</string>
+    <string name="shot_s_aftermuscle_s">done</string>
+    <string name="shot_s_aftermuscle_b">Take the needle out and press the site with a dry wipe. Do not recap the needle — straight into the container.</string>
+
+    <!-- Sites -->
+    <string name="shot_site_abdomen_left">abdomen left</string>
+    <string name="shot_site_abdomen_right">abdomen right</string>
+    <string name="shot_site_thigh_left">thigh left</string>
+    <string name="shot_site_thigh_right">thigh right</string>
+    <string name="shot_site_arm_left">upper arm left</string>
+    <string name="shot_site_arm_right">upper arm right</string>
+    <string name="shot_site_buttock_left">left buttock</string>
+    <string name="shot_site_buttock_right">right buttock</string>
+    <string name="shot_site_scruff">scruff</string>
+    <string name="shot_site_flank_left">left flank</string>
+    <string name="shot_site_flank_right">right flank</string>
+
+    <!-- Something went wrong? -->
+    <string name="shot_prob_h">Something went wrong?</string>
+    <string name="shot_prob_pen_1_t">No drop during the test</string>
+    <string name="shot_prob_pen_1_x">Repeat the test, up to 3 times. Still no drop — change the needle and test again. Still nothing — take another pen and do not use this one.</string>
+    <string name="shot_prob_pen_2_t">Leaked or the needle came out early</string>
+    <string name="shot_prob_pen_2_x">Do not inject again — you could get a double dose. We will log the injection as “leaked”. Check your sugar as your doctor advised; if unsure, call them.</string>
+    <string name="shot_prob_pen_3_t">Blood or a bruise</string>
+    <string name="shot_prob_pen_3_x">Press with a dry wipe for a minute, do not rub. It happens and is not dangerous. Frequent bruises — show the sites to your doctor.</string>
+    <string name="shot_prob_muscle_1_t">Sharp pain or numbness in the leg</string>
+    <string name="shot_prob_muscle_1_x">Stop and take the needle out — a nerve may have been touched. Do not use this spot again and call your doctor.</string>
+    <string name="shot_prob_muscle_2_t">Blood or a bruise</string>
+    <string name="shot_prob_muscle_2_x">Press with a dry wipe for a minute. It happens and is not dangerous. Frequent bruises — tell your doctor.</string>
+    <string name="shot_prob_muscle_3_t">A lump at the site</string>
+    <string name="shot_prob_muscle_3_x">It usually goes away in a few days. If it gets redder, hurts more and more, or you get a fever — see a doctor.</string>
+    <string name="shot_disclaimer">This guide does not replace training: do your first injection with a nurse or doctor. The medicine leaflet and your doctor come first.</string>
+
+    <!-- Injection rules -->
+    <string name="shot_rules_title">Injection rules</string>
+    <string name="shot_rules_sub">A reminder, not training: do your first injection with a nurse or doctor. The medicine leaflet and your doctor come first.</string>
+    <string name="shot_rules_link_sub">Needle, angle, sites, volume, when to see a doctor</string>
+    <string name="shot_layer_skin">skin</string>
+    <string name="shot_layer_fat">fat layer</string>
+    <string name="shot_layer_muscle">muscle</string>
+    <string name="shot_rules_pen_diagram_a">Skin cross-section: a short needle at 90°, the medicine goes into the fat under the skin</string>
+    <string name="shot_rules_pen_caption">A short needle at 90° — the medicine goes into the fat under the skin and is absorbed slowly and evenly.</string>
+    <string name="shot_rules_muscle_diagram_a">Cross-section: a long needle at 90° passes the fat, the medicine goes into the muscle</string>
+    <string name="shot_rules_muscle_caption">A long needle at 90° passes the skin and fat — the medicine goes into the muscle and is absorbed faster.</string>
+
+    <string name="shot_rule_pen_1_l">Needle</string>
+    <string name="shot_rule_pen_1_t">4–6 mm for a pen, a new one every time.</string>
+    <string name="shot_rule_pen_2_l">Angle and pinch</string>
+    <string name="shot_rule_pen_2_t">90°. Pinch the skin only if the needle is 6 mm or longer, or there is little fat under the skin.</string>
+    <string name="shot_rule_pen_3_l">Where</string>
+    <string name="shot_rule_pen_3_t">Abdomen — at least 5 cm from the navel; front and side of the thigh; buttock; back of the upper arm.</string>
+    <string name="shot_rule_pen_4_l">Rotating sites</string>
+    <string name="shot_rule_pen_4_t">A new spot every time — a finger’s width from the last one; areas in turn. The app shows which one has rested.</string>
+    <string name="shot_rule_pen_5_l">After pressing</string>
+    <string name="shot_rule_pen_5_t">Hold the pen button for 10 seconds, then take the needle out. Do not rub the site.</string>
+    <string name="shot_rule_muscle_1_l">Syringe and needle</string>
+    <string name="shot_rule_muscle_1_t">For the buttock — a 5 ml syringe: its needle is longer. A new needle every time.</string>
+    <string name="shot_rule_muscle_2_l">Angle</string>
+    <string name="shot_rule_muscle_2_t">90°, quickly, three quarters of the needle — not all the way to the hub.</string>
+    <string name="shot_rule_muscle_3_l">Where</string>
+    <string name="shot_rule_muscle_3_t">Buttock — upper outer quarter; thigh — middle of the outer side; upper arm — 3 fingers below the shoulder bone.</string>
+    <string name="shot_rule_muscle_4_l">How much at once</string>
+    <string name="shot_rule_muscle_4_t">Buttock and thigh — up to %1$s ml, upper arm — no more than %2$s ml.</string>
+    <string name="shot_rule_muscle_5_l">Speed</string>
+    <string name="shot_rule_muscle_5_t">Slowly — about 10 seconds per 1 ml: less pain and fewer lumps.</string>
+    <string name="shot_rule_muscle_6_l">Rotating sites</string>
+    <string name="shot_rule_muscle_6_t">Right and left side in turn.</string>
+
+    <string name="shot_always_h">Always</string>
+    <string name="shot_always_1">Wash your hands before the injection.</string>
+    <string name="shot_always_2">A new needle every time.</string>
+    <string name="shot_always_3">Not into scars, moles, bruises, lumps or inflamed skin.</string>
+    <string name="shot_always_4">Needles go into a hard container with a lid, not the trash bag.</string>
+    <string name="shot_always_5">Injection logged — no second one: the app stops a double dose.</string>
+
+    <string name="shot_doc_h">When to see a doctor</string>
+    <string name="shot_doc_urgent_h">At once — call emergency services</string>
+    <string name="shot_doc_urgent">A rash all over, swelling of the face or lips, trouble breathing.</string>
+    <string name="shot_doc_soon_h">Call or book a visit</string>
+    <string name="shot_doc_soon">The site gets redder, more swollen and more painful over a day or two; you get a fever; hard lumps appear at injection sites.</string>
+</resources>

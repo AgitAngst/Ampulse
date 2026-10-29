@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Укол пошагово и правила уколов (этап 0.6, макет, экраны 44–46); ключи те же в values. Тексты шагов и правил — из макета (согласованы владельцем), врач вычитывает их перед выпуском -->
+
+    <!-- Общее -->
+    <string name="shot_title">Укол пошагово</string>
+    <string name="shot_rules">Правила</string>
+    <string name="shot_back">Назад</string>
+    <string name="shot_back_site">Место укола</string>
+    <string name="shot_kind_a">Вид укола</string>
+    <string name="shot_kind_pen">Подкожно</string>
+    <string name="shot_kind_muscle">В мышцу</string>
+    <string name="shot_step_of">Шаг %1$d из %2$d</string>
+    <string name="shot_all_done">Все %1$d шагов пройдены</string>
+    <string name="shot_done">Готово</string>
+    <string name="shot_finish">Готово — записать укол</string>
+    <string name="shot_no_timer">Без отсчёта</string>
+    <string name="shot_window">В окошке ручки</string>
+    <string name="shot_side_left">левая</string>
+    <string name="shot_side_right">правая</string>
+    <string name="shot_back_view">вид сзади</string>
+    <string name="shot_diagram_a">Ягодицы, вид сзади: %1$s разделена на 4 части, отмечена верхняя наружная</string>
+    <string name="shot_expanded">развёрнуто</string>
+    <string name="shot_collapsed">свёрнуто</string>
+    <string name="shot_dose_prescribed">назначенную дозу</string>
+
+    <!-- Подзаголовок: курс -->
+    <string name="shot_course_day">курс: день %1$d из %2$d</string>
+
+    <!-- Отсчёт -->
+    <string name="shot_timer_start">Начать отсчёт</string>
+    <string name="shot_sec">сек</string>
+    <string name="shot_go">Можно</string>
+    <string name="shot_timer_left">Осталось %1$d сек</string>
+    <string name="shot_timer_note_pen">Держите кнопку нажатой, иначе часть дозы вытечет</string>
+    <string name="shot_timer_done_pen">Можно вынимать иглу</string>
+    <string name="shot_timer_note_muscle">Вводите медленно — меньше боль и уплотнения</string>
+    <string name="shot_timer_done_muscle">Всё введено — можно вынимать иглу</string>
+    <plurals name="shot_seconds">
+        <item quantity="one">%d секунду</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
+        <item quantity="other">%d секунды</item>
+    </plurals>
+
+    <!-- Проверки из данных приложения -->
+    <string name="shot_check_prescribed">В назначении: %1$s</string>
+    <string name="shot_check_opened">Вскрыта %1$s — годна до %2$s, ещё %3$s</string>
+    <string name="shot_check_until">Годна до %1$s</string>
+    <string name="shot_check_expired">Срок годности вышел %1$s</string>
+    <string name="shot_check_dose">Как в расписании: %1$s. Дозу меняет только врач</string>
+
+    <!-- Итог -->
+    <string name="shot_final_title">Укол записан</string>
+    <string name="shot_final_line">%1$s.</string>
+    <string name="shot_final_held">Кнопку держали %1$s.</string>
+    <string name="shot_final_injected">Вводили %1$s.</string>
+    <plurals name="shot_course_done">
+        <item quantity="one">Курс: %1$d укол из %2$d.</item>
+        <item quantity="few">Курс: %1$d укола из %2$d.</item>
+        <item quantity="many">Курс: %1$d уколов из %2$d.</item>
+        <item quantity="other">Курс: %1$d укола из %2$d.</item>
+    </plurals>
+    <string name="shot_next_site">Следующий укол — %1$s. Место предложим то, что отдыхало дольше всех.</string>
+    <string name="shot_to_main">На главную</string>
+    <string name="shot_undo">Отменить запись</string>
+    <string name="shot_already_title">Уже отмечено</string>
+    <string name="shot_already_text">Этот приём уже отмечен в %1$s. Второй раз приложение его не записывает — так оно защищает от двойной дозы.</string>
+    <string name="shot_note_leaked">подтекло</string>
+
+    <!-- Шаги подкожно ручкой: t — название, s — итог в свёрнутой строке, b — текст -->
+    <string name="shot_s_hands_t">Руки и ручка</string>
+    <string name="shot_s_hands_s">готово</string>
+    <string name="shot_s_hands_b">Вымойте руки. Ручка — комнатной температуры: холодный инсулин колоть больнее. Запасные ручки храните в холодильнике, начатую — нет.</string>
+    <string name="shot_s_checkpen_t">Проверьте раствор</string>
+    <string name="shot_s_checkpen_s">проверено</string>
+    <string name="shot_s_checkpen_b">Посмотрите на раствор. Если по инструкции он прозрачный, а в ручке мутный, с хлопьями или кристаллами, — не колите, возьмите новую ручку.</string>
+    <string name="shot_s_needle_t">Новая игла</string>
+    <string name="shot_s_needle_s">новая</string>
+    <string name="shot_s_needle_b">Каждый раз — новая: тупая игла больнее и оставляет уплотнения. Снимите оба колпачка, большой не выбрасывайте — он понадобится в конце.</string>
+    <string name="shot_s_prime_t">Проверка проходимости</string>
+    <string name="shot_s_prime_s">капля есть</string>
+    <string name="shot_s_prime_b">Наберите 2 ЕД, держите ручку иглой вверх, постучите по ней и нажмите кнопку до конца — на кончике иглы должна появиться капля. Нет капли — повторите, до 3 раз.</string>
+    <string name="shot_s_dial_t">Наберите дозу</string>
+    <string name="shot_s_dial_s">готово</string>
+    <string name="shot_s_dial_b">Поверните кнопку до нужной дозы и сверьтесь с окошком.</string>
+    <string name="shot_s_sitepen_t">Место</string>
+    <string name="shot_s_sitepen_s">готово</string>
+    <string name="shot_s_sitepen_b">%1$s. Не в шрамы, синяки и уплотнения; на палец в сторону от прошлого укола.</string>
+    <string name="shot_s_sitepen_abdomen_b">%1$s. Не ближе 5 см от пупка, не в шрамы, синяки и уплотнения; на палец в сторону от прошлого укола.</string>
+    <string name="shot_s_sitepen_none_b">Живот — не ближе 5 см от пупка; бедро спереди и сбоку; ягодица; плечо сзади. Не в шрамы, синяки и уплотнения; на палец в сторону от прошлого укола.</string>
+    <string name="shot_s_injectpen_t">Укол</string>
+    <string name="shot_s_injectpen_b">Игла 4 мм — под прямым углом, складку собирать не нужно. Игла 6 мм и длиннее или мало жира под кожей — соберите складку. Нажмите кнопку до конца и держите, пока идёт отсчёт.</string>
+    <string name="shot_s_afterpen_t">После укола</string>
+    <string name="shot_s_afterpen_s">готово</string>
+    <string name="shot_s_afterpen_b">Выньте иглу, наденьте большой колпачок и открутите иглу. Выбросьте её в твёрдый контейнер с крышкой. Место не растирайте.</string>
+    <string name="shot_short_held">держали %1$d с</string>
+    <string name="shot_short_slow">медленно, %1$d с</string>
+    <string name="shot_short_no_timer">без отсчёта</string>
+
+    <!-- Шаги в мышцу -->
+    <string name="shot_s_prepare_t">Подготовьте всё</string>
+    <string name="shot_s_prepare_s">готово</string>
+    <string name="shot_s_prepare_b">Вымойте руки. На чистую салфетку: ампула, шприц 5 мл, две спиртовые салфетки, контейнер для игл.</string>
+    <string name="shot_s_ampoule_t">Проверьте ампулу</string>
+    <string name="shot_s_ampoule_s">проверена</string>
+    <string name="shot_s_ampoule_b">Название и доза — как в назначении. В растворе не должно быть осадка и хлопьев.</string>
+    <string name="shot_s_draw_t">Наберите лекарство</string>
+    <string name="shot_s_draw_s">готово</string>
+    <string name="shot_s_draw_b">Протрите шейку ампулы, отломите её от себя через салфетку. Наберите %1$s, поверните шприц иглой вверх, постучите и выдавите воздух до первой капли.</string>
+    <string name="shot_s_sitemuscle_t">Место</string>
+    <string name="shot_s_sitemuscle_s">готово</string>
+    <string name="shot_s_sitemuscle_buttock_b">%1$s. Мысленно разделите ягодицу на 4 части и колите в верхнюю наружную.</string>
+    <string name="shot_s_sitemuscle_thigh_b">%1$s. Бедро — середина наружной стороны.</string>
+    <string name="shot_s_sitemuscle_none_b">Ягодица — верхняя наружная четверть; бедро — середина наружной стороны; плечо — на 3 пальца ниже выступа плеча.</string>
+    <string name="shot_s_skin_t">Обработайте кожу</string>
+    <string name="shot_s_skin_s">готово</string>
+    <string name="shot_s_skin_b">Протрите место спиртовой салфеткой и подождите, пока высохнет, — так меньше щиплет.</string>
+    <string name="shot_s_injectmuscle_t">Укол</string>
+    <string name="shot_s_injectmuscle_b">Натяните кожу двумя пальцами, введите иглу быстро, под прямым углом, на ¾ длины. Лекарство вводите медленно — около 10 секунд на 1 мл.</string>
+    <string name="shot_s_aftermuscle_t">После укола</string>
+    <string name="shot_s_aftermuscle_s">готово</string>
+    <string name="shot_s_aftermuscle_b">Выньте иглу и прижмите место сухой салфеткой. Колпачок на иглу не надевайте — сразу в контейнер.</string>
+
+    <!-- Места -->
+    <string name="shot_site_abdomen_left">живот слева</string>
+    <string name="shot_site_abdomen_right">живот справа</string>
+    <string name="shot_site_thigh_left">бедро слева</string>
+    <string name="shot_site_thigh_right">бедро справа</string>
+    <string name="shot_site_arm_left">плечо слева</string>
+    <string name="shot_site_arm_right">плечо справа</string>
+    <string name="shot_site_buttock_left">ягодица слева</string>
+    <string name="shot_site_buttock_right">ягодица справа</string>
+    <string name="shot_site_scruff">холка</string>
+    <string name="shot_site_flank_left">левый бок</string>
+    <string name="shot_site_flank_right">правый бок</string>
+
+    <!-- «Что-то пошло не так?» -->
+    <string name="shot_prob_h">Что-то пошло не так?</string>
+    <string name="shot_prob_pen_1_t">Нет капли при проверке</string>
+    <string name="shot_prob_pen_1_x">Повторите проверку, до 3 раз. Капли нет — смените иглу и проверьте снова. Не помогло — возьмите другую ручку, эту не используйте.</string>
+    <string name="shot_prob_pen_2_t">Подтекло или игла вышла раньше</string>
+    <string name="shot_prob_pen_2_x">Не колите ещё раз — так можно получить двойную дозу. Запишем укол с пометкой «подтекло». Проверьте сахар, как советовал врач; сомневаетесь — позвоните ему.</string>
+    <string name="shot_prob_pen_3_t">Кровь или синяк</string>
+    <string name="shot_prob_pen_3_x">Прижмите сухой салфеткой на минуту, не растирайте. Так бывает и это не опасно. Синяки появляются часто — покажите места врачу.</string>
+    <string name="shot_prob_muscle_1_t">Резкая боль или онемение в ноге</string>
+    <string name="shot_prob_muscle_1_x">Остановитесь и выньте иглу — могли задеть нерв. В это место больше не колите, позвоните врачу.</string>
+    <string name="shot_prob_muscle_2_t">Кровь или синяк</string>
+    <string name="shot_prob_muscle_2_x">Прижмите сухой салфеткой на минуту. Так бывает и это не опасно. Синяки появляются часто — расскажите врачу.</string>
+    <string name="shot_prob_muscle_3_t">Шишка на месте укола</string>
+    <string name="shot_prob_muscle_3_x">Обычно проходит за несколько дней. Краснеет, болит всё сильнее, поднялась температура — к врачу.</string>
+    <string name="shot_disclaimer">Памятка не заменяет обучения: первый укол сделайте при медсестре или враче. Главное — инструкция к лекарству и слова врача.</string>
+
+    <!-- Правила уколов -->
+    <string name="shot_rules_title">Правила уколов</string>
+    <string name="shot_rules_sub">Памятка, а не обучение: первый укол — при медсестре или враче. Главное — инструкция к лекарству и слова врача.</string>
+    <string name="shot_rules_link_sub">Игла, угол, места, объём, когда к врачу</string>
+    <string name="shot_layer_skin">кожа</string>
+    <string name="shot_layer_fat">подкожный жир</string>
+    <string name="shot_layer_muscle">мышца</string>
+    <string name="shot_rules_pen_diagram_a">Разрез кожи: короткая игла под прямым углом, лекарство — в подкожном жире</string>
+    <string name="shot_rules_pen_caption">Короткая игла под прямым углом — лекарство попадает в жир под кожей и всасывается медленно и ровно.</string>
+    <string name="shot_rules_muscle_diagram_a">Разрез: длинная игла под прямым углом проходит жир, лекарство — в мышце</string>
+    <string name="shot_rules_muscle_caption">Длинная игла под прямым углом проходит кожу и жир — лекарство попадает в мышцу и всасывается быстрее.</string>
+
+    <string name="shot_rule_pen_1_l">Игла</string>
+    <string name="shot_rule_pen_1_t">4–6 мм для шприц-ручки, каждый раз новая.</string>
+    <string name="shot_rule_pen_2_l">Угол и складка</string>
+    <string name="shot_rule_pen_2_t">90°. Складку кожи собирать, только если игла 6 мм и длиннее или под кожей мало жира.</string>
+    <string name="shot_rule_pen_3_l">Куда</string>
+    <string name="shot_rule_pen_3_t">Живот — не ближе 5 см от пупка; бедро спереди и сбоку; ягодица; плечо сзади.</string>
+    <string name="shot_rule_pen_4_l">Смена мест</string>
+    <string name="shot_rule_pen_4_t">Каждый раз новая точка — на палец от прошлой; зоны — по очереди. Приложение подскажет, какая отдохнула.</string>
+    <string name="shot_rule_pen_5_l">После нажатия</string>
+    <string name="shot_rule_pen_5_t">Держите кнопку ручки 10 секунд, потом выньте иглу. Место не растирайте.</string>
+    <string name="shot_rule_muscle_1_l">Шприц и игла</string>
+    <string name="shot_rule_muscle_1_t">Для ягодицы — шприц 5 мл: у него игла длиннее. Игла каждый раз новая.</string>
+    <string name="shot_rule_muscle_2_l">Угол</string>
+    <string name="shot_rule_muscle_2_t">90°, быстро, на ¾ длины иглы — не до самого основания.</string>
+    <string name="shot_rule_muscle_3_l">Куда</string>
+    <string name="shot_rule_muscle_3_t">Ягодица — верхняя наружная четверть; бедро — середина наружной стороны; плечо — на 3 пальца ниже выступа плеча.</string>
+    <string name="shot_rule_muscle_4_l">Сколько за раз</string>
+    <string name="shot_rule_muscle_4_t">В ягодицу и бедро — до %1$s мл, в плечо — не больше %2$s мл.</string>
+    <string name="shot_rule_muscle_5_l">Скорость</string>
+    <string name="shot_rule_muscle_5_t">Медленно — около 10 секунд на 1 мл: меньше боль и уплотнения.</string>
+    <string name="shot_rule_muscle_6_l">Смена мест</string>
+    <string name="shot_rule_muscle_6_t">Правая и левая сторона — по очереди.</string>
+
+    <string name="shot_always_h">Всегда</string>
+    <string name="shot_always_1">Вымыть руки перед уколом.</string>
+    <string name="shot_always_2">Новая игла — каждый раз.</string>
+    <string name="shot_always_3">Не колоть в шрамы, родинки, синяки, уплотнения и воспалённую кожу.</string>
+    <string name="shot_always_4">Иглы — в твёрдый контейнер с крышкой, а не в пакет с мусором.</string>
+    <string name="shot_always_5">Укол отмечен — второй не нужен: приложение остановит двойную дозу.</string>
+
+    <string name="shot_doc_h">Когда нужен врач</string>
+    <string name="shot_doc_urgent_h">Сразу — 103 или 112</string>
+    <string name="shot_doc_urgent">Сыпь по телу, отёк лица или губ, трудно дышать.</string>
+    <string name="shot_doc_soon_h">Позвонить или записаться</string>
+    <string name="shot_doc_soon">Место краснеет, опухает и болит всё сильнее день-два; поднялась температура; на местах уколов плотные шишки.</string>
+</resources>
