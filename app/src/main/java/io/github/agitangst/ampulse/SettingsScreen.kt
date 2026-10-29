@@ -35,6 +35,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
+import io.github.agitangst.ampulse.ui.AnimatedMark
+import io.github.agitangst.ampulse.ui.MarkMotion
 import io.github.agitangst.ampulse.ui.RoutineSection
 import io.github.agitangst.ampulse.ui.EmergencyIcons
 import io.github.agitangst.ampulse.ui.MedIcons
@@ -199,20 +201,10 @@ private fun BackRow(label: String, onClick: () -> Unit, modifier: Modifier = Mod
 }
 
 /**
- * Знак Ampulse (временный, до значка по ICONS.md): скруглённый квадрат акцента с ампулой цвета «на акценте».
- * Для TalkBack — украшение, имя читается рядом.
+ * Знак Ampulse в «О программе»: при каждом открытии один раз «запуск» — жидкость поднимается, затем пик пульса
+ * (openspec: ampulse-mark-motion). Для TalkBack — украшение, имя читается рядом.
  */
 @Composable
 private fun AppMark() {
-    val p = AnvilTheme.palette
-    Box(
-        Modifier
-            .fillMaxSize()
-            .clip(RoundedCornerShape(12.dp))
-            .background(p.accent)
-            .clearAndSetSemantics {},
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(AmpulseIcons.Ampoule, contentDescription = null, modifier = Modifier.size(28.dp), tint = p.onAccent)
-    }
+    AnimatedMark(48.dp, MarkMotion.Scene.LAUNCH)
 }

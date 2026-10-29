@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -312,7 +311,8 @@ fun ReportScreen(nav: Nav) {
                     horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    CircularProgressIndicator(Modifier.size(22.dp), color = p.accent, strokeWidth = 2.5.dp)
+                    // Сборка отчёта — «ожидание» знака: пик пульса бьёт, пока идёт работа.
+                    AnimatedMark(28.dp, MarkMotion.Scene.WAIT)
                     Text(
                         stringResource(R.string.report_creating),
                         color = p.weak,
@@ -320,6 +320,8 @@ fun ReportScreen(nav: Nav) {
                     )
                 }
                 file != null -> {
+                    // Отчёт готов — один раз «готово»; дальше знак неподвижен.
+                    AnimatedMark(40.dp, MarkMotion.Scene.DONE, Modifier.align(Alignment.CenterHorizontally))
                     ReportMessage(stringResource(R.string.report_done, file.name), warning = false)
                     MedMainButton(
                         stringResource(R.string.report_share),
