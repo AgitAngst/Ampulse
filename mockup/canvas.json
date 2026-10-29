@@ -972,7 +972,7 @@
       "page": "en"
     },
     "ServerOn.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "52 · Сервер — подключено",
@@ -981,7 +981,7 @@
       "y": 20400
     },
     "ServerOnEn.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "52 · Server — connected",
@@ -991,7 +991,7 @@
       "page": "en"
     },
     "ServerProb.dc.html": {
-      "h": 800,
+      "h": 880,
       "is_interactive": true,
       "radius": 32,
       "title": "53 · Сервер — проблемы отправки",
@@ -1000,7 +1000,7 @@
       "y": 20400
     },
     "ServerProbEn.dc.html": {
-      "h": 800,
+      "h": 880,
       "is_interactive": true,
       "radius": 32,
       "title": "53 · Server — sending problems",
@@ -1010,7 +1010,7 @@
       "page": "en"
     },
     "ServerErase.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "54 · Сервер — стереть копию",
@@ -1019,7 +1019,7 @@
       "y": 20400
     },
     "ServerEraseEn.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "54 · Server — erase the copy",
@@ -1086,7 +1086,7 @@
       "page": "en"
     },
     "ServerOnDark.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "58 · Сервер — подключено — тёмная",
@@ -1095,7 +1095,7 @@
       "y": 21800
     },
     "ServerOnDarkEn.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "58 · Server — connected — dark",
@@ -1105,7 +1105,7 @@
       "page": "en"
     },
     "ServerProbDark.dc.html": {
-      "h": 800,
+      "h": 880,
       "is_interactive": true,
       "radius": 32,
       "title": "59 · Сервер — проблемы отправки — тёмная",
@@ -1114,7 +1114,7 @@
       "y": 21800
     },
     "ServerProbDarkEn.dc.html": {
-      "h": 800,
+      "h": 880,
       "is_interactive": true,
       "radius": 32,
       "title": "59 · Server — sending problems — dark",
@@ -1124,7 +1124,7 @@
       "page": "en"
     },
     "ServerEraseDark.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "60 · Сервер — стереть копию — тёмная",
@@ -1133,7 +1133,7 @@
       "y": 21800
     },
     "ServerEraseDarkEn.dc.html": {
-      "h": 600,
+      "h": 690,
       "is_interactive": true,
       "radius": 32,
       "title": "60 · Server — erase the copy — dark",
@@ -1159,6 +1159,234 @@
       "w": 390,
       "x": 2350,
       "y": 21800,
+      "page": "en"
+    },
+    "Watch.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "62 · Профили других людей",
+      "w": 390,
+      "x": 0,
+      "y": 23500
+    },
+    "WatchEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "62 · Other people’s profiles",
+      "w": 390,
+      "x": 0,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchRemove.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "63 · Убрать профиль",
+      "w": 390,
+      "x": 470,
+      "y": 23500
+    },
+    "WatchRemoveEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "63 · Remove a profile",
+      "w": 390,
+      "x": 470,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchCode.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "64 · Код приглашения",
+      "w": 390,
+      "x": 940,
+      "y": 23500
+    },
+    "WatchCodeEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "64 · Invitation code",
+      "w": 390,
+      "x": 940,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchCodeErr.dc.html": {
+      "h": 640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "65 · Код не подошёл",
+      "w": 390,
+      "x": 1410,
+      "y": 23500
+    },
+    "WatchCodeErrEn.dc.html": {
+      "h": 640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "65 · The code did not work",
+      "w": 390,
+      "x": 1410,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchToday.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "66 · Сегодня — чужой профиль",
+      "w": 390,
+      "x": 1880,
+      "y": 23500
+    },
+    "WatchTodayEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "66 · Today — someone else’s profile",
+      "w": 390,
+      "x": 1880,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchStale.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "67 · Сегодня — нет связи",
+      "w": 390,
+      "x": 2350,
+      "y": 23500
+    },
+    "WatchStaleEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "67 · Today — no connection",
+      "w": 390,
+      "x": 2350,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchDark.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "68 · Профили других людей — тёмная",
+      "w": 390,
+      "x": 0,
+      "y": 24800
+    },
+    "WatchDarkEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "68 · Other people’s profiles — dark",
+      "w": 390,
+      "x": 0,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchRemoveDark.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "69 · Убрать профиль — тёмная",
+      "w": 390,
+      "x": 470,
+      "y": 24800
+    },
+    "WatchRemoveDarkEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "69 · Remove a profile — dark",
+      "w": 390,
+      "x": 470,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchCodeDark.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "70 · Код приглашения — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 24800
+    },
+    "WatchCodeDarkEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "70 · Invitation code — dark",
+      "w": 390,
+      "x": 940,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchCodeErrDark.dc.html": {
+      "h": 640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "71 · Код не подошёл — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 24800
+    },
+    "WatchCodeErrDarkEn.dc.html": {
+      "h": 640,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "71 · The code did not work — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchTodayDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "72 · Сегодня — чужой профиль — тёмная",
+      "w": 390,
+      "x": 1880,
+      "y": 24800
+    },
+    "WatchTodayDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "72 · Today — someone else’s profile — dark",
+      "w": 390,
+      "x": 1880,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchStaleDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "73 · Сегодня — нет связи — тёмная",
+      "w": 390,
+      "x": 2350,
+      "y": 24800
+    },
+    "WatchStaleDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "73 · Today — no connection — dark",
+      "w": 390,
+      "x": 2350,
+      "y": 24800,
       "page": "en"
     }
   },
@@ -1289,7 +1517,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–61, только в сборке с сайта.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–61, только в сборке с сайта.",
+      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–73, только в сборке с сайта.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–73, только в сборке с сайта.",
       "w": 440,
       "x": 3380,
       "y": 0
@@ -1592,7 +1820,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.\n\nException — an optional copy on your own Ampulse server: screens 50–61, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–61, website build only.",
+      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.",
       "w": 440,
       "x": 3380,
       "y": 0,
@@ -1895,6 +2123,114 @@
       "x": 0,
       "y": 20100,
       "page": "en"
+    },
+    "n62": {
+      "text": "Профили, которыми с вами поделились (через сервер): только просмотр, данные приходят с сервера. «Ввести код приглашения» — внизу; «Убрать» — с подтверждением.",
+      "w": 390,
+      "x": 0,
+      "y": 24500
+    },
+    "n62_en": {
+      "text": "Profiles shared with you (through the server): view only, the data comes from the server. “Enter an invitation code” at the bottom; “Remove” asks first.",
+      "w": 390,
+      "x": 0,
+      "y": 24500,
+      "page": "en"
+    },
+    "n63": {
+      "text": "Убрать профиль: исчезает только с этого телефона; у владельца и на сервере ничего не меняется, вернуть можно новым кодом.",
+      "w": 390,
+      "x": 470,
+      "y": 24500
+    },
+    "n63_en": {
+      "text": "Remove a profile: it disappears from this phone only; nothing changes for the owner or on the server, a new code brings it back.",
+      "w": 390,
+      "x": 470,
+      "y": 24500,
+      "page": "en"
+    },
+    "n64": {
+      "text": "Код приглашения: 12 знаков, регистр и дефисы не важны; «Принять» включается, когда набран весь код. Рабочий пример в макете — ABCD-EFGH-JKMN.",
+      "w": 390,
+      "x": 940,
+      "y": 24500
+    },
+    "n64_en": {
+      "text": "Invitation code: 12 characters, case and dashes do not matter; “Accept” turns on once the whole code is typed. A working example in the mockup — ABCD-EFGH-JKMN.",
+      "w": 390,
+      "x": 940,
+      "y": 24500,
+      "page": "en"
+    },
+    "n65": {
+      "text": "Неверный, истёкший, отозванный и уже использованный код сервер не различает — ответ один. Плашка внимания; «Слишком много попыток» и «Нет связи» — так же.",
+      "w": 390,
+      "x": 1410,
+      "y": 24500
+    },
+    "n65_en": {
+      "text": "The server does not tell a wrong, expired, revoked or used code apart — one answer. An attention banner; “Too many attempts” and “No connection” look the same.",
+      "w": 390,
+      "x": 1410,
+      "y": 24500,
+      "page": "en"
+    },
+    "n66": {
+      "text": "«Сегодня» чужого профиля: те же кольцо и строки, но без кнопок отметки — вместо них состояние; плашка «Только просмотр · обновлено…»; профиль переключается в верхнем поле (там же «по серверу»).",
+      "w": 390,
+      "x": 1880,
+      "y": 24500
+    },
+    "n66_en": {
+      "text": "Today for someone else’s profile: the same ring and rows, but no mark buttons — a state instead; a “View only · updated…” banner; the profile switches in the top field (also marked “via server”).",
+      "w": 390,
+      "x": 1880,
+      "y": 24500,
+      "page": "en"
+    },
+    "n67": {
+      "text": "Нет связи: показываются последние полученные данные с их временем, плашка внимания; пока связи нет, «просрочено» считается по времени данных, а не по часам телефона.",
+      "w": 390,
+      "x": 2350,
+      "y": 24500
+    },
+    "n67_en": {
+      "text": "No connection: the last received data is shown with its time, in an attention banner; while offline, “overdue” is judged by the data’s time, not the phone’s clock.",
+      "w": 390,
+      "x": 2350,
+      "y": 24500,
+      "page": "en"
+    },
+    "n68": {
+      "text": "Тёмные копии экранов 62–67; ссылки между ними остаются тёмными.",
+      "w": 390,
+      "x": 0,
+      "y": 25800
+    },
+    "n68_en": {
+      "text": "Dark copies of screens 62–67; links between them stay dark.",
+      "w": 390,
+      "x": 0,
+      "y": 25800,
+      "page": "en"
+    },
+    "title11": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Просмотр чужих профилей (через сервер)",
+      "w": 240,
+      "x": 0,
+      "y": 23200
+    },
+    "title11_en": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Viewing other people’s profiles (through the server)",
+      "w": 240,
+      "x": 0,
+      "y": 23200,
+      "page": "en"
     }
   },
   "order": [
@@ -2019,7 +2355,31 @@
     "ServerEraseDark.dc.html",
     "ServerEraseDarkEn.dc.html",
     "ServerRowDark.dc.html",
-    "ServerRowDarkEn.dc.html"
+    "ServerRowDarkEn.dc.html",
+    "Watch.dc.html",
+    "WatchEn.dc.html",
+    "WatchRemove.dc.html",
+    "WatchRemoveEn.dc.html",
+    "WatchCode.dc.html",
+    "WatchCodeEn.dc.html",
+    "WatchCodeErr.dc.html",
+    "WatchCodeErrEn.dc.html",
+    "WatchToday.dc.html",
+    "WatchTodayEn.dc.html",
+    "WatchStale.dc.html",
+    "WatchStaleEn.dc.html",
+    "WatchDark.dc.html",
+    "WatchDarkEn.dc.html",
+    "WatchRemoveDark.dc.html",
+    "WatchRemoveDarkEn.dc.html",
+    "WatchCodeDark.dc.html",
+    "WatchCodeDarkEn.dc.html",
+    "WatchCodeErrDark.dc.html",
+    "WatchCodeErrDarkEn.dc.html",
+    "WatchTodayDark.dc.html",
+    "WatchTodayDarkEn.dc.html",
+    "WatchStaleDark.dc.html",
+    "WatchStaleDarkEn.dc.html"
   ],
   "pages": [
     {

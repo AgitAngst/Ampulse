@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Просмотр чужих профилей</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+input::placeholder{color:#8A9593}
+</style>
+</helmet>
+
+<div lang="{{lang}}" style="width: 390px; height: {{height}}px; position: relative; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+
+<sc-if value="{{isToday}}" hint-placeholder-val="{{false}}">
+<main style="flex-grow: 1; min-height: 0; overflow: hidden; box-sizing: border-box; padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<header style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; color: {{t.ink3}}">{{l.date}}</div>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 34px; line-height: 1.15; font-weight: 600; letter-spacing: -0.4px">{{l.today}}</h1>
+</header>
+<div style="position: relative">
+<button type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuOpen}}" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 14px 0 8px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left">
+<span style="width: 36px; height: 36px; border-radius: 18px; flex-shrink: 0; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">{{l.initial}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<span style="font-size: 15px; font-weight: 600">{{l.mom}}</span>
+<span style="font-size: 12px; color: {{t.ink3}}">{{l.viaServer}}</span>
+</span>
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.ink3}}"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+<div role="menu" style="position: absolute; left: 0; right: 0; top: 58px; z-index: 5; border-radius: 20px; background: {{t.card}}; border: 1.5px solid {{t.line}}; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); padding: 6px; display: flex; flex-direction: column">
+<a role="menuitem" href="{{ownHref}}" style="min-height: 52px; padding: 0 12px; border-radius: 14px; display: flex; align-items: center; gap: 10px; color: {{t.ink}}; text-decoration: none; font-size: 15px; font-weight: 500"><span style="width: 32px; height: 32px; border-radius: 16px; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.meInitial}}</span><span>{{l.me}}</span></a>
+<div role="menuitem" aria-current="true" style="min-height: 52px; padding: 0 12px; border-radius: 14px; background: {{t.accSoft}}; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: {{t.accText}}"><span style="width: 32px; height: 32px; border-radius: 16px; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.initial}}</span><span style="flex-grow: 1">{{l.mom}} · {{l.viaShort}}</span></div>
+<div role="menuitem" style="min-height: 52px; padding: 0 12px; border-radius: 14px; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500"><span style="width: 32px; height: 32px; border-radius: 16px; background: #F3C98B; color: #4A2E05; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.catInitial}}</span><span style="flex-grow: 1">{{l.cat}} · {{l.viaShort}}</span></div>
+<a role="menuitem" href="{{listHref}}" style="min-height: 48px; margin-top: 4px; padding: 0 12px; border-top: 1px solid {{t.sep}}; display: flex; align-items: center; gap: 6px; color: {{t.accText}}; text-decoration: none; font-size: 14px; font-weight: 600"><span>{{l.manage}}</span><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{isStale}}" hint-placeholder-val="{{false}}">
+<div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{l.stale}}</span>
+</div>
+</sc-if>
+<sc-if value="{{isFresh}}" hint-placeholder-val="{{true}}">
+<div style="border-radius: 16px; padding: 12px 16px; background: {{t.accSoft}}; display: flex; gap: 12px; align-items: center">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.accText}}"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.accText}}">{{l.viewOnly}}</span>
+</div>
+</sc-if>
+<div style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 16px">
+<div style="position: relative; width: 60px; height: 60px; flex-shrink: 0">
+<svg width="60" height="60" viewBox="0 0 60 60" aria-hidden="true" style="transform: rotate(-90deg)">
+<circle cx="30" cy="30" r="25" style="fill: none; stroke: {{t.sep}}; stroke-width: 6"></circle>
+<circle cx="30" cy="30" r="25" style="fill: none; stroke: {{t.acc}}; stroke-width: 6; stroke-linecap: round; stroke-dasharray: {{ringDash}}"></circle>
+</svg>
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; font-family: Literata, Georgia, serif; font-size: 18px; font-weight: 600">{{takenCount}}/{{total}}</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<div style="font-size: 16px; font-weight: 600">{{summaryTitle}}</div>
+<div style="font-size: 14px; line-height: 1.35; color: {{t.ink2}}">{{nextLine}}</div>
+</div>
+</div>
+<sc-for list="{{items}}" as="it" hint-placeholder-count="5">
+<div style="background: {{t.card}}; border-radius: 16px; box-sizing: border-box; border: 1.5px solid {{it.border}}; padding: 10px 12px 10px 14px; display: flex; align-items: center; gap: 12px">
+<div style="width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: {{it.tileBg}}; color: {{it.tileFg}}">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{it.name}}</span>
+<span style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: {{it.subColor}}">{{it.sub}}</span>
+</div>
+<span style="flex-shrink: 0; padding: 5px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; background: {{it.chipBg}}; color: {{it.chipFg}}">{{it.chip}}</span>
+</div>
+</sc-for>
+</main>
+<nav aria-label="{{l.sections}}" style="flex-shrink: 0; height: 76px; box-sizing: border-box; padding: 8px 8px 14px; background: {{t.card}}; border-top: 1px solid {{t.navLine}}; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+<a href="{{mainHref}}" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: {{t.acc}}; text-decoration: none"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg><span>{{l.navToday}}</span></a>
+<a href="{{historyHref}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: {{t.ink2}}; text-decoration: none"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg><span>{{l.navHistory}}</span></a>
+<a href="{{stockHref}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: {{t.ink2}}; text-decoration: none"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11v4"></path><path d="M14 13h-4"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M18 6v14"></path><path d="M6 6v14"></path><rect x="2" y="6" width="20" height="14" rx="2"></rect></svg><span>{{l.navStock}}</span></a>
+<a href="{{accessHref}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500; color: {{t.ink2}}; text-decoration: none"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span>{{l.navFamily}}</span></a>
+</nav>
+</sc-if>
+
+<sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+<main style="flex-grow: 1; min-height: 0; overflow: hidden; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{serverHref}}" style="height: 48px; margin-left: -8px; padding: 0 8px; align-self: flex-start; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none"><svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg><span>{{l.server}}</span></a>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.listTitle}}</h1>
+<div style="background: {{t.card}}; border-radius: 20px; padding: 16px"><span style="font-size: 15px; line-height: 1.45">{{l.listIntro}}</span></div>
+<sc-if value="{{hasPeople}}" hint-placeholder-val="{{true}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 4px 16px; display: flex; flex-direction: column">
+<sc-for list="{{people}}" as="p" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 72px; border-top: 1px solid {{p.sepColor}}">
+<span style="width: 40px; height: 40px; border-radius: 20px; flex-shrink: 0; background: {{p.bg}}; color: {{p.fg}}; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">{{p.initial}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; font-weight: 600">{{p.name}}</span>
+<span style="font-size: 13px; color: {{t.ink3}}">{{p.sub}}</span>
+</span>
+<button type="button" onClick="{{p.ask}}" aria-label="{{p.removeLabel}}" style="flex-shrink: 0; height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-size: 14px; font-weight: 600; cursor: pointer">{{l.remove}}</button>
+</div>
+</sc-for>
+</section>
+</sc-if>
+<sc-if value="{{noPeople}}" hint-placeholder-val="{{false}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 48px; height: 48px; border-radius: 24px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+<span style="font-size: 16px; font-weight: 600">{{l.emptyTitle}}</span>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.ink3}}">{{l.emptyText}}</span>
+</section>
+</sc-if>
+</main>
+<div style="height: 1px; background: {{t.line}}; flex-shrink: 0"></div>
+<div style="flex-shrink: 0; box-sizing: border-box; padding: 12px 20px 20px; background: {{t.bg}}">
+<a href="{{codeHref}}" style="height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{l.enterCode}}</a>
+</div>
+</sc-if>
+
+<sc-if value="{{isCode}}" hint-placeholder-val="{{false}}">
+<main style="flex-grow: 1; min-height: 0; overflow: hidden; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{listHref}}" style="height: 48px; margin-left: -8px; padding: 0 8px; align-self: flex-start; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none"><svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg><span>{{l.listTitle}}</span></a>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.codeTitle}}</h1>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<div style="background: {{t.card}}; border-radius: 20px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 48px; height: 48px; border-radius: 24px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.2"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<span style="font-size: 16px; font-weight: 600">{{l.doneTitle}}</span>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.ink3}}">{{l.doneText}}</span>
+</div>
+</sc-if>
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+<div style="background: {{t.card}}; border-radius: 20px; padding: 16px"><span style="font-size: 15px; line-height: 1.45">{{l.codeIntro}}</span></div>
+<label style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.code}}</span>
+<input type="text" value="{{codeValue}}" placeholder="ABCD-EFGH-JKMN" onChange="{{setCode}}" autocapitalize="characters" spellcheck="false" style="width: 100%; height: 52px; box-sizing: border-box; border: 1.5px solid {{codeBorder}}; border-radius: 14px; background: {{t.card}}; padding: 0 14px; color: {{t.ink}}; font-size: 18px; letter-spacing: 1px; font-variant-numeric: tabular-nums">
+<span style="font-size: 13px; color: {{t.ink3}}">{{l.codeHint}}</span>
+</label>
+<sc-if value="{{hasError}}" hint-placeholder-val="{{false}}">
+<div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{errorText}}</span>
+</div>
+</sc-if>
+</sc-if>
+</main>
+<div style="height: 1px; background: {{t.line}}; flex-shrink: 0"></div>
+<div style="flex-shrink: 0; box-sizing: border-box; padding: 12px 20px 20px; display: flex; flex-direction: column; gap: 8px; background: {{t.bg}}">
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{accept}}" disabled="{{cannotAccept}}" style="height: 54px; border: none; border-radius: 27px; background: {{acceptBg}}; color: {{acceptFg}}; font-size: 17px; font-weight: 600; cursor: {{acceptCursor}}">{{l.accept}}</button>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<a href="{{listHref}}" style="height: 54px; border-radius: 27px; background: {{t.acc}}; color: {{t.onAcc}}; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; text-decoration: none">{{l.toList}}</a>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{confirm}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: {{t.dim}}; display: flex; align-items: center; justify-content: center; padding: 0 28px">
+<div role="alertdialog" aria-label="{{removeTitle}}" style="width: 100%; box-sizing: border-box; border-radius: 28px; background: {{t.card}}; padding: 24px 24px 12px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25)">
+<span style="font-family: Literata, Georgia, serif; font-size: 22px; line-height: 1.2; font-weight: 600">{{removeTitle}}</span>
+<span style="font-size: 15px; line-height: 1.45; color: {{t.ink2}}">{{l.removeText}}</span>
+<div style="display: flex; justify-content: flex-end; gap: 4px">
+<button type="button" onClick="{{cancel}}" style="height: 48px; padding: 0 16px; border: none; border-radius: 24px; background: transparent; color: {{t.accText}}; font-size: 15px; font-weight: 600; cursor: pointer">{{l.cancel}}</button>
+<button type="button" onClick="{{doRemove}}" style="height: 48px; padding: 0 16px; border: none; border-radius: 24px; background: transparent; color: {{t.warn}}; font-size: 15px; font-weight: 600; cursor: pointer">{{l.removeConfirm}}</button>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"view":{"editor":"enum","options":["list","remove","code","codeerr","today","stale"],"default":"list"},"$preview":{"width":390,"height":560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', warnBorder: '#E7B894', fill: '#EFEBE3', line: '#D6D1C6', sep: '#ECE8DF', navLine: '#E2DED4', dim: 'rgba(22, 33, 31, 0.45)' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', warnBorder: '#7A4A22', fill: '#252F2C', line: '#3A4542', sep: '#262F2C', navLine: '#2A3431', dim: 'rgba(0, 0, 0, 0.6)' }
+    }[theme];
+
+    const L = {
+      ru: {
+        server: 'Сервер', listTitle: 'Профили других людей', codeTitle: 'Код приглашения',
+        listIntro: 'Если кто-то открыл вам доступ к своему профилю — человека или питомца, — он появится в «Сегодня». Только просмотр: отмечать приёмы здесь нельзя. Данные приходят с сервера и не хранятся нигде, кроме этого телефона.',
+        enterCode: 'Ввести код приглашения', remove: 'Убрать',
+        emptyTitle: 'Пока никого', emptyText: 'Попросите владельца профиля создать приглашение и пришлите себе код.',
+        removeTitle: 'Убрать «{name}»?', removeText: 'Профиль исчезнет с этого телефона. У владельца и на сервере ничего не изменится; вернуть его можно новым кодом.',
+        removeConfirm: 'Убрать', cancel: 'Отмена',
+        codeIntro: 'Код создаёт владелец профиля — в приложении или на странице сервера. Он действует один раз и ограниченное время.',
+        code: 'Код', codeHint: 'Регистр и дефисы не важны.', accept: 'Принять', toList: 'К списку',
+        doneTitle: 'Профиль «Мама» добавлен', doneText: 'Он появится в «Сегодня» — выберите его в переключателе профилей.',
+        eNotFound: 'Код не подошёл: он неверный, истёк, отозван или уже использован.',
+        eHave: 'Этот профиль у вас уже есть.',
+        eTooMany: 'Слишком много попыток. Повторите примерно через 12 мин.',
+        eNet: 'Нет связи с сервером. Проверьте интернет и повторите.',
+        date: 'Суббота, 26 сентября', today: 'Сегодня', mom: 'Мама', initial: 'М', cat: 'Барсик', catInitial: 'Б', me: 'Я', meInitial: 'Я',
+        viaServer: 'по серверу · только просмотр', viaShort: 'по серверу', manage: 'Профили других людей',
+        viewOnly: 'Только просмотр · обновлено в 13:50', stale: 'Нет связи с сервером. Показаны данные на 13:10.',
+        sections: 'Разделы', navToday: 'Сегодня', navHistory: 'История', navStock: 'Аптечка', navFamily: 'Близкие',
+        later: 'Позже', soonChip: 'Пора', lateChip: 'Просрочено', doneChip: 'Принято'
+      },
+      en: {
+        server: 'Server', listTitle: 'Other people’s profiles', codeTitle: 'Invitation code',
+        listIntro: 'If someone has shared their profile with you — a person or a pet — it shows up in Today. View only: you cannot mark doses here. The data comes from the server and is kept nowhere but this phone.',
+        enterCode: 'Enter an invitation code', remove: 'Remove',
+        emptyTitle: 'No one yet', emptyText: 'Ask the profile’s owner to create an invitation and send yourself the code.',
+        removeTitle: 'Remove “{name}”?', removeText: 'The profile disappears from this phone. Nothing changes for the owner or on the server; a new code brings it back.',
+        removeConfirm: 'Remove', cancel: 'Cancel',
+        codeIntro: 'The profile’s owner creates the code — in the app or on the server’s page. It works once and for a limited time.',
+        code: 'Code', codeHint: 'Case and dashes do not matter.', accept: 'Accept', toList: 'To the list',
+        doneTitle: 'The profile “Mom” was added', doneText: 'It shows up in Today — pick it in the profile switcher.',
+        eNotFound: 'The code did not work: it is wrong, expired, revoked or already used.',
+        eHave: 'You already have this profile.',
+        eTooMany: 'Too many attempts. Try again in about 12 min.',
+        eNet: 'No connection to the server. Check the internet and try again.',
+        date: 'Saturday, September 26', today: 'Today', mom: 'Mom', initial: 'M', cat: 'Barsik', catInitial: 'B', me: 'Me', meInitial: 'M',
+        viaServer: 'via server · view only', viaShort: 'via server', manage: 'Other people’s profiles',
+        viewOnly: 'View only · updated at 1:50 PM', stale: 'No connection to the server. Showing data as of 1:10 PM.',
+        sections: 'Sections', navToday: 'Today', navHistory: 'History', navStock: 'Medicines', navFamily: 'Family',
+        later: 'Later', soonChip: 'Due', lateChip: 'Overdue', doneChip: 'Taken'
+      }
+    }[lang];
+
+    const VIEWS = ['list', 'remove', 'code', 'codeerr', 'today', 'stale'];
+    const first = VIEWS.indexOf(this.props.view) >= 0 ? this.props.view : 'list';
+
+    // --- список профилей ---
+    const PEOPLE = [
+      { id: 'mom', name: L.mom, initial: L.initial, bg: '#9FE0D6', fg: '#0F3531', sub: lang === 'ru' ? 'Наблюдатель · обновлено в 13:50' : 'Viewer · updated 1:50 PM' },
+      { id: 'cat', name: L.cat, initial: L.catInitial, bg: '#F3C98B', fg: '#4A2E05', sub: lang === 'ru' ? 'Опекун · обновлено в 13:50' : 'Guardian · updated 1:50 PM' }
+    ];
+    const gone = s.gone || [];
+    const left = PEOPLE.filter((p) => gone.indexOf(p.id) < 0);
+    const asking = s.asking !== undefined ? s.asking : (first === 'remove' ? 'mom' : null);
+    const askedPerson = PEOPLE.filter((p) => p.id === asking)[0];
+    const people = left.map((p, i) => ({
+      name: p.name, initial: p.initial, bg: p.bg, fg: p.fg, sub: p.sub,
+      sepColor: i === 0 ? 'transparent' : T.sep,
+      removeLabel: L.remove + ': ' + p.name,
+      ask: () => this.setState({ asking: p.id })
+    }));
+
+    // --- ввод кода ---
+    const code = s.code !== undefined ? s.code : (first === 'codeerr' ? 'WXYZ-QRST-2345' : '');
+    const err = s.err !== undefined ? s.err : (first === 'codeerr' ? 'notfound' : '');
+    const done = !!s.done;
+    const norm = code.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    const ready = norm.length === 12;
+    const accept = () => {
+      if (!ready) return;
+      if (norm === 'AAAAAAAAAAAA') { this.setState({ err: 'have' }); return; }
+      if (norm === 'TTTTTTTTTTTT') { this.setState({ err: 'toomany' }); return; }
+      if (norm === 'NNNNNNNNNNNN') { this.setState({ err: 'net' }); return; }
+      if (norm === 'ABCDEFGHJKMN') { this.setState({ done: true, err: '' }); return; }
+      this.setState({ err: 'notfound' });
+    };
+    const errorText = { notfound: L.eNotFound, have: L.eHave, toomany: L.eTooMany, net: L.eNet }[err] || '';
+
+    // --- «Сегодня» чужого профиля ---
+    const stale = first === 'stale';
+    const NOW = stale ? 13 * 60 + 10 : 13 * 60 + 52;
+    const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
+    const MEDS = lang === 'ru' ? [
+      { time: '07:00', name: 'Левотироксин 50 мкг', note: '1 таблетка, натощак', at: '07:04' },
+      { time: '08:30', name: 'Метформин 850 мг', note: '1 таблетка, с едой', at: '08:41' },
+      { time: '12:00', name: 'Витамин D3 2000 МЕ', note: '1 капсула, с едой' },
+      { time: '14:00', name: 'Метформин 850 мг', note: '1 таблетка, с едой' },
+      { time: '21:00', name: 'Аторвастатин 20 мг', note: '1 таблетка' }
+    ] : [
+      { time: '07:00', name: 'Levothyroxine 50 mcg', note: '1 tablet, on an empty stomach', at: '07:04' },
+      { time: '08:30', name: 'Metformin 850 mg', note: '1 tablet, with food', at: '08:41' },
+      { time: '12:00', name: 'Vitamin D3 2000 IU', note: '1 capsule, with food' },
+      { time: '14:00', name: 'Metformin 850 mg', note: '1 tablet, with food' },
+      { time: '21:00', name: 'Atorvastatin 20 mg', note: '1 tablet' }
+    ];
+    const clock = (t) => {
+      if (lang === 'ru') return t;
+      const h = Number(t.slice(0, 2)); const m = t.slice(3);
+      return (h % 12 === 0 ? 12 : h % 12) + ':' + m + ' ' + (h < 12 ? 'AM' : 'PM');
+    };
+    const items = MEDS.map((m) => {
+      const diff = toMin(m.time) - NOW;
+      // Как в приложении (stateOf): за 30 минут до времени и час после — «Пора», позже — «Просрочено».
+      const status = m.at ? 'done' : diff < -60 ? 'late' : diff <= 30 ? 'soon' : 'later';
+      let sub = clock(m.time) + ' · ' + m.note;
+      let subColor = T.ink3;
+      let chip = L.later, chipBg = T.fill, chipFg = T.ink2;
+      if (status === 'done') { sub = (lang === 'ru' ? 'Принято в ' : 'Taken at ') + clock(m.at); subColor = T.accText; chip = L.doneChip; chipBg = T.accSoft; chipFg = T.accText; }
+      const ago = (n) => lang === 'ru' ? 'прошло ' + (n >= 60 ? Math.floor(n / 60) + ' ч ' : '') + (n % 60) + ' мин' : (n >= 60 ? Math.floor(n / 60) + ' h ' : '') + (n % 60) + ' min ago';
+      if (status === 'late') { sub = clock(m.time) + ' · ' + ago(-diff); subColor = T.warn; chip = L.lateChip; chipBg = T.warnSoft; chipFg = T.warn; }
+      if (status === 'soon') { sub = clock(m.time) + ' · ' + (diff >= 0 ? (lang === 'ru' ? 'через ' + diff + ' мин' : 'in ' + diff + ' min') : ago(-diff)); subColor = T.ink; chip = L.soonChip; chipBg = T.accSoft; chipFg = T.accText; }
+      return {
+        name: m.name, sub: sub, subColor: subColor, chip: chip, chipBg: chipBg, chipFg: chipFg,
+        border: status === 'late' ? T.warnBorder : T.card,
+        tileBg: status === 'done' ? T.accSoft : T.fill, tileFg: status === 'done' ? T.accText : T.ink2,
+        status: status, time: m.time
+      };
+    });
+    const total = items.length;
+    const takenCount = items.filter((i) => i.status === 'done').length;
+    const C = 2 * Math.PI * 25;
+    const late = items.filter((i) => i.status === 'late')[0];
+    const next = items.filter((i) => i.status === 'soon' || i.status === 'later')[0];
+    let nextLine = lang === 'ru' ? 'На сегодня всё отмечено' : 'All marked for today';
+    if (late) nextLine = (lang === 'ru' ? 'Не отмечен: ' : 'Not marked: ') + late.name + ', ' + clock(late.time);
+    else if (next) nextLine = (lang === 'ru' ? 'Дальше: ' : 'Next: ') + next.name + ', ' + clock(next.time);
+
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    const height = { list: 560, remove: 560, code: 560, codeerr: 640, today: 844, stale: 844 }[first];
+    const isList = first === 'list' || first === 'remove';
+    const isCode = first === 'code' || first === 'codeerr';
+    const isToday = first === 'today' || first === 'stale';
+    return {
+      t: T, l: L, lang: lang, height: height,
+      isList: isList, isCode: isCode, isToday: isToday,
+      serverHref: 'ServerOn' + sfx + '.dc.html', listHref: 'Watch' + sfx + '.dc.html', codeHref: 'WatchCode' + sfx + '.dc.html',
+      mainHref: 'WatchToday' + sfx + '.dc.html', ownHref: 'Main' + sfx + '.dc.html', historyHref: 'History' + sfx + '.dc.html',
+      stockHref: 'Stock' + sfx + '.dc.html', accessHref: 'Access' + sfx + '.dc.html',
+      people: people, hasPeople: people.length > 0, noPeople: people.length === 0,
+      confirm: !!askedPerson,
+      removeTitle: askedPerson ? L.removeTitle.replace('{name}', askedPerson.name) : '',
+      cancel: () => this.setState({ asking: null }),
+      doRemove: () => this.setState({ asking: null, gone: gone.concat([asking]) }),
+      codeValue: code, setCode: (e) => this.setState({ code: e.target.value, err: '' }),
+      codeBorder: err ? T.warnLine : T.line,
+      hasError: err !== '', errorText: errorText, isDone: done, notDone: !done,
+      cannotAccept: !ready, acceptBg: ready ? T.acc : T.fill, acceptFg: ready ? T.onAcc : T.ink3, acceptCursor: ready ? 'pointer' : 'default',
+      accept: accept,
+      menuOpen: !!s.menu, toggleMenu: () => this.setState({ menu: !s.menu }),
+      isStale: stale, isFresh: !stale,
+      items: items, total: total, takenCount: takenCount,
+      ringDash: (C * takenCount / total).toFixed(1) + ' ' + C.toFixed(1),
+      summaryTitle: lang === 'ru' ? 'Принято ' + takenCount + ' из ' + total : 'Taken ' + takenCount + ' of ' + total,
+      nextLine: nextLine
+    };
+  }
+}
+</script>
+</body>
+</html>
