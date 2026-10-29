@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
+import io.github.agitangst.ampulse.ui.RoutineSection
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -67,6 +68,7 @@ fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifi
             style = screenTitleStyle(30),
         )
         RemindersSection()
+        RoutineSection()
         AppearanceSection(settings)
         Store.UpdatesSettings(settings)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {

@@ -435,7 +435,8 @@ internal fun MedTextField(
 
 /**
  * Диалог выбора времени (Material 3 `TimePicker`, 12 или 24 ч — по настройке телефона). [taken] — время, которое уже
- * есть в схеме: на него «ОК» недоступно, причина написана под часами.
+ * есть в схеме: на него «ОК» недоступно, причина написана под часами. [title] — заголовок вместо «Время приёма»
+ * (например, «Подъём» в режиме дня).
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -445,6 +446,7 @@ internal fun MedTimeDialog(
     taken: Set<LocalTime>,
     onConfirm: (LocalTime) -> Unit,
     onDismiss: () -> Unit,
+    title: String? = null,
 ) {
     val p = AnvilTheme.palette
     val state = rememberTimePickerState(initial.hour, initial.minute, is24)
@@ -459,7 +461,7 @@ internal fun MedTimeDialog(
         ) {
             Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Text(
-                    stringResource(R.string.meds_time_dialog),
+                    title ?: stringResource(R.string.meds_time_dialog),
                     color = p.weak,
                     style = MaterialTheme.typography.labelLarge,
                 )

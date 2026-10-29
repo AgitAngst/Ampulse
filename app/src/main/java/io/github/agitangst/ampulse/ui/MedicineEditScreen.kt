@@ -56,6 +56,7 @@ import io.github.agitangst.ampulse.AmpulseIcons
 import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.Nav
 import io.github.agitangst.ampulse.R
+import io.github.agitangst.ampulse.Route
 import io.github.agitangst.ampulse.domain.DoseTime
 import io.github.agitangst.ampulse.domain.FoodRule
 import io.github.agitangst.ampulse.domain.MedForm
@@ -305,6 +306,13 @@ fun MedicineEditScreen(id: Long, nav: Nav) {
                 color = p.text,
                 style = screenTitleStyle(30),
             )
+            if (id == 0L) {
+                // Разбор встаёт на место этой формы: после «Добавить в расписание» человек возвращается к списку, а не к пустой форме.
+                ImportEntryCard(onClick = {
+                    nav.back()
+                    nav.open(Route.Import)
+                })
+            }
             if (loaded) {
                 BasicsSection(draft, texts, edit)
                 PlanSection(draft, texts, edit, onPickTime = { timeDialog = it }, onPickDate = { dateDialog = true })

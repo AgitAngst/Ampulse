@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Назначение → план и «Режим дня» (этап 0.5, макет — экраны 7–9); ключи те же в values-ru -->
+
+    <!-- Вход: карточка на экране «Новое лекарство» -->
+    <string name="import_entry_title">Have a prescription?</string>
+    <string name="import_entry_hint">Paste the list or a photo — I’ll build the plan</string>
+
+    <!-- Шаг 1: ввод -->
+    <string name="import_title">From a prescription</string>
+    <string name="import_sub">Paste, photograph or dictate the list from your doctor — I’ll schedule it myself</string>
+    <string name="import_offline">Works offline — everything stays on the phone</string>
+    <string name="import_text_label">Prescription text</string>
+    <string name="import_text_hint">One medicine per line, for example: Amoxicillin 500 mg 1 caps. 3 times a day, 7 days</string>
+    <string name="import_found_none">No medicines yet — paste the prescription text</string>
+    <plurals name="import_found">
+        <item quantity="one">I see %1$d medicine: %2$s</item>
+        <item quantity="other">I see %1$d medicines: %2$s</item>
+    </plurals>
+    <string name="import_sources">Or add from</string>
+    <string name="import_file">From a file</string>
+    <string name="import_file_failed">Couldn’t read the file</string>
+    <string name="import_file_big">The file is too large for a prescription</string>
+    <string name="import_share_hint">You can simply forward your doctor’s message from a messenger: Share → Ampulse</string>
+    <string name="import_read">Read prescription</string>
+
+    <!-- Шаг 2: проверка -->
+    <string name="import_edit_text">Edit text</string>
+    <string name="import_review_title">Check it</string>
+    <plurals name="import_review_sub">
+        <item quantity="one">Found %d medicine. Only what you confirm goes into the schedule.</item>
+        <item quantity="other">Found %d medicines. Only what you confirm goes into the schedule.</item>
+    </plurals>
+    <string name="import_legend_found">from the text</string>
+    <string name="import_legend_guess">guessed — please check</string>
+    <string name="import_status_ask">Check how often</string>
+    <string name="import_status_change">Already taking · dose change</string>
+    <string name="import_status_known">Already taking · schedule updated</string>
+    <string name="import_status_new">New medicine</string>
+    <string name="import_status_taper_down">New medicine · tapering dose</string>
+    <string name="import_status_taper_up">New medicine · increasing dose</string>
+    <string name="import_remove">Remove from the list: %s</string>
+    <string name="import_removed">Removed: %s</string>
+    <string name="import_undo">Undo</string>
+    <string name="import_question_take">No frequency in the text. How many times a day to take it?</string>
+    <string name="import_question_inject">No frequency in the text. How many times a day to inject?</string>
+    <string name="import_change_dose">Now in the schedule: %1$s — will be %2$s. The schedule is replaced by the new one; packs and history stay.</string>
+    <string name="import_change_same">This medicine is already in your list. Its schedule is replaced by the new one; packs and history stay.</string>
+    <string name="import_quote">“%s”</string>
+    <string name="import_plan_btn">Build the plan</string>
+    <plurals name="import_answer_n">
+        <item quantity="one">Answer %d question</item>
+        <item quantity="other">Answer %d questions</item>
+    </plurals>
+    <string name="import_empty_review">No medicines left — go back and edit the text</string>
+
+    <!-- Чипы карточки: сплошная рамка — из текста, пунктир — додумано -->
+    <string name="import_chip_sc">subcutaneous</string>
+    <string name="import_chip_im">into muscle</string>
+    <string name="import_chip_per_dose">%s per dose</string>
+    <string name="import_chip_every_other">every other day</string>
+    <string name="import_chip_night">at bedtime</string>
+    <string name="import_chip_morning">in the morning</string>
+    <string name="import_chip_evening">in the evening</string>
+    <string name="import_chip_both">morning and evening</string>
+    <string name="import_chip_food_none">food doesn’t matter</string>
+    <string name="import_chip_food_empty">empty stomach</string>
+    <string name="import_chip_food_before">before meals</string>
+    <string name="import_chip_food_with">with meals</string>
+    <string name="import_chip_food_after">after meals</string>
+    <string name="import_chip_every_h">every %d h</string>
+    <string name="import_chip_ongoing">ongoing</string>
+    <plurals name="import_chip_step_every">
+        <item quantity="one">dose changes every %d day</item>
+        <item quantity="other">dose changes every %d days</item>
+    </plurals>
+    <string name="import_chip_guess_desc">%s, guessed</string>
+
+    <!-- Шаг 3: готовый план -->
+    <string name="import_back_review">Back to check</string>
+    <string name="import_plan_title">Plan is ready</string>
+    <string name="import_plan_summary">%1$s · %2$s · starting %3$s</string>
+    <plurals name="import_n_medicines">
+        <item quantity="one">%d medicine</item>
+        <item quantity="other">%d medicines</item>
+    </plurals>
+    <plurals name="import_doses_per_day">
+        <item quantity="one">%d dose a day</item>
+        <item quantity="other">%d doses a day</item>
+    </plurals>
+    <string name="import_routine_title">Fits your daily routine</string>
+    <string name="import_routine_summary">wake %1$s · breakfast %2$s · lunch %3$s · dinner %4$s · sleep %5$s</string>
+    <string name="import_routine_change">Change</string>
+    <string name="import_routine_done">Done</string>
+    <string name="import_start_label">Start</string>
+    <string name="import_start_today">Today</string>
+    <string name="import_start_tomorrow">Tomorrow</string>
+    <string name="import_day_title">Your day</string>
+    <string name="import_courses_title">Courses · from %s</string>
+    <string name="import_total_title">How much you need</string>
+    <string name="import_course_days">%1$s, until %2$s</string>
+    <string name="import_tag_empty">empty stomach, 30 min before meals</string>
+    <string name="import_tag_before">30 min before meals</string>
+    <string name="import_tag_with">with meals</string>
+    <string name="import_tag_after">30 min after meals</string>
+    <string name="import_tag_taper">then %s</string>
+    <string name="import_tag_change">dose %1$s → %2$s</string>
+    <string name="import_amount_first">%1$s for the first %2$s</string>
+    <plurals name="import_injections">
+        <item quantity="one">%d injection</item>
+        <item quantity="other">%d injections</item>
+    </plurals>
+    <string name="import_total_course">%s per course</string>
+    <string name="import_total_month">%s per month</string>
+    <string name="import_footer_note">Your doctor set the regimen. The app only schedules it and never changes doses.</string>
+    <string name="import_save">Add to schedule</string>
+    <plurals name="import_saved">
+        <item quantity="one">Added to the schedule: %d medicine</item>
+        <item quantity="other">Added to the schedule: %d medicines</item>
+    </plurals>
+    <string name="import_save_failed">Couldn’t save — try again</string>
+
+    <!-- «Настройки → Режим дня» -->
+    <string name="routine_section">Daily routine</string>
+    <string name="routine_hint">Prescription import uses it to set dose times: “before meals” is 30 minutes before breakfast, “at bedtime” is an hour before sleep.</string>
+    <string name="routine_wake">Wake-up</string>
+    <string name="routine_breakfast">Breakfast</string>
+    <string name="routine_lunch">Lunch</string>
+    <string name="routine_dinner">Dinner</string>
+    <string name="routine_sleep">Sleep</string>
+    <string name="routine_time_desc">%1$s: %2$s</string>
+    <string name="routine_invalid">Wake-up must be earlier than sleep</string>
+</resources>
