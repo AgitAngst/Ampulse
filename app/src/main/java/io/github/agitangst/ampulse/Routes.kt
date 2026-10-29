@@ -4,6 +4,11 @@ import androidx.compose.runtime.Composable
 import io.github.agitangst.ampulse.ui.AsNeededScreen
 import io.github.agitangst.ampulse.ui.ExpiryScreen
 import io.github.agitangst.ampulse.ui.ImportScreen
+import io.github.agitangst.ampulse.ui.InjectionScreen
+import io.github.agitangst.ampulse.ui.ProfileEditScreen
+import io.github.agitangst.ampulse.ui.ProfilesScreen
+import io.github.agitangst.ampulse.ui.ShotGuideScreen
+import io.github.agitangst.ampulse.ui.ShotRulesScreen
 import io.github.agitangst.ampulse.ui.MedicineEditScreen
 import io.github.agitangst.ampulse.ui.PackEditScreen
 import io.github.agitangst.ampulse.ui.ScanScreen
@@ -38,6 +43,24 @@ sealed interface Route {
     /** Назначение → план: текст, фото, голос, файл (макет, экраны 7–9). Текст из «Поделиться» — `PendingImport`. */
     data object Import : Route
 
+    /**
+     * Место укола перед отметкой (макет, экраны 3, 17–18): ротация мест профиля. `plannedAt` — время приёма по схеме
+     * (эпоха, мс); `null` — укол вне расписания.
+     */
+    data class Injection(val medicineId: Long, val plannedAt: Long?) : Route
+
+    /** Укол пошагово (макет, экраны 44–45): подкожно ручкой или в мышцу — по лекарству. */
+    data class ShotGuide(val medicineId: Long, val plannedAt: Long?) : Route
+
+    /** Правила уколов (макет, экран 46). */
+    data object ShotRules : Route
+
+    /** Профили: «Я», близкие, питомцы. */
+    data object Profiles : Route
+
+    /** Новый профиль (`id` = 0) или правка. */
+    data class ProfileEdit(val id: Long) : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -47,6 +70,11 @@ sealed interface Route {
         Expiry -> "expiry"
         Scan -> "scan"
         Import -> "import"
+        is Injection -> "inj:$medicineId:${plannedAt ?: ""}"
+        is ShotGuide -> "shot:$medicineId:${plannedAt ?: ""}"
+        ShotRules -> "shotrules"
+        Profiles -> "profiles"
+        is ProfileEdit -> "profile:$id"
     }
 
     companion object {
@@ -64,6 +92,13 @@ sealed interface Route {
                 "expiry" -> Expiry
                 "scan" -> Scan
                 "import" -> Import
+                "inj", "shot" -> arg?.split(':')?.takeIf { it.size == 2 }?.let { (m, p) ->
+                    val med = m.toLongOrNull() ?: return null
+                    if (name == "inj") Injection(med, p.toLongOrNull()) else ShotGuide(med, p.toLongOrNull())
+                }
+                "shotrules" -> ShotRules
+                "profiles" -> Profiles
+                "profile" -> arg?.toLongOrNull()?.let(::ProfileEdit)
                 else -> null
             }
         }
@@ -89,5 +124,10 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.Expiry -> ExpiryScreen(nav)
         Route.Scan -> ScanScreen(nav)
         Route.Import -> ImportScreen(nav)
+        is Route.Injection -> InjectionScreen(route.medicineId, route.plannedAt, nav)
+        is Route.ShotGuide -> ShotGuideScreen(route.medicineId, route.plannedAt, nav)
+        Route.ShotRules -> ShotRulesScreen(nav)
+        Route.Profiles -> ProfilesScreen(nav)
+        is Route.ProfileEdit -> ProfileEditScreen(route.id, nav)
     }
 }

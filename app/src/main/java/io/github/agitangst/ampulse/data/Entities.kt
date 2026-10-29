@@ -1,5 +1,6 @@
 package io.github.agitangst.ampulse.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -19,6 +20,8 @@ data class MedicineEntity(
     /** Убрано из аптечки, но история сохраняется. */
     val archived: Boolean = false,
     val createdAt: Long,
+    /** Профиль (этап 0.6): 0 — «Я». */
+    @ColumnInfo(defaultValue = "0") val profileId: Long = 0,
 )
 
 /** Схема приёма; сложные части — строками (`Codec`): времена «08:00=1;20:00=0.5», ступени «4:3;3:3». */
@@ -60,4 +63,6 @@ data class DoseEventEntity(
     val status: String,
     val amount: Double,
     val note: String,
+    /** Место укола (`Site.name`, этап 0.6). */
+    val site: String? = null,
 )

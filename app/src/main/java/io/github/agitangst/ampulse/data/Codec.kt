@@ -8,6 +8,7 @@ import io.github.agitangst.ampulse.domain.MedForm
 import io.github.agitangst.ampulse.domain.Medicine
 import io.github.agitangst.ampulse.domain.Plan
 import io.github.agitangst.ampulse.domain.PlanKind
+import io.github.agitangst.ampulse.domain.Site
 import io.github.agitangst.ampulse.domain.Schedule
 import io.github.agitangst.ampulse.domain.TaperStep
 import java.time.DayOfWeek
@@ -45,7 +46,7 @@ object Codec {
     fun time(ms: Long, zone: ZoneId = ZoneId.systemDefault()): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(ms), zone)
 
     fun medicine(e: MedicineEntity) = Medicine(
-        e.id, e.name, e.strength, enumOr(e.form, MedForm.Other), e.unit, e.important, enumOr(e.food, FoodRule.None), e.note,
+        e.id, e.name, e.strength, enumOr(e.form, MedForm.Other), e.unit, e.important, enumOr(e.food, FoodRule.None), e.note, e.profileId,
     )
 
     fun plan(e: ScheduleEntity) = Plan(
@@ -84,6 +85,7 @@ object Codec {
 
     fun event(e: DoseEventEntity) = DoseEvent(
         e.id, e.medicineId, e.scheduleId, e.plannedAt?.let { time(it) }, time(e.at), enumOr(e.status, EventStatus.Taken), e.amount, e.note,
+        e.site?.let { s -> Site.entries.firstOrNull { it.name == s } },
     )
 
     private inline fun <reified T : Enum<T>> enumOr(name: String, fallback: T): T =

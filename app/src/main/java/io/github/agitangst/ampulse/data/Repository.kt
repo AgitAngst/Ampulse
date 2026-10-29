@@ -1,6 +1,8 @@
 package io.github.agitangst.ampulse.data
 
 import androidx.room.withTransaction
+import io.github.agitangst.ampulse.domain.Profile
+import io.github.agitangst.ampulse.domain.Site
 import io.github.agitangst.ampulse.domain.DoseEvent
 import io.github.agitangst.ampulse.domain.EventStatus
 import io.github.agitangst.ampulse.domain.MarkCheck
@@ -48,7 +50,7 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
         val entity = MedicineEntity(
             id = medicine.id, name = medicine.name.trim(), strength = medicine.strength.trim(), form = medicine.form.name,
             unit = medicine.unit, important = medicine.important, food = medicine.food.name, note = medicine.note,
-            createdAt = System.currentTimeMillis(),
+            createdAt = System.currentTimeMillis(), profileId = medicine.profileId,
         )
         val id = if (medicine.id == 0L) db.medicines().insert(entity) else entity.id.also { db.medicines().update(entity) }
         val existing = db.schedules().forMedicine(id).firstOrNull()
@@ -66,7 +68,7 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
      * Отметить приём по расписанию. Уже принятый повторно не записывается — [MarkCheck.AlreadyTaken] (защита от
      * двойной дозы, макет экран 15); лишний приём пишется отдельно — [logExtra].
      */
-    suspend fun mark(planned: PlannedDose, status: EventStatus, at: LocalDateTime, note: String = ""): MarkCheck {
+    suspend fun mark(planned: PlannedDose, status: EventStatus, at: LocalDateTime, note: String = "", site: Site? = null): MarkCheck {
         val existing = db.events().forPlanned(planned.medicineId, Codec.millis(planned.at)).map(Codec::event)
         val check = checkMark(planned, existing)
         if (check is MarkCheck.AlreadyTaken && status == EventStatus.Taken) return check
@@ -76,7 +78,7 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
             val eventId = db.events().insert(
                 DoseEventEntity(
                     medicineId = planned.medicineId, scheduleId = planned.scheduleId, plannedAt = Codec.millis(planned.at),
-                    at = Codec.millis(at), status = status.name, amount = planned.amount, note = note,
+                    at = Codec.millis(at), status = status.name, amount = planned.amount, note = note, site = site?.name,
                 ),
             )
             if (status == EventStatus.Taken) writeOff(eventId, planned.medicineId, planned.amount)
@@ -86,10 +88,12 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
     }
 
     /** Лишний приём или приём «по необходимости» — для истории и отчёта врачу. */
-    suspend fun logExtra(medicineId: Long, amount: Double, at: LocalDateTime, status: EventStatus = EventStatus.Extra, note: String = ""): Long {
+    suspend fun logExtra(
+        medicineId: Long, amount: Double, at: LocalDateTime, status: EventStatus = EventStatus.Extra, note: String = "", site: Site? = null,
+    ): Long {
         val id = db.withTransaction {
             val eventId = db.events().insert(
-                DoseEventEntity(medicineId = medicineId, scheduleId = null, plannedAt = null, at = Codec.millis(at), status = status.name, amount = amount, note = note),
+                DoseEventEntity(medicineId = medicineId, scheduleId = null, plannedAt = null, at = Codec.millis(at), status = status.name, amount = amount, note = note, site = site?.name),
             )
             if (status != EventStatus.Skipped) writeOff(eventId, medicineId, amount)
             eventId
@@ -106,6 +110,27 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
         }
         onChange.onPlanChanged()
     }
+
+    // --- Профили и уколы (этап 0.6) ---
+
+    /** Профили кроме «Я» (профиль 0 — без строки, см. `ProfileEntity`). */
+    val profiles: Flow<List<Profile>> = db.profiles().all().map { l -> l.map(CareCodec::profile) }
+
+    suspend fun saveProfile(p: Profile): Long = db.profiles().upsert(CareCodec.entity(p, System.currentTimeMillis())).let { if (p.id == 0L) it else p.id }
+
+    /** Удалить профиль вместе с его лекарствами и историей. «Я» (0) не удаляется. */
+    suspend fun deleteProfile(id: Long) {
+        if (id == 0L) return
+        db.withTransaction {
+            db.profiles().deleteMedicines(id)
+            db.profiles().delete(id)
+        }
+        onChange.onPlanChanged()
+    }
+
+    /** Уколы профиля с местом и временем — для ротации мест (`rotation` в `domain/Care.kt`). */
+    fun injections(profileId: Long): Flow<List<Pair<Site, LocalDateTime>>> =
+        db.profiles().injections(profileId).map { l -> l.map(Codec::event).mapNotNull { e -> e.site?.let { it to e.at } } }
 
     // --- Аптечка (этап 0.4) ---
 
