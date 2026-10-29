@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- «Место укола» (этап 0.6): схема тела, ротация мест, доза и сахар; ключи те же в values-ru -->
+
+    <!-- Шапка экрана и вид укола -->
+    <string name="injection_steps">Step by step</string>
+    <string name="injection_route_sc">Subcutaneous</string>
+    <string name="injection_route_im">Intramuscular</string>
+    <string name="injection_sub_route_sc">subcutaneous</string>
+    <string name="injection_sub_route_im">intramuscular</string>
+    <string name="injection_side_left">Left side</string>
+    <string name="injection_side_right">Right side</string>
+
+    <!-- Профиль в строке под заголовком -->
+    <string name="injection_kind_cat">cat</string>
+    <string name="injection_kind_dog">dog</string>
+    <string name="injection_kind_pet">pet</string>
+    <string name="injection_weight_kg">%s kg</string>
+
+    <!-- Схема: стороны человека, легенда, подсказка -->
+    <string name="injection_person_right">Right</string>
+    <string name="injection_person_left">Left</string>
+    <string name="injection_legend_best">Recommended</string>
+    <string name="injection_legend_ok">OK</string>
+    <string name="injection_legend_rest">Resting</string>
+    <string name="injection_hint">The number is days since the last injection here; a dash means no injection here yet.</string>
+    <string name="injection_hint_pet">The number is days since the last injection here; a dash means no injection here yet. The scruff is shown on both sides.</string>
+
+    <!-- Выбранное место: когда кололи в прошлый раз и метка -->
+    <string name="injection_last">Last injection here: %s</string>
+    <string name="injection_never">No injection here yet</string>
+    <string name="injection_ago_today">today</string>
+    <string name="injection_ago_yesterday">yesterday</string>
+    <plurals name="injection_days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <string name="injection_tag_best">Recommended</string>
+    <string name="injection_tag_ok">OK</string>
+    <string name="injection_tag_rest">Let it rest</string>
+
+    <!-- Подпись точки для TalkBack: место, когда кололи, метка -->
+    <string name="injection_dot_desc">%1$s, last injection %2$s. %3$s</string>
+    <string name="injection_dot_desc_never">%1$s, no injection here yet. %2$s</string>
+
+    <!-- Доза и сахар крови -->
+    <string name="injection_dose">Dose</string>
+    <string name="injection_glucose">Blood sugar</string>
+    <string name="injection_glucose_optional">optional</string>
+    <string name="injection_glucose_unit">mmol/L</string>
+    <string name="injection_glucose_note">blood sugar %s</string>
+
+    <!-- Главная кнопка -->
+    <string name="injection_done">Injection done · %s</string>
+
+    <!-- Названия мест: полное — в карточке выбранного, короткое — на кнопке -->
+    <string name="injection_site_abdomen_left">Abdomen, left</string>
+    <string name="injection_site_abdomen_left_short">abdomen left</string>
+    <string name="injection_site_abdomen_right">Abdomen, right</string>
+    <string name="injection_site_abdomen_right_short">abdomen right</string>
+    <string name="injection_site_thigh_left">Thigh, left</string>
+    <string name="injection_site_thigh_left_short">left thigh</string>
+    <string name="injection_site_thigh_right">Thigh, right</string>
+    <string name="injection_site_thigh_right_short">right thigh</string>
+    <string name="injection_site_arm_left">Upper arm, left</string>
+    <string name="injection_site_arm_left_short">left arm</string>
+    <string name="injection_site_arm_right">Upper arm, right</string>
+    <string name="injection_site_arm_right_short">right arm</string>
+    <string name="injection_site_buttock_left">Buttock, left</string>
+    <string name="injection_site_buttock_left_short">left buttock</string>
+    <string name="injection_site_buttock_right">Buttock, right</string>
+    <string name="injection_site_buttock_right_short">right buttock</string>
+    <string name="injection_site_outer_thigh_left">Outer thigh, left</string>
+    <string name="injection_site_outer_thigh_left_short">left outer thigh</string>
+    <string name="injection_site_outer_thigh_right">Outer thigh, right</string>
+    <string name="injection_site_outer_thigh_right_short">right outer thigh</string>
+    <string name="injection_site_scruff">Scruff</string>
+    <string name="injection_site_scruff_short">scruff</string>
+    <string name="injection_site_flank_left">Flank, left</string>
+    <string name="injection_site_flank_left_short">flank left</string>
+    <string name="injection_site_flank_right">Flank, right</string>
+    <string name="injection_site_flank_right_short">flank right</string>
+    <string name="injection_site_pet_thigh_left">Hind thigh, left</string>
+    <string name="injection_site_pet_thigh_left_short">left hind thigh</string>
+    <string name="injection_site_pet_thigh_right">Hind thigh, right</string>
+    <string name="injection_site_pet_thigh_right_short">right hind thigh</string>
+</resources>
