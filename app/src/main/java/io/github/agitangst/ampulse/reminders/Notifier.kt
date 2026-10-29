@@ -82,7 +82,7 @@ internal object Notifier {
 
         val builder = Notification.Builder(app, if (medicine.important) CHANNEL_IMPORTANT else CHANNEL_DOSES)
             .setSmallIcon(R.drawable.ic_stat_dose)
-            .setContentTitle(medicine.name)
+            .setContentTitle(ReminderText.title(medicine.name, ReminderText.owner(medicine)))
             .setContentText(line)
             .setStyle(Notification.BigTextStyle().bigText(listOfNotNull(line, food).joinToString("\n")))
             .setCategory(if (medicine.important) Notification.CATEGORY_ALARM else Notification.CATEGORY_REMINDER)

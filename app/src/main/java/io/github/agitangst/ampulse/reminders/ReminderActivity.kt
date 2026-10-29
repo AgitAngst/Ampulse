@@ -138,6 +138,7 @@ private fun ReminderScreen(dose: DoseRef, slot: Int, onClose: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var medicine by remember(dose) { mutableStateOf<Medicine?>(null) }
+    var owner by remember(dose) { mutableStateOf<String?>(null) }
     var skipping by remember(dose) { mutableStateOf(false) }
     var busy by remember(dose) { mutableStateOf(false) }
 
@@ -148,6 +149,7 @@ private fun ReminderScreen(dose: DoseRef, slot: Int, onClose: () -> Unit) {
             Notifier.cancel(context, dose)
             onClose()
         } else {
+            owner = ReminderText.owner(loaded)
             medicine = loaded
         }
     }
@@ -172,6 +174,7 @@ private fun ReminderScreen(dose: DoseRef, slot: Int, onClose: () -> Unit) {
         if (current != null) {
             ReminderContent(
                 medicine = current,
+                owner = owner,
                 dose = dose,
                 slot = slot,
                 skipping = skipping,
@@ -194,6 +197,7 @@ private fun ReminderScreen(dose: DoseRef, slot: Int, onClose: () -> Unit) {
 @Composable
 private fun ReminderContent(
     medicine: Medicine,
+    owner: String?,
     dose: DoseRef,
     slot: Int,
     skipping: Boolean,
@@ -275,7 +279,7 @@ private fun ReminderContent(
                     letterSpacing = 1.sp,
                 )
                 Text(
-                    medicine.name,
+                    ReminderText.title(medicine.name, owner),
                     color = ReminderColors.Text,
                     style = MaterialTheme.typography.headlineLarge.copy(fontSize = 36.sp, lineHeight = 40.sp, fontWeight = FontWeight.SemiBold),
                     textAlign = TextAlign.Center,
