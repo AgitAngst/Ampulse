@@ -35,8 +35,8 @@
   уведомлением с готовым сообщением. Как публиковать — [dev/stores.md](dev/stores.md); политика конфиденциальности —
   [privacy.md](privacy.md).
   ([SPEC.md](../SPEC.md), «Этапы кода»).
-- Готового APK пока нет: он появится в [GitHub Releases](https://github.com/AgitAngst/Ampulse/releases) с
-  первым выпуском. Как поставить — [guide/install.md](guide/install.md).
+- Готовый APK — в [GitHub Releases](https://github.com/AgitAngst/Ampulse/releases), первый выпуск — v0.9.0
+  (29.10.2026). Как поставить — [guide/install.md](guide/install.md).
 
 ## Оглавление
 
