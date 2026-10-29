@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- История давления (этап 0.7, макет — экран 27): период, средние, график по дням, подсказка, список, цель врача; ключи те же в values -->
+
+    <!-- Шаблоны java.time: день с месяцем и месяц; порядок слов в диапазоне дат -->
+    <string name="pressure_hist_pattern_day_month">d MMMM</string>
+    <string name="pressure_hist_pattern_month">MMMM</string>
+    <string name="pressure_hist_range_same">%1$d–%2$d %3$s</string>
+    <string name="pressure_hist_range_diff">%1$s – %2$s</string>
+
+    <!-- Шапка -->
+    <string name="pressure_hist_back">Давление</string>
+    <string name="pressure_hist_title">История давления</string>
+    <string name="pressure_hist_period_a">Период</string>
+    <plurals name="pressure_hist_period">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+        <item quantity="other">%d дня</item>
+    </plurals>
+
+    <!-- Цель врача -->
+    <string name="pressure_hist_target">Цель врача — ниже %1$s</string>
+    <string name="pressure_hist_target_change">Изменить</string>
+    <string name="pressure_hist_target_change_a">Изменить цель врача</string>
+    <string name="pressure_hist_target_title">Цель врача</string>
+    <string name="pressure_hist_target_note">Укажите цель, которую назвал врач. Замеры оцениваются относительно неё; приложение ничего не назначает.</string>
+    <string name="pressure_hist_target_sys">Верхнее</string>
+    <string name="pressure_hist_target_dia">Нижнее</string>
+    <string name="pressure_hist_target_preview">Цель — ниже %1$s</string>
+    <string name="pressure_hist_target_bad">Верхнее должно быть больше нижнего</string>
+    <string name="pressure_hist_target_save">Сохранить</string>
+    <string name="pressure_hist_target_cancel">Отмена</string>
+
+    <!-- Средние -->
+    <string name="pressure_hist_morning">Утро, в среднем</string>
+    <string name="pressure_hist_evening">Вечер, в среднем</string>
+    <string name="pressure_hist_none">нет замеров</string>
+    <string name="pressure_hist_pulse">пульс %1$d уд/мин</string>
+    <string name="pressure_hist_parts_note">Утро — до 12:00, вечер — с 17:00. Замеры днём видны только в списке.</string>
+    <string name="pressure_hist_state_within">в пределах цели</string>
+    <string name="pressure_hist_state_above">выше цели</string>
+    <string name="pressure_hist_state_crisis">очень высокое</string>
+    <string name="pressure_hist_state_low">низкое</string>
+    <!-- Давление для диктора: «128 на 82» вместо «128/82» -->
+    <string name="pressure_hist_value_a">%1$d на %2$d</string>
+
+    <!-- График -->
+    <string name="pressure_hist_chart_title">По дням</string>
+    <string name="pressure_hist_unit">мм рт. ст.</string>
+    <string name="pressure_hist_legend_in">в пределах цели</string>
+    <string name="pressure_hist_legend_out">выше цели или низкое</string>
+    <string name="pressure_hist_legend_pair">Слева утро, справа вечер. Пунктир — цель врача.</string>
+    <string name="pressure_hist_chart_a">График давления по дням, %1$s. Дней с замерами: %2$d из %3$d. Самое высокое: %4$s. Самое низкое: %5$s. Цель врача — ниже %6$s.</string>
+    <string name="pressure_hist_chart_point">%1$s, %2$s, %3$s</string>
+
+    <!-- Подсказка -->
+    <plurals name="pressure_hist_insight_evening">
+        <item quantity="one">Вечером выше цели в %1$d из %2$d дня</item>
+        <item quantity="few">Вечером выше цели в %1$d из %2$d дней</item>
+        <item quantity="many">Вечером выше цели в %1$d из %2$d дней</item>
+        <item quantity="other">Вечером выше цели в %1$d из %2$d дня</item>
+    </plurals>
+    <plurals name="pressure_hist_insight_morning">
+        <item quantity="one">Утром выше цели в %1$d из %2$d дня</item>
+        <item quantity="few">Утром выше цели в %1$d из %2$d дней</item>
+        <item quantity="many">Утром выше цели в %1$d из %2$d дней</item>
+        <item quantity="other">Утром выше цели в %1$d из %2$d дня</item>
+    </plurals>
+    <string name="pressure_hist_insight_ok">Все дни — в пределах цели</string>
+    <string name="pressure_hist_insight_note">Покажите врачу: отчёт в PDF соберётся на экране «История».</string>
+
+    <!-- Последние замеры -->
+    <string name="pressure_hist_latest">Последние замеры</string>
+    <string name="pressure_hist_part_morning">утро</string>
+    <string name="pressure_hist_part_midday">днём</string>
+    <string name="pressure_hist_part_evening">вечер</string>
+    <string name="pressure_hist_when_today">сегодня, %1$s · %2$s</string>
+    <string name="pressure_hist_when_yesterday">вчера, %1$s · %2$s</string>
+    <string name="pressure_hist_when_date">%1$s, %2$s · %3$s</string>
+    <string name="pressure_hist_row_pulse">пульс %1$d</string>
+    <string name="pressure_hist_row_action">Показать действия</string>
+    <string name="pressure_hist_show_all">Показать все (%1$d)</string>
+    <string name="pressure_hist_show_less">Свернуть</string>
+    <string name="pressure_hist_tap_hint">Нажмите на замер, чтобы удалить его</string>
+
+    <!-- Лист замера и удаление -->
+    <string name="pressure_hist_reading_title">Замер</string>
+    <string name="pressure_hist_delete">Удалить замер</string>
+    <string name="pressure_hist_close">Закрыть</string>
+    <string name="pressure_hist_removed">Замер удалён</string>
+    <string name="pressure_hist_undo">Отменить</string>
+
+    <!-- Пусто -->
+    <plurals name="pressure_hist_empty_title">
+        <item quantity="one">За %d день замеров нет</item>
+        <item quantity="few">За %d дня замеров нет</item>
+        <item quantity="many">За %d дней замеров нет</item>
+        <item quantity="other">За %d дня замеров нет</item>
+    </plurals>
+    <string name="pressure_hist_empty_hint">Попробуйте другой период или измерьте давление сейчас.</string>
+
+    <!-- Низ экрана -->
+    <string name="pressure_hist_measure">Измерить сейчас</string>
+    <string name="pressure_hist_pdf_note">Замеры попадают в отчёт для врача вместе с приёмами</string>
+</resources>
