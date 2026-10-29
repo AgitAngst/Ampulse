@@ -10,6 +10,7 @@ import io.github.agitangst.ampulse.ui.EmergencyEditScreen
 import io.github.agitangst.ampulse.ui.EmergencyScreen
 import io.github.agitangst.ampulse.ui.InjectionScreen
 import io.github.agitangst.ampulse.ui.ReportScreen
+import io.github.agitangst.ampulse.ui.ServerScreen
 import io.github.agitangst.ampulse.ui.ShareQrScreen
 import io.github.agitangst.ampulse.ui.PressureEntryScreen
 import io.github.agitangst.ampulse.ui.PressureHistoryScreen
@@ -95,6 +96,9 @@ sealed interface Route {
     /** Отчёт врачу: период, PDF, «Поделиться» (макет, экраны 6, 13). */
     data object Report : Route
 
+    /** «Сервер»: необязательное зеркало на свой сервер (только сборка github, openspec: server-sync). */
+    data object Server : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -117,6 +121,7 @@ sealed interface Route {
         Emergency -> "emergency"
         EmergencyEdit -> "emergencyedit"
         Report -> "report"
+        Server -> "server"
     }
 
     companion object {
@@ -149,6 +154,7 @@ sealed interface Route {
                 "emergency" -> Emergency
                 "emergencyedit" -> EmergencyEdit
                 "report" -> Report
+                "server" -> Server
                 else -> null
             }
         }
@@ -172,6 +178,7 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.Settings -> SettingsScreen(
             settings, onBack = nav::back, onProfiles = { nav.open(Route.Profiles) }, onShotRules = { nav.open(Route.ShotRules) },
             onEmergency = { nav.open(Route.Emergency) },
+            onServer = { nav.open(Route.Server) },
         )
         is Route.MedicineEdit -> MedicineEditScreen(route.id, nav)
         is Route.AsNeeded -> AsNeededScreen(route.medicineId, nav)
@@ -193,5 +200,6 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.Emergency -> EmergencyScreen(nav)
         Route.EmergencyEdit -> EmergencyEditScreen(nav)
         Route.Report -> ReportScreen(nav)
+        Route.Server -> ServerScreen(nav)
     }
 }

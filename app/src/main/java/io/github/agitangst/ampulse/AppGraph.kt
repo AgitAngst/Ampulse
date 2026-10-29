@@ -6,6 +6,7 @@ import io.github.agitangst.ampulse.data.AmpulseDb
 import io.github.agitangst.ampulse.data.ChangeListener
 import io.github.agitangst.ampulse.data.Repository
 import io.github.agitangst.ampulse.reminders.Reminders
+import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.ampulse.ui.CurrentProfile
 import io.github.agitangst.ampulse.ui.EmergencyNotice
 
@@ -20,7 +21,9 @@ object AppGraph {
         if (::repository.isInitialized) return
         val app = context.applicationContext
         reminders = Reminders(app)
-        repository = Repository(AmpulseDb.open(app), ChangeListener { reminders.reschedule() })
+        ServerSync.init(app)
+        // Правка данных пересчитывает напоминания и (если вошли на свой сервер, сборка github) ставит отложенную выгрузку.
+        repository = Repository(AmpulseDb.open(app), ChangeListener { reminders.reschedule(); ServerSync.onChange() })
         reminders.reschedule()
         CurrentProfile.load(app)
         EmergencyNotice.sync(app)

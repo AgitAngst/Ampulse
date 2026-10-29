@@ -66,6 +66,16 @@ object AmpulseIcons {
     /** Стрелка «назад»; в письме справа налево зеркалится. */
     val ChevronLeft: ImageVector by lazy { icon("ampulse.chevron_left", "m15 18-6-6 6-6", autoMirror = true) }
 
+    /** Сервер: строка «Сервер» в настройках (Lucide `server`). */
+    val Server: ImageVector by lazy {
+        icon(
+            "ampulse.server",
+            "M4 2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z",
+            "M4 14h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Z",
+            "M6 6h.01", "M6 18h.01",
+        )
+    }
+
     /** Таблетка: пустое состояние «Сегодня». */
     val Pill: ImageVector by lazy {
         icon("ampulse.pill", "m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z", "m8.5 8.5 7 7")

@@ -13,6 +13,7 @@ camera = "1.6.2"
 mlkitBarcode = "17.3.0"
 tesseract = "4.8.0"
 zxing = "3.5.3"
+orgJson = "20250517"
 
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
@@ -26,6 +27,8 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+# org.json для тестов на JVM: в android.jar методы — заглушки; в самом приложении используется org.json из Android.
+org-json-test = { module = "org.json:json", version.ref = "orgJson" }
 
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }

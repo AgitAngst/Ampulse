@@ -28,6 +28,9 @@ object Store {
 
     fun onStart(context: Context, settings: AnvilSettings) = Unit
 
+    /** Своего сервера («зеркало») нет: в этих сборках нет сети, экран «Сервер» скрыт, выгрузка не запускается. */
+    const val SERVER_SYNC = false
+
     /** SMS сама не уходит: из фона — уведомление «Отправить SMS …», из окна — готовое сообщение (см. [sendSms]). */
     const val SILENT_SMS = false
 

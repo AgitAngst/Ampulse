@@ -932,6 +932,234 @@
       "x": 1880,
       "y": 13100,
       "page": "en"
+    },
+    "Server.dc.html": {
+      "h": 940,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "50 · Сервер — вход",
+      "w": 390,
+      "x": 0,
+      "y": 20400
+    },
+    "ServerEn.dc.html": {
+      "h": 940,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "50 · Server — sign in",
+      "w": 390,
+      "x": 0,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerErr.dc.html": {
+      "h": 1020,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "51 · Сервер — ошибка входа",
+      "w": 390,
+      "x": 470,
+      "y": 20400
+    },
+    "ServerErrEn.dc.html": {
+      "h": 1020,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "51 · Server — sign-in error",
+      "w": 390,
+      "x": 470,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerOn.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "52 · Сервер — подключено",
+      "w": 390,
+      "x": 940,
+      "y": 20400
+    },
+    "ServerOnEn.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "52 · Server — connected",
+      "w": 390,
+      "x": 940,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerProb.dc.html": {
+      "h": 800,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "53 · Сервер — проблемы отправки",
+      "w": 390,
+      "x": 1410,
+      "y": 20400
+    },
+    "ServerProbEn.dc.html": {
+      "h": 800,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "53 · Server — sending problems",
+      "w": 390,
+      "x": 1410,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerErase.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "54 · Сервер — стереть копию",
+      "w": 390,
+      "x": 1880,
+      "y": 20400
+    },
+    "ServerEraseEn.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "54 · Server — erase the copy",
+      "w": 390,
+      "x": 1880,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerRow.dc.html": {
+      "h": 580,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "55 · Настройки — строка «Сервер»",
+      "w": 390,
+      "x": 2350,
+      "y": 20400
+    },
+    "ServerRowEn.dc.html": {
+      "h": 580,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "55 · Settings — the Server row",
+      "w": 390,
+      "x": 2350,
+      "y": 20400,
+      "page": "en"
+    },
+    "ServerDark.dc.html": {
+      "h": 940,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "56 · Сервер — вход — тёмная",
+      "w": 390,
+      "x": 0,
+      "y": 21800
+    },
+    "ServerDarkEn.dc.html": {
+      "h": 940,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "56 · Server — sign in — dark",
+      "w": 390,
+      "x": 0,
+      "y": 21800,
+      "page": "en"
+    },
+    "ServerErrDark.dc.html": {
+      "h": 1020,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "57 · Сервер — ошибка входа — тёмная",
+      "w": 390,
+      "x": 470,
+      "y": 21800
+    },
+    "ServerErrDarkEn.dc.html": {
+      "h": 1020,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "57 · Server — sign-in error — dark",
+      "w": 390,
+      "x": 470,
+      "y": 21800,
+      "page": "en"
+    },
+    "ServerOnDark.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "58 · Сервер — подключено — тёмная",
+      "w": 390,
+      "x": 940,
+      "y": 21800
+    },
+    "ServerOnDarkEn.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "58 · Server — connected — dark",
+      "w": 390,
+      "x": 940,
+      "y": 21800,
+      "page": "en"
+    },
+    "ServerProbDark.dc.html": {
+      "h": 800,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "59 · Сервер — проблемы отправки — тёмная",
+      "w": 390,
+      "x": 1410,
+      "y": 21800
+    },
+    "ServerProbDarkEn.dc.html": {
+      "h": 800,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "59 · Server — sending problems — dark",
+      "w": 390,
+      "x": 1410,
+      "y": 21800,
+      "page": "en"
+    },
+    "ServerEraseDark.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "60 · Сервер — стереть копию — тёмная",
+      "w": 390,
+      "x": 1880,
+      "y": 21800
+    },
+    "ServerEraseDarkEn.dc.html": {
+      "h": 600,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "60 · Server — erase the copy — dark",
+      "w": 390,
+      "x": 1880,
+      "y": 21800,
+      "page": "en"
+    },
+    "ServerRowDark.dc.html": {
+      "h": 580,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "61 · Настройки — строка «Сервер» — тёмная",
+      "w": 390,
+      "x": 2350,
+      "y": 21800
+    },
+    "ServerRowDarkEn.dc.html": {
+      "h": 580,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "61 · Settings — the Server row — dark",
+      "w": 390,
+      "x": 2350,
+      "y": 21800,
+      "page": "en"
     }
   },
   "createdOnFiles": {
@@ -1061,7 +1289,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.",
+      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–61, только в сборке с сайта.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–61, только в сборке с сайта.",
       "w": 440,
       "x": 3380,
       "y": 0
@@ -1364,7 +1592,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.",
+      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.\n\nException — an optional copy on your own Ampulse server: screens 50–61, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–61, website build only.",
       "w": 440,
       "x": 3380,
       "y": 0,
@@ -1559,6 +1787,114 @@
       "x": 2350,
       "y": 19400,
       "page": "en"
+    },
+    "n50": {
+      "text": "Необязательная копия на свой сервер Ampulse. Сначала — что отправляется и что нет; адрес, логин и пароль; «Войти» и «Создать аккаунт» внизу. Пока поля пусты — подсказка над кнопками.",
+      "w": 390,
+      "x": 0,
+      "y": 21460
+    },
+    "n50_en": {
+      "text": "An optional copy on your own Ampulse server. First what is and isn’t sent; then address, login and password; “Sign in” and “Create account” at the bottom. A hint above the buttons while a field is empty.",
+      "w": 390,
+      "x": 0,
+      "y": 21460,
+      "page": "en"
+    },
+    "n51": {
+      "text": "Адрес только с https:// — иначе соединение не шифруется; ошибка — плашкой внимания (красного нет). Пароль для нового аккаунта — 10–200 знаков.",
+      "w": 390,
+      "x": 470,
+      "y": 21460
+    },
+    "n51_en": {
+      "text": "Only https:// addresses — otherwise the connection is not encrypted; the error is an attention banner (there is no red). A new account’s password is 10–200 characters.",
+      "w": 390,
+      "x": 470,
+      "y": 21460,
+      "page": "en"
+    },
+    "n52": {
+      "text": "После входа: сервер, логин, последняя отправка, сколько записей на сервере. «Отправить сейчас» внизу, «Выйти» и «Выйти и стереть копию» — обычные кнопки; пароль приложение не хранит.",
+      "w": 390,
+      "x": 940,
+      "y": 21460
+    },
+    "n52_en": {
+      "text": "After signing in: server, login, last send, how many records are on the server. “Send now” at the bottom; “Sign out” and “Sign out and erase the copy” are plain buttons; the app never stores the password.",
+      "w": 390,
+      "x": 940,
+      "y": 21460,
+      "page": "en"
+    },
+    "n53": {
+      "text": "Проблемы — плашками внимания: нет связи (приложение повторит само), записи, которые сервер не принял (пропускаются, пока не изменятся).",
+      "w": 390,
+      "x": 1410,
+      "y": 21460
+    },
+    "n53_en": {
+      "text": "Problems are attention banners: no connection (the app retries by itself), records the server refused (skipped until changed).",
+      "w": 390,
+      "x": 1410,
+      "y": 21460,
+      "page": "en"
+    },
+    "n54": {
+      "text": "«Стереть копию» — с подтверждением: удаляется всё, что отправило приложение; данные на телефоне остаются.",
+      "w": 390,
+      "x": 1880,
+      "y": 21460
+    },
+    "n54_en": {
+      "text": "“Erase the copy” asks first: everything the app sent is deleted from the server; data on the phone stays.",
+      "w": 390,
+      "x": 1880,
+      "y": 21460,
+      "page": "en"
+    },
+    "n55": {
+      "text": "Строка в «Настройках» после «Обновлений»: три состояния словами. Есть только в сборке с сайта; в RuStore и Google Play сети нет совсем.",
+      "w": 390,
+      "x": 2350,
+      "y": 21460
+    },
+    "n55_en": {
+      "text": "The row in Settings after “Updates”: three states in words. Only in the website build; the RuStore and Google Play builds have no network at all.",
+      "w": 390,
+      "x": 2350,
+      "y": 21460,
+      "page": "en"
+    },
+    "n56": {
+      "text": "Тёмные копии экранов 50–55; ссылки между ними остаются тёмными.",
+      "w": 390,
+      "x": 0,
+      "y": 22860
+    },
+    "n56_en": {
+      "text": "Dark copies of screens 50–55; links between them stay dark.",
+      "w": 390,
+      "x": 0,
+      "y": 22860,
+      "page": "en"
+    },
+    "title10": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Сервер (необязательно)",
+      "w": 240,
+      "x": 0,
+      "y": 20100
+    },
+    "title10_en": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Server (optional)",
+      "w": 240,
+      "x": 0,
+      "y": 20100,
+      "page": "en"
     }
   },
   "order": [
@@ -1659,7 +1995,31 @@
     "ShotGuideImDark.dc.html",
     "ShotGuideImDarkEn.dc.html",
     "ShotRulesDark.dc.html",
-    "ShotRulesDarkEn.dc.html"
+    "ShotRulesDarkEn.dc.html",
+    "Server.dc.html",
+    "ServerRow.dc.html",
+    "ServerEn.dc.html",
+    "ServerErr.dc.html",
+    "ServerErrEn.dc.html",
+    "ServerOn.dc.html",
+    "ServerOnEn.dc.html",
+    "ServerProb.dc.html",
+    "ServerProbEn.dc.html",
+    "ServerErase.dc.html",
+    "ServerEraseEn.dc.html",
+    "ServerRowEn.dc.html",
+    "ServerDark.dc.html",
+    "ServerDarkEn.dc.html",
+    "ServerErrDark.dc.html",
+    "ServerErrDarkEn.dc.html",
+    "ServerOnDark.dc.html",
+    "ServerOnDarkEn.dc.html",
+    "ServerProbDark.dc.html",
+    "ServerProbDarkEn.dc.html",
+    "ServerEraseDark.dc.html",
+    "ServerEraseDarkEn.dc.html",
+    "ServerRowDark.dc.html",
+    "ServerRowDarkEn.dc.html"
   ],
   "pages": [
     {

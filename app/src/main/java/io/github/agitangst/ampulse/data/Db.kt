@@ -23,6 +23,10 @@ interface MedicineDao {
     @Query("SELECT * FROM medicine WHERE archived = 0")
     suspend fun allNow(): List<MedicineEntity>
 
+    /** Все лекарства, и убранные тоже, — для выгрузки на сервер (`sync/`). */
+    @Query("SELECT * FROM medicine")
+    suspend fun everyNow(): List<MedicineEntity>
+
     @Query("SELECT * FROM medicine WHERE id = :id")
     suspend fun get(id: Long): MedicineEntity?
 
@@ -61,6 +65,10 @@ interface DoseEventDao {
 
     @Query("SELECT * FROM dose_event WHERE at >= :from AND at < :to ORDER BY at")
     suspend fun betweenNow(from: Long, to: Long): List<DoseEventEntity>
+
+    /** Отметки, у которых время приёма или плановое время в `[from, to)` — для выгрузки на сервер (`sync/`). */
+    @Query("SELECT * FROM dose_event WHERE (at >= :from AND at < :to) OR (plannedAt >= :from AND plannedAt < :to) ORDER BY at")
+    suspend fun mirrorNow(from: Long, to: Long): List<DoseEventEntity>
 
     @Query("SELECT * FROM dose_event WHERE plannedAt = :plannedAt AND medicineId = :medicineId")
     suspend fun forPlanned(medicineId: Long, plannedAt: Long): List<DoseEventEntity>

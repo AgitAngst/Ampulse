@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- «Сервер» (сборка github): необязательная копия на свой сервер Ampulse. Openspec: server-sync. -->
+    <string name="server_title">Сервер</string>
+    <string name="server_hint_off">Выключено. Необязательная копия на вашем сервере</string>
+    <string name="server_hint_on">Включено · %1$s</string>
+    <string name="server_hint_ended">Вы вышли. Войдите снова</string>
+
+    <string name="server_intro">Необязательно. Ampulse работает полностью без сети. Если у вас есть свой сервер Ampulse, приложение может отправлять на него копию данных. С сервера ничего не скачивается, и никому другому ничего не уходит.</string>
+    <string name="server_sent_title">Что отправляется</string>
+    <string name="server_sent_text">Имена профилей, названия лекарств, дозы и заметки, времена приёмов по вашим схемам (30 дней назад и 14 вперёд), ваши отметки — принято или пропущено — и лишние приёмы. Только по HTTPS.</string>
+    <string name="server_not_sent_text">Не отправляется: давление, аптечка и упаковки, близкие, экстренная карта, места уколов, правила схем.</string>
+    <string name="server_address">Адрес сервера</string>
+    <string name="server_address_hint">ampulse.example.org</string>
+    <string name="server_login">Логин</string>
+    <string name="server_password">Пароль</string>
+    <string name="server_sign_in">Войти</string>
+    <string name="server_create">Создать аккаунт</string>
+    <string name="server_working">Подождите…</string>
+    <string name="server_need_fields">Введите адрес сервера, логин и пароль</string>
+
+    <string name="server_connected">Подключено</string>
+    <string name="server_row_server">Сервер</string>
+    <string name="server_row_login">Логин</string>
+    <string name="server_last">Последняя отправка: %1$s</string>
+    <string name="server_last_never">Пока ничего не отправлено</string>
+    <plurals name="server_stored">
+        <item quantity="one">%1$d запись на сервере</item>
+        <item quantity="few">%1$d записи на сервере</item>
+        <item quantity="many">%1$d записей на сервере</item>
+        <item quantity="other">%1$d записи на сервере</item>
+    </plurals>
+    <string name="server_rejected">Сервер не принял: %1$d (%2$s). Они пропускаются, пока не изменятся.</string>
+    <string name="server_send_now">Отправить сейчас</string>
+    <string name="server_sending">Отправляется…</string>
+    <string name="server_sign_out">Выйти</string>
+    <string name="server_erase">Выйти и стереть копию на сервере</string>
+    <string name="server_erase_title">Стереть копию на сервере?</string>
+    <string name="server_erase_text">Всё, что отправило это приложение, удалится с сервера, затем вы выйдете. Данные на этом телефоне останутся.</string>
+    <string name="server_erase_confirm">Стереть</string>
+    <string name="server_cancel">Отмена</string>
+
+    <!-- Что пошло не так: показывается на экране, пока не пройдёт следующая выгрузка -->
+    <string name="server_ended">Сервер больше не узнаёт это устройство, поэтому приложение вышло. Войдите снова.</string>
+    <string name="server_p_noconn">Нет связи. Приложение попробует снова при следующем открытии или изменении.</string>
+    <string name="server_p_host">Сервер не найден. Проверьте адрес.</string>
+    <string name="server_p_tls">Защищённого соединения нет: сертификат сервера не принят.</string>
+    <string name="server_p_rate">Слишком много запросов. Повторите примерно через %1$d мин.</string>
+    <string name="server_p_server">Сервер ответил ошибкой (%1$s).</string>
+    <string name="server_p_other">Не удалось отправить. Повторите позже.</string>
+
+    <!-- Ошибки входа и выхода -->
+    <string name="server_e_address">Проверьте адрес сервера.</string>
+    <string name="server_e_insecure">Адрес должен начинаться с https:// — соединение обязано быть зашифрованным.</string>
+    <string name="server_e_credentials">Неверный логин или пароль.</string>
+    <string name="server_e_bad_login">Логин — 3–32 знака: a–z, цифры, _ . -</string>
+    <string name="server_e_bad_password">Пароль — 10–200 знаков.</string>
+    <string name="server_e_taken">Такой логин уже занят.</string>
+    <string name="server_e_closed">Этот сервер не принимает новые аккаунты.</string>
+    <string name="server_e_rejected">Сервер отказал (%1$s).</string>
+    <string name="server_e_expired">Сессия уже закончилась, поэтому копия не стёрта. Войдите и повторите.</string>
+    <string name="server_e_erase">Не удалось стереть копию. Вы остались в аккаунте.</string>
+</resources>

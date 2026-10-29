@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.update.UpdateBanner
 import io.github.agitangst.anvil.update.UpdateConfig
@@ -51,7 +52,11 @@ object Store {
     /** Запуск программы: проверка обновления раз за процесс, если включено «Проверять обновления». */
     fun onStart(context: Context, settings: AnvilSettings) {
         updater(context).auto(settings.checkUpdates)
+        ServerSync.onStart()
     }
+
+    /** Свой сервер («зеркало», этап 0.10): только сборка github — в магазинах сети нет, экрана «Сервер» тоже. */
+    const val SERVER_SYNC = true
 
     /** SMS уходит сама, без участия человека: в сборке github это можно (разрешение SEND_SMS). */
     const val SILENT_SMS = true

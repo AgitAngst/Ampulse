@@ -50,6 +50,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -277,6 +279,8 @@ internal fun FamilyField(
     capitalization: KeyboardCapitalization = KeyboardCapitalization.None,
     imeAction: ImeAction = ImeAction.Next,
     error: String? = null,
+    /** Пароль: знаки скрыты, подсказки и запоминание клавиатуры не нужны. */
+    password: Boolean = false,
 ) {
     val p = AnvilTheme.palette
     OutlinedTextField(
@@ -298,7 +302,13 @@ internal fun FamilyField(
             null
         },
         shape = RoundedCornerShape(14.dp),
-        keyboardOptions = KeyboardOptions(capitalization = capitalization, keyboardType = keyboardType, imeAction = imeAction),
+        visualTransformation = if (password) PasswordVisualTransformation() else VisualTransformation.None,
+        keyboardOptions = KeyboardOptions(
+            capitalization = capitalization,
+            keyboardType = if (password) KeyboardType.Password else keyboardType,
+            imeAction = imeAction,
+            autoCorrectEnabled = if (password) false else null,
+        ),
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = p.text,
             unfocusedTextColor = p.text,

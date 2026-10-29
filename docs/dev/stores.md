@@ -8,7 +8,8 @@
 |---|---|---|---|
 | Файл | APK в GitHub Releases | APK | AAB (языки не делятся: `bundle.language.enableSplit = false`) |
 | Обновление | своё — из GitHub (`anvil-update`) | магазин | магазин |
-| Сеть | проверка и скачивание обновлений | нет (`INTERNET` снят в `src/rustore/AndroidManifest.xml`) | нет (снят в `src/play/AndroidManifest.xml`) |
+| Сеть | проверка и скачивание обновлений; необязательный «Сервер» (`INTERNET` явно в `src/github/AndroidManifest.xml`) | нет (`INTERNET` снят в `src/rustore/AndroidManifest.xml`) | нет (снят в `src/play/AndroidManifest.xml`) |
+| «Сервер» (зеркало) | есть, выключен по умолчанию (`Store.SERVER_SYNC = true`) | нет (строка скрыта, выгрузки нет) | так же |
 | SMS близким | уходит сама (`SEND_SMS`) | уведомление с готовым сообщением, «Отправить» — человек | так же |
 | Напоминание на весь экран | есть | есть | нет (`USE_FULL_SCREEN_INTENT` снят): важное — обычным уведомлением с повтором |
 

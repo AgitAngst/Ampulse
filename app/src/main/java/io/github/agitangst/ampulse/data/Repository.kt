@@ -18,6 +18,8 @@ import io.github.agitangst.ampulse.domain.Plan
 import io.github.agitangst.ampulse.domain.PlannedDose
 import io.github.agitangst.ampulse.domain.Schedule
 import io.github.agitangst.ampulse.domain.checkMark
+import io.github.agitangst.ampulse.sync.SyncMedicine
+import io.github.agitangst.ampulse.sync.SyncSnapshot
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate
@@ -207,6 +209,18 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
         }
         onChange.onPlanChanged()
         return id
+    }
+
+    // --- Сервер (зеркало, `sync/`) ---
+
+    /** Данные для выгрузки на сервер: профили, лекарства с признаком архива, схемы и отметки в `[from, to)`. */
+    suspend fun mirrorSnapshot(from: LocalDateTime, to: LocalDateTime): SyncSnapshot = db.withTransaction {
+        SyncSnapshot(
+            profiles = db.profiles().allNow().map(CareCodec::profile),
+            medicines = db.medicines().everyNow().map { SyncMedicine(Codec.medicine(it), it.archived) },
+            schedules = db.schedules().allNow().map(Codec::schedule),
+            events = db.events().mirrorNow(Codec.millis(from), Codec.millis(to)).map(Codec::event),
+        )
     }
 
     // --- Аптечка (этап 0.4) ---

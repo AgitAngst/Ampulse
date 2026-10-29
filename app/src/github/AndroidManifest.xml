@@ -6,5 +6,11 @@
         Google Play SEND_SMS почти никому не даёт — там SMS идёт через приложение сообщений (Store.sendSms).
     -->
     <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <!--
+        Только сборка github: сеть. Обновление из GitHub и необязательный свой сервер («Сервер» в настройках, зеркало).
+        Явно, а не «по случаю» от библиотек: выгрузка на сервер ходит сама. В rustore и play сети нет (src/*/AndroidManifest.xml).
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
 </manifest>

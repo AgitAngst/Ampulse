@@ -8,5 +8,8 @@
         <exclude domain="sharedpref" />
         <exclude domain="external" />
     </cloud-backup>
-    <device-transfer />
+    <device-transfer>
+        <!-- Токен входа на свой сервер на другой телефон не переезжает: там войдите заново. -->
+        <exclude domain="sharedpref" path="server_sync_secret.xml" />
+    </device-transfer>
 </data-extraction-rules>

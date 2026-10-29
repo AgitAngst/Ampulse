@@ -24,6 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +37,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
+import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.ampulse.ui.AnimatedMark
 import io.github.agitangst.ampulse.ui.MarkMotion
 import io.github.agitangst.ampulse.ui.RoutineSection
@@ -54,7 +57,7 @@ private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
 /**
  * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем строка-переход
  * «Профили» и «Экстренная карта» (если заданы [onProfiles], [onEmergency]), «Напоминания», «Режим дня», «Давление» (карточка на «Сегодня»), «Оформление»,
- * «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
+ * «Обновления» и «Сервер» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
 fun SettingsScreen(
@@ -64,6 +67,7 @@ fun SettingsScreen(
     onProfiles: (() -> Unit)? = null,
     onShotRules: (() -> Unit)? = null,
     onEmergency: (() -> Unit)? = null,
+    onServer: (() -> Unit)? = null,
 ) {
     val about = Store.about()
     Column(
@@ -90,6 +94,7 @@ fun SettingsScreen(
         PressureTodaySetting()
         AppearanceSection(settings)
         Store.UpdatesSettings(settings)
+        if (onServer != null && Store.SERVER_SYNC) ServerLink(onServer)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             SectionTitle(stringResource(R.string.settings_about), Modifier.padding(horizontal = 4.dp))
             AboutCard(
@@ -168,6 +173,48 @@ private fun ProfilesLink(onClick: () -> Unit) {
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
             )
             Text(stringResource(R.string.profiles_settings_hint), color = p.weak, style = MaterialTheme.typography.bodyMedium)
+        }
+        Icon(MedIcons.ChevronRight, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.faint)
+    }
+}
+
+/**
+ * Строка-переход «Сервер ›» (docs/ui-guideline.md, §6): плитка значка 40, название, состояние, стрелка. Только сборка
+ * `github`: в магазинах сети нет, строки тоже.
+ */
+@Composable
+private fun ServerLink(onClick: () -> Unit) {
+    val p = AnvilTheme.palette
+    val status by ServerSync.status.collectAsState()
+    val hint = when {
+        status.signedIn -> stringResource(R.string.server_hint_on, status.server.substringAfter("://"))
+        status.sessionEnded -> stringResource(R.string.server_hint_ended)
+        else -> stringResource(R.string.server_hint_off)
+    }
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(p.card)
+            .heightIn(min = 64.dp)
+            .clickable(role = Role.Button, onClick = onClick)
+            .padding(start = 16.dp, top = 12.dp, end = 12.dp, bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            Modifier.size(40.dp).clip(RoundedCornerShape(12.dp)).background(Ampulse.colors.accentSoft),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(AmpulseIcons.Server, contentDescription = null, modifier = Modifier.size(22.dp), tint = p.accentText)
+        }
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                stringResource(R.string.server_title),
+                color = p.text,
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+            )
+            Text(hint, color = p.weak, style = MaterialTheme.typography.bodyMedium)
         }
         Icon(MedIcons.ChevronRight, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.faint)
     }

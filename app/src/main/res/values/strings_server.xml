@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- «Сервер» (сборка github): необязательная копия на свой сервер Ampulse. Openspec: server-sync. -->
+    <string name="server_title">Server</string>
+    <string name="server_hint_off">Off. An optional copy on your own server</string>
+    <string name="server_hint_on">On · %1$s</string>
+    <string name="server_hint_ended">Signed out. Sign in again</string>
+
+    <string name="server_intro">Optional. Ampulse works fully offline. If you run your own Ampulse server, the app can send it a copy of your data. Nothing is ever downloaded from the server, and nothing goes to anyone else.</string>
+    <string name="server_sent_title">What is sent</string>
+    <string name="server_sent_text">Profile names, medicine names, doses and notes, the dose times from your schedules (30 days back, 14 days ahead), your marks — taken or skipped — and extra doses. Over HTTPS only.</string>
+    <string name="server_not_sent_text">Not sent: blood pressure, the medicine cabinet and packs, family contacts, the emergency card, injection sites, schedule rules.</string>
+    <string name="server_address">Server address</string>
+    <string name="server_address_hint">ampulse.example.org</string>
+    <string name="server_login">Login</string>
+    <string name="server_password">Password</string>
+    <string name="server_sign_in">Sign in</string>
+    <string name="server_create">Create account</string>
+    <string name="server_working">Please wait…</string>
+    <string name="server_need_fields">Enter the server address, login and password</string>
+
+    <string name="server_connected">Connected</string>
+    <string name="server_row_server">Server</string>
+    <string name="server_row_login">Login</string>
+    <string name="server_last">Last sent: %1$s</string>
+    <string name="server_last_never">Nothing sent yet</string>
+    <plurals name="server_stored">
+        <item quantity="one">%1$d record on the server</item>
+        <item quantity="other">%1$d records on the server</item>
+    </plurals>
+    <string name="server_rejected">The server did not accept %1$d (%2$s). They are skipped until changed.</string>
+    <string name="server_send_now">Send now</string>
+    <string name="server_sending">Sending…</string>
+    <string name="server_sign_out">Sign out</string>
+    <string name="server_erase">Sign out and erase the copy on the server</string>
+    <string name="server_erase_title">Erase the copy on the server?</string>
+    <string name="server_erase_text">Everything this app sent will be deleted from the server, then the app signs out. Data on this phone stays.</string>
+    <string name="server_erase_confirm">Erase</string>
+    <string name="server_cancel">Cancel</string>
+
+    <!-- Что пошло не так: показывается на экране, пока не пройдёт следующая выгрузка -->
+    <string name="server_ended">The server no longer recognises this device, so the app signed out. Sign in again.</string>
+    <string name="server_p_noconn">No connection. The app will try again on the next opening or change.</string>
+    <string name="server_p_host">Server not found. Check the address.</string>
+    <string name="server_p_tls">No secure connection: the server certificate is not trusted.</string>
+    <string name="server_p_rate">Too many requests. Try again in about %1$d min.</string>
+    <string name="server_p_server">The server answered with an error (%1$s).</string>
+    <string name="server_p_other">Could not send. Try again later.</string>
+
+    <!-- Ошибки входа и выхода -->
+    <string name="server_e_address">Check the server address.</string>
+    <string name="server_e_insecure">The address must start with https:// — the connection has to be encrypted.</string>
+    <string name="server_e_credentials">Wrong login or password.</string>
+    <string name="server_e_bad_login">The login is 3–32 characters: a–z, digits, _ . -</string>
+    <string name="server_e_bad_password">The password is 10–200 characters.</string>
+    <string name="server_e_taken">This login is taken.</string>
+    <string name="server_e_closed">This server does not accept new accounts.</string>
+    <string name="server_e_rejected">The server refused (%1$s).</string>
+    <string name="server_e_expired">The session had expired, so the copy was not erased. Sign in and try again.</string>
+    <string name="server_e_erase">Could not erase the copy. You are still signed in.</string>
+</resources>

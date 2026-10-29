@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Сервер</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button,input{font-family:inherit}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+input::placeholder{color:#8A9593}
+</style>
+</helmet>
+
+<div lang="{{lang}}" style="width: 390px; height: {{height}}px; position: relative; box-sizing: border-box; display: flex; flex-direction: column; background: {{t.bg}}; color: {{t.ink}}; font-family: Onest, system-ui, sans-serif; overflow: hidden">
+<main style="flex-grow: 1; min-height: 0; overflow: hidden; box-sizing: border-box; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px">
+<a href="{{rowHref}}" style="height: 48px; margin-left: -8px; padding: 0 8px; align-self: flex-start; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 500; color: {{t.acc}}; text-decoration: none">
+<svg class="i" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+<span>{{l.back}}</span>
+</a>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; line-height: 1.15; font-weight: 600">{{l.title}}</h1>
+
+<sc-if value="{{isForm}}" hint-placeholder-val="{{true}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 15px; line-height: 1.45">{{l.intro}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.sentTitle}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: {{t.ink3}}">{{l.sent}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: {{t.ink3}}">{{l.notSent}}</span>
+</div>
+</section>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.address}}</span>
+<input type="text" value="{{address}}" placeholder="{{l.addressHint}}" onChange="{{setAddress}}" style="width: 100%; height: 52px; box-sizing: border-box; border: 1.5px solid {{t.line}}; border-radius: 14px; background: {{t.card}}; padding: 0 14px; color: {{t.ink}}; font-size: 16px">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.login}}</span>
+<input type="text" value="{{login}}" onChange="{{setLogin}}" style="width: 100%; height: 52px; box-sizing: border-box; border: 1.5px solid {{t.line}}; border-radius: 14px; background: {{t.card}}; padding: 0 14px; color: {{t.ink}}; font-size: 16px">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: {{t.ink3}}">{{l.password}}</span>
+<input type="password" value="{{pass}}" onChange="{{setPass}}" style="width: 100%; height: 52px; box-sizing: border-box; border: 1.5px solid {{t.line}}; border-radius: 14px; background: {{t.card}}; padding: 0 14px; color: {{t.ink}}; font-size: 16px">
+</label>
+</div>
+<sc-if value="{{hasError}}" hint-placeholder-val="{{false}}">
+<div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{errorText}}</span>
+</div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{isOn}}" hint-placeholder-val="{{false}}">
+<section style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 8px; color: {{t.accText}}">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+<span style="font-size: 16px; font-weight: 600">{{l.connected}}</span>
+</div>
+<div style="display: flex; gap: 12px; font-size: 14px"><span style="color: {{t.ink3}}">{{l.rowServer}}</span><span style="font-weight: 600; overflow-wrap: anywhere">{{shownAddress}}</span></div>
+<div style="display: flex; gap: 12px; font-size: 14px"><span style="color: {{t.ink3}}">{{l.rowLogin}}</span><span style="font-weight: 600">{{shownLogin}}</span></div>
+<div style="border-top: 1px solid {{t.sep}}; padding-top: 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 14px">{{lastText}}</span>
+<span style="font-size: 14px; color: {{t.ink3}}">{{l.stored}}</span>
+</div>
+</section>
+<sc-if value="{{hasProblem}}" hint-placeholder-val="{{false}}">
+<div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{l.noconn}}</span>
+</div>
+<div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
+<svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{l.rejected}}</span>
+</div>
+</sc-if>
+<button type="button" onClick="{{signOut}}" style="height: 52px; box-sizing: border-box; border-radius: 26px; border: 1.5px solid {{t.ink}}; background: transparent; color: {{t.ink}}; font-size: 16px; font-weight: 600; cursor: pointer">{{l.signOut}}</button>
+<button type="button" onClick="{{askErase}}" style="min-height: 52px; box-sizing: border-box; padding: 6px 16px; border-radius: 26px; border: 1.5px solid {{t.warnLine}}; background: transparent; color: {{t.warn}}; font-size: 16px; font-weight: 600; cursor: pointer">{{l.erase}}</button>
+</sc-if>
+</main>
+
+<div style="height: 1px; background: {{t.line}}; flex-shrink: 0"></div>
+<div style="flex-shrink: 0; box-sizing: border-box; padding: 12px 20px 20px; display: flex; flex-direction: column; gap: 8px; background: {{t.bg}}">
+<sc-if value="{{isForm}}" hint-placeholder-val="{{true}}">
+<sc-if value="{{notReady}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; text-align: center; color: {{t.ink3}}">{{l.needFields}}</span>
+</sc-if>
+<button type="button" onClick="{{signIn}}" disabled="{{notReady}}" style="height: 54px; border: none; border-radius: 27px; background: {{mainBg}}; color: {{mainFg}}; font-size: 17px; font-weight: 600; cursor: {{mainCursor}}">{{l.signIn}}</button>
+<button type="button" onClick="{{create}}" disabled="{{notReady}}" style="height: 54px; box-sizing: border-box; border-radius: 27px; border: 1.5px solid {{outLine}}; background: transparent; color: {{outFg}}; font-size: 16px; font-weight: 600; cursor: {{mainCursor}}">{{l.create}}</button>
+</sc-if>
+<sc-if value="{{isOn}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{sendNow}}" disabled="{{sending}}" style="height: 54px; border: none; border-radius: 27px; background: {{sendBg}}; color: {{sendFg}}; font-size: 17px; font-weight: 600; cursor: {{sendCursor}}">{{sendLabel}}</button>
+</sc-if>
+</div>
+
+<sc-if value="{{confirm}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: {{t.dim}}; display: flex; align-items: center; justify-content: center; padding: 0 28px">
+<div role="alertdialog" aria-label="{{l.eraseTitle}}" style="width: 100%; box-sizing: border-box; border-radius: 28px; background: {{t.card}}; padding: 24px 24px 12px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25)">
+<span style="font-family: Literata, Georgia, serif; font-size: 22px; line-height: 1.2; font-weight: 600">{{l.eraseTitle}}</span>
+<span style="font-size: 15px; line-height: 1.45; color: {{t.ink2}}">{{l.eraseText}}</span>
+<div style="display: flex; justify-content: flex-end; gap: 4px">
+<button type="button" onClick="{{cancel}}" style="height: 48px; padding: 0 16px; border: none; border-radius: 24px; background: transparent; color: {{t.accText}}; font-size: 15px; font-weight: 600; cursor: pointer">{{l.cancel}}</button>
+<button type="button" onClick="{{doErase}}" style="height: 48px; padding: 0 16px; border: none; border-radius: 24px; background: transparent; color: {{t.warn}}; font-size: 15px; font-weight: 600; cursor: pointer">{{l.eraseConfirm}}</button>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"view":{"editor":"enum","options":["form","error","on","problem","erase"],"default":"form"},"$preview":{"width":390,"height":940}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const theme = this.props.theme === 'dark' ? 'dark' : 'light';
+    const lang = this.props.lang === 'en' ? 'en' : 'ru';
+    const T = {
+      light: { bg: '#F4F2EC', card: '#FFFFFF', ink: '#16211F', ink2: '#4A5654', ink3: '#5E6967', acc: '#0B6B63', accText: '#0B5A53', accSoft: '#DDEEEA', onAcc: '#FFFFFF', warn: '#8F4207', warnLine: '#B4540A', warnSoft: '#FBEBDD', fill: '#EFEBE3', line: '#D6D1C6', sep: '#ECE8DF', dim: 'rgba(22, 33, 31, 0.45)' },
+      dark: { bg: '#111715', card: '#1A2220', ink: '#ECEAE4', ink2: '#B7C0BD', ink3: '#97A29F', acc: '#4FBFB0', accText: '#7ED8CB', accSoft: '#173530', onAcc: '#1A2220', warn: '#F3A76E', warnLine: '#D98641', warnSoft: '#3A2717', fill: '#252F2C', line: '#3A4542', sep: '#262F2C', dim: 'rgba(0, 0, 0, 0.6)' }
+    }[theme];
+
+    const L = {
+      ru: {
+        back: 'Настройки', title: 'Сервер',
+        intro: 'Необязательно. Ampulse работает полностью без сети. Если у вас есть свой сервер Ampulse, приложение может отправлять на него копию данных. С сервера ничего не скачивается, и никому другому ничего не уходит.',
+        sentTitle: 'Что отправляется',
+        sent: 'Имена профилей, названия лекарств, дозы и заметки, времена приёмов по вашим схемам (30 дней назад и 14 вперёд), ваши отметки — принято или пропущено — и лишние приёмы. Только по HTTPS.',
+        notSent: 'Не отправляется: давление, аптечка и упаковки, близкие, экстренная карта, места уколов, правила схем.',
+        address: 'Адрес сервера', addressHint: 'ampulse.example.org', login: 'Логин', password: 'Пароль',
+        signIn: 'Войти', create: 'Создать аккаунт', working: 'Подождите…', needFields: 'Введите адрес сервера, логин и пароль',
+        connected: 'Подключено', rowServer: 'Сервер', rowLogin: 'Логин',
+        last: 'Последняя отправка: сегодня, 13:50', stored: '212 записей на сервере',
+        rejected: 'Сервер не принял: 2 (bad_name). Они пропускаются, пока не изменятся.',
+        noconn: 'Нет связи. Приложение попробует снова при следующем открытии или изменении.',
+        sendNow: 'Отправить сейчас', sending: 'Отправляется…', signOut: 'Выйти', erase: 'Выйти и стереть копию на сервере',
+        eraseTitle: 'Стереть копию на сервере?', eraseText: 'Всё, что отправило это приложение, удалится с сервера, затем вы выйдете. Данные на этом телефоне останутся.',
+        eraseConfirm: 'Стереть', cancel: 'Отмена',
+        eInsecure: 'Адрес должен начинаться с https:// — соединение обязано быть зашифрованным.',
+        eBadPass: 'Пароль — 10–200 знаков.'
+      },
+      en: {
+        back: 'Settings', title: 'Server',
+        intro: 'Optional. Ampulse works fully offline. If you run your own Ampulse server, the app can send it a copy of your data. Nothing is ever downloaded from the server, and nothing goes to anyone else.',
+        sentTitle: 'What is sent',
+        sent: 'Profile names, medicine names, doses and notes, the dose times from your schedules (30 days back, 14 days ahead), your marks — taken or skipped — and extra doses. Over HTTPS only.',
+        notSent: 'Not sent: blood pressure, the medicine cabinet and packs, family contacts, the emergency card, injection sites, schedule rules.',
+        address: 'Server address', addressHint: 'ampulse.example.org', login: 'Login', password: 'Password',
+        signIn: 'Sign in', create: 'Create account', working: 'Please wait…', needFields: 'Enter the server address, login and password',
+        connected: 'Connected', rowServer: 'Server', rowLogin: 'Login',
+        last: 'Last sent: today, 1:50 PM', stored: '212 records on the server',
+        rejected: 'The server did not accept 2 (bad_name). They are skipped until changed.',
+        noconn: 'No connection. The app will try again on the next opening or change.',
+        sendNow: 'Send now', sending: 'Sending…', signOut: 'Sign out', erase: 'Sign out and erase the copy on the server',
+        eraseTitle: 'Erase the copy on the server?', eraseText: 'Everything this app sent will be deleted from the server, then the app signs out. Data on this phone stays.',
+        eraseConfirm: 'Erase', cancel: 'Cancel',
+        eInsecure: 'The address must start with https:// — the connection has to be encrypted.',
+        eBadPass: 'The password is 10–200 characters.'
+      }
+    }[lang];
+
+    const VIEWS = ['form', 'error', 'on', 'problem', 'erase'];
+    const first = VIEWS.indexOf(this.props.view) >= 0 ? this.props.view : 'form';
+    const signed = s.signed !== undefined ? s.signed : (first === 'on' || first === 'problem' || first === 'erase');
+    const address = s.address !== undefined ? s.address : (first === 'error' ? 'http://ampulse.example.org' : 'ampulse.example.org');
+    const login = s.login !== undefined ? s.login : 'anna';
+    const pass = s.pass !== undefined ? s.pass : (signed ? '' : 'demo-pass-2026');
+    const err = s.err !== undefined ? s.err : (first === 'error' ? 'insecure' : '');
+    const problem = s.problem !== undefined ? s.problem : first === 'problem';
+    const confirm = s.confirm !== undefined ? s.confirm : first === 'erase';
+    const sending = !!s.sending;
+
+    const ready = address.trim() !== '' && login.trim() !== '' && pass !== '';
+    const enter = (isCreate) => () => {
+      if (!ready) return;
+      if (/^http:\/\//i.test(address.trim())) { this.setState({ err: 'insecure' }); return; }
+      if (isCreate && pass.length < 10) { this.setState({ err: 'badpass' }); return; }
+      this.setState({ signed: true, err: '', pass: '', problem: false });
+    };
+    const leave = () => this.setState({ signed: false, err: '', pass: '', problem: false, confirm: false, sending: false });
+    const send = () => {
+      this.setState({ sending: true });
+      setTimeout(() => this.setState({ sending: false, problem: false }), 1200);
+    };
+
+    const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
+    const height = { form: 940, error: 1020, on: 600, problem: 800, erase: 600 }[first];
+    return {
+      t: T, l: L, lang: lang, height: height,
+      rowHref: 'ServerRow' + sfx + '.dc.html',
+      isForm: !signed, isOn: signed,
+      address: address, login: login, pass: pass,
+      setAddress: (e) => this.setState({ address: e.target.value, err: '' }),
+      setLogin: (e) => this.setState({ login: e.target.value, err: '' }),
+      setPass: (e) => this.setState({ pass: e.target.value, err: '' }),
+      hasError: err !== '',
+      errorText: err === 'badpass' ? L.eBadPass : L.eInsecure,
+      notReady: !ready,
+      mainBg: ready ? T.acc : T.fill, mainFg: ready ? T.onAcc : T.ink3,
+      outLine: ready ? T.ink : T.line, outFg: ready ? T.ink : T.ink3,
+      mainCursor: ready ? 'pointer' : 'default',
+      signIn: enter(false), create: enter(true),
+      shownAddress: address.replace(/^https?:\/\//i, ''), shownLogin: login,
+      lastText: L.last,
+      hasProblem: problem,
+      signOut: leave,
+      askErase: () => this.setState({ confirm: true }),
+      cancel: () => this.setState({ confirm: false }),
+      doErase: leave,
+      confirm: confirm,
+      sending: sending, sendLabel: sending ? L.sending : L.sendNow,
+      sendBg: sending ? T.fill : T.acc, sendFg: sending ? T.ink3 : T.onAcc, sendCursor: sending ? 'default' : 'pointer',
+      sendNow: send
+    };
+  }
+}
+</script>
+</body>
+</html>
