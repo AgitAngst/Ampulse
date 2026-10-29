@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ввод назначения фото и голосом (этап 0.5, задача 3.1, макет — экран 7); ключи те же в values -->
+
+    <!-- Кнопки на экране разбора -->
+    <string name="capture_photo_button">Фото рецепта</string>
+    <string name="capture_voice_button">Голосом</string>
+    <string name="capture_voice_unavailable">На телефоне нет службы распознавания речи</string>
+
+    <!-- Общее -->
+    <string name="capture_cancel">Отмена</string>
+    <string name="capture_close">Закрыть</string>
+    <string name="capture_retry">Повторить</string>
+    <string name="capture_perm_allow">Разрешить</string>
+    <string name="capture_perm_settings">Открыть настройки</string>
+    <string name="capture_perm_blocked">Система больше не спросит — включите в настройках приложения.</string>
+
+    <!-- Фото: выбор источника -->
+    <string name="capture_photo_title">Фото рецепта</string>
+    <string name="capture_photo_hint">Печатный текст распознаётся на телефоне. Фото не сохраняется и никуда не отправляется. Почерк прочесть не получится.</string>
+    <string name="capture_photo_camera">Снять</string>
+    <string name="capture_photo_camera_hint">Откроется камера</string>
+    <string name="capture_photo_gallery">Из галереи</string>
+    <string name="capture_photo_gallery_hint">Выберите готовое фото</string>
+    <string name="capture_photo_tip">Держите лист ровно, ближе к камере, при хорошем свете.</string>
+
+    <!-- Фото: нет доступа к камере -->
+    <string name="capture_cam_perm_title">Камера выключена</string>
+    <string name="capture_cam_perm_hint">Камера нужна только чтобы снять рецепт. Снимок не сохраняется и никуда не отправляется.</string>
+
+    <!-- Фото: распознавание -->
+    <string name="capture_working">Распознаю…</string>
+    <string name="capture_working_hint">Это займёт несколько секунд. Всё происходит на телефоне.</string>
+    <string name="capture_empty_title">Текст не найден</string>
+    <string name="capture_empty_hint">Снимите лист ровно, ближе и при хорошем свете. Рукописный текст телефон не прочтёт — наберите строки или продиктуйте.</string>
+    <string name="capture_other_photo">Выбрать другое фото</string>
+    <string name="capture_failed_title">Не удалось распознать</string>
+    <string name="capture_failed_open">Не удалось открыть фото. Выберите другое.</string>
+    <string name="capture_failed_memory">Фото слишком большое для телефона. Выберите поменьше.</string>
+    <string name="capture_failed_engine">Распознавание не запустилось. Если повторится — наберите текст вручную.</string>
+    <string name="capture_failed_camera">Не удалось открыть камеру. Выберите фото из галереи.</string>
+
+    <!-- Голос -->
+    <string name="capture_voice_title">Продиктуйте назначение</string>
+    <string name="capture_voice_example">Например: «Амоксициллин пятьсот по одной капсуле три раза в день неделю»</string>
+    <string name="capture_voice_listening">Слушаю…</string>
+    <string name="capture_voice_finishing">Заканчиваю…</string>
+    <string name="capture_voice_stop">Стоп</string>
+    <string name="capture_voice_note">Речь распознаётся на телефоне, если скачан язык для работы без интернета; иначе служба распознавания телефона может обратиться к сети.</string>
+
+    <!-- Голос: нет доступа к микрофону и ошибки -->
+    <string name="capture_mic_perm_title">Микрофон выключен</string>
+    <string name="capture_mic_perm_hint">Микрофон нужен только чтобы надиктовать назначение. Запись не сохраняется.</string>
+    <string name="capture_voice_nomatch_title">Ничего не расслышал</string>
+    <string name="capture_voice_nomatch">Говорите ближе к микрофону и повторите.</string>
+    <string name="capture_voice_offline_title">Нет языка без интернета</string>
+    <string name="capture_voice_offline">Нет интернета, а язык для распознавания без него не скачан. Скачайте его в настройках телефона (голосовой ввод, распознавание офлайн) и повторите.</string>
+    <string name="capture_voice_failed_title">Не удалось записать</string>
+    <string name="capture_voice_audio">Микрофон занят или недоступен. Закройте другие программы, которые пишут звук.</string>
+    <string name="capture_voice_failed">Распознавание речи не запустилось. Повторите.</string>
+</resources>

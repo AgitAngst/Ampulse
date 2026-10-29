@@ -16,6 +16,17 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
+    <!-- Диктовка назначения: микрофон нужен только для неё; микрофона может не быть — без него остальное работает. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <!-- Видимость пакетов (Android 11+): без этого isRecognitionAvailable не увидит службу распознавания речи. -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
     <!-- Облачная копия выключена (здоровье — личные данные), перенос между телефонами — можно (anvil/docs/ANDROID.md, §10). -->
     <application
         android:name=".AmpulseApp"
@@ -42,6 +53,17 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
+        <!-- Снимок рецепта с камеры: камера пишет в файл кэша (res/xml/file_paths.xml) только через этот провайдер. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- Экран «Напоминание» важного лекарства: поверх блокировки, тёмный в любой теме; открывает его только уведомление. -->
         <activity

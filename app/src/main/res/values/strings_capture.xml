@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ввод назначения фото и голосом (этап 0.5, задача 3.1, макет — экран 7); ключи те же в values-ru -->
+
+    <!-- Кнопки на экране разбора -->
+    <string name="capture_photo_button">Prescription photo</string>
+    <string name="capture_voice_button">By voice</string>
+    <string name="capture_voice_unavailable">This phone has no speech recognition service</string>
+
+    <!-- Общее -->
+    <string name="capture_cancel">Cancel</string>
+    <string name="capture_close">Close</string>
+    <string name="capture_retry">Try again</string>
+    <string name="capture_perm_allow">Allow</string>
+    <string name="capture_perm_settings">Open settings</string>
+    <string name="capture_perm_blocked">The system will not ask again — turn it on in the app settings.</string>
+
+    <!-- Фото: выбор источника -->
+    <string name="capture_photo_title">Prescription photo</string>
+    <string name="capture_photo_hint">Printed text is recognized on the phone. The photo is not saved or sent anywhere. Handwriting cannot be read.</string>
+    <string name="capture_photo_camera">Take a photo</string>
+    <string name="capture_photo_camera_hint">Opens the camera</string>
+    <string name="capture_photo_gallery">From gallery</string>
+    <string name="capture_photo_gallery_hint">Pick a ready photo</string>
+    <string name="capture_photo_tip">Hold the sheet flat, close to the camera, in good light.</string>
+
+    <!-- Фото: нет доступа к камере -->
+    <string name="capture_cam_perm_title">The camera is off</string>
+    <string name="capture_cam_perm_hint">The camera is used only to photograph the prescription. The photo is not saved or sent anywhere.</string>
+
+    <!-- Фото: распознавание -->
+    <string name="capture_working">Recognizing…</string>
+    <string name="capture_working_hint">This takes a few seconds. Everything happens on the phone.</string>
+    <string name="capture_empty_title">No text found</string>
+    <string name="capture_empty_hint">Take the photo flat, closer and in good light. Handwriting cannot be read — type the lines or dictate them.</string>
+    <string name="capture_other_photo">Choose another photo</string>
+    <string name="capture_failed_title">Could not recognize</string>
+    <string name="capture_failed_open">The photo could not be opened. Choose another one.</string>
+    <string name="capture_failed_memory">The photo is too large for the phone. Choose a smaller one.</string>
+    <string name="capture_failed_engine">Text recognition did not start. If it happens again, type the text instead.</string>
+    <string name="capture_failed_camera">The camera could not be opened. Choose a photo from the gallery.</string>
+
+    <!-- Голос -->
+    <string name="capture_voice_title">Dictate the prescription</string>
+    <string name="capture_voice_example">For example: “Amoxicillin five hundred, one capsule three times a day for a week”</string>
+    <string name="capture_voice_listening">Listening…</string>
+    <string name="capture_voice_finishing">Finishing…</string>
+    <string name="capture_voice_stop">Stop</string>
+    <string name="capture_voice_note">Speech is recognized on the phone if the offline language is downloaded; otherwise the phone\'s recognition service may use the internet.</string>
+
+    <!-- Голос: нет доступа к микрофону и ошибки -->
+    <string name="capture_mic_perm_title">The microphone is off</string>
+    <string name="capture_mic_perm_hint">The microphone is used only to dictate the prescription. The recording is not saved.</string>
+    <string name="capture_voice_nomatch_title">Heard nothing</string>
+    <string name="capture_voice_nomatch">Speak closer to the microphone and try again.</string>
+    <string name="capture_voice_offline_title">Offline language is missing</string>
+    <string name="capture_voice_offline">There is no internet, and the language for recognition without it is not downloaded. Download it in the phone settings (voice input, offline recognition) and try again.</string>
+    <string name="capture_voice_failed_title">Could not record</string>
+    <string name="capture_voice_audio">The microphone is busy or unavailable. Close other apps that record sound.</string>
+    <string name="capture_voice_failed">Speech recognition did not start. Try again.</string>
+</resources>
