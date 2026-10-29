@@ -74,17 +74,18 @@ interface DoseEventDao {
 
 /** База Ampulse. Новая версия схемы — миграция и файл схемы в `app/schemas` (проверяются тестом миграций). */
 @Database(
-    entities = [MedicineEntity::class, ScheduleEntity::class, DoseEventEntity::class, PackEntity::class, PackUseEntity::class],
-    version = 2,
+    entities = [MedicineEntity::class, ScheduleEntity::class, DoseEventEntity::class, PackEntity::class, PackUseEntity::class, ProfileEntity::class],
+    version = 3,
     exportSchema = true,
-    // 2 — упаковки и списания (этап 0.4).
-    autoMigrations = [AutoMigration(from = 1, to = 2)],
+    // 2 — упаковки и списания (этап 0.4); 3 — профили и место укола (этап 0.6).
+    autoMigrations = [AutoMigration(from = 1, to = 2), AutoMigration(from = 2, to = 3)],
 )
 abstract class AmpulseDb : RoomDatabase() {
     abstract fun medicines(): MedicineDao
     abstract fun schedules(): ScheduleDao
     abstract fun events(): DoseEventDao
     abstract fun packs(): PackDao
+    abstract fun profiles(): ProfileDao
 
     companion object {
         fun open(context: Context): AmpulseDb =

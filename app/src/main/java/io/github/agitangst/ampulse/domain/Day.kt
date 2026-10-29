@@ -17,6 +17,8 @@ data class Medicine(
     val important: Boolean = false,
     val food: FoodRule = FoodRule.None,
     val note: String = "",
+    /** Чьё лекарство: 0 — «Я», иначе профиль (близкий, питомец). */
+    val profileId: Long = 0,
 )
 
 /** Что сделано с приёмом. `Extra` — лишний приём, записанный для врача (макет, экран 15). */
@@ -32,6 +34,8 @@ data class DoseEvent(
     val status: EventStatus,
     val amount: Double,
     val note: String = "",
+    /** Место укола (этап 0.6); у таблеток — `null`. */
+    val site: Site? = null,
 )
 
 /** Состояние приёма на ленте дня (docs/ui-guideline.md, «Состояния строки приёма»). */

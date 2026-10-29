@@ -90,6 +90,7 @@ fun AppShell(settings: AnvilSettings) {
         Nav(
             push = { route -> stack = ArrayList(stack).apply { add(route.encode()) } },
             pop = { if (stack.isNotEmpty()) stack = ArrayList(stack.dropLast(1)) },
+            home = { stack = ArrayList() },
         )
     }
     val top = stack.lastOrNull()?.let(Route::decode)
