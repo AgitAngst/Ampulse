@@ -16,6 +16,17 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
+    <!--
+        Тонометр по Bluetooth LE (этап 0.7). С Android 12 — поиск без доступа к местоположению (neverForLocation);
+        до 12 поиск BLE требует местоположения — только на этих версиях. Bluetooth может не быть — ввод руками остаётся.
+    -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
+
     <!-- Облачная копия выключена (здоровье — личные данные), перенос между телефонами — можно (anvil/docs/ANDROID.md, §10). -->
     <application
         android:name=".AmpulseApp"

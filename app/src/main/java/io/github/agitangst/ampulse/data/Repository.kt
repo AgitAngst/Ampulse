@@ -1,6 +1,8 @@
 package io.github.agitangst.ampulse.data
 
 import androidx.room.withTransaction
+import io.github.agitangst.ampulse.domain.Reading
+import io.github.agitangst.ampulse.domain.ReadingSource
 import io.github.agitangst.ampulse.domain.Profile
 import io.github.agitangst.ampulse.domain.Site
 import io.github.agitangst.ampulse.domain.DoseEvent
@@ -131,6 +133,21 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
     /** Уколы профиля с местом и временем — для ротации мест (`rotation` в `domain/Care.kt`). */
     fun injections(profileId: Long): Flow<List<Pair<Site, LocalDateTime>>> =
         db.profiles().injections(profileId).map { l -> l.map(Codec::event).mapNotNull { e -> e.site?.let { it to e.at } } }
+
+    // --- Давление (этап 0.7) ---
+
+    /** Замеры профиля за дни [from, to] — новые сверху. */
+    fun readings(profileId: Long, from: LocalDate, to: LocalDate): Flow<List<Reading>> =
+        db.pressure().between(profileId, Codec.millis(from.atStartOfDay()), Codec.millis(to.plusDays(1).atStartOfDay()))
+            .map { l -> l.map(PressureCodec::reading) }
+
+    /** Последний замер профиля — «Прошлый замер: вчера, 20:30 — 131/84». */
+    fun lastReading(profileId: Long): Flow<Reading?> = db.pressure().last(profileId).map { it?.let(PressureCodec::reading) }
+
+    suspend fun addReading(profileId: Long, r: Reading, source: ReadingSource): Long =
+        db.pressure().insert(PressureEntity(0, profileId, Codec.millis(r.at), r.sys, r.dia, r.pulse, source.name, r.note))
+
+    suspend fun deleteReading(id: Long) = db.pressure().delete(id)
 
     // --- Аптечка (этап 0.4) ---
 
