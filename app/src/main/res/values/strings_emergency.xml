@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Экстренная карта (этап 0.8, задача 2.2): просмотр, правка, экран блокировки; ключи те же в values-ru -->
+
+    <!-- Просмотр (макет, экран 16) -->
+    <string name="emergency_title">Emergency card</string>
+    <string name="emergency_subtitle">For doctors and people nearby</string>
+    <string name="emergency_back">Back</string>
+    <string name="emergency_close">Close</string>
+    <string name="emergency_settings_hint">Allergies, medicines, who to call</string>
+    <string name="emergency_owner">Phone owner</string>
+    <string name="emergency_owner_sms">the phone owner</string>
+    <string name="emergency_tile_name">Name</string>
+    <string name="emergency_tile_blood">Blood</string>
+    <string name="emergency_allergies">Allergies</string>
+    <string name="emergency_allergies_none">Not specified</string>
+    <string name="emergency_conditions">Conditions</string>
+    <string name="emergency_medicines">Current medicines</string>
+    <string name="emergency_last_dose">last dose</string>
+    <string name="emergency_last_none">no marks yet</string>
+    <string name="emergency_medicines_none">No active medicines.</string>
+    <string name="emergency_medicines_auto">The list and times update automatically from the schedule and marks.</string>
+    <string name="emergency_notes">Notes</string>
+    <string name="emergency_contacts">Who to call</string>
+    <string name="emergency_contacts_none">No emergency contacts yet. Add a loved one on the Family tab.</string>
+    <string name="emergency_contacts_none_readonly">No emergency contacts in the app.</string>
+    <string name="emergency_call">Call %1$s</string>
+    <string name="emergency_qr_show">QR code for the doctor</string>
+    <string name="emergency_qr_hide">Hide QR code</string>
+    <string name="emergency_qr_hint">The code contains the card itself: a doctor can scan it offline</string>
+    <string name="emergency_qr_desc">QR code with the emergency card</string>
+    <string name="emergency_qr_too_long">The card is too long for a QR code. Shorten the notes or the lists.</string>
+    <string name="emergency_empty_title">The card is empty</string>
+    <string name="emergency_empty_hint">Fill in allergies, conditions and blood type: a doctor looks at them first.</string>
+    <string name="emergency_empty_readonly">The card has not been filled in.</string>
+    <string name="emergency_edit">Edit card</string>
+    <string name="emergency_fill">Fill in</string>
+
+    <!-- Правка -->
+    <string name="emergency_edit_title">Edit emergency card</string>
+    <string name="emergency_cancel">Cancel</string>
+    <string name="emergency_save">Save</string>
+    <string name="emergency_field_allergies">Allergies</string>
+    <string name="emergency_field_allergies_hint">One per line: Lidocaine — swelling</string>
+    <string name="emergency_field_conditions">Conditions</string>
+    <string name="emergency_field_conditions_hint">One per line: Type 2 diabetes</string>
+    <string name="emergency_field_notes">Notes</string>
+    <string name="emergency_field_notes_hint">What else a doctor should know</string>
+    <string name="emergency_blood">Blood type</string>
+    <string name="emergency_blood_rh_plus">Rh+</string>
+    <string name="emergency_blood_rh_minus">Rh−</string>
+    <string name="emergency_lock_title">Show on lock screen</string>
+    <string name="emergency_lock_hint">Paramedics can see the card without a passcode</string>
+    <string name="emergency_lock_warning">Anyone who picks up the phone will see this card. Write only what a doctor needs.</string>
+    <string name="emergency_sms_hint">Loved ones with emergency SMS turned on get a text when the card is opened on the lock screen, at most once in 30 minutes.</string>
+    <string name="emergency_notifications_off">Notifications are off, so the card will not appear on the lock screen.</string>
+    <string name="emergency_allow">Allow</string>
+
+    <!-- Уведомление на экране блокировки -->
+    <string name="emergency_channel">Emergency card</string>
+    <string name="emergency_channel_desc">A quiet permanent notification that opens the card on the lock screen.</string>
+    <string name="emergency_notice_title">Emergency card — %1$s</string>
+    <string name="emergency_notice_text">Tap to open without unlocking</string>
+</resources>

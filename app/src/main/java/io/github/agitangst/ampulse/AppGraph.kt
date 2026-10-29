@@ -7,6 +7,7 @@ import io.github.agitangst.ampulse.data.ChangeListener
 import io.github.agitangst.ampulse.data.Repository
 import io.github.agitangst.ampulse.reminders.Reminders
 import io.github.agitangst.ampulse.ui.CurrentProfile
+import io.github.agitangst.ampulse.ui.EmergencyNotice
 
 /** Общие объекты приложения: база, данные, напоминания. Создаются один раз в [AmpulseApp]. */
 object AppGraph {
@@ -22,6 +23,7 @@ object AppGraph {
         repository = Repository(AmpulseDb.open(app), ChangeListener { reminders.reschedule() })
         reminders.reschedule()
         CurrentProfile.load(app)
+        EmergencyNotice.sync(app)
     }
 }
 

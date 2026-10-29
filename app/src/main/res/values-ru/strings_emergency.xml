@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Экстренная карта (этап 0.8, задача 2.2): просмотр, правка, экран блокировки; ключи те же в values -->
+
+    <!-- Просмотр (макет, экран 16) -->
+    <string name="emergency_title">Экстренная карта</string>
+    <string name="emergency_subtitle">Для врачей и тех, кто рядом</string>
+    <string name="emergency_back">Назад</string>
+    <string name="emergency_close">Закрыть</string>
+    <string name="emergency_settings_hint">Аллергии, лекарства, кому звонить</string>
+    <string name="emergency_owner">Владелец телефона</string>
+    <string name="emergency_owner_sms">владелец телефона</string>
+    <string name="emergency_tile_name">Имя</string>
+    <string name="emergency_tile_blood">Кровь</string>
+    <string name="emergency_allergies">Аллергии</string>
+    <string name="emergency_allergies_none">Не указаны</string>
+    <string name="emergency_conditions">Диагнозы</string>
+    <string name="emergency_medicines">Принимает сейчас</string>
+    <string name="emergency_last_dose">последний приём</string>
+    <string name="emergency_last_none">нет отметок</string>
+    <string name="emergency_medicines_none">Действующих лекарств нет.</string>
+    <string name="emergency_medicines_auto">Список и время обновляются сами — из расписания и отметок.</string>
+    <string name="emergency_notes">Заметки</string>
+    <string name="emergency_contacts">Кому звонить</string>
+    <string name="emergency_contacts_none">Близких пока нет. Добавьте близкого на вкладке «Близкие».</string>
+    <string name="emergency_contacts_none_readonly">Близких в программе нет.</string>
+    <string name="emergency_call">Позвонить: %1$s</string>
+    <string name="emergency_qr_show">QR-код для врача</string>
+    <string name="emergency_qr_hide">Скрыть QR-код</string>
+    <string name="emergency_qr_hint">В коде — сама карта: врач считает её камерой без интернета</string>
+    <string name="emergency_qr_desc">QR-код с экстренной картой</string>
+    <string name="emergency_qr_too_long">Карта слишком длинная для QR-кода. Сократите заметки или списки.</string>
+    <string name="emergency_empty_title">Карта пуста</string>
+    <string name="emergency_empty_hint">Заполните аллергии, диагнозы и группу крови: врач смотрит их первыми.</string>
+    <string name="emergency_empty_readonly">Карта не заполнена.</string>
+    <string name="emergency_edit">Изменить</string>
+    <string name="emergency_fill">Заполнить</string>
+
+    <!-- Правка -->
+    <string name="emergency_edit_title">Правка карты</string>
+    <string name="emergency_cancel">Отмена</string>
+    <string name="emergency_save">Сохранить</string>
+    <string name="emergency_field_allergies">Аллергии</string>
+    <string name="emergency_field_allergies_hint">По одной в строке: Лидокаин — отёк</string>
+    <string name="emergency_field_conditions">Диагнозы</string>
+    <string name="emergency_field_conditions_hint">По одному в строке: Сахарный диабет 2 типа</string>
+    <string name="emergency_field_notes">Заметки</string>
+    <string name="emergency_field_notes_hint">Что ещё должен знать врач</string>
+    <string name="emergency_blood">Группа крови</string>
+    <string name="emergency_blood_rh_plus">Rh+</string>
+    <string name="emergency_blood_rh_minus">Rh−</string>
+    <string name="emergency_lock_title">Показывать на экране блокировки</string>
+    <string name="emergency_lock_hint">Врач скорой увидит карту без пароля</string>
+    <string name="emergency_lock_warning">Эту карту увидит любой, кто возьмёт телефон. Пишите только то, что нужно врачу.</string>
+    <string name="emergency_sms_hint">Близким с включённым экстренным SMS придёт сообщение, когда карту откроют на экране блокировки, — не чаще раза в 30 минут.</string>
+    <string name="emergency_notifications_off">Уведомления выключены, поэтому карта не появится на экране блокировки.</string>
+    <string name="emergency_allow">Разрешить</string>
+
+    <!-- Уведомление на экране блокировки -->
+    <string name="emergency_channel">Экстренная карта</string>
+    <string name="emergency_channel_desc">Тихое постоянное уведомление: открывает карту на экране блокировки.</string>
+    <string name="emergency_notice_title">Экстренная карта — %1$s</string>
+    <string name="emergency_notice_text">Нажмите, чтобы открыть без разблокировки</string>
+</resources>
