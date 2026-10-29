@@ -25,18 +25,6 @@ object CurrentProfile {
     }
 }
 
-/** Место укола (макет, экраны 3, 17–18). Заготовка — задача 2.1 этапа 0.6. */
-@Composable
-fun InjectionScreen(medicineId: Long, plannedAt: Long?, nav: Nav) = Unit
-
-/** Укол пошагово (макет, экраны 44–45). Заготовка — задача 3.1. */
-@Composable
-fun ShotGuideScreen(medicineId: Long, plannedAt: Long?, nav: Nav) = Unit
-
-/** Правила уколов (макет, экран 46). Заготовка — задача 3.1. */
-@Composable
-fun ShotRulesScreen(nav: Nav) = Unit
-
 /** Профили (близкие, питомцы). Заготовка — задача 2.2. */
 @Composable
 fun ProfilesScreen(nav: Nav) = Unit

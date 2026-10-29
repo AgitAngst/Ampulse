@@ -49,8 +49,11 @@ sealed interface Route {
      */
     data class Injection(val medicineId: Long, val plannedAt: Long?) : Route
 
-    /** Укол пошагово (макет, экраны 44–45): подкожно ручкой или в мышцу — по лекарству. */
-    data class ShotGuide(val medicineId: Long, val plannedAt: Long?) : Route
+    /**
+     * Укол пошагово (макет, экраны 44–45): подкожно ручкой или в мышцу — по лекарству. `site` — выбранное на экране места
+     * (`Site.name`); в конце приём отмечается с этим местом.
+     */
+    data class ShotGuide(val medicineId: Long, val plannedAt: Long?, val site: String?) : Route
 
     /** Правила уколов (макет, экран 46). */
     data object ShotRules : Route
@@ -71,7 +74,7 @@ sealed interface Route {
         Scan -> "scan"
         Import -> "import"
         is Injection -> "inj:$medicineId:${plannedAt ?: ""}"
-        is ShotGuide -> "shot:$medicineId:${plannedAt ?: ""}"
+        is ShotGuide -> "shot:$medicineId:${plannedAt ?: ""}:${site.orEmpty()}"
         ShotRules -> "shotrules"
         Profiles -> "profiles"
         is ProfileEdit -> "profile:$id"
@@ -92,9 +95,9 @@ sealed interface Route {
                 "expiry" -> Expiry
                 "scan" -> Scan
                 "import" -> Import
-                "inj", "shot" -> arg?.split(':')?.takeIf { it.size == 2 }?.let { (m, p) ->
-                    val med = m.toLongOrNull() ?: return null
-                    if (name == "inj") Injection(med, p.toLongOrNull()) else ShotGuide(med, p.toLongOrNull())
+                "inj" -> arg?.split(':')?.takeIf { it.size == 2 }?.let { (m, p) -> Injection(m.toLongOrNull() ?: return null, p.toLongOrNull()) }
+                "shot" -> arg?.split(':')?.takeIf { it.size == 3 }?.let { (m, p, s) ->
+                    ShotGuide(m.toLongOrNull() ?: return null, p.toLongOrNull(), s.ifEmpty { null })
                 }
                 "shotrules" -> ShotRules
                 "profiles" -> Profiles
@@ -106,10 +109,13 @@ sealed interface Route {
 }
 
 /** Переходы: открыть экран поверх или вернуться назад. */
-class Nav(private val push: (Route) -> Unit, private val pop: () -> Unit) {
+class Nav(private val push: (Route) -> Unit, private val pop: () -> Unit, private val home: () -> Unit = {}) {
     fun open(route: Route) = push(route)
 
     fun back() = pop()
+
+    /** Закрыть все экраны поверх вкладок (после укола пошагово — «На главную»). */
+    fun home() = home.invoke()
 }
 
 /** Содержимое экрана поверх вкладок. */
@@ -125,7 +131,7 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.Scan -> ScanScreen(nav)
         Route.Import -> ImportScreen(nav)
         is Route.Injection -> InjectionScreen(route.medicineId, route.plannedAt, nav)
-        is Route.ShotGuide -> ShotGuideScreen(route.medicineId, route.plannedAt, nav)
+        is Route.ShotGuide -> ShotGuideScreen(route.medicineId, route.plannedAt, route.site, nav)
         Route.ShotRules -> ShotRulesScreen(nav)
         Route.Profiles -> ProfilesScreen(nav)
         is Route.ProfileEdit -> ProfileEditScreen(route.id, nav)
