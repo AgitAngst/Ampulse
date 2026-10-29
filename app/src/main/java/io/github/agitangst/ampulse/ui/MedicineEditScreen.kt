@@ -100,6 +100,8 @@ internal data class MedDraft(
     val endless: Boolean = true,
     val days: Int = 7,
     val paused: Boolean = false,
+    /** Чьё лекарство: 0 — «Я», иначе профиль (этап 0.6). */
+    val profileId: Long = 0,
 )
 
 /** Чего не хватает, чтобы сохранить; по порядку на экране. */
@@ -135,7 +137,7 @@ private val MedDraftSaver: Saver<MedDraft, Any> = listSaver<MedDraft, Any>(
             ArrayList(d.weekdays.map { it.name }),
             d.everyN, d.cycleOn, d.cycleOff,
             ArrayList(d.steps.map { "${it.amount}|${it.days}" }),
-            d.prnHours, d.prnMax, d.prnAmount, d.start.toString(), d.endless, d.days, d.paused,
+            d.prnHours, d.prnMax, d.prnAmount, d.start.toString(), d.endless, d.days, d.paused, d.profileId,
         )
     },
     restore = { l ->
@@ -162,6 +164,7 @@ private val MedDraftSaver: Saver<MedDraft, Any> = listSaver<MedDraft, Any>(
             endless = l[19] as Boolean,
             days = l[20] as Int,
             paused = l[21] as Boolean,
+            profileId = l[22] as Long,
         )
     },
 )
@@ -177,6 +180,7 @@ private fun draftOf(med: Medicine, plan: Plan?, texts: MedTexts): MedDraft {
         food = med.food,
         important = med.important,
         note = med.note,
+        profileId = med.profileId,
     )
     if (plan == null) return base
     return base.copy(
@@ -207,6 +211,7 @@ private fun MedDraft.toMedicine(id: Long, texts: MedTexts) = Medicine(
     important = important,
     food = food,
     note = note,
+    profileId = profileId,
 )
 
 private fun MedDraft.toPlan(): Plan {
@@ -265,7 +270,7 @@ fun MedicineEditScreen(id: Long, nav: Nav) {
     val texts = rememberMedTexts()
     val scope = rememberCoroutineScope()
     val p = AnvilTheme.palette
-    var draft by rememberSaveable(stateSaver = MedDraftSaver) { mutableStateOf(MedDraft(unit = texts.unitFor(MedForm.Tablet))) }
+    var draft by rememberSaveable(stateSaver = MedDraftSaver) { mutableStateOf(MedDraft(unit = texts.unitFor(MedForm.Tablet), profileId = CurrentProfile.id)) }
     var loaded by rememberSaveable(id) { mutableStateOf(id == 0L) }
     var timeDialog by rememberSaveable { mutableStateOf(CLOSED) }
     var dateDialog by rememberSaveable { mutableStateOf(false) }
@@ -314,6 +319,7 @@ fun MedicineEditScreen(id: Long, nav: Nav) {
                 })
             }
             if (loaded) {
+                ProfilePicker(draft.profileId, onSelect = { v -> edit { copy(profileId = v) } })
                 BasicsSection(draft, texts, edit)
                 PlanSection(draft, texts, edit, onPickTime = { timeDialog = it }, onPickDate = { dateDialog = true })
                 AnvilCard {

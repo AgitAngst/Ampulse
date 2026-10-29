@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Профили (этап 0.6): список, правка, переключатель на «Сегодня» и в «Аптечке», «Для кого» в карточке лекарства; ключи те же в values -->
+
+    <!-- «Я» и виды профиля -->
+    <string name="profile_me">Я</string>
+    <string name="profile_me_hint">Основной профиль</string>
+    <string name="profile_kind_person">Человек</string>
+    <string name="profile_kind_cat">Кошка</string>
+    <string name="profile_kind_dog">Собака</string>
+    <string name="profile_kind_other">Другой питомец</string>
+    <string name="profile_weight_kg">%s кг</string>
+    <string name="profile_meds_none">Лекарств нет</string>
+    <plurals name="profile_meds_count">
+        <item quantity="one">%d лекарство</item>
+        <item quantity="few">%d лекарства</item>
+        <item quantity="many">%d лекарств</item>
+        <item quantity="other">%d лекарства</item>
+    </plurals>
+
+    <!-- Переключатель профиля: подпись для TalkBack, действие, пункт меню -->
+    <string name="profile_switcher">Профиль: %s</string>
+    <string name="profile_switch_action">Сменить профиль</string>
+    <string name="profile_manage">Профили…</string>
+
+    <!-- Список профилей и строка в «Настройках» -->
+    <string name="profiles_title">Профили</string>
+    <string name="profiles_add">Добавить профиль</string>
+    <string name="profiles_empty_hint">Добавьте близкого или питомца: его лекарства, приёмы и места уколов хранятся отдельно от ваших</string>
+    <string name="profiles_settings_hint">Близкие и питомцы</string>
+
+    <!-- Новый профиль и правка -->
+    <string name="profile_new_title">Новый профиль</string>
+    <string name="profile_edit_title">Правка профиля</string>
+    <string name="profile_field_name">Имя</string>
+    <string name="profile_section_kind">Кто это</string>
+    <string name="profile_field_weight">Вес</string>
+    <string name="profile_weight_unit">кг</string>
+    <string name="profile_weight_hint">например, 4,2</string>
+    <string name="profile_weight_note">Вес — для справки. Приложение никогда не считает и не меняет дозы</string>
+    <string name="profile_need_name">Введите имя, чтобы сохранить</string>
+    <string name="profile_need_weight">Введите вес числом, например 4,2</string>
+    <string name="profile_save">Сохранить</string>
+    <string name="profile_cancel">Отмена</string>
+
+    <!-- Удаление профиля -->
+    <string name="profile_delete">Удалить профиль</string>
+    <string name="profile_delete_title">Удалить «%s»?</string>
+    <plurals name="profile_delete_text">
+        <item quantity="one">Удалятся профиль и %d лекарство с его схемой, упаковками и отметками о приёмах. Это нельзя отменить.</item>
+        <item quantity="few">Удалятся профиль и %d лекарства с их схемами, упаковками и отметками о приёмах. Это нельзя отменить.</item>
+        <item quantity="many">Удалятся профиль и %d лекарств с их схемами, упаковками и отметками о приёмах. Это нельзя отменить.</item>
+        <item quantity="other">Удалятся профиль и %d лекарства с их схемами, упаковками и отметками о приёмах. Это нельзя отменить.</item>
+    </plurals>
+    <string name="profile_delete_text_none">Удалится профиль. Лекарств у него нет. Это нельзя отменить.</string>
+    <string name="profile_delete_confirm">Удалить</string>
+
+    <!-- Карточка лекарства: чьё оно -->
+    <string name="profile_for_whom">Для кого</string>
+</resources>

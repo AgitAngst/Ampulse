@@ -2,10 +2,12 @@ package io.github.agitangst.ampulse.reminders
 
 import android.content.Context
 import android.text.format.DateFormat
+import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.R
 import io.github.agitangst.ampulse.data.Codec
 import io.github.agitangst.ampulse.domain.FoodRule
 import io.github.agitangst.ampulse.domain.Medicine
+import kotlinx.coroutines.flow.first
 import java.text.NumberFormat
 import java.time.LocalDateTime
 import java.util.Date
@@ -28,6 +30,15 @@ internal object ReminderText {
     /** Доза с единицей: «1 табл.», «12 ЕД». */
     fun dose(context: Context, medicine: Medicine, amount: Double): String =
         "${number(amount, context.resources.configuration.locales[0])} ${medicine.unit}".trim()
+
+    /** Имя профиля, чьё лекарство; `null` — свой («Я») или профиль не найден. */
+    suspend fun owner(medicine: Medicine): String? =
+        if (medicine.profileId == 0L) null
+        else AppGraph.repository.profiles.first().firstOrNull { it.id == medicine.profileId }?.name
+
+    /** Заголовок напоминания: «Инсулин» у своего лекарства, «Инсулин (Барсик)» у лекарства профиля. */
+    fun title(medicineName: String, owner: String?): String =
+        if (owner.isNullOrBlank()) medicineName else "$medicineName ($owner)"
 
     /** Подсказка про еду; `null` — без правила. */
     fun food(context: Context, rule: FoodRule): String? = when (rule) {

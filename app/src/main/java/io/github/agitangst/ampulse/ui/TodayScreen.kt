@@ -139,7 +139,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
     // Вчера тоже: поздний приём мог быть отмечен после полуночи, а ранний — накануне.
     val events by remember(today) { repo.events(today.minusDays(1), today.plusDays(1)) }.collectAsState(initial = emptyList())
     var sheet by remember { mutableStateOf<TodaySheetState?>(null) }
-    val meds = medicines
+    val meds = medicines?.filter { it.profileId == CurrentProfile.id }
 
     val items = remember(meds, schedules, events, now) {
         if (meds == null) emptyList<DayItem>() else dayItems(today, meds, schedules, events, now)
@@ -175,6 +175,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
             )
         },
     ) {
+        ProfileSwitcher(nav)
         when {
             meds == null -> Spacer(Modifier.weight(1f))
             meds.isEmpty() -> {

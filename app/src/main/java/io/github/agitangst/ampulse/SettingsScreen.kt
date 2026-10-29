@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.only
@@ -35,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
 import io.github.agitangst.ampulse.ui.RoutineSection
+import io.github.agitangst.ampulse.ui.MedIcons
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -45,11 +47,17 @@ import io.github.agitangst.anvil.compose.SectionTitle
 private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
 
 /**
- * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем «Напоминания»,
- * «Оформление», «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
+ * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем строка-переход
+ * «Профили» (если задан [onProfiles]), «Напоминания», «Оформление», «Обновления» (только сборка `github`) и
+ * «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
-fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifier = Modifier) {
+fun SettingsScreen(
+    settings: AnvilSettings,
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+    onProfiles: (() -> Unit)? = null,
+) {
     val about = Store.about()
     Column(
         modifier
@@ -67,6 +75,7 @@ fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifi
             color = AnvilTheme.palette.text,
             style = screenTitleStyle(30),
         )
+        if (onProfiles != null) ProfilesLink(onProfiles)
         RemindersSection()
         RoutineSection()
         AppearanceSection(settings)
@@ -85,6 +94,39 @@ fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifi
                 codeUrl = CODE_URL,
             )
         }
+    }
+}
+
+/** Строка-переход «Профили ›» (docs/ui-guideline.md, §6): плитка значка 40, название, пояснение, стрелка. */
+@Composable
+private fun ProfilesLink(onClick: () -> Unit) {
+    val p = AnvilTheme.palette
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(p.card)
+            .heightIn(min = 64.dp)
+            .clickable(role = Role.Button, onClick = onClick)
+            .padding(start = 16.dp, top = 12.dp, end = 12.dp, bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            Modifier.size(40.dp).clip(RoundedCornerShape(12.dp)).background(Ampulse.colors.accentSoft),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(AmpulseIcons.Users, contentDescription = null, modifier = Modifier.size(22.dp), tint = p.accentText)
+        }
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                stringResource(R.string.profiles_title),
+                color = p.text,
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+            )
+            Text(stringResource(R.string.profiles_settings_hint), color = p.weak, style = MaterialTheme.typography.bodyMedium)
+        }
+        Icon(MedIcons.ChevronRight, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.faint)
     }
 }
 

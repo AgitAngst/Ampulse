@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Профили (этап 0.6): список, правка, переключатель на «Сегодня» и в «Аптечке», «Для кого» в карточке лекарства; ключи те же в values-ru -->
+
+    <!-- «Я» и виды профиля -->
+    <string name="profile_me">Me</string>
+    <string name="profile_me_hint">Main profile</string>
+    <string name="profile_kind_person">Person</string>
+    <string name="profile_kind_cat">Cat</string>
+    <string name="profile_kind_dog">Dog</string>
+    <string name="profile_kind_other">Other pet</string>
+    <string name="profile_weight_kg">%s kg</string>
+    <string name="profile_meds_none">No medicines</string>
+    <plurals name="profile_meds_count">
+        <item quantity="one">%d medicine</item>
+        <item quantity="other">%d medicines</item>
+    </plurals>
+
+    <!-- Переключатель профиля: подпись для TalkBack, действие, пункт меню -->
+    <string name="profile_switcher">Profile: %s</string>
+    <string name="profile_switch_action">Switch profile</string>
+    <string name="profile_manage">Profiles…</string>
+
+    <!-- Список профилей и строка в «Настройках» -->
+    <string name="profiles_title">Profiles</string>
+    <string name="profiles_add">Add profile</string>
+    <string name="profiles_empty_hint">Add a loved one or a pet: their medicines, doses and injection sites are kept apart from yours</string>
+    <string name="profiles_settings_hint">Loved ones and pets</string>
+
+    <!-- Новый профиль и правка -->
+    <string name="profile_new_title">New profile</string>
+    <string name="profile_edit_title">Edit profile</string>
+    <string name="profile_field_name">Name</string>
+    <string name="profile_section_kind">Who is it</string>
+    <string name="profile_field_weight">Weight</string>
+    <string name="profile_weight_unit">kg</string>
+    <string name="profile_weight_hint">e.g. 4.2</string>
+    <string name="profile_weight_note">Weight is for your reference. The app never calculates or changes doses</string>
+    <string name="profile_need_name">Enter a name to save</string>
+    <string name="profile_need_weight">Enter the weight as a number, for example 4.2</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_cancel">Cancel</string>
+
+    <!-- Удаление профиля -->
+    <string name="profile_delete">Delete profile</string>
+    <string name="profile_delete_title">Delete “%s”?</string>
+    <plurals name="profile_delete_text">
+        <item quantity="one">The profile and %d medicine will be deleted, with its schedule, packs and dose records. This cannot be undone.</item>
+        <item quantity="other">The profile and %d medicines will be deleted, with their schedules, packs and dose records. This cannot be undone.</item>
+    </plurals>
+    <string name="profile_delete_text_none">The profile will be deleted. It has no medicines. This cannot be undone.</string>
+    <string name="profile_delete_confirm">Delete</string>
+
+    <!-- Карточка лекарства: чьё оно -->
+    <string name="profile_for_whom">For whom</string>
+</resources>

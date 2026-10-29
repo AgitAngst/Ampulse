@@ -86,7 +86,8 @@ fun MedicinesScreen(nav: Nav, modifier: Modifier = Modifier) {
             )
         },
     ) {
-        val list = medicines
+        ProfileSwitcher(nav)
+        val list = medicines?.filter { it.profileId == CurrentProfile.id }
         val plans = schedules
         val allPacks = packs
         when {
