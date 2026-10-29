@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Давление — ввод: шапка и заголовок -->
+    <string name="bp_back">Назад</string>
+    <string name="bp_history">История</string>
+    <string name="bp_title">Давление</string>
+    <string name="bp_series">Замер %1$d из 2</string>
+    <string name="bp_part_morning">Утро</string>
+    <string name="bp_part_day">День</string>
+    <string name="bp_part_evening">Вечер</string>
+    <!-- %1$s — часть дня, %2$s — время; во втором — ещё дата, если замер не сегодняшний -->
+    <string name="bp_when">%1$s, %2$s</string>
+    <string name="bp_when_date">%1$s · %2$s, %3$s</string>
+
+    <!-- Поля и единицы -->
+    <string name="bp_sys">Верхнее</string>
+    <string name="bp_dia">Нижнее</string>
+    <string name="bp_pulse">Пульс</string>
+    <string name="bp_unit_pressure">мм рт. ст.</string>
+    <string name="bp_unit_pulse">уд/мин</string>
+    <string name="bp_field_value">%1$s: %2$s</string>
+    <string name="bp_field_empty">пусто</string>
+
+    <!-- Клавиатура -->
+    <string name="bp_next">Далее</string>
+    <string name="bp_del">Стереть</string>
+
+    <!-- Источники: подписи кнопок рисуют сами кнопки (фото, голос, тонометр) -->
+    <string name="bp_read_fail">Не удалось прочитать числа</string>
+    <string name="bp_read_fail_note">Наберите их на клавиатуре</string>
+
+    <!-- Серия из двух замеров -->
+    <string name="bp_save_first">Сохранить первый замер</string>
+    <string name="bp_save_second">Сохранить второй замер</string>
+    <string name="bp_banner">Второй замер через минуту — так точнее. Рука та же.</string>
+    <string name="bp_skip">Пропустить</string>
+
+    <!-- Оценка -->
+    <string name="bp_empty">Наберите верхнее и нижнее</string>
+    <string name="bp_prev_none">Прошлых замеров ещё нет</string>
+    <string name="bp_prev">Прошлый замер: %1$s — %2$d/%3$d</string>
+    <string name="bp_day_today">сегодня, %1$s</string>
+    <string name="bp_day_yesterday">вчера, %1$s</string>
+    <string name="bp_day_date">%1$s, %2$s</string>
+    <string name="bp_date_short">d MMMM</string>
+    <string name="bp_in_target">В пределах цели врача</string>
+    <string name="bp_above">Выше цели врача</string>
+    <string name="bp_crisis">Очень высокое</string>
+    <string name="bp_low">Низкое</string>
+    <string name="bp_target">Цель — ниже %1$d/%2$d</string>
+    <string name="bp_call">Если плохо — звоните 103 или 112</string>
+    <string name="bp_pulse_left">Допишите пульс или сотрите его</string>
+    <string name="bp_err_order">Верхнее должно быть больше нижнего</string>
+    <string name="bp_err_range">Проверьте число — такое бывает редко</string>
+
+    <!-- Итог -->
+    <string name="bp_done_title">Сохранено</string>
+    <string name="bp_done_avg">Среднее из двух замеров</string>
+    <string name="bp_done_one">Один замер</string>
+    <string name="bp_done_pulse">пульс %1$d уд/мин</string>
+    <string name="bp_to_history">К истории</string>
+    <string name="bp_done">Готово</string>
+
+    <!-- «Сегодня»: карточка давления -->
+    <string name="bp_today_section">Замеры</string>
+    <string name="bp_today_none">Замеров ещё нет</string>
+    <string name="bp_today_measure">Измерить</string>
+    <string name="bp_today_card">Давление: %1$s</string>
+
+    <!-- «Настройки»: давление на главной -->
+    <string name="bp_setting_title">Давление на главной</string>
+    <string name="bp_setting_hint">Карточка с кнопкой «Измерить» — даже если замеров ещё не было</string>
+</resources>

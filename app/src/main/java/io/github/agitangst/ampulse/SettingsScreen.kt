@@ -38,6 +38,7 @@ import io.github.agitangst.ampulse.reminders.RemindersSection
 import io.github.agitangst.ampulse.ui.RoutineSection
 import io.github.agitangst.ampulse.ui.MedIcons
 import io.github.agitangst.ampulse.ui.ShotRulesLink
+import io.github.agitangst.ampulse.ui.PressureTodaySetting
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -49,8 +50,8 @@ private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
 
 /**
  * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем строка-переход
- * «Профили» (если задан [onProfiles]), «Напоминания», «Оформление», «Обновления» (только сборка `github`) и
- * «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
+ * «Профили» (если задан [onProfiles]), «Напоминания», «Режим дня», «Давление» (карточка на «Сегодня»), «Оформление»,
+ * «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
 fun SettingsScreen(
@@ -81,6 +82,7 @@ fun SettingsScreen(
         if (onShotRules != null) ShotRulesLink(onShotRules)
         RemindersSection()
         RoutineSection()
+        PressureTodaySetting()
         AppearanceSection(settings)
         Store.UpdatesSettings(settings)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
