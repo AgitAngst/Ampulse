@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Сканер упаковки (этап 0.4, макет — экран 14); ключи те же в values-ru -->
+
+    <!-- Окно камеры -->
+    <string name="scan_title">Pack code</string>
+    <string name="scan_close">Close scanner</string>
+    <string name="scan_torch">Flashlight</string>
+    <string name="scan_hint">Point at the square Chestny Znak code</string>
+    <string name="scan_not_code">This is not a medicine code</string>
+
+    <!-- Нет доступа к камере и камера не открылась -->
+    <string name="scan_perm_title">The camera is off</string>
+    <string name="scan_perm_hint">The camera is used only to read the code on the pack. Nothing is saved or sent anywhere.</string>
+    <string name="scan_perm_blocked">The system will not ask again — turn the camera on in the app settings.</string>
+    <string name="scan_perm_allow">Allow</string>
+    <string name="scan_perm_settings">Open settings</string>
+    <string name="scan_cam_failed_title">The camera did not open</string>
+    <string name="scan_cam_failed_hint">Close other apps that use the camera and open the scanner again.</string>
+
+    <!-- Карточка результата -->
+    <string name="scan_result">Result</string>
+    <string name="scan_status_ok">Code read on the phone, offline</string>
+    <string name="scan_status_dup">This pack is already in your medicines</string>
+    <string name="scan_unknown_title">Medicine not found in your medicines</string>
+    <string name="scan_gtin">Product code (GTIN) %1$s</string>
+    <string name="scan_expires">Expires</string>
+    <string name="scan_batch">Batch</string>
+    <string name="scan_pack_no">Pack no.</string>
+    <string name="scan_note">Expiry, batch and number come from the code itself; without the internet the authenticity and recall of a batch cannot be checked.</string>
+    <string name="scan_no_expiry">The code has no expiry date — enter it from the pack.</string>
+    <string name="scan_expired">The expiry date has passed.</string>
+    <!-- Срок как на упаковке (java.time): месяц и год -->
+    <string name="scan_expiry_month_pattern">MM/yyyy</string>
+
+    <!-- Действия -->
+    <string name="scan_add">Add to medicines</string>
+    <string name="scan_choose">Choose a medicine</string>
+    <string name="scan_new">New medicine</string>
+    <string name="scan_again">Scan another</string>
+
+    <!-- Лист выбора лекарства -->
+    <string name="scan_choose_title">Which medicine is this?</string>
+    <string name="scan_choose_empty">There are no medicines yet. Add a new one first.</string>
+</resources>

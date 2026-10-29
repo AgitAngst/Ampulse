@@ -12,6 +12,10 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Сканер упаковки читает код камерой на телефоне; камеры может не быть — без неё всё остальное работает. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
     <!-- Облачная копия выключена (здоровье — личные данные), перенос между телефонами — можно (anvil/docs/ANDROID.md, §10). -->
     <application
         android:name=".AmpulseApp"
