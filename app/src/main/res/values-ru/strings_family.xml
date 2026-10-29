@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Близкие, SMS и QR расписания (этап 0.8, макет — экраны Access и Care); ключи те же в values -->
+
+    <!-- Вкладка «Близкие» -->
+    <string name="family_subtitle">Без интернета: пропуски — по SMS, всё остальное — по QR, когда вы рядом.</string>
+    <string name="family_add">Добавить близкого</string>
+    <string name="family_add_hint">Нужен только номер телефона — для SMS</string>
+    <string name="family_emergency_title">Экстренная карта</string>
+    <string name="family_emergency_sub">Аллергии, диагнозы и лекарства — видны без разблокировки</string>
+    <string name="family_report_title">Для врача</string>
+    <string name="family_report_sub">PDF-отчёт: показать на приёме или переслать</string>
+    <string name="family_contacts_title">Кому приходят SMS</string>
+    <string name="family_sub_both">SMS: пропуск приёма, экстренная карта</string>
+    <string name="family_sub_missed">SMS: пропуск приёма</string>
+    <string name="family_sub_card">SMS: экстренная карта</string>
+    <string name="family_sub_none">SMS выключены</string>
+
+    <!-- Что уходит по SMS -->
+    <string name="family_sms_title">Что уходит по SMS</string>
+    <string name="family_sms_missed_title">Пропуск важного приёма</string>
+    <string name="family_sms_card_title">Открыли экстренную карту</string>
+    <string name="family_sms_note">SMS уходит сама, без интернета, и только тем, у кого включён переключатель. О пропуске — только по важным лекарствам и после всех повторов напоминания.</string>
+    <string name="family_sample_name">Метформин</string>
+    <string name="family_sample_strength">850 мг</string>
+    <!-- Кто пишет в SMS, когда это «Я»; и подпись «Я» на телефоне близкого, пока человек не вписал свою -->
+    <string name="family_sms_me">ваш близкий</string>
+    <string name="family_me">Близкий</string>
+
+    <!-- Нет разрешения на SMS -->
+    <string name="family_sms_banner_title">SMS пока не смогут уйти</string>
+    <string name="family_sms_banner_hint">Разрешите Ampulse отправлять SMS — иначе близкие не узнают о пропущенном приёме.</string>
+    <string name="family_sms_allow">Разрешить</string>
+
+    <!-- QR расписания -->
+    <string name="family_qr_title">Расписание по QR</string>
+    <string name="family_qr_show">Показать QR моего расписания</string>
+    <string name="family_qr_show_sub">Близкий наводит камеру — у него появится копия</string>
+    <string name="family_qr_scan">Сканировать QR близкого</string>
+    <string name="family_qr_scan_sub">Копия его расписания — без напоминаний и отметок</string>
+
+    <!-- Копии расписаний -->
+    <string name="family_copies_title">Копии расписаний</string>
+    <string name="family_copy_updated">Копия расписания · обновлено %1$s</string>
+    <string name="family_copy_updated_today">сегодня</string>
+    <string name="family_copy_plain">Копия расписания</string>
+    <string name="family_copy_current">Открыта сейчас</string>
+    <string name="family_switched">Открыт профиль «%1$s». Расписание — на вкладке «Сегодня».</string>
+    <string name="family_copy_banner">Копия расписания: %1$s</string>
+    <string name="family_copy_banner_hint">Приёмы отмечает сам владелец. Напоминаний и отметок здесь нет.</string>
+
+    <!-- Близкий: форма -->
+    <string name="family_new_title">Новый близкий</string>
+    <string name="family_edit_title">Близкий</string>
+    <string name="family_name">Имя</string>
+    <string name="family_name_hint">Например, Анна</string>
+    <string name="family_phone">Телефон</string>
+    <string name="family_phone_hint">+7 900 123-45-67</string>
+    <string name="family_need_name">Введите имя</string>
+    <string name="family_need_phone">Введите номер телефона</string>
+    <string name="family_phone_error">Не похоже на телефон: только цифры, «+» первым знаком</string>
+    <string name="family_sw_missed_title">SMS о пропуске важного приёма</string>
+    <string name="family_sw_missed_hint">Если приём не отмечен после всех повторов напоминания</string>
+    <string name="family_sw_card_title">SMS, если открыли экстренную карту</string>
+    <string name="family_sw_card_hint">Чтобы знать, что на карту кто-то смотрит</string>
+    <string name="family_sms_denied">Без разрешения SMS не уйдут. Разрешите Ampulse отправку SMS в настройках телефона.</string>
+    <string name="family_save">Сохранить</string>
+    <string name="family_cancel">Отмена</string>
+    <string name="family_delete">Удалить близкого</string>
+    <string name="family_delete_title">Удалить «%1$s»?</string>
+    <string name="family_delete_text">SMS ему больше не придут. Расписание, которое он уже получил по QR, останется у него на телефоне.</string>
+    <string name="family_delete_confirm">Удалить</string>
+
+    <!-- «Показать QR моего расписания» -->
+    <string name="family_share_title">Моё расписание</string>
+    <string name="family_share_desc">Близкий наводит камеру на этот код — к нему переходит копия вашего расписания. Интернет не нужен.</string>
+    <string name="family_share_a11y">QR-код с расписанием</string>
+    <string name="family_share_for">Расписание: %1$s</string>
+    <plurals name="family_meds_count">
+        <item quantity="one">%d лекарство</item>
+        <item quantity="few">%d лекарства</item>
+        <item quantity="many">%d лекарств</item>
+        <item quantity="other">%d лекарства</item>
+    </plurals>
+    <string name="family_share_label">Как подписать у близкого</string>
+    <string name="family_share_label_hint">Например, Мама</string>
+    <string name="family_share_warn">В коде — ваши лекарства и схемы приёма. Показывайте его только тому, кому доверяете. Отметки и история в код не входят.</string>
+    <string name="family_share_empty_title">Нечего передавать</string>
+    <string name="family_share_empty_hint">В этом профиле нет лекарств с расписанием. Добавьте лекарство — и код появится.</string>
+    <string name="family_share_too_big">Расписание слишком большое для одного кода. Поставьте на паузу или удалите лекарства, которые не нужно передавать.</string>
+    <string name="family_done">Готово</string>
+
+    <!-- «Сканировать QR близкого» -->
+    <string name="family_scan_title">QR близкого</string>
+    <string name="family_scan_hint">Наведите камеру на QR-код с его расписанием</string>
+    <string name="family_scan_not_ours">Это не код Ampulse</string>
+    <string name="family_scan_perm_hint">Камера нужна только чтобы прочитать QR-код. Снимки не сохраняются и никуда не отправляются.</string>
+    <string name="family_scan_result">Результат</string>
+    <string name="family_scan_read">Код прочитан без интернета</string>
+    <string name="family_scan_who">%1$s: %2$s</string>
+    <string name="family_scan_more">и ещё %1$d</string>
+    <string name="family_scan_new">Новая копия: расписание видно, но напоминаний и отметок нет.</string>
+    <string name="family_scan_update">Копия «%1$s» уже есть — расписание обновится, дозы заменятся.</string>
+    <string name="family_scan_empty">В коде нет лекарств — сохранять нечего.</string>
+    <string name="family_scan_save">Сохранить копию</string>
+    <string name="family_scan_update_btn">Обновить копию</string>
+    <string name="family_scan_again">Сканировать ещё</string>
+    <string name="family_scan_failed">Не удалось сохранить копию. Попробуйте ещё раз.</string>
+</resources>

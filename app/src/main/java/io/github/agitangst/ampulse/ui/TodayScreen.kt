@@ -131,6 +131,8 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
     val p = AnvilTheme.palette
     val repo = AppGraph.repository
     val scope = rememberCoroutineScope()
+    // Профиль-копия чужого расписания (этап 0.8): видно, но отметок и напоминаний нет.
+    val copyOf = watchOnlyOwner()
     val now = rememberTodayNow()
     val today = now.toLocalDate()
     val time = rememberTodayTime()
@@ -169,7 +171,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
                 action = {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         SettingsButton { nav.open(Route.Settings) }
-                        AddButton { nav.open(Route.MedicineEdit(0)) }
+                        if (copyOf == null) AddButton { nav.open(Route.MedicineEdit(0)) }
                     }
                 },
             )
@@ -199,6 +201,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
                 prn = prn,
                 time = time,
                 today = today,
+                copyOf = copyOf,
                 onTake = onTake,
                 onSkip = { sheet = TodaySheetState.Skip(it) },
                 onUndo = onUndo,
@@ -247,6 +250,7 @@ private fun ColumnScope.DayContent(
     prn: List<TodayPrnLine>,
     time: DateTimeFormatter,
     today: LocalDate,
+    copyOf: String?,
     onTake: (DayItem) -> Unit,
     onSkip: (DayItem) -> Unit,
     onUndo: (DayItem) -> Unit,
@@ -257,18 +261,20 @@ private fun ColumnScope.DayContent(
         Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        if (copyOf != null) CopyBanner(copyOf)
         if (items.isEmpty()) {
             FreeDayCard()
         } else {
-            SummaryCard(items, time)
+            // У копии итог дня и счётчики «принято» ничего не значат: отметок на этом телефоне нет.
+            if (copyOf == null) SummaryCard(items, time)
             TodayPart.entries.forEach { part ->
                 val group = items.filter { partOf(it.planned.at) == part }
                 if (group.isNotEmpty()) {
-                    DoseGroup(stringResource(part.titleRes), group, time, onTake, onSkip, onUndo)
+                    DoseGroup(stringResource(part.titleRes), group, time, onTake, onSkip, onUndo, readOnly = copyOf != null)
                 }
             }
         }
-        if (prn.isNotEmpty()) PrnSection(prn, today, time, onTakeAsNeeded)
+        if (prn.isNotEmpty() && copyOf == null) PrnSection(prn, today, time, onTakeAsNeeded)
         pressureCard()
     }
 }
@@ -373,17 +379,18 @@ private fun DoseGroup(
     onTake: (DayItem) -> Unit,
     onSkip: (DayItem) -> Unit,
     onUndo: (DayItem) -> Unit,
+    readOnly: Boolean = false,
 ) {
     val p = AnvilTheme.palette
     val done = items.count { it.state == DoseState.Taken }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             SectionTitle(title, Modifier.weight(1f))
-            Text(stringResource(R.string.today_group_meta, done, items.size), color = p.faint, fontSize = 13.sp)
+            if (!readOnly) Text(stringResource(R.string.today_group_meta, done, items.size), color = p.faint, fontSize = 13.sp)
         }
         items.forEach { item ->
             key(item.planned.scheduleId, item.planned.at) {
-                DoseRow(item, time, onTake = { onTake(item) }, onSkip = { onSkip(item) }, onUndo = { onUndo(item) })
+                DoseRow(item, time, onTake = { onTake(item) }, onSkip = { onSkip(item) }, onUndo = { onUndo(item) }, readOnly = readOnly)
             }
         }
     }
@@ -395,12 +402,20 @@ private fun DoseGroup(
  * пропущено — слово. Справа ещё «⋯» с действиями: пропустить или отменить отметку.
  */
 @Composable
-private fun DoseRow(item: DayItem, time: DateTimeFormatter, onTake: () -> Unit, onSkip: () -> Unit, onUndo: () -> Unit) {
+private fun DoseRow(
+    item: DayItem,
+    time: DateTimeFormatter,
+    onTake: () -> Unit,
+    onSkip: () -> Unit,
+    onUndo: () -> Unit,
+    readOnly: Boolean = false,
+) {
     val p = AnvilTheme.palette
     val c = Ampulse.colors
-    val state = item.state
+    // Копия чужого расписания: ни кнопок, ни меню — приём показан как «позже», время и доза на месте.
+    val state = if (readOnly) DoseState.Later else item.state
     val name = todayMedName(item.medicine.name, item.medicine.strength)
-    val (sub, subColor) = subLine(item, time)
+    val (sub, subColor) = subLine(item, time, state)
     val shape = RoundedCornerShape(16.dp)
     Row(
         Modifier
@@ -425,7 +440,7 @@ private fun DoseRow(item: DayItem, time: DateTimeFormatter, onTake: () -> Unit, 
             DoseState.Taken -> TakenMark(name, onUndo)
             DoseState.Due -> TakeButton(name, overdue = false, onClick = onTake)
             DoseState.Overdue -> TakeButton(name, overdue = true, onClick = onTake)
-            DoseState.Later -> EarlyRing(name, onTake)
+            DoseState.Later -> if (!readOnly) EarlyRing(name, onTake)
             DoseState.Skipped -> Text(
                 stringResource(R.string.today_state_skipped),
                 color = p.weak,
@@ -433,7 +448,7 @@ private fun DoseRow(item: DayItem, time: DateTimeFormatter, onTake: () -> Unit, 
                 fontWeight = FontWeight.SemiBold,
             )
         }
-        if (state != DoseState.Taken) RowMenu(name, skipped = state == DoseState.Skipped, onSkip = onSkip, onUndo = onUndo)
+        if (!readOnly && state != DoseState.Taken) RowMenu(name, skipped = state == DoseState.Skipped, onSkip = onSkip, onUndo = onUndo)
     }
 }
 
@@ -451,7 +466,7 @@ private fun FormTile(form: MedForm, accent: Boolean) {
 
 /** Вторичная строка и её цвет по состоянию. */
 @Composable
-private fun subLine(item: DayItem, time: DateTimeFormatter): Pair<String, Color> {
+private fun subLine(item: DayItem, time: DateTimeFormatter, state: DoseState = item.state): Pair<String, Color> {
     val p = AnvilTheme.palette
     val m = item.medicine
     val plannedTime = time.format(item.planned.at)
@@ -460,7 +475,7 @@ private fun subLine(item: DayItem, time: DateTimeFormatter): Pair<String, Color>
     val overdueWord = stringResource(R.string.today_state_overdue)
     val takenAt = item.event?.at?.let { time.format(it) } ?: plannedTime
     val reason = item.event?.note.orEmpty()
-    return when (item.state) {
+    return when (state) {
         DoseState.Taken -> stringResource(
             if (m.form == MedForm.Injection) R.string.today_sub_done else R.string.today_sub_taken,
             takenAt,

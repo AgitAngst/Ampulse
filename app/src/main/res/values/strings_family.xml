@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Близкие, SMS и QR расписания (этап 0.8, макет — экраны Access и Care); ключи те же в values-ru -->
+
+    <!-- Вкладка «Близкие» -->
+    <string name="family_subtitle">Offline: misses go by text, everything else by QR when you’re together.</string>
+    <string name="family_add">Add family member</string>
+    <string name="family_add_hint">Only a phone number is needed — for texts</string>
+    <string name="family_emergency_title">Emergency card</string>
+    <string name="family_emergency_sub">Allergies, conditions and medicines — visible without unlocking</string>
+    <string name="family_report_title">For the doctor</string>
+    <string name="family_report_sub">PDF report: show it at the visit or send it</string>
+    <string name="family_contacts_title">Who gets texts</string>
+    <string name="family_sub_both">Texts: missed dose, emergency card</string>
+    <string name="family_sub_missed">Texts: missed dose</string>
+    <string name="family_sub_card">Texts: emergency card</string>
+    <string name="family_sub_none">Texts are off</string>
+
+    <!-- Что уходит по SMS -->
+    <string name="family_sms_title">What is sent by text</string>
+    <string name="family_sms_missed_title">Missed important dose</string>
+    <string name="family_sms_card_title">Emergency card opened</string>
+    <string name="family_sms_note">Texts go out on their own, without internet, and only to people with the switch on. A missed-dose text is sent for important medicines only, after all the reminder repeats.</string>
+    <string name="family_sample_name">Metformin</string>
+    <string name="family_sample_strength">850 mg</string>
+    <!-- Кто пишет в SMS, когда это «Я»; и подпись «Я» на телефоне близкого, пока человек не вписал свою -->
+    <string name="family_sms_me">your relative</string>
+    <string name="family_me">Relative</string>
+
+    <!-- Нет разрешения на SMS -->
+    <string name="family_sms_banner_title">Texts can’t be sent yet</string>
+    <string name="family_sms_banner_hint">Allow Ampulse to send texts — otherwise your family won’t hear about a missed dose.</string>
+    <string name="family_sms_allow">Allow</string>
+
+    <!-- QR расписания -->
+    <string name="family_qr_title">Schedule by QR</string>
+    <string name="family_qr_show">Show QR of my schedule</string>
+    <string name="family_qr_show_sub">A family member points the camera and gets a copy</string>
+    <string name="family_qr_scan">Scan a family member’s QR</string>
+    <string name="family_qr_scan_sub">A copy of their schedule — no reminders, no marks</string>
+
+    <!-- Копии расписаний -->
+    <string name="family_copies_title">Schedule copies</string>
+    <string name="family_copy_updated">Schedule copy · updated %1$s</string>
+    <string name="family_copy_updated_today">today</string>
+    <string name="family_copy_plain">Schedule copy</string>
+    <string name="family_copy_current">Open now</string>
+    <string name="family_switched">Switched to “%1$s”. The schedule is on the Today tab.</string>
+    <string name="family_copy_banner">Schedule copy: %1$s</string>
+    <string name="family_copy_banner_hint">The owner marks the doses. There are no reminders or marks here.</string>
+
+    <!-- Близкий: форма -->
+    <string name="family_new_title">New family member</string>
+    <string name="family_edit_title">Family member</string>
+    <string name="family_name">Name</string>
+    <string name="family_name_hint">For example, Anna</string>
+    <string name="family_phone">Phone</string>
+    <string name="family_phone_hint">+7 900 123-45-67</string>
+    <string name="family_need_name">Enter a name</string>
+    <string name="family_need_phone">Enter a phone number</string>
+    <string name="family_phone_error">That doesn’t look like a phone number: digits only, “+” first</string>
+    <string name="family_sw_missed_title">Text about a missed important dose</string>
+    <string name="family_sw_missed_hint">If a dose isn’t marked after all the reminder repeats</string>
+    <string name="family_sw_card_title">Text if the emergency card is opened</string>
+    <string name="family_sw_card_hint">So they know someone is looking at the card</string>
+    <string name="family_sms_denied">Without permission texts won’t be sent. Allow sending texts for Ampulse in the phone settings.</string>
+    <string name="family_save">Save</string>
+    <string name="family_cancel">Cancel</string>
+    <string name="family_delete">Delete family member</string>
+    <string name="family_delete_title">Delete “%1$s”?</string>
+    <string name="family_delete_text">They will stop getting texts. A schedule they already got by QR stays on their phone.</string>
+    <string name="family_delete_confirm">Delete</string>
+
+    <!-- «Показать QR моего расписания» -->
+    <string name="family_share_title">My schedule</string>
+    <string name="family_share_desc">A family member points their camera at this code and gets a copy of your schedule. No internet needed.</string>
+    <string name="family_share_a11y">QR code with the schedule</string>
+    <string name="family_share_for">Schedule: %1$s</string>
+    <plurals name="family_meds_count">
+        <item quantity="one">%d medicine</item>
+        <item quantity="other">%d medicines</item>
+    </plurals>
+    <string name="family_share_label">How to sign it on their phone</string>
+    <string name="family_share_label_hint">For example, Mom</string>
+    <string name="family_share_warn">The code holds your medicines and dosing plans. Show it only to someone you trust. Marks and history are not included.</string>
+    <string name="family_share_empty_title">Nothing to share</string>
+    <string name="family_share_empty_hint">This profile has no medicine with a schedule. Add one and the code will appear.</string>
+    <string name="family_share_too_big">The schedule is too big for one code. Pause or delete the medicines you don’t need to share.</string>
+    <string name="family_done">Done</string>
+
+    <!-- «Сканировать QR близкого» -->
+    <string name="family_scan_title">Family member’s QR</string>
+    <string name="family_scan_hint">Point the camera at the QR code with their schedule</string>
+    <string name="family_scan_not_ours">This is not an Ampulse code</string>
+    <string name="family_scan_perm_hint">The camera is only needed to read the QR code. Pictures are not saved or sent anywhere.</string>
+    <string name="family_scan_result">Result</string>
+    <string name="family_scan_read">Code read offline</string>
+    <string name="family_scan_who">%1$s: %2$s</string>
+    <string name="family_scan_more">and %1$d more</string>
+    <string name="family_scan_new">A new copy: you will see the schedule, but there are no reminders or marks.</string>
+    <string name="family_scan_update">The copy “%1$s” already exists — the schedule will be updated and the doses replaced.</string>
+    <string name="family_scan_empty">There are no medicines in the code — nothing to save.</string>
+    <string name="family_scan_save">Save copy</string>
+    <string name="family_scan_update_btn">Update copy</string>
+    <string name="family_scan_again">Scan again</string>
+    <string name="family_scan_failed">Could not save the copy. Try again.</string>
+</resources>

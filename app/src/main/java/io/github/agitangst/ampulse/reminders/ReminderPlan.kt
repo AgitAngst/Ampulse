@@ -32,6 +32,9 @@ object ReminderCodes {
 
     /** Экран «Напоминание» на весь экран. */
     const val SLOT_SCREEN = 13
+
+    /** «Проверка» важного приёма после всех повторов: не отмечен — SMS близким (этап 0.8). Уведомления не показывает. */
+    const val SLOT_CHECK = 14
 }
 
 /**
@@ -64,10 +67,23 @@ data class DoseRef(val medicineId: Long, val scheduleId: Long, val planned: Loca
     }
 }
 
-/** Одно напоминание: приём, какое по счёту (0 — в срок, 1..3 — повтор важного) и когда сработать. */
-data class Reminder(val dose: DoseRef, val important: Boolean, val repeat: Int, val fireAt: LocalDateTime) {
+/**
+ * Одно напоминание: приём, какое по счёту (0 — в срок, 1..3 — повтор важного) и когда сработать. [check] — не
+ * напоминание, а «проверка» после последнего повтора: приём не отмечен — SMS близким (у неё `repeat` = последний
+ * повтор + 1, а ячейка — [ReminderCodes.SLOT_CHECK]).
+ */
+data class Reminder(
+    val dose: DoseRef,
+    val important: Boolean,
+    val repeat: Int,
+    val fireAt: LocalDateTime,
+    val check: Boolean = false,
+) {
+    /** Ячейка приёма: [ReminderCodes.SLOT_CHECK] у проверки, иначе номер повтора. */
+    val slot: Int get() = if (check) ReminderCodes.SLOT_CHECK else repeat
+
     /** Код будильника. */
-    val requestCode: Int get() = dose.code(repeat)
+    val requestCode: Int get() = dose.code(slot)
 }
 
 /**
@@ -84,6 +100,9 @@ object ReminderPlan {
     /** Сколько повторов у важного лекарства после основного напоминания. */
     const val MAX_REPEATS = 3
 
+    /** Когда после времени приёма «проверка»: через [REPEAT_AFTER] после последнего повтора. */
+    val CHECK_AFTER: Duration = REPEAT_AFTER.multipliedBy(MAX_REPEATS + 1L)
+
     /** «Отложить» — на столько минут. */
     const val SNOOZE_MINUTES = 10
 
@@ -97,14 +116,20 @@ object ReminderPlan {
      * Ближайшие напоминания за [HORIZON] от [now] по времени возрастания. Приёмы с отметкой («принято» или
      * «пропущено») пропускаются; у важного лекарства кроме основного — до [MAX_REPEATS] повторов с шагом
      * [REPEAT_AFTER], пока отметки нет. Прошедшее (раньше или в [now]) не включается: оно уже сработало.
+     *
+     * [silentProfiles] — профили-копии чужого расписания (`Profile.watchOnly`): их лекарства не напоминаются вовсе.
+     * [missedCheck] — есть кому слать SMS о пропуске: у важного лекарства после последнего повтора добавляется
+     * «проверка» (см. [Reminder.check]) через [CHECK_AFTER] после времени приёма.
      */
     fun upcoming(
         schedules: List<Schedule>,
         medicines: List<Medicine>,
         events: List<DoseEvent>,
         now: LocalDateTime,
+        silentProfiles: Set<Long> = emptySet(),
+        missedCheck: Boolean = false,
     ): List<Reminder> {
-        val byId = medicines.associateBy { it.id }
+        val byId = medicines.filter { it.profileId !in silentProfiles }.associateBy { it.id }
         val usable = schedules.filter { it.medicineId in byId }.map { it.id to (it.medicineId to it.plan) }
         val end = now.plus(HORIZON)
         val result = ArrayList<Reminder>()
@@ -120,6 +145,10 @@ object ReminderPlan {
                 for (k in 0..repeats) {
                     val fireAt = planned.at.plus(REPEAT_AFTER.multipliedBy(k.toLong()))
                     if (fireAt > now && fireAt <= end) result += Reminder(dose, important, k, fireAt)
+                }
+                if (important && missedCheck) {
+                    val checkAt = planned.at.plus(CHECK_AFTER)
+                    if (checkAt > now && checkAt <= end) result += Reminder(dose, true, MAX_REPEATS + 1, checkAt, check = true)
                 }
             }
             date = date.plusDays(1)
