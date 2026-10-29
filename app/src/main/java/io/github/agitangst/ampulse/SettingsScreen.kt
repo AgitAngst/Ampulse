@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
 import io.github.agitangst.ampulse.ui.RoutineSection
+import io.github.agitangst.ampulse.ui.EmergencyIcons
 import io.github.agitangst.ampulse.ui.MedIcons
 import io.github.agitangst.ampulse.ui.ShotRulesLink
 import io.github.agitangst.ampulse.ui.PressureTodaySetting
@@ -50,7 +51,7 @@ private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
 
 /**
  * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем строка-переход
- * «Профили» (если задан [onProfiles]), «Напоминания», «Режим дня», «Давление» (карточка на «Сегодня»), «Оформление»,
+ * «Профили» и «Экстренная карта» (если заданы [onProfiles], [onEmergency]), «Напоминания», «Режим дня», «Давление» (карточка на «Сегодня»), «Оформление»,
  * «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
@@ -60,6 +61,7 @@ fun SettingsScreen(
     modifier: Modifier = Modifier,
     onProfiles: (() -> Unit)? = null,
     onShotRules: (() -> Unit)? = null,
+    onEmergency: (() -> Unit)? = null,
 ) {
     val about = Store.about()
     Column(
@@ -79,6 +81,7 @@ fun SettingsScreen(
             style = screenTitleStyle(30),
         )
         if (onProfiles != null) ProfilesLink(onProfiles)
+        if (onEmergency != null) EmergencyLink(onEmergency)
         if (onShotRules != null) ShotRulesLink(onShotRules)
         RemindersSection()
         RoutineSection()
@@ -99,6 +102,39 @@ fun SettingsScreen(
                 codeUrl = CODE_URL,
             )
         }
+    }
+}
+
+/** Строка-переход «Экстренная карта ›» (docs/ui-guideline.md, §6): плитка значка 40, название, пояснение, стрелка. */
+@Composable
+private fun EmergencyLink(onClick: () -> Unit) {
+    val p = AnvilTheme.palette
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(p.card)
+            .heightIn(min = 64.dp)
+            .clickable(role = Role.Button, onClick = onClick)
+            .padding(start = 16.dp, top = 12.dp, end = 12.dp, bottom = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            Modifier.size(40.dp).clip(RoundedCornerShape(12.dp)).background(Ampulse.colors.warnSoft),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(EmergencyIcons.Cross, contentDescription = null, modifier = Modifier.size(22.dp), tint = p.warning)
+        }
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                stringResource(R.string.emergency_title),
+                color = p.text,
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+            )
+            Text(stringResource(R.string.emergency_settings_hint), color = p.weak, style = MaterialTheme.typography.bodyMedium)
+        }
+        Icon(MedIcons.ChevronRight, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.faint)
     }
 }
 

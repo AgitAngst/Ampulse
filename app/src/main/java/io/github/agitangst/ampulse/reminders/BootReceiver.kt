@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import io.github.agitangst.ampulse.AppGraph
+import io.github.agitangst.ampulse.ui.EmergencyNotice
 
 /**
  * Будильники системы пропадают при перезагрузке телефона, а при смене времени, часового пояса, обновлении программы и
@@ -17,7 +18,10 @@ class BootReceiver : BroadcastReceiver() {
         val action = intent.action
         if (action !in ACTIONS) return
         Log.i(TAG, "Rescheduling after $action")
-        goAsyncIo("Rescheduling after $action") { AppGraph.reminders.rescheduleNow() }
+        goAsyncIo("Rescheduling after $action") {
+            AppGraph.reminders.rescheduleNow()
+            EmergencyNotice.syncNow(context)
+        }
     }
 
     private companion object {

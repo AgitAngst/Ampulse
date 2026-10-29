@@ -171,6 +171,7 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
     when (route) {
         Route.Settings -> SettingsScreen(
             settings, onBack = nav::back, onProfiles = { nav.open(Route.Profiles) }, onShotRules = { nav.open(Route.ShotRules) },
+            onEmergency = { nav.open(Route.Emergency) },
         )
         is Route.MedicineEdit -> MedicineEditScreen(route.id, nav)
         is Route.AsNeeded -> AsNeededScreen(route.medicineId, nav)
