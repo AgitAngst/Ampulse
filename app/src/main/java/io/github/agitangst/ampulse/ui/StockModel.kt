@@ -55,7 +55,7 @@ internal fun buildStock(meds: List<Medicine>, schedules: List<Schedule>, packs: 
 internal fun packForecast(pack: Pack, others: List<Pack>, need: Double, today: LocalDate): ExpiryForecast {
     if (pack.left <= 0.0) return ExpiryForecast.Unknown
     val usable = others.filter { it.id != pack.id && it.left > 0 && !it.isExpired(today) }
-    val order = fefo(usable + pack)
+    val order = fefo(usable + pack, today)
     val index = order.indexOfFirst { it === pack }
     val ahead = if (index > 0) order.take(index).sumOf { it.left } else 0.0
     return forecast(pack.copy(left = pack.left + ahead), need, today)

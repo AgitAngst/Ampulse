@@ -28,8 +28,11 @@ class StockTest {
             Pack(2, 1, 4.0, LocalDate.of(2027, 1, 31), openedAt = today.minusDays(3)),
             Pack(3, 1, 60.0, LocalDate.of(2027, 6, 30)),
         )
-        assertEquals(listOf(2L, 3L, 1L), fefo(packs).map { it.id })
-        assertEquals(listOf(2L to 4.0, 3L to 2.0), consume(packs, 6.0))
+        assertEquals(listOf(2L, 3L, 1L), fefo(packs, today).map { it.id })
+        assertEquals(listOf(2L to 4.0, 3L to 2.0), consume(packs, 6.0, today))
+        // Просроченная упаковка не расходуется.
+        val withExpired = packs + Pack(4, 1, 10.0, LocalDate.of(2026, 8, 31))
+        assertEquals(listOf(2L, 3L, 1L), fefo(withExpired, today).map { it.id })
     }
 
     @Test

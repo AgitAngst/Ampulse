@@ -34,15 +34,15 @@ fun Pack.goodUntil(): LocalDate? {
     return listOfNotNull(expiry, opened).minOrNull()
 }
 
-/** Порядок расхода: вскрытые, затем по сроку, затем по номеру. */
-fun fefo(packs: List<Pack>): List<Pack> =
-    packs.filter { it.left > 0 }.sortedWith(compareBy<Pack>({ it.openedAt == null }, { it.goodUntil() ?: LocalDate.MAX }, { it.id }))
+/** Порядок расхода: вскрытые, затем по сроку, затем по номеру. Просроченные к [today] не расходуются. */
+fun fefo(packs: List<Pack>, today: LocalDate = LocalDate.now()): List<Pack> =
+    packs.filter { it.left > 0 && (it.goodUntil()?.let { until -> until >= today } ?: true) }.sortedWith(compareBy<Pack>({ it.openedAt == null }, { it.goodUntil() ?: LocalDate.MAX }, { it.id }))
 
 /** Списание дозы: из какой упаковки и сколько. Не хватает в одной — переходит к следующей. */
-fun consume(packs: List<Pack>, amount: Double): List<Pair<Long, Double>> {
+fun consume(packs: List<Pack>, amount: Double, today: LocalDate = LocalDate.now()): List<Pair<Long, Double>> {
     var rest = amount
     val out = mutableListOf<Pair<Long, Double>>()
-    for (p in fefo(packs)) {
+    for (p in fefo(packs, today)) {
         if (rest <= 0) break
         val take = minOf(p.left, rest)
         out += p.id to take
