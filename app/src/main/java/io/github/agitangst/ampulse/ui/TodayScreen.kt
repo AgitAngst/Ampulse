@@ -128,6 +128,13 @@ private const val SEP = " · "
  */
 @Composable
 fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
+    // Выбран чужой профиль «по серверу» (только сборка github): другой экран, только просмотр.
+    val watched = currentWatched()
+    if (watched != null) WatchTodayScreen(nav, watched, modifier) else OwnTodayScreen(nav, modifier)
+}
+
+@Composable
+private fun OwnTodayScreen(nav: Nav, modifier: Modifier = Modifier) {
     val p = AnvilTheme.palette
     val repo = AppGraph.repository
     val scope = rememberCoroutineScope()
@@ -177,7 +184,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
             )
         },
     ) {
-        ProfileSwitcher(nav)
+        ProfileSwitcher(nav, withWatched = true)
         when {
             meds == null -> Spacer(Modifier.weight(1f))
             meds.isEmpty() -> {
@@ -344,7 +351,7 @@ private fun SummaryCard(items: List<DayItem>, time: DateTimeFormatter) {
 
 /** Кольцо дня 60 dp: дорожка и дуга «принято из всего», в центре — «2/6». Для TalkBack скрыто: то же сказано в заголовке. */
 @Composable
-private fun DayRing(taken: Int, total: Int) {
+internal fun DayRing(taken: Int, total: Int) {
     val p = AnvilTheme.palette
     val track = Ampulse.colors.track
     val fraction by animateFloatAsState(
@@ -454,7 +461,7 @@ private fun DoseRow(
 
 /** Плитка значка 40×40: у принятого — мягкий акцент. */
 @Composable
-private fun FormTile(form: MedForm, accent: Boolean) {
+internal fun FormTile(form: MedForm, accent: Boolean) {
     val p = AnvilTheme.palette
     Box(
         Modifier.size(40.dp).clip(RoundedCornerShape(12.dp)).background(if (accent) Ampulse.colors.accentSoft else p.raised),

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Просмотр чужих профилей через свой сервер Ampulse (сборка github). Openspec: server-watch; макет — экраны 62–73. Ключи те же в values -->
+    <string name="watch_title">Профили других людей</string>
+    <string name="watch_row_none">Пока никого</string>
+    <plurals name="watch_row_count">
+        <item quantity="one">%1$d профиль · только просмотр</item>
+        <item quantity="few">%1$d профиля · только просмотр</item>
+        <item quantity="many">%1$d профилей · только просмотр</item>
+        <item quantity="other">%1$d профиля · только просмотр</item>
+    </plurals>
+    <string name="watch_intro">Если кто-то открыл вам доступ к своему профилю — человека или питомца, — он появится в «Сегодня». Только просмотр: отмечать приёмы здесь нельзя. Данные приходят с сервера и не хранятся нигде, кроме этого телефона.</string>
+    <string name="watch_enter_code">Ввести код приглашения</string>
+    <string name="watch_remove">Убрать</string>
+    <string name="watch_remove_named">Убрать: %1$s</string>
+    <string name="watch_empty_title">Пока никого</string>
+    <string name="watch_empty_text">Попросите владельца профиля создать приглашение и пришлите себе код.</string>
+    <string name="watch_remove_title">Убрать «%1$s»?</string>
+    <string name="watch_remove_text">Профиль исчезнет с этого телефона. У владельца и на сервере ничего не изменится; вернуть его можно новым кодом.</string>
+    <string name="watch_cancel">Отмена</string>
+    <string name="watch_role_viewer">Наблюдатель</string>
+    <string name="watch_role_guardian">Опекун</string>
+    <string name="watch_updated_at">обновлено в %1$s</string>
+    <string name="watch_updated_on">обновлено %1$s</string>
+    <string name="watch_not_updated">ещё не обновлялось</string>
+    <string name="watch_list_problem">Не удалось обновить список. Показано то, что получено раньше.</string>
+
+    <!-- Код приглашения -->
+    <string name="watch_code_title">Код приглашения</string>
+    <string name="watch_code_intro">Код создаёт владелец профиля — в приложении или на странице сервера. Он действует один раз и ограниченное время.</string>
+    <string name="watch_code_label">Код</string>
+    <string name="watch_code_hint">Регистр и дефисы не важны.</string>
+    <string name="watch_code_placeholder">ABCD-EFGH-JKMN</string>
+    <string name="watch_accept">Принять</string>
+    <string name="watch_accepting">Подождите…</string>
+    <string name="watch_to_list">К списку</string>
+    <string name="watch_done_title">Профиль «%1$s» добавлен</string>
+    <string name="watch_done_text">Он появится в «Сегодня» — выберите его в переключателе профилей.</string>
+    <string name="watch_e_not_found">Код не подошёл: он неверный, истёк, отозван или уже использован.</string>
+    <string name="watch_e_have">Этот профиль у вас уже есть.</string>
+    <string name="watch_e_too_many">Слишком много попыток. Повторите примерно через %1$d мин.</string>
+    <string name="watch_e_net">Нет связи с сервером. Проверьте интернет и повторите.</string>
+    <string name="watch_e_other">Сервер не принял код (%1$s).</string>
+    <string name="watch_e_signed_out">Сначала войдите на сервер.</string>
+
+    <!-- «Сегодня» чужого профиля -->
+    <string name="watch_via_server">по серверу · только просмотр</string>
+    <string name="watch_via_short">по серверу</string>
+    <string name="watch_view_only">Только просмотр · обновлено в %1$s</string>
+    <string name="watch_view_only_day">Только просмотр · обновлено %1$s</string>
+    <string name="watch_stale">Нет связи с сервером. Показаны данные на %1$s.</string>
+    <string name="watch_stale_other">Не удалось обновить. Показаны данные на %1$s.</string>
+    <string name="watch_loading">Загружаем данные…</string>
+    <string name="watch_no_data">Нет связи с сервером. Данных пока нет.</string>
+    <string name="watch_chip_taken">Принято</string>
+    <string name="watch_chip_due">Пора</string>
+    <string name="watch_chip_later">Позже</string>
+    <string name="watch_sub_ago">%1$s · прошло %2$s</string>
+    <string name="watch_sub_in">%1$s · через %2$s</string>
+    <string name="watch_span_min">%1$d мин</string>
+    <string name="watch_span_h_min">%1$d ч %2$d мин</string>
+    <string name="watch_sub_note">%1$s · %2$s</string>
+    <string name="watch_state_named">%1$s: %2$s</string>
+</resources>

@@ -23,10 +23,16 @@ Ampulse — помощник по приёму лекарств, уколам и
   лекарств, дозировки и заметки, времена приёмов по вашим схемам (30 дней назад и 14 вперёд), ваши отметки («принято»,
   «пропущено», причина пропуска) и лишние приёмы. Не отправляются: давление, аптечка и упаковки, близкие, экстренная
   карта, места уколов, правила схем, копии чужих расписаний. Данные идут только на указанный вами адрес и только с
-  телефона на сервер (обратно ничего не скачивается); третьим лицам они не передаются. Пароль приложение не хранит;
+  телефона на сервер (обратно возвращается только то, что описано в следующем пункте); третьим лицам они не передаются. Пароль приложение не хранит;
   токен входа лежит только в памяти приложения и на другой телефон не переносится. «Выйти» останавливает отправку;
   «Выйти и стереть копию на сервере» удаляет с сервера всё, что отправило приложение. Что хранит ваш сервер и кто к нему
   имеет доступ, определяете вы.
+- **Профили других людей (необязательно, только сборка с GitHub, нужен вход на сервер).** Если владелец профиля — человека
+  или питомца — открыл вам доступ на своём сервере и вы приняли код приглашения, **на этот телефон с сервера приходят
+  данные этого человека**: имя профиля, названия лекарств, дозировки и заметки, приёмы (время, «принято» или «пропущено»).
+  Они хранятся только в приватной памяти приложения на этом телефоне, показываются только для просмотра и никуда дальше не
+  передаются. «Убрать» стирает профиль с телефона (у владельца и на сервере ничего не меняется); «Выйти» стирает с телефона
+  все чужие профили. Кто и чем с вами делится, решает владелец профиля на сервере.
 
 **Сеть.** Сборки RuStore и Google Play не обращаются в интернет вообще (разрешения на сеть в них нет). Сборка с GitHub
 обращается к GitHub, чтобы узнать, нет ли новой версии (запрос без ваших данных; проверку можно выключить в
@@ -67,10 +73,16 @@ cloud backup; a device-to-device transfer made with Android tools moves the data
   notes, the dose times from your schedules (30 days back, 14 days ahead), your marks (taken, skipped, the reason for a
   skip) and extra doses. Not sent: blood pressure, the medicine cabinet and packs, family contacts, the emergency card,
   injection sites, schedule rules, copies of other people's schedules. The data goes only to the address you entered and
-  only from the phone to the server (nothing is downloaded back); it is not passed to anyone else. The app does not store
+  only from the phone to the server (only what the next item describes comes back); it is not passed to anyone else. The app does not store
   your password; the sign-in token stays in the app's private storage and is not moved to another phone. Sign out stops
   sending; "Sign out and erase the copy on the server" deletes from the server everything the app sent. What your server
   keeps and who can reach it is up to you.
+- **Other people's profiles (optional, GitHub build only, needs a server sign-in).** If a profile's owner — a person or a
+  pet — shared it with you on their server and you accepted the invitation code, **that person's data comes to this phone
+  from the server**: the profile name, medicine names, doses and notes, and doses (time, taken or skipped). It is kept only in
+  the app's private storage on this phone, shown view-only, and not passed anywhere else. Remove deletes the profile from the
+  phone (nothing changes for the owner or on the server); Sign out deletes all other people's profiles from the phone. Who
+  shares what with you is up to the profile's owner on the server.
 
 **Network.** The RuStore and Google Play builds do not use the internet at all (they have no network permission). The
 GitHub build contacts GitHub to check for a newer version (no personal data in the request; the check can be turned off

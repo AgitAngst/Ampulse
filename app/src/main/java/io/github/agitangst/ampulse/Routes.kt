@@ -11,6 +11,8 @@ import io.github.agitangst.ampulse.ui.EmergencyScreen
 import io.github.agitangst.ampulse.ui.InjectionScreen
 import io.github.agitangst.ampulse.ui.ReportScreen
 import io.github.agitangst.ampulse.ui.ServerScreen
+import io.github.agitangst.ampulse.ui.WatchCodeScreen
+import io.github.agitangst.ampulse.ui.WatchListScreen
 import io.github.agitangst.ampulse.ui.ShareQrScreen
 import io.github.agitangst.ampulse.ui.PressureEntryScreen
 import io.github.agitangst.ampulse.ui.PressureHistoryScreen
@@ -99,6 +101,12 @@ sealed interface Route {
     /** «Сервер»: необязательное зеркало на свой сервер (только сборка github, openspec: server-sync). */
     data object Server : Route
 
+    /** «Профили других людей» (сборка github, openspec: server-watch); `fromToday` — открыто из переключателя на «Сегодня». */
+    data class Watch(val fromToday: Boolean = false) : Route
+
+    /** Код приглашения к чужому профилю. */
+    data object WatchCode : Route
+
     fun encode(): String = when (this) {
         Settings -> "settings"
         is MedicineEdit -> "med:$id"
@@ -122,6 +130,8 @@ sealed interface Route {
         EmergencyEdit -> "emergencyedit"
         Report -> "report"
         Server -> "server"
+        is Watch -> "watch:${if (fromToday) 1 else 0}"
+        WatchCode -> "watchcode"
     }
 
     companion object {
@@ -155,6 +165,8 @@ sealed interface Route {
                 "emergencyedit" -> EmergencyEdit
                 "report" -> Report
                 "server" -> Server
+                "watch" -> Watch(arg == "1")
+                "watchcode" -> WatchCode
                 else -> null
             }
         }
@@ -201,5 +213,7 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         Route.EmergencyEdit -> EmergencyEditScreen(nav)
         Route.Report -> ReportScreen(nav)
         Route.Server -> ServerScreen(nav)
+        is Route.Watch -> WatchListScreen(route.fromToday, nav)
+        Route.WatchCode -> WatchCodeScreen(nav)
     }
 }

@@ -85,6 +85,28 @@ class MirrorClient(
         }
     }
 
+    /**
+     * Одна страница `GET /api/v1/sync` (просмотр чужих профилей): изменения после номера [since]; [profile] — только
+     * этот профиль (для только что открытого). Расписания разбор не читает: правил схем у чужих профилей на телефоне нет.
+     */
+    fun syncPage(token: String, since: Long, profile: String? = null, limit: Int = 500): WatchPage {
+        val query = buildString {
+            append("?since=").append(since).append("&limit=").append(limit)
+            if (profile != null) append("&profile=").append(java.net.URLEncoder.encode(profile, "UTF-8"))
+        }
+        return WatchPage.parse(call("/api/v1/sync$query", token, null, "GET"))
+    }
+
+    /**
+     * Принять приглашение по [code] (`POST /api/v1/invites/accept`): профиль с ролью. Код приводится к виду
+     * `ABCDEFGHJKMN` ([WatchCodes.normalize]); неверный код — [SyncFailure.Kind.Rejected] `not_found`, свой или уже
+     * открытый профиль — `conflict`, много попыток — [SyncFailure.Kind.RateLimited].
+     */
+    fun acceptInvite(token: String, code: String): WatchProfile {
+        val reply = call("/api/v1/invites/accept", token, JSONObject().put("code", WatchCodes.normalize(code)))
+        return WatchProfile.parse(reply) ?: throw SyncFailure(SyncFailure.Kind.Server, "bad_reply")
+    }
+
     private fun credentials(path: String, login: String, password: String): Session {
         val reply = call(path, null, JSONObject().put("login", login).put("password", password))
         val token = reply.optString("token")
@@ -92,27 +114,27 @@ class MirrorClient(
         return Session(reply.optString("account_id"), token)
     }
 
-    /** POST с JSON; успех — тело ответа как объект (пустое тело — пустой объект). */
-    private fun call(path: String, token: String?, body: JSONObject): JSONObject {
-        val bytes = body.toString().toByteArray(Charsets.UTF_8)
+    /** Запрос с JSON ([method] `POST`, для чтения `GET` без тела); успех — тело ответа как объект (пустое тело — пустой объект). */
+    private fun call(path: String, token: String?, body: JSONObject?, method: String = "POST"): JSONObject {
+        val bytes = body?.toString()?.toByteArray(Charsets.UTF_8)
         val conn = try {
             URL(base + path).openConnection() as HttpURLConnection
         } catch (e: IOException) {
             throw SyncFailure(SyncFailure.Kind.BadAddress, message = e.message)
         }
         try {
-            conn.requestMethod = "POST"
+            conn.requestMethod = method
             conn.connectTimeout = connectTimeoutMs
             conn.readTimeout = readTimeoutMs
             // Перенаправление унесло бы токен на другой адрес (а то и на http) — не следуем.
             conn.instanceFollowRedirects = false
-            conn.doOutput = true
+            conn.doOutput = bytes != null
             conn.useCaches = false
             conn.setRequestProperty("Content-Type", "application/json; charset=utf-8")
             conn.setRequestProperty("Accept", "application/json")
             if (token != null) conn.setRequestProperty("Authorization", "Bearer $token")
             // Тело не потоковое (буфер): иначе на 401 HttpURLConnection отдаёт IOException вместо тела с кодом ошибки.
-            conn.outputStream.use { it.write(bytes) }
+            if (bytes != null) conn.outputStream.use { it.write(bytes) }
             val status = conn.responseCode
             val text = (if (status >= 400) conn.errorStream else conn.inputStream)?.use { readLimited(it) }.orEmpty()
             if (status in 200..299) return parseObject(text)

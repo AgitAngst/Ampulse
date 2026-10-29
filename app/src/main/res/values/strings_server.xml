@@ -6,7 +6,7 @@
     <string name="server_hint_on">On · %1$s</string>
     <string name="server_hint_ended">Signed out. Sign in again</string>
 
-    <string name="server_intro">Optional. Ampulse works fully offline. If you run your own Ampulse server, the app can send it a copy of your data. Nothing is ever downloaded from the server, and nothing goes to anyone else.</string>
+    <string name="server_intro">Optional. Ampulse works fully offline. If you run your own Ampulse server, the app can send it a copy of your data. If someone shares a profile with you, the app also fetches it from the server — view only. Nothing else is downloaded, and nothing goes to anyone else.</string>
     <string name="server_sent_title">What is sent</string>
     <string name="server_sent_text">Profile names, medicine names, doses and notes, the dose times from your schedules (30 days back, 14 days ahead), your marks — taken or skipped — and extra doses. Over HTTPS only.</string>
     <string name="server_not_sent_text">Not sent: blood pressure, the medicine cabinet and packs, family contacts, the emergency card, injection sites, schedule rules.</string>

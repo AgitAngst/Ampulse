@@ -87,6 +87,7 @@ import io.github.agitangst.ampulse.Route
 import io.github.agitangst.ampulse.domain.Profile
 import io.github.agitangst.ampulse.domain.ProfileKind
 import io.github.agitangst.ampulse.screenTitleStyle
+import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.anvil.compose.AnvilTheme
 import io.github.agitangst.anvil.compose.SectionTitle
 import kotlinx.coroutines.flow.first
@@ -94,20 +95,40 @@ import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
 
-/** Чьи лекарства сейчас на экранах: 0 — «Я». Хранится в `SharedPreferences("ampulse")`, ключ `profile_current`. */
+/**
+ * Чьи лекарства сейчас на экранах: 0 — «Я». Хранится в `SharedPreferences("ampulse")`, ключ `profile_current`.
+ * [watchId] — выбран чужой профиль «по серверу» (только «Сегодня», сборка github, ключ `profile_watch`): тогда [id]
+ * остаётся прежним для остальных вкладок, а выбор своего профиля [watchId] сбрасывает.
+ */
 object CurrentProfile {
     private const val KEY = "profile_current"
+    private const val KEY_WATCH = "profile_watch"
 
     var id by mutableLongStateOf(0L)
         private set
 
+    var watchId by mutableStateOf<String?>(null)
+        private set
+
     fun load(context: Context) {
-        id = context.getSharedPreferences("ampulse", Context.MODE_PRIVATE).getLong(KEY, 0L)
+        val prefs = context.getSharedPreferences("ampulse", Context.MODE_PRIVATE)
+        id = prefs.getLong(KEY, 0L)
+        watchId = prefs.getString(KEY_WATCH, null)?.takeIf { it.isNotEmpty() }
     }
 
     fun set(context: Context, profileId: Long) {
         id = profileId
-        context.getSharedPreferences("ampulse", Context.MODE_PRIVATE).edit { putLong(KEY, profileId) }
+        watchId = null
+        context.getSharedPreferences("ampulse", Context.MODE_PRIVATE).edit {
+            putLong(KEY, profileId)
+            remove(KEY_WATCH)
+        }
+    }
+
+    /** Показать чужой профиль «по серверу» на «Сегодня». */
+    fun watch(context: Context, serverProfileId: String) {
+        watchId = serverProfileId
+        context.getSharedPreferences("ampulse", Context.MODE_PRIVATE).edit { putString(KEY_WATCH, serverProfileId) }
     }
 }
 
@@ -234,9 +255,12 @@ internal fun ProfileAvatar(name: String, size: Dp, modifier: Modifier = Modifier
  * Переключатель профиля (docs/ui-guideline.md, §6): кнопка 48 dp с кружком-инициалом, именем и стрелкой ▾; по касанию
  * — меню профилей (текущий с галочкой) и «Профили…». Если, кроме «Я», профилей нет — ничего не рисует. Текущий профиль
  * удалён — возвращает «Я».
+ *
+ * [withWatched] — «Сегодня» (сборка github): в меню ещё и чужие профили «по серверу» и строка «Профили других людей…»;
+ * выбран чужой — вместо кнопки широкое поле «имя / по серверу · только просмотр» (макет, экран 66).
  */
 @Composable
-internal fun ProfileSwitcher(nav: Nav, modifier: Modifier = Modifier) {
+internal fun ProfileSwitcher(nav: Nav, modifier: Modifier = Modifier, withWatched: Boolean = false) {
     val context = LocalContext.current
     val p = AnvilTheme.palette
     val profiles by remember { AppGraph.repository.profiles }.collectAsState(initial = null)
@@ -245,42 +269,60 @@ internal fun ProfileSwitcher(nav: Nav, modifier: Modifier = Modifier) {
     LaunchedEffect(others, currentId) {
         if (others != null && currentId != 0L && others.none { it.id == currentId }) CurrentProfile.set(context, 0L)
     }
-    if (others.isNullOrEmpty()) return
+    val watched = if (withWatched) watchedProfiles() else emptyList()
+    val signedIn by ServerSync.status.collectAsState()
+    if (others.isNullOrEmpty() && watched.isEmpty()) return
 
     val meName = stringResource(R.string.profile_me)
-    val all = remember(others, meName) { listOf(Profile(0L, meName, ProfileKind.Person)) + others }
+    val all = remember(others, meName) { listOf(Profile(0L, meName, ProfileKind.Person)) + others.orEmpty() }
+    val watching = if (withWatched) watched.firstOrNull { it.id == CurrentProfile.watchId } else null
     val current = all.firstOrNull { it.id == currentId } ?: all.first()
     var open by remember { mutableStateOf(false) }
-    val description = stringResource(R.string.profile_switcher, current.name)
-    val shape = RoundedCornerShape(24.dp)
+    val description = stringResource(R.string.profile_switcher, watching?.name ?: current.name)
+    val shape = RoundedCornerShape(if (watching != null) 26.dp else 24.dp)
 
     Box(modifier) {
         Row(
             Modifier
-                .heightIn(min = 48.dp)
+                .then(if (watching != null) Modifier.fillMaxWidth().heightIn(min = 52.dp) else Modifier.heightIn(min = 48.dp))
                 .clip(shape)
                 .background(p.card)
                 .border(1.5.dp, p.borderStrong, shape)
                 .clickable(onClickLabel = stringResource(R.string.profile_switch_action), role = Role.Button) { open = true }
                 .semantics { contentDescription = description }
-                .padding(start = 8.dp, end = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                .padding(start = 8.dp, end = if (watching != null) 14.dp else 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(if (watching != null) 10.dp else 8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            ProfileAvatar(current.name, 32.dp)
-            Text(
-                current.name,
-                Modifier.widthIn(max = 220.dp),
-                color = p.text,
-                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Icon(ProfileGlyphs.ChevronDown, contentDescription = null, modifier = Modifier.size(18.dp), tint = p.weak)
+            if (watching != null) {
+                ProfileAvatar(watching.name, 36.dp)
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(1.dp)) {
+                    Text(
+                        watching.name,
+                        color = p.text,
+                        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Text(stringResource(R.string.watch_via_server), color = p.weak, fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                }
+                Icon(ProfileGlyphs.ChevronDown, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.weak)
+            } else {
+                ProfileAvatar(current.name, 32.dp)
+                Text(
+                    current.name,
+                    Modifier.widthIn(max = 220.dp),
+                    color = p.text,
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Icon(ProfileGlyphs.ChevronDown, contentDescription = null, modifier = Modifier.size(18.dp), tint = p.weak)
+            }
         }
         DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
             all.forEach { profile ->
-                val isCurrent = profile.id == current.id
+                val isCurrent = watching == null && profile.id == current.id
                 DropdownMenuItem(
                     text = {
                         Text(
@@ -301,6 +343,28 @@ internal fun ProfileSwitcher(nav: Nav, modifier: Modifier = Modifier) {
                     },
                 )
             }
+            watched.forEach { profile ->
+                val isCurrent = profile.id == watching?.id
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            stringResource(R.string.watch_state_named, profile.name, stringResource(R.string.watch_via_short)),
+                            fontWeight = if (isCurrent) FontWeight.SemiBold else FontWeight.Normal,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    },
+                    onClick = {
+                        open = false
+                        CurrentProfile.watch(context, profile.id)
+                    },
+                    modifier = Modifier.semantics { selected = isCurrent },
+                    leadingIcon = { ProfileAvatar(profile.name, 32.dp) },
+                    trailingIcon = {
+                        if (isCurrent) Icon(ProfileGlyphs.Check, contentDescription = null, modifier = Modifier.size(20.dp), tint = p.accentText)
+                    },
+                )
+            }
             HorizontalDivider(color = p.border)
             DropdownMenuItem(
                 text = { Text(stringResource(R.string.profile_manage)) },
@@ -310,6 +374,16 @@ internal fun ProfileSwitcher(nav: Nav, modifier: Modifier = Modifier) {
                 },
                 leadingIcon = { Icon(AmpulseIcons.Users, contentDescription = null, modifier = Modifier.size(22.dp), tint = p.text) },
             )
+            if (withWatched && (watched.isNotEmpty() || signedIn.signedIn)) {
+                DropdownMenuItem(
+                    text = { Text(stringResource(R.string.watch_title)) },
+                    onClick = {
+                        open = false
+                        nav.open(Route.Watch(fromToday = true))
+                    },
+                    leadingIcon = { Icon(WatchIcons.Eye, contentDescription = null, modifier = Modifier.size(22.dp), tint = p.text) },
+                )
+            }
         }
     }
 }

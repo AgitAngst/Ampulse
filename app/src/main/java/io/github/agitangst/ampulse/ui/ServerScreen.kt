@@ -45,6 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.Nav
 import io.github.agitangst.ampulse.R
+import io.github.agitangst.ampulse.Route
 import io.github.agitangst.ampulse.screenTitleStyle
 import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.ampulse.sync.SyncFailure
@@ -198,6 +199,7 @@ fun ServerScreen(nav: Nav) {
                         )
                     }
                 }
+                WatchPeopleRow { nav.open(Route.Watch()) }
                 status.problem?.let { MedNotice(problemText(context, status)) }
                 if (status.rejected > 0) {
                     MedNotice(stringResource(R.string.server_rejected, status.rejected, status.rejectedCodes.joinToString(", ").ifEmpty { "?" }))

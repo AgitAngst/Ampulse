@@ -163,9 +163,9 @@ internal fun screenTitleStyle(size: Int): TextStyle =
 
 /** Сегодняшняя дата словами по языку программы: «Суббота, 26 сентября» / «Saturday, September 26». */
 @Composable
-internal fun todayText(): String {
+internal fun todayText(date: LocalDate = LocalDate.now()): String {
     val locale = LocalConfiguration.current.locales[0]
     val pattern = stringResource(R.string.date_pattern)
-    return LocalDate.now().format(DateTimeFormatter.ofPattern(pattern, locale))
+    return date.format(DateTimeFormatter.ofPattern(pattern, locale))
         .replaceFirstChar { it.titlecase(locale) }
 }

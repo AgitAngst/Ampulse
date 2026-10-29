@@ -281,6 +281,8 @@ internal fun FamilyField(
     error: String? = null,
     /** Пароль: знаки скрыты, подсказки и запоминание клавиатуры не нужны. */
     password: Boolean = false,
+    /** Рамка внимания без текста под полем: ошибку показывает плашка рядом. */
+    invalid: Boolean = false,
 ) {
     val p = AnvilTheme.palette
     OutlinedTextField(
@@ -290,7 +292,7 @@ internal fun FamilyField(
         label = { Text(label) },
         placeholder = { if (hint != null) Text(hint) },
         singleLine = true,
-        isError = error != null,
+        isError = error != null || invalid,
         supportingText = if (error != null) {
             {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {

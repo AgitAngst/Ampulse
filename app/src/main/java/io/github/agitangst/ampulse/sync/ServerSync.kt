@@ -28,7 +28,8 @@ import java.util.Base64
 
 /**
  * «Сервер» — необязательное одностороннее зеркало на свой сервер Ampulse (openspec: server-sync, docs/dev/server-sync.md).
- * Только сборка github ([Store.SERVER_SYNC]); выключено, пока человек не вошёл; ничего не скачивается.
+ * Только сборка github ([Store.SERVER_SYNC]); выключено, пока человек не вошёл. Выгрузка идёт только с телефона на сервер;
+ * чужие профили, которыми с человеком поделились, отдельно забирает [ServerWatch] (openspec: server-watch).
  *
  * Запуск выгрузки: вручную («Отправить сейчас»), при открытии приложения и через [DELAY_MS] после изменения данных
  * (отметка приёма, правка лекарства) — одной отложенной задачей. Без WorkManager: закрытое приложение ничего не шлёт.
@@ -67,6 +68,9 @@ object ServerSync {
         val retryAfterSecs: Int = 0,
     )
 
+    /** Для «Просмотра чужих профилей» ([ServerWatch]): куда ходить и чем подписаться; [accountKey] — сервер и аккаунт. */
+    class Credentials(val server: String, val token: String, val accountKey: String)
+
     private const val TAG = "AmpulseServerSync"
 
     private lateinit var app: Context
@@ -95,6 +99,20 @@ object ServerSync {
 
     private fun token(): String? = secret.getString("token", null)?.takeIf { it.isNotEmpty() }
 
+    /** Сервер, токен и ключ аккаунта для чтения чужих профилей; `null` — не вошли. */
+    internal fun credentials(): Credentials? {
+        if (!available || !::app.isInitialized) return null
+        val token = token() ?: return null
+        val server = prefs.getString("server", "").orEmpty().ifEmpty { return null }
+        return Credentials(server, token, prefs.getString("state_key", "").orEmpty().ifEmpty { server })
+    }
+
+    /** Ключ аккаунта (сервер и аккаунт), если вошли; иначе `null`. */
+    internal fun accountKey(): String? = credentials()?.accountKey
+
+    /** Сервер не узнал токен при чтении чужих профилей: выходим так же, как при выгрузке. */
+    internal fun sessionExpired() = fail(SyncFailure(SyncFailure.Kind.Unauthorized))
+
     private fun readStatus(busy: Boolean = false, problem: Problem? = null, code: String? = null, retry: Int = 0): Status = Status(
         signedIn = token() != null,
         server = prefs.getString("server", "").orEmpty(),
@@ -118,7 +136,7 @@ object ServerSync {
         val now = System.currentTimeMillis()
         if (now - lastStartAt < START_GAP_MS) return
         lastStartAt = now
-        scope.launch { runSync() }
+        scope.launch { runSync(watch = true) }
     }
 
     /** Данные изменились (отметка приёма, правка лекарства): через [DELAY_MS] одна выгрузка за все изменения. */
@@ -142,12 +160,13 @@ object ServerSync {
     /** «Отправить сейчас». */
     fun syncNow() {
         if (!available || token() == null || _status.value.busy) return
-        scope.launch { runSync() }
+        scope.launch { runSync(watch = true) }
     }
 
     // --- Выгрузка ---
 
-    private suspend fun runSync() = mutex.withLock {
+    /** [watch] — после выгрузки обновить и чужие профили ([ServerWatch]). */
+    private suspend fun runSync(watch: Boolean = false) = mutex.withLock {
         val token = token() ?: return@withLock
         _status.value = readStatus(busy = true)
         try {
@@ -173,6 +192,7 @@ object ServerSync {
                 .putString("rejected_codes", codes.joinToString(","))
                 .apply()
             _status.value = readStatus()
+            if (watch) ServerWatch.refresh()
         } catch (e: CancellationException) {
             throw e
         } catch (e: SyncFailure) {
@@ -190,6 +210,7 @@ object ServerSync {
                 // Сервер не узнал токен: выходим, адрес и логин оставляем — войти снова одним паролем.
                 secret.edit().remove("token").commit()
                 prefs.edit().putBoolean("session_ended", true).apply()
+                ServerWatch.clear()
                 _status.value = readStatus()
             }
             SyncFailure.Kind.RateLimited -> _status.value = readStatus(problem = Problem.RateLimited, retry = e.retryAfterSecs ?: 0)
@@ -220,6 +241,7 @@ object ServerSync {
                     val key = "$server#${session.accountId}"
                     if (prefs.getString("state_key", "") != key) {
                         stateFile().delete()
+                        ServerWatch.clear()
                         prefs.edit().remove("last_at").remove("stored").remove("rejected").remove("rejected_codes").commit()
                     }
                     prefs.edit()
@@ -234,7 +256,7 @@ object ServerSync {
                 }
             }
         }
-        if (failure == null) scope.launch { runSync() }
+        if (failure == null) scope.launch { runSync(watch = true) }
         return failure
     }
 
@@ -259,6 +281,8 @@ object ServerSync {
             }
             runCatching { client.logout(token) }
             secret.edit().remove("token").commit()
+            // Чужие профили доступны только по входу: вышли — на телефоне их не остаётся.
+            ServerWatch.clear()
             prefs.edit().putInt("stored", if (erase && failure == null) 0 else prefs.getInt("stored", 0)).apply()
             _status.value = readStatus()
             failure
