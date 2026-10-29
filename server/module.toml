@@ -26,7 +26,7 @@ uninstall = "{bin} uninstall"
 [[form]]                                  # поля окна установки
 key = "port"
 label = "Порт"
-kind = "number"
+kind = "port"
 default = 8740
 arg = "--port {value}"
 
@@ -34,7 +34,6 @@ arg = "--port {value}"
 key = "address"
 label = "Внешний адрес (IP или имя), если сервер не определит его сам"
 kind = "text"
-default = ""
 arg = "--address {value}"
 
 [[action]]                                # кнопки «Обслуживания»
