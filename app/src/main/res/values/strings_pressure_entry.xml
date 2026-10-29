@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Давление — ввод: шапка и заголовок -->
+    <string name="bp_back">Back</string>
+    <string name="bp_history">History</string>
+    <string name="bp_title">Blood pressure</string>
+    <string name="bp_series">Reading %1$d of 2</string>
+    <string name="bp_part_morning">Morning</string>
+    <string name="bp_part_day">Afternoon</string>
+    <string name="bp_part_evening">Evening</string>
+    <!-- %1$s — часть дня, %2$s — время; во втором — ещё дата, если замер не сегодняшний -->
+    <string name="bp_when">%1$s, %2$s</string>
+    <string name="bp_when_date">%1$s · %2$s, %3$s</string>
+
+    <!-- Поля и единицы -->
+    <string name="bp_sys">Systolic</string>
+    <string name="bp_dia">Diastolic</string>
+    <string name="bp_pulse">Pulse</string>
+    <string name="bp_unit_pressure">mmHg</string>
+    <string name="bp_unit_pulse">bpm</string>
+    <string name="bp_field_value">%1$s: %2$s</string>
+    <string name="bp_field_empty">empty</string>
+
+    <!-- Клавиатура -->
+    <string name="bp_next">Next</string>
+    <string name="bp_del">Delete</string>
+
+    <!-- Источники: подписи кнопок рисуют сами кнопки (фото, голос, тонометр) -->
+    <string name="bp_read_fail">Couldn’t read the numbers</string>
+    <string name="bp_read_fail_note">Enter them on the keypad</string>
+
+    <!-- Серия из двух замеров -->
+    <string name="bp_save_first">Save first reading</string>
+    <string name="bp_save_second">Save second reading</string>
+    <string name="bp_banner">Second reading in a minute — it is more accurate. Same arm.</string>
+    <string name="bp_skip">Skip</string>
+
+    <!-- Оценка -->
+    <string name="bp_empty">Enter systolic and diastolic</string>
+    <string name="bp_prev_none">No earlier readings yet</string>
+    <string name="bp_prev">Last reading: %1$s — %2$d/%3$d</string>
+    <string name="bp_day_today">today, %1$s</string>
+    <string name="bp_day_yesterday">yesterday, %1$s</string>
+    <string name="bp_day_date">%1$s, %2$s</string>
+    <string name="bp_date_short">MMMM d</string>
+    <string name="bp_in_target">Within your doctor’s target</string>
+    <string name="bp_above">Above your doctor’s target</string>
+    <string name="bp_crisis">Very high</string>
+    <string name="bp_low">Low</string>
+    <string name="bp_target">Target — below %1$d/%2$d</string>
+    <string name="bp_call">If you feel unwell, call emergency services</string>
+    <string name="bp_pulse_left">Finish the pulse or delete it</string>
+    <string name="bp_err_order">Systolic must be higher than diastolic</string>
+    <string name="bp_err_range">Check the number — this is unusual</string>
+
+    <!-- Итог -->
+    <string name="bp_done_title">Saved</string>
+    <string name="bp_done_avg">Average of two readings</string>
+    <string name="bp_done_one">One reading</string>
+    <string name="bp_done_pulse">pulse %1$d bpm</string>
+    <string name="bp_to_history">History</string>
+    <string name="bp_done">Done</string>
+
+    <!-- «Сегодня»: карточка давления -->
+    <string name="bp_today_section">Measurements</string>
+    <string name="bp_today_none">No readings yet</string>
+    <string name="bp_today_measure">Measure</string>
+    <string name="bp_today_card">Blood pressure: %1$s</string>
+
+    <!-- «Настройки»: давление на главной -->
+    <string name="bp_setting_title">Blood pressure on Today</string>
+    <string name="bp_setting_hint">Show the card with a Measure button even before the first reading</string>
+</resources>

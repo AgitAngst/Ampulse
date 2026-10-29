@@ -172,6 +172,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
         when {
             meds == null -> Spacer(Modifier.weight(1f))
             meds.isEmpty() -> {
+                PressureTodayCard(nav)
                 EmptyState(
                     AmpulseIcons.Pill,
                     stringResource(R.string.today_empty_title),
@@ -195,6 +196,7 @@ fun TodayScreen(nav: Nav, modifier: Modifier = Modifier) {
                 onSkip = { sheet = TodaySheetState.Skip(it) },
                 onUndo = onUndo,
                 onTakeAsNeeded = { nav.open(Route.AsNeeded(it)) },
+                pressureCard = { PressureTodayCard(nav) },
             )
         }
     }
@@ -242,6 +244,7 @@ private fun ColumnScope.DayContent(
     onSkip: (DayItem) -> Unit,
     onUndo: (DayItem) -> Unit,
     onTakeAsNeeded: (Long) -> Unit,
+    pressureCard: @Composable () -> Unit,
 ) {
     Column(
         Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
@@ -259,6 +262,7 @@ private fun ColumnScope.DayContent(
             }
         }
         if (prn.isNotEmpty()) PrnSection(prn, today, time, onTakeAsNeeded)
+        pressureCard()
     }
 }
 

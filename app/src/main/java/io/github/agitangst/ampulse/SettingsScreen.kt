@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
+import io.github.agitangst.ampulse.ui.PressureTodaySetting
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -45,7 +46,7 @@ private const val CODE_URL = "https://github.com/AgitAngst/Ampulse"
 
 /**
  * «Настройки» — вложенный экран: строка «назад» со стрелкой и словом «Сегодня», заголовок 30 sp, затем «Напоминания»,
- * «Оформление», «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
+ * «Давление» (карточка на «Сегодня»), «Оформление», «Обновления» (только сборка `github`) и «О программе». Нижней навигации нет, поэтому отступ жестовой панели — здесь.
  */
 @Composable
 fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifier = Modifier) {
@@ -67,6 +68,7 @@ fun SettingsScreen(settings: AnvilSettings, onBack: () -> Unit, modifier: Modifi
             style = screenTitleStyle(30),
         )
         RemindersSection()
+        PressureTodaySetting()
         AppearanceSection(settings)
         Store.UpdatesSettings(settings)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
