@@ -85,4 +85,15 @@ class PrescriptionTest {
         assertEquals(PlanKind.EveryNDays, Prescription.plan(p, 3, start).kind)
         assertNull(Prescription.parse("12"))
     }
+
+    @Test
+    fun insulinUnitsWithoutRoute() {
+        val ru = Prescription.parse("Инсулин аспарт 6 ЕД перед едой 3 р/д")!!
+        assertEquals(MedForm.Injection, ru.form)
+        assertEquals(6.0, Prescription.plan(ru, 3, start).times.first().amount)
+        assertEquals("ЕД", Prescription.medicine(ru, ru = true).unit)
+        assertEquals(MedForm.Injection, Prescription.parse("Insulin lispro 6 units before meals three times a day")!!.form)
+        // Витамин D в МЕ — не укол.
+        assertEquals(MedForm.Other, Prescription.parse("Витамин D 2000 МЕ утром")!!.form)
+    }
 }

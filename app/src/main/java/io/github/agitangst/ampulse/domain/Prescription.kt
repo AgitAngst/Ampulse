@@ -87,6 +87,8 @@ object Prescription {
             }
             val form = when {
                 route != null -> MedForm.Injection
+                // Доза в ЕД — инсулин: укол, даже если «п/к» не написали. МЕ — нет (витамин D в МЕ — капли и капсулы).
+                d?.groupValues?.get(2)?.lowercase() == "ед" -> MedForm.Injection
                 has(line, "капс") -> MedForm.Capsule
                 has(line, "таб") -> MedForm.Tablet
                 has(line, "капл") -> MedForm.Drops
@@ -162,6 +164,8 @@ object Prescription {
             }
             val form = when {
                 route != null -> MedForm.Injection
+                // Units (U) — инсулин: укол и без «sc». IU — нет (витамин D в IU — капли и капсулы).
+                d?.groupValues?.get(2)?.lowercase()?.let { it == "u" || it.startsWith("unit") } == true -> MedForm.Injection
                 has(line, """\bcap""") -> MedForm.Capsule
                 has(line, """\btab""") -> MedForm.Tablet
                 has(line, """\bdrops?\b""") -> MedForm.Drops
