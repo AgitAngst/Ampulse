@@ -40,7 +40,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 private const val TAG = "AmpulseScan"
 
 /**
- * Окно камеры сканера: превью CameraX и разбор кадров ML Kit (встроенная модель, без сети) — только DataMatrix.
+ * Окно камеры сканера: превью CameraX и разбор кадров ML Kit (встроенная модель, без сети) — по умолчанию только DataMatrix (код «Честного знака»);
+ * для QR близкого передают [formats] = `Barcode.FORMAT_QR_CODE`.
  * Камера привязана к жизненному циклу окна и освобождается, когда экран уходит из композиции или программа
  * сворачивается.
  *
@@ -48,6 +49,7 @@ private const val TAG = "AmpulseScan"
  * @param onRaw прочитанный код как текст, в главном потоке; GS-символы разделителей сохраняются.
  * @param onFlash есть ли у камеры фонарик (сообщается, когда камера открылась).
  * @param onError камера не открылась (нет камеры, занята другой программой).
+ * @param formats какие коды читать (`Barcode.FORMAT_*`); по умолчанию DataMatrix упаковки.
  */
 @Composable
 internal fun ScanCamera(
@@ -57,6 +59,7 @@ internal fun ScanCamera(
     onFlash: (Boolean) -> Unit,
     onError: () -> Unit,
     modifier: Modifier = Modifier,
+    formats: Int = Barcode.FORMAT_DATA_MATRIX,
 ) {
     val context = LocalContext.current
     val owner: LifecycleOwner? = LocalActivity.current as? LifecycleOwner
@@ -95,7 +98,7 @@ internal fun ScanCamera(
         }
         val executor = Executors.newSingleThreadExecutor()
         val scanner = BarcodeScanning.getClient(
-            BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_DATA_MATRIX).build(),
+            BarcodeScannerOptions.Builder().setBarcodeFormats(formats).build(),
         )
         try {
             val bound = try {

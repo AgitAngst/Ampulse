@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.util.Log
 import io.github.agitangst.ampulse.AppGraph
+import io.github.agitangst.ampulse.Store
 import io.github.agitangst.ampulse.data.Codec
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -105,13 +106,16 @@ class Reminders(context: Context) {
         val nowMs = System.currentTimeMillis()
         // Отметки за двое суток назад: приём, отмеченный заранее или с опозданием, всё равно найдётся.
         val events = repository.eventsNow(now.minusDays(2), now.plusDays(1))
-        val plan = ReminderPlan.upcoming(repository.schedulesNow(), repository.medicines.first(), events, now)
+        // Копии чужого расписания не напоминаются; «проверка» для SMS о пропуске — только если есть кому и чем слать.
+        val silent = repository.profiles.first().filter { it.watchOnly }.map { it.id }.toSet()
+        val missedCheck = Store.SILENT_SMS && repository.contactsNow().any { it.smsMissed && it.phone.isNotBlank() }
+        val plan = ReminderPlan.upcoming(repository.schedulesNow(), repository.medicines.first(), events, now, silent, missedCheck)
         Notifier.ensureChannels(app)
 
         // Будильники нового плана.
         val armed = HashSet<Int>()
         for (reminder in plan) {
-            if (arm(reminder.dose, reminder.repeat, Codec.millis(reminder.fireAt))) armed += reminder.requestCode
+            if (arm(reminder.dose, reminder.slot, Codec.millis(reminder.fireAt))) armed += reminder.requestCode
         }
         // Прежние, которых в плане уже нет (приём отмечен, схема изменена, лекарство удалено), — отменить.
         for (text in prefs.getStringSet(KEY_CODES, null).orEmpty()) {
