@@ -27,7 +27,7 @@ input::placeholder{color:#8A9593}
 </header>
 <div style="position: relative">
 <button type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuOpen}}" style="width: 100%; height: 52px; box-sizing: border-box; padding: 0 14px 0 8px; border-radius: 26px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; gap: 10px; cursor: pointer; text-align: left">
-<span style="width: 36px; height: 36px; border-radius: 18px; flex-shrink: 0; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">{{l.initial}}</span>
+<span style="width: 36px; height: 36px; border-radius: 18px; flex-shrink: 0; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">{{l.initial}}</span>
 <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
 <span style="font-size: 15px; font-weight: 600">{{l.mom}}</span>
 <span style="font-size: 12px; color: {{t.ink3}}">{{l.viaServer}}</span>
@@ -37,8 +37,8 @@ input::placeholder{color:#8A9593}
 <sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
 <div role="menu" style="position: absolute; left: 0; right: 0; top: 58px; z-index: 5; border-radius: 20px; background: {{t.card}}; border: 1.5px solid {{t.line}}; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); padding: 6px; display: flex; flex-direction: column">
 <a role="menuitem" href="{{ownHref}}" style="min-height: 52px; padding: 0 12px; border-radius: 14px; display: flex; align-items: center; gap: 10px; color: {{t.ink}}; text-decoration: none; font-size: 15px; font-weight: 500"><span style="width: 32px; height: 32px; border-radius: 16px; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.meInitial}}</span><span>{{l.me}}</span></a>
-<div role="menuitem" aria-current="true" style="min-height: 52px; padding: 0 12px; border-radius: 14px; background: {{t.accSoft}}; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: {{t.accText}}"><span style="width: 32px; height: 32px; border-radius: 16px; background: #9FE0D6; color: #0F3531; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.initial}}</span><span style="flex-grow: 1">{{l.mom}} · {{l.viaShort}}</span></div>
-<div role="menuitem" style="min-height: 52px; padding: 0 12px; border-radius: 14px; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500"><span style="width: 32px; height: 32px; border-radius: 16px; background: #F3C98B; color: #4A2E05; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.catInitial}}</span><span style="flex-grow: 1">{{l.cat}} · {{l.viaShort}}</span></div>
+<div role="menuitem" aria-current="true" style="min-height: 52px; padding: 0 12px; border-radius: 14px; background: {{t.accSoft}}; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: {{t.accText}}"><span style="width: 32px; height: 32px; border-radius: 16px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.initial}}</span><span style="flex-grow: 1">{{l.mom}} · {{l.viaShort}}</span></div>
+<div role="menuitem" style="min-height: 52px; padding: 0 12px; border-radius: 14px; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500"><span style="width: 32px; height: 32px; border-radius: 16px; background: {{t.accSoft}}; color: {{t.accText}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{l.catInitial}}</span><span style="flex-grow: 1">{{l.cat}} · {{l.viaShort}}</span></div>
 <a role="menuitem" href="{{listHref}}" style="min-height: 48px; margin-top: 4px; padding: 0 12px; border-top: 1px solid {{t.sep}}; display: flex; align-items: center; gap: 6px; color: {{t.accText}}; text-decoration: none; font-size: 14px; font-weight: 600"><span>{{l.manage}}</span><svg class="i" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
 </div>
 </sc-if>
@@ -46,7 +46,7 @@ input::placeholder{color:#8A9593}
 <sc-if value="{{isStale}}" hint-placeholder-val="{{false}}">
 <div role="alert" style="border-radius: 16px; padding: 14px 16px; background: {{t.warnSoft}}; display: flex; gap: 12px; align-items: flex-start">
 <svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="color: {{t.warn}}"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
-<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{l.stale}}</span>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.warn}}">{{warnText}}</span>
 </div>
 </sc-if>
 <sc-if value="{{isFresh}}" hint-placeholder-val="{{true}}">
@@ -55,6 +55,7 @@ input::placeholder{color:#8A9593}
 <span style="font-size: 14px; line-height: 1.4; color: {{t.accText}}">{{l.viewOnly}}</span>
 </div>
 </sc-if>
+<sc-if value="{{hasData}}" hint-placeholder-val="{{true}}">
 <div style="background: {{t.card}}; border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 16px">
 <div style="position: relative; width: 60px; height: 60px; flex-shrink: 0">
 <svg width="60" height="60" viewBox="0 0 60 60" aria-hidden="true" style="transform: rotate(-90deg)">
@@ -80,6 +81,13 @@ input::placeholder{color:#8A9593}
 <span style="flex-shrink: 0; padding: 5px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; background: {{it.chipBg}}; color: {{it.chipFg}}">{{it.chip}}</span>
 </div>
 </sc-for>
+</sc-if>
+<sc-if value="{{noData}}" hint-placeholder-val="{{false}}">
+<div style="background: {{t.card}}; border-radius: 20px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 48px; height: 48px; border-radius: 24px; background: {{t.fill}}; color: {{t.ink2}}; display: flex; align-items: center; justify-content: center"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.86a10 10 0 0 1 14 0"></path><path d="M8.5 16.43a5 5 0 0 1 7 0"></path><path d="m2 2 20 20"></path></svg></span>
+<span style="font-size: 14px; line-height: 1.4; color: {{t.ink3}}">{{l.noDataText}}</span>
+</div>
+</sc-if>
 </main>
 <nav aria-label="{{l.sections}}" style="flex-shrink: 0; height: 76px; box-sizing: border-box; padding: 8px 8px 14px; background: {{t.card}}; border-top: 1px solid {{t.navLine}}; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
 <a href="{{mainHref}}" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 600; color: {{t.acc}}; text-decoration: none"><svg class="i" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg><span>{{l.navToday}}</span></a>
@@ -103,7 +111,7 @@ input::placeholder{color:#8A9593}
 <span style="font-size: 16px; font-weight: 600">{{p.name}}</span>
 <span style="font-size: 13px; color: {{t.ink3}}">{{p.sub}}</span>
 </span>
-<button type="button" onClick="{{p.ask}}" aria-label="{{p.removeLabel}}" style="flex-shrink: 0; height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-size: 14px; font-weight: 600; cursor: pointer">{{l.remove}}</button>
+<button type="button" onClick="{{p.ask}}" aria-label="{{p.removeLabel}}" style="flex-shrink: 0; height: 48px; padding: 0 14px; border-radius: 24px; border: 1.5px solid {{t.line}}; background: {{t.card}}; color: {{t.ink}}; font-size: 14px; font-weight: 600; cursor: pointer">{{l.remove}}</button>
 </div>
 </sc-for>
 </section>
@@ -173,7 +181,7 @@ input::placeholder{color:#8A9593}
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"view":{"editor":"enum","options":["list","remove","code","codeerr","today","stale"],"default":"list"},"$preview":{"width":390,"height":560}}'>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"lang":{"editor":"enum","options":["ru","en"],"default":"ru"},"view":{"editor":"enum","options":["list","remove","code","codeerr","today","stale","fail","nodata"],"default":"list"},"$preview":{"width":390,"height":560}}'>
 class Component extends DCLogic {
   renderVals() {
     const s = this.state || {};
@@ -202,6 +210,8 @@ class Component extends DCLogic {
         date: 'Суббота, 26 сентября', today: 'Сегодня', mom: 'Мама', initial: 'М', cat: 'Барсик', catInitial: 'Б', me: 'Я', meInitial: 'Я',
         viaServer: 'по серверу · только просмотр', viaShort: 'по серверу', manage: 'Профили других людей',
         viewOnly: 'Только просмотр · обновлено в 13:50', stale: 'Нет связи с сервером. Показаны данные на 13:10.',
+        fail: 'Не удалось обновить. Показаны данные на 13:10.', noData: 'Нет связи с сервером. Данных пока нет.',
+        noDataText: 'Как только появится связь, данные профиля загрузятся сами. До этого здесь пусто.',
         sections: 'Разделы', navToday: 'Сегодня', navHistory: 'История', navStock: 'Аптечка', navFamily: 'Близкие',
         later: 'Позже', soonChip: 'Пора', lateChip: 'Просрочено', doneChip: 'Принято'
       },
@@ -222,18 +232,20 @@ class Component extends DCLogic {
         date: 'Saturday, September 26', today: 'Today', mom: 'Mom', initial: 'M', cat: 'Barsik', catInitial: 'B', me: 'Me', meInitial: 'M',
         viaServer: 'via server · view only', viaShort: 'via server', manage: 'Other people’s profiles',
         viewOnly: 'View only · updated at 1:50 PM', stale: 'No connection to the server. Showing data as of 1:10 PM.',
+        fail: 'Could not refresh. Showing data as of 1:10 PM.', noData: 'No connection to the server. No data yet.',
+        noDataText: 'As soon as the connection is back, the profile’s data loads by itself. Until then it is empty here.',
         sections: 'Sections', navToday: 'Today', navHistory: 'History', navStock: 'Medicines', navFamily: 'Family',
         later: 'Later', soonChip: 'Due', lateChip: 'Overdue', doneChip: 'Taken'
       }
     }[lang];
 
-    const VIEWS = ['list', 'remove', 'code', 'codeerr', 'today', 'stale'];
+    const VIEWS = ['list', 'remove', 'code', 'codeerr', 'today', 'stale', 'fail', 'nodata'];
     const first = VIEWS.indexOf(this.props.view) >= 0 ? this.props.view : 'list';
 
     // --- список профилей ---
     const PEOPLE = [
-      { id: 'mom', name: L.mom, initial: L.initial, bg: '#9FE0D6', fg: '#0F3531', sub: lang === 'ru' ? 'Наблюдатель · обновлено в 13:50' : 'Viewer · updated 1:50 PM' },
-      { id: 'cat', name: L.cat, initial: L.catInitial, bg: '#F3C98B', fg: '#4A2E05', sub: lang === 'ru' ? 'Опекун · обновлено в 13:50' : 'Guardian · updated 1:50 PM' }
+      { id: 'mom', name: L.mom, initial: L.initial, bg: T.accSoft, fg: T.accText, sub: lang === 'ru' ? 'Наблюдатель · обновлено в 13:50' : 'Viewer · updated 1:50 PM' },
+      { id: 'cat', name: L.cat, initial: L.catInitial, bg: T.accSoft, fg: T.accText, sub: lang === 'ru' ? 'Опекун · обновлено в 13:50' : 'Guardian · updated 1:50 PM' }
     ];
     const gone = s.gone || [];
     const left = PEOPLE.filter((p) => gone.indexOf(p.id) < 0);
@@ -263,7 +275,8 @@ class Component extends DCLogic {
     const errorText = { notfound: L.eNotFound, have: L.eHave, toomany: L.eTooMany, net: L.eNet }[err] || '';
 
     // --- «Сегодня» чужого профиля ---
-    const stale = first === 'stale';
+    const stale = first === 'stale' || first === 'fail';
+    const noData = first === 'nodata';
     const NOW = stale ? 13 * 60 + 10 : 13 * 60 + 52;
     const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
     const MEDS = lang === 'ru' ? [
@@ -312,10 +325,10 @@ class Component extends DCLogic {
     else if (next) nextLine = (lang === 'ru' ? 'Дальше: ' : 'Next: ') + next.name + ', ' + clock(next.time);
 
     const sfx = (theme === 'dark' ? 'Dark' : '') + (lang === 'en' ? 'En' : '');
-    const height = { list: 560, remove: 560, code: 560, codeerr: 640, today: 844, stale: 844 }[first];
+    const height = { list: 560, remove: 560, code: 560, codeerr: 640, today: 844, stale: 844, fail: 844, nodata: 560 }[first];
     const isList = first === 'list' || first === 'remove';
     const isCode = first === 'code' || first === 'codeerr';
-    const isToday = first === 'today' || first === 'stale';
+    const isToday = first === 'today' || first === 'stale' || first === 'fail' || first === 'nodata';
     return {
       t: T, l: L, lang: lang, height: height,
       isList: isList, isCode: isCode, isToday: isToday,
@@ -333,7 +346,8 @@ class Component extends DCLogic {
       cannotAccept: !ready, acceptBg: ready ? T.acc : T.fill, acceptFg: ready ? T.onAcc : T.ink3, acceptCursor: ready ? 'pointer' : 'default',
       accept: accept,
       menuOpen: !!s.menu, toggleMenu: () => this.setState({ menu: !s.menu }),
-      isStale: stale, isFresh: !stale,
+      isStale: stale || noData, isFresh: !stale && !noData, hasData: !noData, noData: noData,
+      warnText: first === 'fail' ? L.fail : noData ? L.noData : L.stale,
       items: items, total: total, takenCount: takenCount,
       ringDash: (C * takenCount / total).toFixed(1) + ' ' + C.toFixed(1),
       summaryTitle: lang === 'ru' ? 'Принято ' + takenCount + ' из ' + total : 'Taken ' + takenCount + ' of ' + total,

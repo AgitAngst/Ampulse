@@ -1279,7 +1279,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "68 · Профили других людей — тёмная",
+      "title": "70 · Профили других людей — тёмная",
       "w": 390,
       "x": 0,
       "y": 24800
@@ -1288,7 +1288,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "68 · Other people’s profiles — dark",
+      "title": "70 · Other people’s profiles — dark",
       "w": 390,
       "x": 0,
       "y": 24800,
@@ -1298,7 +1298,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "69 · Убрать профиль — тёмная",
+      "title": "71 · Убрать профиль — тёмная",
       "w": 390,
       "x": 470,
       "y": 24800
@@ -1307,7 +1307,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "69 · Remove a profile — dark",
+      "title": "71 · Remove a profile — dark",
       "w": 390,
       "x": 470,
       "y": 24800,
@@ -1317,7 +1317,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "70 · Код приглашения — тёмная",
+      "title": "72 · Код приглашения — тёмная",
       "w": 390,
       "x": 940,
       "y": 24800
@@ -1326,7 +1326,7 @@
       "h": 560,
       "is_interactive": true,
       "radius": 32,
-      "title": "70 · Invitation code — dark",
+      "title": "72 · Invitation code — dark",
       "w": 390,
       "x": 940,
       "y": 24800,
@@ -1336,7 +1336,7 @@
       "h": 640,
       "is_interactive": true,
       "radius": 32,
-      "title": "71 · Код не подошёл — тёмная",
+      "title": "73 · Код не подошёл — тёмная",
       "w": 390,
       "x": 1410,
       "y": 24800
@@ -1345,7 +1345,7 @@
       "h": 640,
       "is_interactive": true,
       "radius": 32,
-      "title": "71 · The code did not work — dark",
+      "title": "73 · The code did not work — dark",
       "w": 390,
       "x": 1410,
       "y": 24800,
@@ -1355,7 +1355,7 @@
       "h": 844,
       "is_interactive": true,
       "radius": 32,
-      "title": "72 · Сегодня — чужой профиль — тёмная",
+      "title": "74 · Сегодня — чужой профиль — тёмная",
       "w": 390,
       "x": 1880,
       "y": 24800
@@ -1364,7 +1364,7 @@
       "h": 844,
       "is_interactive": true,
       "radius": 32,
-      "title": "72 · Today — someone else’s profile — dark",
+      "title": "74 · Today — someone else’s profile — dark",
       "w": 390,
       "x": 1880,
       "y": 24800,
@@ -1374,7 +1374,7 @@
       "h": 844,
       "is_interactive": true,
       "radius": 32,
-      "title": "73 · Сегодня — нет связи — тёмная",
+      "title": "75 · Сегодня — нет связи — тёмная",
       "w": 390,
       "x": 2350,
       "y": 24800
@@ -1383,9 +1383,85 @@
       "h": 844,
       "is_interactive": true,
       "radius": 32,
-      "title": "73 · Today — no connection — dark",
+      "title": "75 · Today — no connection — dark",
       "w": 390,
       "x": 2350,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchFail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "68 · Сегодня — не удалось обновить",
+      "w": 390,
+      "x": 2820,
+      "y": 23500
+    },
+    "WatchFailEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "68 · Today — could not refresh",
+      "w": 390,
+      "x": 2820,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchNoData.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "69 · Сегодня — данных ещё нет",
+      "w": 390,
+      "x": 3290,
+      "y": 23500
+    },
+    "WatchNoDataEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "69 · Today — no data yet",
+      "w": 390,
+      "x": 3290,
+      "y": 23500,
+      "page": "en"
+    },
+    "WatchFailDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "76 · Сегодня — не удалось обновить — тёмная",
+      "w": 390,
+      "x": 2820,
+      "y": 24800
+    },
+    "WatchFailDarkEn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "76 · Today — could not refresh — dark",
+      "w": 390,
+      "x": 2820,
+      "y": 24800,
+      "page": "en"
+    },
+    "WatchNoDataDark.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "77 · Сегодня — данных ещё нет — тёмная",
+      "w": 390,
+      "x": 3290,
+      "y": 24800
+    },
+    "WatchNoDataDarkEn.dc.html": {
+      "h": 560,
+      "is_interactive": true,
+      "radius": 32,
+      "title": "77 · Today — no data yet — dark",
+      "w": 390,
+      "x": 3290,
       "y": 24800,
       "page": "en"
     }
@@ -1517,7 +1593,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–73, только в сборке с сайта.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–73, только в сборке с сайта.",
+      "text": "Режим: полностью офлайн\n\nРаспознавание — на телефоне: правила, справочник лекарств, фото и речь.\nБлизкие — SMS о пропусках и QR, когда рядом.\nВрачу — PDF-отчёт.\nСканер — срок, серия и номер из кода; подлинность и отзыв партии без сети не проверить.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–77, только в сборке с сайта.\n\nИсключение — необязательная копия на свой сервер Ampulse: экраны 50–77, только в сборке с сайта.",
       "w": 440,
       "x": 3380,
       "y": 0
@@ -1820,7 +1896,7 @@
       "fill": "teal",
       "maxH": 520,
       "size": 24,
-      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–73, website build only.",
+      "text": "Mode: fully offline\n\nRecognition — on the phone: rules, medicine directory, photo and speech.\nFamily — texts about misses and QR when together.\nDoctor — a PDF report.\nScanner — expiry, batch and number from the code; authenticity and recalls can’t be checked offline.\n\nException — an optional copy on your own Ampulse server: screens 50–77, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–77, website build only.\n\nException — an optional copy on your own Ampulse server: screens 50–77, website build only.",
       "w": 440,
       "x": 3380,
       "y": 0,
@@ -2203,13 +2279,13 @@
       "page": "en"
     },
     "n68": {
-      "text": "Тёмные копии экранов 62–67; ссылки между ними остаются тёмными.",
+      "text": "Тёмные копии экранов 62–69; ссылки между ними остаются тёмными.",
       "w": 390,
       "x": 0,
       "y": 25800
     },
     "n68_en": {
-      "text": "Dark copies of screens 62–67; links between them stay dark.",
+      "text": "Dark copies of screens 62–69; links between them stay dark.",
       "w": 390,
       "x": 0,
       "y": 25800,
@@ -2230,6 +2306,32 @@
       "w": 240,
       "x": 0,
       "y": 23200,
+      "page": "en"
+    },
+    "n69": {
+      "text": "Ошибка сервера или лимит запросов — не обрыв связи: плашка «Не удалось обновить…», данные прежние, повтор — при следующем открытии.",
+      "w": 390,
+      "x": 2820,
+      "y": 24500
+    },
+    "n69_en": {
+      "text": "A server error or a rate limit is not a lost connection: the banner “Could not refresh…”, the old data stays, the retry comes on the next opening.",
+      "w": 390,
+      "x": 2820,
+      "y": 24500,
+      "page": "en"
+    },
+    "n70": {
+      "text": "Первый вход без связи: данных ещё нет — плашка внимания и пустое место вместо кольца и строк; пока идёт первая загрузка, на экране «Загружаем данные…».",
+      "w": 390,
+      "x": 3290,
+      "y": 24500
+    },
+    "n70_en": {
+      "text": "The first sign-in without a connection: no data yet — an attention banner and an empty place instead of the ring and rows; during the first load the screen says “Loading data…”.",
+      "w": 390,
+      "x": 3290,
+      "y": 24500,
       "page": "en"
     }
   },
@@ -2379,7 +2481,15 @@
     "WatchTodayDark.dc.html",
     "WatchTodayDarkEn.dc.html",
     "WatchStaleDark.dc.html",
-    "WatchStaleDarkEn.dc.html"
+    "WatchStaleDarkEn.dc.html",
+    "WatchFail.dc.html",
+    "WatchFailEn.dc.html",
+    "WatchNoData.dc.html",
+    "WatchNoDataEn.dc.html",
+    "WatchFailDark.dc.html",
+    "WatchFailDarkEn.dc.html",
+    "WatchNoDataDark.dc.html",
+    "WatchNoDataDarkEn.dc.html"
   ],
   "pages": [
     {
