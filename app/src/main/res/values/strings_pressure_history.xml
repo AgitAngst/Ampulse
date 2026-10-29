@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- История давления (этап 0.7, макет — экран 27): период, средние, график по дням, подсказка, список, цель врача; ключи те же в values-ru -->
+
+    <!-- Шаблоны java.time: день с месяцем и месяц; порядок слов в диапазоне дат -->
+    <string name="pressure_hist_pattern_day_month">MMM d</string>
+    <string name="pressure_hist_pattern_month">MMM</string>
+    <string name="pressure_hist_range_same">%3$s %1$d–%2$d</string>
+    <string name="pressure_hist_range_diff">%1$s – %2$s</string>
+
+    <!-- Шапка -->
+    <string name="pressure_hist_back">Blood pressure</string>
+    <string name="pressure_hist_title">Blood pressure history</string>
+    <string name="pressure_hist_period_a">Period</string>
+    <plurals name="pressure_hist_period">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <!-- Цель врача -->
+    <string name="pressure_hist_target">Doctor’s target — below %1$s</string>
+    <string name="pressure_hist_target_change">Change</string>
+    <string name="pressure_hist_target_change_a">Change the doctor’s target</string>
+    <string name="pressure_hist_target_title">Doctor’s target</string>
+    <string name="pressure_hist_target_note">Enter the target your doctor gave you. Readings are rated against it; the app never prescribes anything.</string>
+    <string name="pressure_hist_target_sys">Upper</string>
+    <string name="pressure_hist_target_dia">Lower</string>
+    <string name="pressure_hist_target_preview">Target — below %1$s</string>
+    <string name="pressure_hist_target_bad">The upper number must be higher than the lower one</string>
+    <string name="pressure_hist_target_save">Save</string>
+    <string name="pressure_hist_target_cancel">Cancel</string>
+
+    <!-- Средние -->
+    <string name="pressure_hist_morning">Morning average</string>
+    <string name="pressure_hist_evening">Evening average</string>
+    <string name="pressure_hist_none">no readings</string>
+    <string name="pressure_hist_pulse">pulse %1$d bpm</string>
+    <string name="pressure_hist_parts_note">Morning is before 12:00, evening is from 17:00. Midday readings appear only in the list.</string>
+    <string name="pressure_hist_state_within">within target</string>
+    <string name="pressure_hist_state_above">above target</string>
+    <string name="pressure_hist_state_crisis">very high</string>
+    <string name="pressure_hist_state_low">low</string>
+    <!-- Давление для диктора: «128 over 82» вместо «128/82» -->
+    <string name="pressure_hist_value_a">%1$d over %2$d</string>
+
+    <!-- График -->
+    <string name="pressure_hist_chart_title">By day</string>
+    <string name="pressure_hist_unit">mmHg</string>
+    <string name="pressure_hist_legend_in">within target</string>
+    <string name="pressure_hist_legend_out">above target or low</string>
+    <string name="pressure_hist_legend_pair">Left morning, right evening. Dashed lines — the doctor’s target.</string>
+    <string name="pressure_hist_chart_a">Blood pressure by day, %1$s. Days with readings: %2$d of %3$d. Highest: %4$s. Lowest: %5$s. Doctor’s target — below %6$s.</string>
+    <string name="pressure_hist_chart_point">%1$s, %2$s, %3$s</string>
+
+    <!-- Подсказка -->
+    <plurals name="pressure_hist_insight_evening">
+        <item quantity="one">Evenings above target on %1$d of %2$d day</item>
+        <item quantity="other">Evenings above target on %1$d of %2$d days</item>
+    </plurals>
+    <plurals name="pressure_hist_insight_morning">
+        <item quantity="one">Mornings above target on %1$d of %2$d day</item>
+        <item quantity="other">Mornings above target on %1$d of %2$d days</item>
+    </plurals>
+    <string name="pressure_hist_insight_ok">All days within target</string>
+    <string name="pressure_hist_insight_note">Show your doctor: the PDF report is on the History screen.</string>
+
+    <!-- Последние замеры -->
+    <string name="pressure_hist_latest">Latest readings</string>
+    <string name="pressure_hist_part_morning">morning</string>
+    <string name="pressure_hist_part_midday">midday</string>
+    <string name="pressure_hist_part_evening">evening</string>
+    <string name="pressure_hist_when_today">today, %1$s · %2$s</string>
+    <string name="pressure_hist_when_yesterday">yesterday, %1$s · %2$s</string>
+    <string name="pressure_hist_when_date">%1$s, %2$s · %3$s</string>
+    <string name="pressure_hist_row_pulse">pulse %1$d</string>
+    <string name="pressure_hist_row_action">Show actions</string>
+    <string name="pressure_hist_show_all">Show all (%1$d)</string>
+    <string name="pressure_hist_show_less">Show fewer</string>
+    <string name="pressure_hist_tap_hint">Tap a reading to delete it</string>
+
+    <!-- Лист замера и удаление -->
+    <string name="pressure_hist_reading_title">Reading</string>
+    <string name="pressure_hist_delete">Delete reading</string>
+    <string name="pressure_hist_close">Close</string>
+    <string name="pressure_hist_removed">Reading deleted</string>
+    <string name="pressure_hist_undo">Undo</string>
+
+    <!-- Пусто -->
+    <plurals name="pressure_hist_empty_title">
+        <item quantity="one">No readings in the last %d day</item>
+        <item quantity="other">No readings in the last %d days</item>
+    </plurals>
+    <string name="pressure_hist_empty_hint">Try another period or measure your blood pressure now.</string>
+
+    <!-- Низ экрана -->
+    <string name="pressure_hist_measure">Measure now</string>
+    <string name="pressure_hist_pdf_note">Readings go into the doctor’s report together with doses</string>
+</resources>
