@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Тонометр по Bluetooth (этап 0.7, макет — экран 26, кнопка «Тонометр»); ключи те же в values -->
+
+    <!-- Кнопка на экране ввода -->
+    <string name="tono_button">Тонометр</string>
+    <string name="tono_button_desc">Принять с тонометра по Bluetooth</string>
+
+    <!-- Лист -->
+    <string name="tono_title">Тонометр</string>
+    <string name="tono_cancel">Отмена</string>
+    <string name="tono_close">Закрыть</string>
+    <string name="tono_forget">Забыть тонометр</string>
+    <string name="tono_retry">Повторить</string>
+    <string name="tono_search_again">Искать ещё</string>
+    <string name="tono_open_settings">Открыть настройки</string>
+    <string name="tono_allow">Разрешить</string>
+    <string name="tono_turn_on">Включить</string>
+
+    <!-- Поиск -->
+    <string name="tono_searching">Ищу тонометр…</string>
+    <string name="tono_searching_mine">Ищу ваш тонометр…</string>
+    <string name="tono_search_hint">Включите тонометр и нажмите на нём кнопку Bluetooth или сделайте замер. Телефон держите рядом.</string>
+    <string name="tono_search_done">Поиск закончен. Выберите тонометр из списка.</string>
+    <string name="tono_search_done_mine">Ваш тонометр не найден. Выберите другой или повторите поиск.</string>
+    <string name="tono_found">Найдено рядом</string>
+    <string name="tono_remembered">Ваш тонометр</string>
+    <string name="tono_no_name">Тонометр без названия</string>
+    <string name="tono_signal_strong">Сильный сигнал</string>
+    <string name="tono_signal_medium">Средний сигнал</string>
+    <string name="tono_signal_weak">Слабый сигнал</string>
+
+    <!-- Соединение и ожидание замера -->
+    <string name="tono_connecting">Соединяюсь с «%1$s»…</string>
+    <string name="tono_connecting_unnamed">Соединяюсь с тонометром…</string>
+    <string name="tono_pairing_hint">Если телефон предложит связать устройства, согласитесь.</string>
+    <string name="tono_waiting_title">Нажмите кнопку на тонометре</string>
+    <string name="tono_waiting_hint">Тонометр передаст последний замер. Подожду до полутора минут.</string>
+    <string name="tono_receiving">Принимаю замер…</string>
+
+    <!-- Ошибки: что случилось и что делать -->
+    <string name="tono_err_nobt_title">Bluetooth недоступен</string>
+    <string name="tono_err_nobt_hint">Этот телефон не умеет соединяться с устройствами Bluetooth LE. Введите числа руками, с фото или голосом.</string>
+    <string name="tono_err_off_title">Bluetooth выключен</string>
+    <string name="tono_err_off_hint">Включите Bluetooth, чтобы принять замер с тонометра.</string>
+    <string name="tono_err_perm_title">Нужен доступ к Bluetooth</string>
+    <string name="tono_err_perm_hint">Приложение ищет тонометр рядом и соединяется с ним. Местоположение не используется, ничего никуда не отправляется.</string>
+    <string name="tono_err_perm_hint_legacy">До Android 12 система скрывает устройства Bluetooth рядом от программ без доступа к местоположению. Приложение не узнаёт и не хранит, где вы.</string>
+    <string name="tono_err_perm_blocked">Система больше не спросит — разрешите доступ в настройках приложения.</string>
+    <string name="tono_err_loc_title">Геолокация выключена</string>
+    <string name="tono_err_loc_hint">До Android 12 система находит устройства Bluetooth только при включённой геолокации. Приложение её не использует.</string>
+    <string name="tono_err_scan_title">Поиск не запустился</string>
+    <string name="tono_err_scan_hint">Подождите полминуты и повторите.</string>
+    <string name="tono_err_notfound_title">Тонометр не найден</string>
+    <string name="tono_err_notfound_hint">Проверьте, что тонометр включён и рядом, и нажмите на нём кнопку Bluetooth. Он должен поддерживать стандартный профиль давления Bluetooth.</string>
+    <string name="tono_err_unsupported_title">Тонометр не поддерживается</string>
+    <string name="tono_err_unsupported_hint">У устройства нет стандартной службы давления Bluetooth, поэтому приложение не может его прочитать. Введите числа руками, с фото или голосом.</string>
+    <string name="tono_err_lost_title">Нет связи с тонометром</string>
+    <string name="tono_err_lost_hint">Тонометр не соединился или отключился. Поднесите телефон ближе и повторите.</string>
+    <string name="tono_err_timeout_title">Замер не пришёл</string>
+    <string name="tono_err_timeout_hint">За полторы минуты тонометр ничего не передал. Сделайте замер или нажмите на нём кнопку Bluetooth и повторите.</string>
+</resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Тонометр по Bluetooth (этап 0.7, макет — экран 26, кнопка «Тонометр»); ключи те же в values-ru -->
+
+    <!-- Кнопка на экране ввода -->
+    <string name="tono_button">Monitor</string>
+    <string name="tono_button_desc">Get the reading from the monitor via Bluetooth</string>
+
+    <!-- Лист -->
+    <string name="tono_title">Blood pressure monitor</string>
+    <string name="tono_cancel">Cancel</string>
+    <string name="tono_close">Close</string>
+    <string name="tono_forget">Forget this monitor</string>
+    <string name="tono_retry">Try again</string>
+    <string name="tono_search_again">Search again</string>
+    <string name="tono_open_settings">Open settings</string>
+    <string name="tono_allow">Allow</string>
+    <string name="tono_turn_on">Turn on</string>
+
+    <!-- Поиск -->
+    <string name="tono_searching">Looking for the monitor…</string>
+    <string name="tono_searching_mine">Looking for your monitor…</string>
+    <string name="tono_search_hint">Switch the monitor on and press its Bluetooth button, or take a reading. Keep the phone close.</string>
+    <string name="tono_search_done">The search is over. Pick the monitor from the list.</string>
+    <string name="tono_search_done_mine">Your monitor was not found. Pick another one or search again.</string>
+    <string name="tono_found">Found nearby</string>
+    <string name="tono_remembered">Your monitor</string>
+    <string name="tono_no_name">Monitor without a name</string>
+    <string name="tono_signal_strong">Strong signal</string>
+    <string name="tono_signal_medium">Medium signal</string>
+    <string name="tono_signal_weak">Weak signal</string>
+
+    <!-- Соединение и ожидание замера -->
+    <string name="tono_connecting">Connecting to “%1$s”…</string>
+    <string name="tono_connecting_unnamed">Connecting to the monitor…</string>
+    <string name="tono_pairing_hint">If the phone offers to pair the devices, agree.</string>
+    <string name="tono_waiting_title">Press the button on the monitor</string>
+    <string name="tono_waiting_hint">The monitor will send its last reading. I will wait up to a minute and a half.</string>
+    <string name="tono_receiving">Receiving the reading…</string>
+
+    <!-- Ошибки: что случилось и что делать -->
+    <string name="tono_err_nobt_title">Bluetooth is not available</string>
+    <string name="tono_err_nobt_hint">This phone cannot connect to Bluetooth LE devices. Enter the numbers by hand, from a photo or by voice.</string>
+    <string name="tono_err_off_title">Bluetooth is off</string>
+    <string name="tono_err_off_hint">Turn Bluetooth on to receive a reading from the monitor.</string>
+    <string name="tono_err_perm_title">Bluetooth access is needed</string>
+    <string name="tono_err_perm_hint">The app looks for the monitor nearby and connects to it. Your location is not used, nothing is sent anywhere.</string>
+    <string name="tono_err_perm_hint_legacy">Before Android 12 the system hides nearby Bluetooth devices from apps without location access. The app does not learn or store where you are.</string>
+    <string name="tono_err_perm_blocked">The system will not ask again — allow it in the app settings.</string>
+    <string name="tono_err_loc_title">Location is off</string>
+    <string name="tono_err_loc_hint">Before Android 12 the system finds Bluetooth devices only while location is on. The app does not use your location.</string>
+    <string name="tono_err_scan_title">The search did not start</string>
+    <string name="tono_err_scan_hint">Wait half a minute and try again.</string>
+    <string name="tono_err_notfound_title">Monitor not found</string>
+    <string name="tono_err_notfound_hint">Check that the monitor is on and close, and press its Bluetooth button. It must support the standard Bluetooth blood pressure profile.</string>
+    <string name="tono_err_unsupported_title">Monitor not supported</string>
+    <string name="tono_err_unsupported_hint">The device does not offer the standard Bluetooth blood pressure service, so the app cannot read it. Enter the numbers by hand, from a photo or by voice.</string>
+    <string name="tono_err_lost_title">No connection to the monitor</string>
+    <string name="tono_err_lost_hint">The monitor did not connect or disconnected. Move the phone closer and try again.</string>
+    <string name="tono_err_timeout_title">No reading received</string>
+    <string name="tono_err_timeout_hint">The monitor sent nothing in a minute and a half. Take a reading or press the Bluetooth button on it, then try again.</string>
+</resources>
