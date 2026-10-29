@@ -8,7 +8,14 @@ import java.time.temporal.ChronoUnit
 enum class ProfileKind { Person, Cat, Dog, Other }
 
 /** Профиль: «Я», «Мама», кот Барсик. У каждого лекарства — свой профиль; первый — «Я». */
-data class Profile(val id: Long, val name: String, val kind: ProfileKind, val weightKg: Double? = null)
+data class Profile(
+    val id: Long,
+    val name: String,
+    val kind: ProfileKind,
+    val weightKg: Double? = null,
+    /** Копия чужого расписания по QR (этап 0.8, макет экран 12): видно, но напоминаний и отметок нет. */
+    val watchOnly: Boolean = false,
+)
 
 /**
  * Место укола (макет, экраны 3, 17–18, 44–49). Подкожно — живот, бёдра, плечи; в мышцу — ягодицы и бёдра; у питомцев —

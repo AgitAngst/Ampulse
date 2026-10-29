@@ -1,5 +1,6 @@
 package io.github.agitangst.ampulse.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -20,12 +21,16 @@ data class ProfileEntity(
     val kind: String,
     val weightKg: Double?,
     val createdAt: Long,
+    @ColumnInfo(defaultValue = "0") val watchOnly: Boolean = false,
 )
 
 @Dao
 interface ProfileDao {
     @Query("SELECT * FROM profile ORDER BY createdAt")
     fun all(): Flow<List<ProfileEntity>>
+
+    @Query("SELECT * FROM profile ORDER BY createdAt")
+    suspend fun allNow(): List<ProfileEntity>
 
     @Upsert
     suspend fun upsert(p: ProfileEntity): Long
@@ -45,7 +50,7 @@ interface ProfileDao {
 }
 
 object CareCodec {
-    fun profile(e: ProfileEntity) = Profile(e.id, e.name, ProfileKind.entries.firstOrNull { it.name == e.kind } ?: ProfileKind.Other, e.weightKg)
+    fun profile(e: ProfileEntity) = Profile(e.id, e.name, ProfileKind.entries.firstOrNull { it.name == e.kind } ?: ProfileKind.Other, e.weightKg, e.watchOnly)
 
-    fun entity(p: Profile, createdAt: Long) = ProfileEntity(p.id, p.name.trim(), p.kind.name, p.weightKg, createdAt)
+    fun entity(p: Profile, createdAt: Long) = ProfileEntity(p.id, p.name.trim(), p.kind.name, p.weightKg, createdAt, p.watchOnly)
 }
