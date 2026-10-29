@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import io.github.agitangst.ampulse.reminders.RemindersSection
 import io.github.agitangst.ampulse.ui.RoutineSection
 import io.github.agitangst.ampulse.ui.MedIcons
+import io.github.agitangst.ampulse.ui.ShotRulesLink
 import io.github.agitangst.anvil.compose.AboutCard
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.compose.AnvilTheme
@@ -57,6 +58,7 @@ fun SettingsScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     onProfiles: (() -> Unit)? = null,
+    onShotRules: (() -> Unit)? = null,
 ) {
     val about = Store.about()
     Column(
@@ -76,6 +78,7 @@ fun SettingsScreen(
             style = screenTitleStyle(30),
         )
         if (onProfiles != null) ProfilesLink(onProfiles)
+        if (onShotRules != null) ShotRulesLink(onShotRules)
         RemindersSection()
         RoutineSection()
         AppearanceSection(settings)

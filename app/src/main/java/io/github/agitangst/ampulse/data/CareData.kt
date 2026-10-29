@@ -27,6 +27,9 @@ interface ProfileDao {
     @Query("SELECT * FROM profile ORDER BY createdAt")
     fun all(): Flow<List<ProfileEntity>>
 
+    @Query("SELECT * FROM profile WHERE id = :id")
+    suspend fun get(id: Long): ProfileEntity?
+
     @Upsert
     suspend fun upsert(p: ProfileEntity): Long
 

@@ -127,7 +127,9 @@ fun ImportScreen(nav: Nav) {
     var routineOpen by rememberSaveable { mutableStateOf(false) }
     var busy by remember { mutableStateOf(false) }
     var routine by remember { mutableStateOf(RoutineStore.load(context)) }
-    val medicines by remember { repo.medicines }.collectAsState(initial = emptyList())
+    // «Изменение дозы» — только среди лекарств выбранного профиля; новые лекарства — тоже ему.
+    val all by remember { repo.medicines }.collectAsState(initial = emptyList())
+    val medicines = remember(all, CurrentProfile.id) { all.filter { it.profileId == CurrentProfile.id } }
 
     val parsed = remember(text) { Prescription.parseAll(text) }
     val rows = remember(parsed, removed, answers, medicines) { reviewRows(parsed, removed, answers, medicines) }
@@ -168,9 +170,10 @@ fun ImportScreen(nav: Nav) {
         scope.launch {
             try {
                 // Список перечитывается заново: совпадение с лекарством должно быть по состоянию на сейчас.
-                val current = repo.medicines.first()
+                val profileId = CurrentProfile.id
+                val current = repo.medicines.first().filter { it.profileId == profileId }
                 val ready = reviewRows(parsed, removed, answers, current).mapNotNull { planFor(it, start, routine, texts::unitFor) }
-                ready.forEach { repo.save(it.medicine, it.plan) }
+                ready.forEach { repo.save(if (it.medicine.id == 0L) it.medicine.copy(profileId = profileId) else it.medicine, it.plan) }
                 Toast.makeText(context, texts.plural(R.plurals.import_saved, ready.size, ready.size), Toast.LENGTH_LONG).show()
                 nav.back()
             } catch (e: CancellationException) {

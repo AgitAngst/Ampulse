@@ -116,7 +116,11 @@ class Repository(private val db: AmpulseDb, private val onChange: ChangeListener
     /** Профили кроме «Я» (профиль 0 — без строки, см. `ProfileEntity`). */
     val profiles: Flow<List<Profile>> = db.profiles().all().map { l -> l.map(CareCodec::profile) }
 
-    suspend fun saveProfile(p: Profile): Long = db.profiles().upsert(CareCodec.entity(p, System.currentTimeMillis())).let { if (p.id == 0L) it else p.id }
+    /** Новый или правка; у правки порядок в списке (время создания) не меняется. */
+    suspend fun saveProfile(p: Profile): Long {
+        val createdAt = db.profiles().get(p.id)?.createdAt ?: System.currentTimeMillis()
+        return db.profiles().upsert(CareCodec.entity(p, createdAt)).let { if (p.id == 0L) it else p.id }
+    }
 
     /** Удалить профиль вместе с его лекарствами и историей. «Я» (0) не удаляется. */
     suspend fun deleteProfile(id: Long) {

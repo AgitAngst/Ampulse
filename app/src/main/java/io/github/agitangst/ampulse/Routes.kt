@@ -122,7 +122,9 @@ class Nav(private val push: (Route) -> Unit, private val pop: () -> Unit, privat
 @Composable
 fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
     when (route) {
-        Route.Settings -> SettingsScreen(settings, onBack = nav::back)
+        Route.Settings -> SettingsScreen(
+            settings, onBack = nav::back, onProfiles = { nav.open(Route.Profiles) }, onShotRules = { nav.open(Route.ShotRules) },
+        )
         is Route.MedicineEdit -> MedicineEditScreen(route.id, nav)
         is Route.AsNeeded -> AsNeededScreen(route.medicineId, nav)
         is Route.Stock -> StockDetailScreen(route.medicineId, nav)
