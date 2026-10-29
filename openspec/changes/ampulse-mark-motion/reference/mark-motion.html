@@ -1,0 +1,44 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ampulse — анимации значка</title>
+<style>
+:root{--bg:#f4f5f5;--fg:#1d1d20;--card:#fff;--line:#d9dcdc;--acc:#0B6B63}
+@media(prefers-color-scheme:dark){:root{--bg:#161618;--fg:#e8e8ea;--card:#222226;--line:#38383d;--acc:#4FBFB0}}
+body{margin:0;padding:24px 16px;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,sans-serif}
+main{max-width:720px;margin:auto}h1{font-size:22px;margin:0 0 4px}p{margin:0 0 16px;color:inherit;opacity:.8}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:16px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+svg{width:160px;height:160px;flex:none}.t{flex:1;min-width:200px}.t b{display:block}
+button{font:inherit;padding:8px 16px;border-radius:10px;border:2px solid var(--acc);background:none;color:var(--fg);cursor:pointer;margin-top:8px}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+</style>
+<main><h1>Ampulse — анимации значка</h1><p>Жидкость и пульс. Все движения — это уровень и пик жидкости; значок не прыгает и не вращается. При «уменьшить движение» — показывается финальный кадр.</p>
+<div id="list"></div></main>
+<script>
+const BG='<path id="bg" d="M 601.62 0 c 147.85 0 221.77 0 278.24 28.77 a 263.99 263.99 0 0 1 115.37 115.37 c 28.77 56.47 28.77 130.39 28.77 278.24 L 1024 601.62 c 0 147.85 0 221.77 -28.77 278.24 a 263.99 263.99 0 0 1 -115.37 115.37 c -56.47 28.77 -130.39 28.77 -278.24 28.77 L 422.38 1024 c -147.85 0 -221.77 0 -278.24 -28.77 a 263.99 263.99 0 0 1 -115.37 -115.37 c -28.77 -56.47 -28.77 -130.39 -28.77 -278.24 L 0 422.38 c 0 -147.85 0 -221.77 28.77 -278.24 a 263.99 263.99 0 0 1 115.37 -115.37 c 56.47 -28.77 130.39 -28.77 278.24 -28.77 Z" fill="#2A2A2E"/>'.replace(/^<path/,'<path');
+const AMP='M464 240 Q464 190 512 190 Q560 190 560 240 L560 340 C560 410 702 400 702 520 L702 640 A190 190 0 0 1 322 640 L322 520 C322 400 464 410 464 340 Z';
+const eo=t=>1-Math.pow(1-t,3), back=t=>{const c=1.70158+1;return 1+c*Math.pow(t-1,3)+1.70158*Math.pow(t-1,2)};
+const clamp=t=>Math.max(0,Math.min(1,t));
+function liquid(L,a){return 'M322 '+L+' L400 '+L+' L474 '+(L-150*a)+' L552 '+(L+130*a)+' L612 '+L+' L702 '+L+' L702 900 L322 900 Z'}
+// кадр -> {level, amp}
+const beat=t=>{ // t 0..1: резкий пик и возврат
+  if(t<.18)return eo(t/.18); if(t<.5)return 1-eo((t-.18)/.32)*1.15+.0; return Math.max(-0,(1-1.15)+(eo((t-.5)/.5))*.15)};
+const scenes=[
+ {n:'Запуск',d:'1,3 с. Жидкость поднимается от дна до уровня, поверхность ровная; в конце один удар пульса (пик вырастает с лёгким перелётом). Один раз при открытии приложения.',dur:1300,
+  f:t=>({L:900-(900-590)*eo(clamp(t/.7)),a:t<.7?0:back(clamp((t-.7)/.3))})},
+ {n:'Ожидание (загрузка, импорт)',d:'Бесконечно, 1,6 с на цикл: удар — пик быстро растёт и спадает, дальше покой. Уровень не меняется. Для долгих операций, не для обычных экранов.',dur:1600,loop:1,
+  f:t=>({L:590,a:Math.max(0,t<.12?eo(t/.12):t<.4?1-eo((t-.12)/.28):0)})},
+ {n:'Готово (приём отмечен, отчёт собран)',d:'0,9 с. Уровень поднимается на 24 единицы выше, пик один раз вспыхивает и гасится; значок остаётся с чуть большим уровнем 0,3 с и возвращается.',dur:900,
+  f:t=>({L:590-24*Math.sin(Math.PI*clamp(t)),a:t<.5?eo(t/.25>1?1:t/.25)*(1-clamp((t-.25)/.25)):0})}
+];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const list=document.getElementById('list');
+scenes.forEach((s,i)=>{
+ list.insertAdjacentHTML('beforeend','<div class="card"><svg viewBox="0 0 1024 1024" role="img" aria-label="'+s.n+'">'+BG+'<defs><clipPath id="c'+i+'"><path d="'+AMP+'"/></clipPath></defs><path d="'+AMP+'" fill="#E8E8EA"/><path id="l'+i+'" fill="#4FBFB0" clip-path="url(#c'+i+')"/></svg><div class="t"><b>'+s.n+'</b>'+s.d+'<br><button id="b'+i+'">Повторить</button></div></div>');
+ const p=document.getElementById('l'+i);
+ const draw=t=>{const r=s.f(t);p.setAttribute('d',liquid(r.L,r.a))};
+ let raf;
+ const run=()=>{cancelAnimationFrame(raf);if(reduce){draw(1);return}const t0=performance.now();
+  const step=n=>{let t=(n-t0)/s.dur;if(s.loop)t%=1;else t=clamp(t);draw(s.loop?t:t);if(s.loop||t<1)raf=requestAnimationFrame(step);else draw(s.n=='Запуск'?1:1)};raf=requestAnimationFrame(step)};
+ document.getElementById('b'+i).onclick=run;
+ if(i==2){draw(1)}else run();
+});
+</script></html>

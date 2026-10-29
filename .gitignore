@@ -10,3 +10,6 @@ local.properties
 keystore.properties
 *.jks
 *.keystore
+
+# Архив ключа выпуска — не в репозиторий
+Ampulse_release_key.zip
