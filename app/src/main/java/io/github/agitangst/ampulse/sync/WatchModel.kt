@@ -255,6 +255,12 @@ data class WatchCache(
         hidden = hidden + id,
     )
 
+    /**
+     * Снять пометку «убран» со всех: код приглашения оказался валидным, доступ к профилю жив — значит, его убрали
+     * с этого телефона раньше. Каждый ждёт выгрузки с начала; профиль без доступа не вернётся (журнал его не назовёт).
+     */
+    fun restoredHidden(): WatchCache = copy(pending = pending + hidden, hidden = emptySet())
+
     /** Приёмы старше [keepFrom] (секунды) забываются: показывается только сегодняшний день. */
     fun pruned(keepFrom: Long): WatchCache = copy(intakes = intakes.filterValues { it.plannedAt >= keepFrom })
 

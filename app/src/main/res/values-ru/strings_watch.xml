@@ -36,6 +36,8 @@
     <string name="watch_to_list">К списку</string>
     <string name="watch_done_title">Профиль «%1$s» добавлен</string>
     <string name="watch_done_text">Он появится в «Сегодня» — выберите его в переключателе профилей.</string>
+    <string name="watch_restored_title">Профиль «%1$s» снова в списке</string>
+    <string name="watch_restored_many">Убранные профили снова в списке</string>
     <string name="watch_e_not_found">Код не подошёл: он неверный, истёк, отозван или уже использован.</string>
     <string name="watch_e_have">Этот профиль у вас уже есть.</string>
     <string name="watch_e_too_many">Слишком много попыток. Повторите примерно через %1$d мин.</string>

@@ -34,6 +34,8 @@
     <string name="watch_to_list">To the list</string>
     <string name="watch_done_title">The profile “%1$s” was added</string>
     <string name="watch_done_text">It shows up in Today — pick it in the profile switcher.</string>
+    <string name="watch_restored_title">The profile “%1$s” is back in the list</string>
+    <string name="watch_restored_many">The removed profiles are back in the list</string>
     <string name="watch_e_not_found">The code did not work: it is wrong, expired, revoked or already used.</string>
     <string name="watch_e_have">You already have this profile.</string>
     <string name="watch_e_too_many">Too many attempts. Try again in about %1$d min.</string>

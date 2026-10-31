@@ -347,6 +347,8 @@ fun WatchCodeScreen(nav: Nav) {
     var result by remember { mutableStateOf<ServerWatch.Accepted?>(null) }
     val ready = WatchCodes.isComplete(code)
     val added = result as? ServerWatch.Accepted.Added
+    val restored = result as? ServerWatch.Accepted.Restored
+    val succeeded = added != null || restored != null
 
     fun accept() {
         if (!ready || working) return
@@ -375,7 +377,7 @@ fun WatchCodeScreen(nav: Nav) {
                 color = p.text,
                 style = screenTitleStyle(30),
             )
-            if (added != null) {
+            if (succeeded) {
                 Column(
                     Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(p.card).padding(horizontal = 16.dp, vertical = 24.dp)
                         .semantics(mergeDescendants = true) {},
@@ -386,7 +388,9 @@ fun WatchCodeScreen(nav: Nav) {
                         Icon(TodayIcons.Check, contentDescription = null, modifier = Modifier.size(24.dp), tint = p.accentText)
                     }
                     Text(
-                        stringResource(R.string.watch_done_title, added.name),
+                        if (added != null) stringResource(R.string.watch_done_title, added.name)
+                        else if (restored!!.names.size == 1) stringResource(R.string.watch_restored_title, restored.names.first())
+                        else stringResource(R.string.watch_restored_many),
                         color = p.text,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
@@ -425,7 +429,7 @@ fun WatchCodeScreen(nav: Nav) {
         }
         Box(Modifier.fillMaxWidth().height(1.dp).background(p.border))
         Column(Modifier.fillMaxWidth().background(p.bg).padding(start = 20.dp, top = 12.dp, end = 20.dp, bottom = 20.dp)) {
-            if (added != null) {
+            if (succeeded) {
                 MedMainButton(stringResource(R.string.watch_to_list), onClick = nav::back)
             } else {
                 MedMainButton(
@@ -440,6 +444,7 @@ fun WatchCodeScreen(nav: Nav) {
 
 private fun acceptText(context: Context, r: ServerWatch.Accepted): String = when (r) {
     is ServerWatch.Accepted.Added -> ""
+    is ServerWatch.Accepted.Restored -> ""
     ServerWatch.Accepted.NotFound -> context.getString(R.string.watch_e_not_found)
     ServerWatch.Accepted.AlreadyHave -> context.getString(R.string.watch_e_have)
     is ServerWatch.Accepted.TooMany -> context.getString(R.string.watch_e_too_many, maxOf(1, (r.retryAfterSecs + 59) / 60))

@@ -33,6 +33,9 @@ object ServerWatch {
     /** Итог приёма кода приглашения. */
     sealed interface Accepted {
         data class Added(val name: String) : Accepted
+
+        /** Код валиден, но профиль уже открыт: убранные раньше профили вернулись в список ([names] — какие). */
+        data class Restored(val names: List<String> = emptyList(), val waitedIds: Set<String> = emptySet()) : Accepted
         data object NotFound : Accepted
         data object AlreadyHave : Accepted
         data class TooMany(val retryAfterSecs: Int) : Accepted
@@ -138,7 +141,8 @@ object ServerWatch {
 
     /**
      * Принять код приглашения. Успех — профиль добавлен (и сразу выгружен, если связь позволила), прежняя пометка
-     * «убран» снимается.
+     * «убран» снимается. Конфликт (код валиден, доступ уже есть) при живых «убранных» — тоже успех: пометка
+     * снимается со всех, профили с доступом возвращаются в список.
      */
     suspend fun accept(code: String): Accepted {
         if (!available) return Accepted.Other("unavailable")
@@ -159,7 +163,13 @@ object ServerWatch {
                         e.kind == SyncFailure.Kind.RateLimited -> Accepted.TooMany(e.retryAfterSecs ?: 0)
                         e.kind == SyncFailure.Kind.NoConnection -> Accepted.NoConnection
                         e.kind == SyncFailure.Kind.Rejected && e.code == "not_found" -> Accepted.NotFound
-                        e.kind == SyncFailure.Kind.Rejected && e.code == "conflict" -> Accepted.AlreadyHave
+                        e.kind == SyncFailure.Kind.Rejected && e.code == "conflict" ->
+                            if (_state.value.cache.hidden.isEmpty()) Accepted.AlreadyHave
+                            else {
+                                val waited = _state.value.cache.hidden
+                                publish(_state.value.cache.restoredHidden(), busy = false)
+                                Accepted.Restored(waitedIds = waited)
+                            }
                         else -> Accepted.Other(e.code ?: e.kind.name)
                     }
                 }
@@ -168,6 +178,14 @@ object ServerWatch {
         if (result is Accepted.Added) {
             lastAttemptAt = 0
             refresh()
+        }
+        if (result is Accepted.Restored) {
+            lastAttemptAt = 0
+            // Дожидаемся обновления: профили с живым доступом вернутся в список, без доступа — нет.
+            runCatching { runRefresh() }
+            val cache = _state.value.cache
+            val names = result.waitedIds.sorted().mapNotNull { cache.profiles[it]?.name }
+            return Accepted.Restored(names)
         }
         return result
     }

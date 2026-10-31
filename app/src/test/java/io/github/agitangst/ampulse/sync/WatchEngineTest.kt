@@ -239,6 +239,28 @@ class WatchEngineTest {
     }
 
     @Test
+    fun conflictWithHiddenProfilesRestoresThem() = FakeServer().use { server ->
+        demo(server)
+        val first = refresh(server)
+        // Оба профиля убрали; код по «Маме» валиден, но доступ уже есть — конфликт.
+        val hidden = first.removed("prof-mama-0001").removed("prof-cat-0001")
+        val restoring = hidden.restoredHidden()
+        assertTrue(restoring.hidden.isEmpty())
+        assertEquals(setOf("prof-mama-0001", "prof-cat-0001"), restoring.pending)
+        val loaded = refresh(server, restoring)
+        assertEquals(setOf("prof-mama-0001", "prof-cat-0001"), loaded.shown.map { it.id }.toSet())
+        assertTrue("int-mama-01" in loaded.intakes)
+        assertTrue("int-cat-001" in loaded.intakes)
+        assertTrue(loaded.pending.isEmpty())
+        // У убранного без доступа пометку сняли, но профиль не вернулся.
+        val revoked = first.removed("prof-mama-0001")
+        server.unshare("prof-mama-0001")
+        val afterRevoke = refresh(server, revoked.restoredHidden())
+        assertTrue(afterRevoke.hidden.isEmpty())
+        assertTrue("prof-mama-0001" !in afterRevoke.profiles)
+    }
+
+    @Test
     fun acceptFailuresAreTold() = FakeServer().use { server ->
         server.share("prof-mama-0001", "Мама", "viewer")
         server.offer("prof-mama-0001", "Мама", "AAAAAAAAAAAA")
