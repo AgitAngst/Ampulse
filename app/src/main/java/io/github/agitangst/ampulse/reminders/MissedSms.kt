@@ -7,6 +7,7 @@ import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.R
 import io.github.agitangst.ampulse.data.Codec
 import io.github.agitangst.ampulse.domain.FamilyTexts
+import io.github.agitangst.ampulse.relay.RelaySync
 import io.github.agitangst.ampulse.ui.FamilyPhone
 import kotlinx.coroutines.flow.first
 import java.time.LocalDateTime
@@ -46,6 +47,8 @@ internal object MissedSms {
             if (SmsOut.deliver(app, contact.name, FamilyPhone.clean(contact.phone), text)) sent++
         }
         Log.i(TAG, "Missed-dose SMS for medicine ${dose.medicineId}: $sent of ${recipients.size} sent")
+        // Ретранслятор идёт рядом с SMS (openspec: relay-client): получателям без SMS — свой сервер.
+        RelaySync.onMissed(medicine, dose, who)
     }
 
     /**

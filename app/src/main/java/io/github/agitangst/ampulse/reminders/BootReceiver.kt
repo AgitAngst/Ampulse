@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import io.github.agitangst.ampulse.AppGraph
+import io.github.agitangst.ampulse.relay.RelaySync
 import io.github.agitangst.ampulse.ui.EmergencyNotice
 
 /**
@@ -21,6 +22,7 @@ class BootReceiver : BroadcastReceiver() {
         goAsyncIo("Rescheduling after $action") {
             AppGraph.reminders.rescheduleNow()
             EmergencyNotice.syncNow(context)
+            RelaySync.tick()
         }
     }
 

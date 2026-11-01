@@ -124,6 +124,7 @@ dependencies {
     implementation(libs.mlkit.barcode)
     implementation(libs.tesseract)
     implementation(libs.zxing.core)
+    implementation(libs.tink)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)

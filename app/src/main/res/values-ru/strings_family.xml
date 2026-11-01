@@ -106,4 +106,37 @@
     <string name="family_scan_update_btn">Обновить копию</string>
     <string name="family_scan_again">Сканировать ещё</string>
     <string name="family_scan_failed">Не удалось сохранить копию. Попробуйте ещё раз.</string>
+
+    <!-- Уведомления близким через свой ретранслятор (relay-client, сборка github) -->
+    <string name="relay_channel">Близкие</string>
+    <string name="relay_channel_desc">Пропуски приёмов тех, о ком вы заботитесь, через свой сервер-ретранслятор</string>
+    <string name="relay_notify_title">Пропущен приём</string>
+    <string name="relay_notify_text">%1$s: %2$s — было назначено на %3$s</string>
+    <string name="relay_row_title">Уведомления через свой сервер</string>
+    <string name="relay_row_off">Необязательно: пропуск приёма дойдёт до близкого без SMS — через свой сервер-ретранслятор</string>
+    <string name="relay_title">Уведомления через свой сервер</string>
+    <string name="relay_intro">Необязательный свой сервер-ретранслятор: пропуск важного приёма уходит тому, кто заботится, — зашифрованным, без SMS. Сервер хранит только шифртекст. Пока телефоны не знакомы по QR-коду ниже, ничего не отправляется.</string>
+    <string name="relay_owner_heading">Вы заботитесь о ком-то</string>
+    <string name="relay_owner_intro">Введите адрес и отпечаток сертификата своего ретранслятора (они на его странице состояния). Пропуск приёма будет уходить на знакомый телефон.</string>
+    <string name="relay_address">Адрес сервера</string>
+    <string name="relay_fingerprint">Отпечаток сертификата (SHA-256)</string>
+    <string name="relay_pair">Создать пару</string>
+    <string name="relay_pairing">Создаём…</string>
+    <string name="relay_listener_heading">Вы заботитесь о человеке</string>
+    <string name="relay_listener_intro">Попросите показать QR знакомства и отсканируйте его — пропуски его приёмов будут приходить сюда.</string>
+    <string name="relay_scan">Сканировать QR знакомства</string>
+    <string name="relay_scan_failed">Это не код знакомства Ampulse.</string>
+    <string name="relay_state_owner">Знакомство есть · отправляем пропуски</string>
+    <string name="relay_state_listener">Знакомство есть · ждём уведомления</string>
+    <string name="relay_check_now">Проверить сейчас</string>
+    <string name="relay_last_check">Проверено: %1$s</string>
+    <string name="relay_error">Последняя проверка не удалась (%1$s). Повторим через 15 минут.</string>
+    <string name="relay_notices">Последние уведомления</string>
+    <string name="relay_no_notices">Уведомлений пока нет. Они появятся, когда знакомый телефон сообщит о пропуске приёма.</string>
+    <string name="relay_forget">Забыть эту пару</string>
+    <string name="relay_forget_title">Забыть пару?</string>
+    <string name="relay_forget_text">Уведомления перестанут приходить; чтобы вернуть, знакомство нужно пройти заново с новым QR. На сервере не остаётся ничего читаемого.</string>
+    <string name="relay_qr_title">QR знакомства</string>
+    <string name="relay_qr_hint">Отсканируйте на телефоне, который должен получать уведомления</string>
+    <string name="relay_pair_failed">Сервер не ответил. Проверьте адрес и отпечаток.</string>
 </resources>

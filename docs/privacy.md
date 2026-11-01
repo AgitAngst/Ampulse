@@ -33,6 +33,11 @@ Ampulse — помощник по приёму лекарств, уколам и
   Они хранятся только в приватной памяти приложения на этом телефоне, показываются только для просмотра и никуда дальше не
   передаются. «Убрать» стирает профиль с телефона (у владельца и на сервере ничего не меняется); «Выйти» стирает с телефона
   все чужие профили. Кто и чем с вами делится, решает владелец профиля на сервере.
+- **Уведомления близким через свой ретранслятор (необязательно, только сборка с GitHub, выключено по умолчанию).**
+  Если вы познакомили телефоны по QR-коду, приложение отправляет на ваш сервер-ретранслятор зашифрованное сообщение о
+  пропущенном важном приёме (название лекарства, время, имя профиля), а телефон близкого забирает его оттуда. Сервер
+  хранит только шифртекст — ключ есть только на двух телефонах; подтверждённые сообщения стираются, неподтверждённые
+  живут 7 дней. SMS о пропуске при этом остаются как были.
 
 **Сеть.** Сборки RuStore и Google Play не обращаются в интернет вообще (разрешения на сеть в них нет). Сборка с GitHub
 обращается к GitHub, чтобы узнать, нет ли новой версии (запрос без ваших данных; проверку можно выключить в
@@ -83,6 +88,11 @@ cloud backup; a device-to-device transfer made with Android tools moves the data
   the app's private storage on this phone, shown view-only, and not passed anywhere else. Remove deletes the profile from the
   phone (nothing changes for the owner or on the server); Sign out deletes all other people's profiles from the phone. Who
   shares what with you is up to the profile's owner on the server.
+- **Family alerts via your own relay (optional, GitHub build only, off by default).** If you paired the phones
+  with a QR code, the app sends an encrypted message about a missed important dose (medicine name, time, profile name)
+  to your relay server, and the family member's phone picks it up. The server stores only ciphertext — the key exists
+  only on the two phones; acknowledged messages are erased, unacknowledged ones live for 7 days. Missed-dose SMS stays
+  as it was.
 
 **Network.** The RuStore and Google Play builds do not use the internet at all (they have no network permission). The
 GitHub build contacts GitHub to check for a newer version (no personal data in the request; the check can be turned off

@@ -59,6 +59,7 @@ import io.github.agitangst.ampulse.AppGraph
 import io.github.agitangst.ampulse.Nav
 import io.github.agitangst.ampulse.PageLayout
 import io.github.agitangst.ampulse.R
+import io.github.agitangst.ampulse.relay.RelaySync
 import io.github.agitangst.ampulse.Route
 import io.github.agitangst.ampulse.Store
 import io.github.agitangst.ampulse.TabHeader
@@ -190,6 +191,11 @@ fun FamilyTab(nav: Nav, modifier: Modifier = Modifier) {
                         sub = stringResource(R.string.family_qr_scan_sub),
                         onClick = { nav.open(Route.CareScan) },
                     )
+                }
+
+                // Уведомления близким через свой ретранслятор (relay-client): только сборка github.
+                if (RelaySync.available) {
+                    RelayRow(onClick = { nav.open(Route.Relay) })
                 }
 
                 // Копии чужих расписаний: касание — сделать профиль текущим.

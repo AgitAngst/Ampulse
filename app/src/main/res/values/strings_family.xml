@@ -104,4 +104,37 @@
     <string name="family_scan_update_btn">Update copy</string>
     <string name="family_scan_again">Scan again</string>
     <string name="family_scan_failed">Could not save the copy. Try again.</string>
+
+    <!-- Уведомления близким через свой ретранслятор (relay-client, сборка github) -->
+    <string name="relay_channel">Family alerts</string>
+    <string name="relay_channel_desc">Missed doses from the people you care for, through your own relay server</string>
+    <string name="relay_notify_title">Missed dose</string>
+    <string name="relay_notify_text">%1$s: %2$s — planned at %3$s</string>
+    <string name="relay_row_title">Alerts via your own server</string>
+    <string name="relay_row_off">Optional: a missed dose reaches family without SMS — through your own relay server</string>
+    <string name="relay_title">Alerts via your own server</string>
+    <string name="relay_intro">An optional relay server of your own: a missed important dose goes to the person who cares for you — encrypted, without SMS. The server stores only ciphertext. Nothing is sent until you pair the phones with the QR code below.</string>
+    <string name="relay_owner_heading">You care for someone</string>
+    <string name="relay_owner_intro">Enter the address and certificate fingerprint of your relay server (from its status page). A missed dose is then sent to the paired phone.</string>
+    <string name="relay_address">Server address</string>
+    <string name="relay_fingerprint">Certificate fingerprint (SHA-256)</string>
+    <string name="relay_pair">Create the pair</string>
+    <string name="relay_pairing">Creating…</string>
+    <string name="relay_listener_heading">You care for a person</string>
+    <string name="relay_listener_intro">Ask them to show the pairing QR and scan it — alerts about their missed doses will arrive here.</string>
+    <string name="relay_scan">Scan the pairing QR</string>
+    <string name="relay_scan_failed">This is not an Ampulse pairing code.</string>
+    <string name="relay_state_owner">Paired · sending missed doses</string>
+    <string name="relay_state_listener">Paired · listening for alerts</string>
+    <string name="relay_check_now">Check now</string>
+    <string name="relay_last_check">Checked: %1$s</string>
+    <string name="relay_error">Last check failed (%1$s). Will retry in 15 minutes.</string>
+    <string name="relay_notices">Recent alerts</string>
+    <string name="relay_no_notices">No alerts yet. They appear when a paired phone reports a missed dose.</string>
+    <string name="relay_forget">Forget this pair</string>
+    <string name="relay_forget_title">Forget the pair?</string>
+    <string name="relay_forget_text">Alerts stop coming; to bring them back, pair the phones again with a new QR. The server keeps nothing readable.</string>
+    <string name="relay_qr_title">Pairing QR</string>
+    <string name="relay_qr_hint">Scan this on the phone that should receive the alerts</string>
+    <string name="relay_pair_failed">Could not reach the server. Check the address and fingerprint.</string>
 </resources>

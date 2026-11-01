@@ -4,7 +4,10 @@ import androidx.compose.runtime.Composable
 import io.github.agitangst.ampulse.ui.AsNeededScreen
 import io.github.agitangst.ampulse.ui.ExpiryScreen
 import io.github.agitangst.ampulse.ui.ImportScreen
+import io.github.agitangst.ampulse.relay.RelaySync
 import io.github.agitangst.ampulse.ui.CareScanScreen
+import io.github.agitangst.ampulse.ui.RelayScreen
+import io.github.agitangst.ampulse.ui.RelayScanScreen
 import io.github.agitangst.ampulse.ui.ContactEditScreen
 import io.github.agitangst.ampulse.ui.EmergencyEditScreen
 import io.github.agitangst.ampulse.ui.EmergencyScreen
@@ -90,6 +93,12 @@ sealed interface Route {
     /** Сканер QR чужого расписания → профиль-копия (макет, экран 12). */
     data object CareScan : Route
 
+    /** Уведомления близким через свой ретранслятор (relay-client): пара, состояние, QR знакомства. */
+    data object Relay : Route
+
+    /** Сканер QR знакомства ретранслятора (relay-client). */
+    data object RelayScan : Route
+
     /** Экстренная карта текущего профиля (макет, экран 16). */
     data object Emergency : Route
 
@@ -126,6 +135,8 @@ sealed interface Route {
         is ContactEdit -> "contact:$id"
         ShareQr -> "shareqr"
         CareScan -> "carescan"
+        Relay -> "relay"
+        RelayScan -> "relayscan"
         Emergency -> "emergency"
         EmergencyEdit -> "emergencyedit"
         Report -> "report"
@@ -161,6 +172,8 @@ sealed interface Route {
                 "contact" -> arg?.toLongOrNull()?.let(::ContactEdit)
                 "shareqr" -> ShareQr
                 "carescan" -> CareScan
+                "relay" -> Relay
+                "relayscan" -> RelayScan
                 "emergency" -> Emergency
                 "emergencyedit" -> EmergencyEdit
                 "report" -> Report
@@ -209,6 +222,8 @@ fun RouteContent(route: Route, nav: Nav, settings: AnvilSettings) {
         is Route.ContactEdit -> ContactEditScreen(route.id, nav)
         Route.ShareQr -> ShareQrScreen(nav)
         Route.CareScan -> CareScanScreen(nav)
+        Route.Relay -> RelayScreen(nav)
+        Route.RelayScan -> RelayScanScreen(nav)
         Route.Emergency -> EmergencyScreen(nav)
         Route.EmergencyEdit -> EmergencyEditScreen(nav)
         Route.Report -> ReportScreen(nav)

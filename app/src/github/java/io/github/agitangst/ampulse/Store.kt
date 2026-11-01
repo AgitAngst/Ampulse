@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import io.github.agitangst.ampulse.relay.RelaySync
 import io.github.agitangst.ampulse.sync.ServerSync
 import io.github.agitangst.anvil.compose.AnvilSettings
 import io.github.agitangst.anvil.update.UpdateBanner
@@ -53,6 +54,7 @@ object Store {
     fun onStart(context: Context, settings: AnvilSettings) {
         updater(context).auto(settings.checkUpdates)
         ServerSync.onStart()
+        RelaySync.tick()
     }
 
     /** Свой сервер («зеркало», этап 0.10): только сборка github — в магазинах сети нет, экрана «Сервер» тоже. */
